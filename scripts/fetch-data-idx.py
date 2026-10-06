@@ -629,6 +629,7 @@ def build_record(kode, prof, fund, ch, args):
 # ----------------------------------------------------------------------------
 IHSG_SIMBOL = "^JKSE"
 IDX_INDEX_URL = "https://www.idx.co.id/primary/TradingSummary/GetIndexSummary"
+IDX_STOCK_URL = "https://www.idx.co.id/primary/TradingSummary/GetStockSummary"
 
 # BI Rate di-scrape dari tabel resmi SEKI Bank Indonesia (bukan BPS: API-nya
 # diblokir firewall, dan halaman web BI merender angkanya lewat JavaScript
@@ -773,6 +774,49 @@ def hitung_likuiditas(f, hari=30, delay=0.4):
         "alasan": "nilai transaksi terakhir %.2fx rata-rata %d hari"
                   % (rasio, len(nilai) - 1),
     }
+
+
+def _ke_int(v):
+    try:
+        if v is None or v == "":
+            return 0
+        return int(float(str(v).replace(",", "").strip()))
+    except (ValueError, TypeError):
+        return 0
+
+
+def normalkan_baris_stock(r):
+    kode = str(r.get("StockCode") or r.get("kode") or "").strip().upper()
+    if not kode:
+        return None
+    return {
+        "kode": kode,
+        "high": _ke_int(r.get("High")),
+        "low": _ke_int(r.get("Low")),
+        "close": _ke_int(r.get("Close")),
+        "volume": _ke_int(r.get("Volume")),
+        "value": _ke_int(r.get("Value")),
+        "freq": _ke_int(r.get("Frequency")),
+    }
+
+
+def fetch_stock_summary(f, tanggal_yyyymmdd):
+    url = "%s?date=%s" % (IDX_STOCK_URL, tanggal_yyyymmdd)
+    j = f.get(url, headers={
+        "Referer": "https://www.idx.co.id/",
+        "X-Requested-With": "XMLHttpRequest",
+    })
+    if not j:
+        return None
+    rows = j.get("data") if isinstance(j, dict) else j
+    if not rows:
+        return None
+    out = []
+    for r in rows:
+        n = normalkan_baris_stock(r)
+        if n:
+            out.append(n)
+    return out or None
 
 
 def hitung_sektor(records):
