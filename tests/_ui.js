@@ -1,0 +1,2783 @@
+
+// ---- stub DOM yang mencatat markup yang dihasilkan ----
+let _uid=0; const _q={};
+function mkEl(tag){
+  const e={_id:"e"+(++_uid),_h:"",style:{},dataset:{},classList:{_s:new Set(),
+      add(c){this._s.add(c)},remove(c){this._s.delete(c)},
+      toggle(c,f){const on=f===undefined?!this._s.has(c):!!f; on?this._s.add(c):this._s.delete(c); return on},
+      contains(c){return this._s.has(c)}},
+    children:[],value:"",textContent:"",checked:false,disabled:false,tagName:tag||"DIV",
+    _ins:"",addEventListener(){},removeEventListener(){},
+    appendChild(c){this.children.push(c);return c},removeChild(){},setAttribute(){},getAttribute(){return null},
+    removeAttribute(){},closest(){return null},focus(){},blur(){},click(){},scrollIntoView(){},
+    insertAdjacentHTML(pos,h){this._ins+=h},
+    querySelector(sel){ const k=this._id+"|"+sel; return _q[k]||(_q[k]=mkEl()); },
+    querySelectorAll(){return []},
+    getBoundingClientRect(){return{top:0,left:0,width:100,height:20}}};
+  Object.defineProperty(e,"innerHTML",{get(){return e._h},set(v){e._h=String(v)}});
+  return e;
+}
+const _els={};
+global.document={
+  getElementById(id){ return _els[id]||(_els[id]=mkEl()); },
+  querySelector(){ return mkEl() }, querySelectorAll(){ return [] },
+  createElement(t){ return mkEl(t) }, addEventListener(){}, body:mkEl(), documentElement:mkEl()
+};
+// querySelector pada elemen mengembalikan elemen per (induk, selektor)
+const _origMkEl=mkEl;
+global._mkQ=function(id,sel){ const k=id+"|"+sel; return _q[k]||(_q[k]=mkEl()); };
+global.window={addEventListener(){},matchMedia(){return{matches:false,addEventListener(){}}},scrollTo(){},scrollY:0};
+const _ls={};global.localStorage={getItem(k){return _ls[k]===undefined?null:_ls[k]},setItem(k,v){_ls[k]=String(v)},removeItem(k){delete _ls[k]}};
+global.FileReader=function(){this.readAsText=()=>{}};if(!global.Blob)global.Blob=function(){};
+if(!global.URL)global.URL={};if(!global.URL.createObjectURL)global.URL.createObjectURL=()=>"blob:x";
+if(!global.URL.revokeObjectURL)global.URL.revokeObjectURL=()=>{};
+global.alert=()=>{};global.confirm=()=>true;global.requestAnimationFrame=cb=>setTimeout(cb,0);
+global.setTimeout=setTimeout;
+if(!global.navigator)global.navigator={userAgent:"node"};
+
+"use strict";
+"use strict";
+/* =========================================================================
+   SCREENER SAHAM INDONESIA — ALUR TUNGGAL 7 LANGKAH
+   Gabungan 3 dokumen:
+     1) panduan-software-screening-valuasi-saham.md  -> L3, L4, L5
+     2) panduan-investasi-hendriko-gani.md           -> L1
+     3) pola-swing-antitesis-bandar.md               -> L5 (overlay)
+   Semua logika sengaja dikumpulkan di satu file, tanpa dependensi eksternal.
+   ========================================================================= */
+
+const LS_KEY = "screener_id_v1";
+
+/* ---------------- Konstanta & referensi dokumen ---------------- */
+const KUADRAN = {
+  recovery: {
+    label: "Economic Recovery",
+    desc: "Pemulihan dari titik terendah. Likuiditas melimpah, selera risiko naik.",
+    alokasi: "70–80% saham / 20–30% kas", mosAdj: -5, sektor: ["Energi","Barang Baku","Properti","Keuangan","Infrastruktur"]
+  },
+  overheat: {
+    label: "Overheat / Extended Growth",
+    desc: "Pertumbuhan melampaui rata-rata, mendekati puncak. Inflasi & komoditas menguat.",
+    alokasi: "50–60% saham / 40–50% kas", mosAdj: 0, sektor: ["Energi","Barang Baku","Konsumer Primer"]
+  },
+  slowdown: {
+    label: "Slowdown / Melemah",
+    desc: "Pertumbuhan melambat, pemerintah mengintervensi likuiditas. Rotasi ke defensif.",
+    alokasi: "30–40% saham / 60–70% kas", mosAdj: 5, sektor: ["Konsumer Primer","Kesehatan","Telekomunikasi","Utilitas"]
+  },
+  bust: {
+    label: "Bust / Resesi",
+    desc: "Penurunan tajam. Posisi defensif, perbesar porsi kas, utamakan kualitas neraca.",
+    alokasi: "10–20% saham / 80–90% kas", mosAdj: 10, sektor: ["Konsumer Primer","Kesehatan","Utilitas"]
+  }
+};
+const SEKTOR = ["Energi","Barang Baku","Perindustrian","Konsumer Primer","Konsumer Non-Primer","Kesehatan","Keuangan","Properti","Teknologi","Infrastruktur","Telekomunikasi","Transportasi","Utilitas"];
+
+/* Sektor yang lazim digolongkan cyclical (mengikuti panduan cycle investing).
+   Dipakai untuk menandai `cyclical` otomatis saat data datang dari parsing. */
+const SEKTOR_CYCLICAL_IDX = ["Energi", "Barang Baku", "Perindustrian",
+  "Konsumer Non-Primer", "Properti", "Transportasi"];
+
+/* Alias sektor: menerima nama IDX-IC / Yahoo / bahasa Inggris agar impor tidak
+   diam-diam jatuh ke "Energi". Kunci ditulis huruf kecil semua. */
+const SEKTOR_ALIAS = {
+  "barang konsumen primer": "Konsumer Primer", "konsumen primer": "Konsumer Primer",
+  "consumer defensive": "Konsumer Primer", "barang primer": "Konsumer Primer",
+  "barang konsumen non-primer": "Konsumer Non-Primer", "barang konsumen non primer": "Konsumer Non-Primer",
+  "konsumen non-primer": "Konsumer Non-Primer", "consumer cyclical": "Konsumer Non-Primer",
+  "barang perindustrian": "Perindustrian", "industrials": "Perindustrian",
+  "basic materials": "Barang Baku", "energy": "Energi",
+  "healthcare": "Kesehatan", "financial services": "Keuangan", "bank": "Keuangan",
+  "real estate": "Properti", "properti & real estat": "Properti", "properti dan real estat": "Properti",
+  "technology": "Teknologi", "communication services": "Telekomunikasi",
+  "transportasi & logistik": "Transportasi", "transportasi dan logistik": "Transportasi",
+  "utilities": "Utilitas", "infrastruktur": "Infrastruktur"
+};
+function normSektor(v) {
+  const raw = String(v == null ? "" : v).trim();
+  if (!raw) return "";
+  const exact = SEKTOR.find(s => s.toLowerCase() === raw.toLowerCase());
+  if (exact) return exact;
+  const key = raw.toLowerCase();
+  if (SEKTOR_ALIAS[key]) return SEKTOR_ALIAS[key];
+  for (const k in SEKTOR_ALIAS) if (key.indexOf(k) >= 0) return SEKTOR_ALIAS[k];
+  for (const k in SEKTOR_ALIAS) if (k.indexOf(key) >= 0) return SEKTOR_ALIAS[k];
+  return "";
+}
+
+/* ---------------- Utilitas angka ---------------- */
+const nz = (v, d) => { const n = parseFloat(v); return isFinite(n) ? n : (d === undefined ? 0 : d); };
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const safeDiv = (a, b) => (b ? a / b : 0);
+function fmt(n, d) { if (!isFinite(n)) return "—"; d = d === undefined ? 2 : d; return n.toLocaleString("id-ID", { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function fmtRp(n) { if (!isFinite(n)) return "—"; return Math.round(n).toLocaleString("id-ID"); }
+function fmtBig(n) { // Rp triliun / miliar
+  if (!isFinite(n) || n === 0) return "—";
+  const a = Math.abs(n);
+  if (a >= 1e12) return fmt(n / 1e12, 2) + " T";
+  if (a >= 1e9) return fmt(n / 1e9, 2) + " M";
+  return fmt(n, 0);
+}
+function pct(n, d) { if (!isFinite(n)) return "—"; return fmt(n, d === undefined ? 1 : d) + "%"; }
+function sgn(n, d) { if (!isFinite(n)) return "—"; return (n > 0 ? "+" : "") + fmt(n, d === undefined ? 1 : d) + "%"; }
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+/* ---------------- Faktor annualisasi (dokumen §2.1) ---------------- */
+const ANN_FACTOR = { 1: 4, 2: 2, 3: 4 / 3, 4: 1 };
+
+/* ---------------- Data contoh (ILUSTRASI) ---------------- */
+/* Contoh JSON hasil parsing Key Stats (dipakai tombol "Isi dengan contoh").
+   Perhatikan `sector: "ID flag"` — itu artefak parsing yang sengaja dibiarkan
+   agar terlihat bahwa penebakan sektor dari daftar indeks menanganinya. */
+const CONTOH_STOCKBIT = {
+  metadata: { currency: "IDR", amount_unit: "miliar", percentage_unit: "percent", null_represents: "-" },
+  stock_identity: {
+    ticker: "IATA", company_name: "Karya Pacific Energy Tbk.", sector: "ID flag",
+    sharia_status: "113", listing_board: "3", exchange: "IDX", followers: 235706
+  },
+  market_quote: { currency: "IDR", snapshots: [] },
+  platform_data: { selected_tab: "Key Stats" },
+  current_valuation: {
+    current_pe_ratio_annualised: 106.86, current_pe_ratio_ttm: 67.64, forward_pe_ratio: null,
+    ihsg_pe_ratio_ttm_median: 7.87, earnings_yield_ttm_percent: 1.48,
+    current_price_to_sales_ttm: 2.87, current_price_to_book_value: 1.5,
+    current_price_to_cashflow_ttm: 22.94, current_price_to_free_cashflow_ttm: 91.1,
+    ev_to_ebit_ttm: 22.05, ev_to_ebitda_ttm: 17.88, peg_ratio: -4.03, peg_ratio_3yr: -1.53
+  },
+  per_share: {
+    current_eps_ttm: 1.67, current_eps_annualised: 1.06, revenue_per_share_ttm: 39.34,
+    cash_per_share_quarter: 0.69, current_book_value_per_share: 75.47,
+    free_cashflow_per_share_ttm: 1.24
+  },
+  solvency: {
+    current_ratio_quarter: 0.77, quick_ratio_quarter: 0.23, debt_to_equity_ratio_quarter: 0.52,
+    long_term_debt_to_equity_quarter: 0.36, total_liabilities_to_equity_quarter: 0.77,
+    total_debt_to_total_assets_quarter: 0.29, financial_leverage_quarter: 1.77,
+    interest_coverage_ttm: 2.38, free_cashflow_quarter_idr_billion: -124,
+    altman_z_score_modified: 1.33
+  },
+  management_effectiveness: {
+    return_on_assets_ttm_percent: 1.25, return_on_equity_ttm_percent: 2.21,
+    return_on_capital_employed_ttm_percent: 7.38, return_on_invested_capital_ttm_percent: 5.32,
+    days_sales_outstanding_quarter: 24.32, days_inventory_quarter: 328.05,
+    days_payables_outstanding_quarter: 220.13, cash_conversion_cycle_quarter: 132.24,
+    receivables_turnover_quarter: 3.74, asset_turnover_ttm: 0.3, inventory_turnover_ttm: 1.05
+  },
+  historical_net_income: {
+    unit: "IDR miliar",
+    years: [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017],
+    quarterly: {
+      q1: { "2017": -26, "2018": -12, "2019": -8, "2020": -12, "2021": -18, "2022": 117, "2023": 241, "2024": 56, "2025": 27, "2026": 8 },
+      q2: { "2017": -30, "2018": -76, "2019": -9, "2020": -19, "2021": 61, "2022": 167, "2023": 96, "2024": 85, "2025": 63, "2026": 9 },
+      q3: { "2017": -1, "2018": -9, "2019": -19, "2020": -406, "2021": -109, "2022": 373, "2023": 2, "2024": 78, "2025": 28, "2026": null },
+      q4: { "2017": -33, "2018": -5, "2019": -34, "2020": -61, "2021": 60, "2022": -88, "2023": 63, "2024": -96, "2025": 7, "2026": null }
+    },
+    annualised: { "2017": -91, "2018": -103, "2019": -70, "2020": -93, "2021": -7, "2022": 580, "2023": 402, "2024": 122, "2025": 125, "2026": 33 }
+  },
+  market_data: {
+    market_cap_idr_billion: 3534, enterprise_value_idr_billion: 4729,
+    current_share_outstanding_billion: 31.28, free_float_percent: 44.07
+  },
+  profitability: {
+    gross_profit_margin_quarter_percent: 11.65, operating_profit_margin_quarter_percent: 22.05,
+    net_profit_margin_quarter_percent: 4.16
+  },
+  growth: {
+    revenue_quarter_yoy_growth_percent: -28.42, gross_profit_quarter_yoy_growth_percent: -86.17,
+    net_income_quarter_yoy_growth_percent: -86.45
+  },
+  dividend: { dividend: null, dividend_ttm: null, payout_ratio: null, dividend_yield: null },
+  market_rank: {
+    piotroski_f_score: 5, relative_strength_rating_percent: 87, rank_market_cap_percent: 71,
+    rank_current_pe_ratio_ttm_percent: 17, rank_earnings_yield_percent: 95,
+    rank_price_to_sales_percent: 34, rank_price_to_book_percent: 45
+  },
+  income_statement: {
+    revenue_ttm_idr_billion: 1230, gross_profit_ttm_idr_billion: 542,
+    ebitda_ttm_idr_billion: 265, net_income_ttm_idr_billion: 52
+  },
+  balance_sheet: {
+    cash_quarter_idr_billion: 22, total_assets_quarter_idr_billion: 4174,
+    total_liabilities_quarter_idr_billion: 1823, working_capital_quarter_idr_billion: -282,
+    common_equity_idr_billion: 2360, long_term_debt_quarter_idr_billion: 856,
+    short_term_debt_quarter_idr_billion: 370, total_debt_quarter_idr_billion: 1225,
+    net_debt_quarter_idr_billion: 1204, total_equity_idr_billion: 2351
+  },
+  cash_flow_statement: {
+    cash_from_operations_ttm_idr_billion: 154, cash_from_investing_ttm_idr_billion: -267,
+    cash_from_financing_ttm_idr_billion: 83, capital_expenditure_ttm_idr_billion: -115,
+    free_cashflow_ttm_idr_billion: 39
+  },
+  price_performance: {
+    currency: "IDR",
+    periods: {
+      "1D": { return_percent: -2.59, low: 112, high: 118 },
+      "1W": { return_percent: -10.32, low: 112, high: 127 },
+      "1M": { return_percent: -9.6, low: 104, high: 145 },
+      "3M": { return_percent: -61.43, low: 55, high: 145 },
+      "6M": { return_percent: -48.68, low: 51, high: 145 },
+      "1Y": { return_percent: -39.51, low: 51, high: 198 }
+    }
+  },
+  company_profile: { sector: "ID flag", sharia_status: "113", listing_board: "3", indices: ["IDX", "ENERGY", "ISSI", "IHSG"] }
+};
+
+function sampleStocks() {
+  const mk = (o) => Object.assign({
+    kode: "", nama: "", sektor: "Energi", harga: 0,
+    eps: 0, kuartal: 4, ekuitas: 0, saham: 0, laba: 0, der: 0, nilaiHarian: 0,
+    epsTrend: "up", dividen: true, cagr: 8, cyclical: false, volatil: false,
+    fcf: 0, wacc: 12, kas: 0, utang: 0, fcfTerminal: false, gTerminal: 2.5,
+    sSideways: false, sVolRatio: 1, sFreqSpike: false, sTopBuyer: 0,
+    sSpring: false, sCloseAbove: false, sSpringLow: 0, sResistance: 0,
+    sumber: "Ilustrasi"
+  }, o);
+  return [
+    mk({ kode: "PTBA", nama: "Bukit Asam", sektor: "Energi", harga: 2600, eps: 503.8, kuartal: 4,
+      ekuitas: 25344e9, saham: 11.52e9, laba: 5794e9, der: 0.15, nilaiHarian: 45e9,
+      epsTrend: "up", dividen: true, cagr: 9.4, cyclical: true,
+      fcf: 3500e9, wacc: 12, kas: 4000e9, utang: 8000e9,
+      sSideways: true, sVolRatio: 0.55, sFreqSpike: true, sTopBuyer: 58, sSpringLow: 2450, sResistance: 2820 }),
+    mk({ kode: "ADRO", nama: "Alamtri Resources", sektor: "Energi", harga: 2300, eps: 523, kuartal: 4,
+      ekuitas: 70000e9, saham: 30.6e9, laba: 16000e9, der: 0.25, nilaiHarian: 220e9,
+      epsTrend: "fluktuatif", dividen: true, cagr: 8, cyclical: true,
+      fcf: 12000e9, wacc: 12, kas: 22000e9, utang: 12000e9,
+      sSideways: true, sVolRatio: 0.52, sFreqSpike: true, sTopBuyer: 62,
+      sSpring: true, sCloseAbove: true, sSpringLow: 2240, sResistance: 2520 }),
+    mk({ kode: "ANTM", nama: "Aneka Tambang", sektor: "Barang Baku", harga: 1550, eps: 95, kuartal: 3,
+      ekuitas: 30000e9, saham: 24.03e9, laba: 2280e9, der: 0.2, nilaiHarian: 130e9,
+      epsTrend: "up", dividen: true, cagr: 11, cyclical: true, volatil: true,
+      fcf: 1800e9, wacc: 13, kas: 6000e9, utang: 3000e9,
+      sSideways: true, sVolRatio: 0.9, sFreqSpike: true, sTopBuyer: 35, sSpring: false, sSpringLow: 1450, sResistance: 1700 }),
+    mk({ kode: "BBCA", nama: "Bank Central Asia", sektor: "Keuangan", harga: 9400, eps: 560, kuartal: 4,
+      ekuitas: 250000e9, saham: 123.3e9, laba: 54000e9, der: 0.05, nilaiHarian: 800e9,
+      epsTrend: "up", dividen: true, cagr: 12, cyclical: false,
+      fcf: 48000e9, wacc: 10, kas: 80000e9, utang: 30000e9,
+      sSideways: false, sVolRatio: 1.15, sFreqSpike: false, sTopBuyer: 22, sSpringLow: 9000, sResistance: 10200 }),
+    mk({ kode: "TLKM", nama: "Telkom Indonesia", sektor: "Telekomunikasi", harga: 2700, eps: 190, kuartal: 4,
+      ekuitas: 145000e9, saham: 99.06e9, laba: 19000e9, der: 0.4, nilaiHarian: 350e9,
+      epsTrend: "fluktuatif", dividen: true, cagr: 5, cyclical: false,
+      fcf: 32000e9, wacc: 10.5, kas: 25000e9, utang: 60000e9,
+      sSideways: true, sVolRatio: 0.75, sFreqSpike: false, sTopBuyer: 30, sSpringLow: 2600, sResistance: 2950 }),
+    mk({ kode: "ICBP", nama: "Indofood CBP", sektor: "Konsumer Primer", harga: 10500, eps: 700, kuartal: 4,
+      ekuitas: 45000e9, saham: 11.66e9, laba: 8162e9, der: 0.5, nilaiHarian: 90e9,
+      epsTrend: "up", dividen: true, cagr: 11, cyclical: false,
+      fcf: 7000e9, wacc: 11, kas: 9000e9, utang: 20000e9,
+      sSideways: true, sVolRatio: 0.82, sFreqSpike: false, sTopBuyer: 28, sSpringLow: 10000, sResistance: 11400 }),
+    mk({ kode: "ASII", nama: "Astra International", sektor: "Konsumer Non-Primer", harga: 4900, eps: 321, kuartal: 4,
+      ekuitas: 100000e9, saham: 40.48e9, laba: 13000e9, der: 0.35, nilaiHarian: 300e9,
+      epsTrend: "fluktuatif", dividen: true, cagr: 6, cyclical: true,
+      fcf: 15000e9, wacc: 11.5, kas: 30000e9, utang: 45000e9,
+      sSideways: true, sVolRatio: 0.95, sFreqSpike: false, sTopBuyer: 33, sSpringLow: 4650, sResistance: 5250 }),
+    mk({ kode: "MEJA", nama: "Harta Djaya Karya", sektor: "Konsumer Non-Primer", harga: 118, eps: 4.2, kuartal: 4,
+      ekuitas: 850e9, saham: 9.5e9, laba: 40e9, der: 0.6, nilaiHarian: 3e9,
+      epsTrend: "fluktuatif", dividen: false, cagr: 5, cyclical: false, volatil: true,
+      fcf: 25e9, wacc: 14, kas: 120e9, utang: 150e9,
+      sSideways: true, sVolRatio: 0.45, sFreqSpike: true, sTopBuyer: 72,
+      sSpring: true, sCloseAbove: true, sSpringLow: 116, sResistance: 131 }),
+    mk({ kode: "KRAS", nama: "Krakatau Steel", sektor: "Barang Baku", harga: 400, eps: 8.3, kuartal: 4,
+      ekuitas: 8000e9, saham: 19.3e9, laba: 160e9, der: 1.8, nilaiHarian: 2e9,
+      epsTrend: "down", dividen: false, cagr: -4, cyclical: true, volatil: true,
+      fcf: -200e9, wacc: 15, kas: 900e9, utang: 16000e9,
+      sSideways: false, sVolRatio: 1.3, sFreqSpike: false, sTopBuyer: 18, sSpringLow: 380, sResistance: 460 })
+  ];
+}
+
+/* ---------------- State ---------------- */
+let S = {
+  macro: { quad: "slowdown", liq: "netral", bi: 5.75, risk: "moderat", sectors: ["Konsumer Primer", "Telekomunikasi", "Kesehatan"] },
+  cfg: { gov: 7.8, corp: 11.4, disc: 7, mosNormal: 30, modal: 1000000, risk: 3,
+         thr: { pbv: 1.0, roe: 10, per: 15, der: 1.0, minNilai: 5e9 }, strict: false },
+  stocks: [],
+  pasar: null            // regime pasar dari pasar.json (Langkah 1)
+};
+let RANKED = [], VALUED = [], FINAL = [];
+
+function save() { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) {} }
+function load() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return false;
+    const o = JSON.parse(raw);
+    if (!o || !Array.isArray(o.stocks) || !o.stocks.length) return false;
+    S = Object.assign(S, o);
+    S.cfg.thr = Object.assign({ pbv: 1, roe: 10, per: 15, der: 1, minNilai: 5e9 }, o.cfg && o.cfg.thr);
+    return true;
+  } catch (e) { return false; }
+}
+
+/* =========================================================================
+   LANGKAH 2 — NORMALISASI & METRIK FUNDAMENTAL
+   ========================================================================= */
+function fund(s) {
+  const f = ANN_FACTOR[clamp(nz(s.kuartal, 4), 1, 4)] || 1;
+  const epsAnn = nz(s.eps) * f;
+  const labaAnn = nz(s.laba) * f;
+  const bvps = safeDiv(nz(s.ekuitas), nz(s.saham));
+  const per = epsAnn > 0 ? safeDiv(nz(s.harga), epsAnn) : Infinity;
+  const pbv = bvps > 0 ? safeDiv(nz(s.harga), bvps) : Infinity;
+  const roe = nz(s.ekuitas) > 0 ? safeDiv(labaAnn, nz(s.ekuitas)) * 100 : 0;
+  const mcap = nz(s.harga) * nz(s.saham);
+  const epsImplied = epsAnn * nz(s.saham);
+  const gap = labaAnn ? Math.abs(epsImplied - labaAnn) / Math.abs(labaAnn) * 100 : 0;
+  return { f, epsAnn, labaAnn, bvps, per, pbv, roe, mcap, epsImplied, gap, mismatch: gap > 15 && nz(s.laba) !== 0 && nz(s.eps) !== 0 };
+}
+
+/* Likuiditas: nilai transaksi harian rata-rata */
+/* Ambang likuiditas HARUS sama dengan ambang filter di Langkah 3 (S.cfg.thr.minNilai).
+   Sebelumnya di sini dipatok 10e9 sementara filternya 5e9, sehingga emiten dengan
+   nilai transaksi Rp7 M lolos filter tetapi tetap dicap "Tidak Likuid" dan
+   terlempar ke peringkat bawah tanpa alasan yang bisa dilihat pengguna. */
+function likuidSkor(v) { return nz(v) >= nz(S.cfg.thr.minNilai, 5e9) ? 1 : 1000; }
+function likuidLabel(v) { return nz(v) >= nz(S.cfg.thr.minNilai, 5e9) ? "Likuid" : "Tidak Likuid"; }
+const EPS_TREND_SKOR = { up: 1, fluktuatif: 200, down: 1000 };
+const EPS_TREND_LABEL = { up: "Up Trend", fluktuatif: "Fluktuatif Up", down: "Down Trend" };
+
+/* =========================================================================
+   LANGKAH 3 — SCREENING & RANKING
+   ========================================================================= */
+function screenStocks() {
+  const T = S.cfg.thr;
+  const rows = S.stocks.map(s => {
+    const F = fund(s);
+    const c = {
+      pbv: F.pbv < T.pbv,
+      roe: F.roe >= T.roe,
+      per: F.per < T.per,
+      der: nz(s.der) < T.der,
+      likuid: nz(s.nilaiHarian) >= T.minNilai
+    };
+    const pass = S.cfg.strict ? (c.pbv && c.roe && c.per && c.der && c.likuid)
+                              : ([c.pbv, c.roe, c.per, c.der, c.likuid].filter(Boolean).length >= 3);
+    return { s, F, c, pass };
+  });
+
+  /* Ranking: 1 = terbaik. Hanya emiten yang lolos filter yang diberi peringkat nyata,
+     sisanya tetap diberi peringkat agar tetap bisa dilihat (di luar basis seleksi). */
+  const basis = rows.filter(r => r.pass).length >= 2 ? rows.filter(r => r.pass) : rows;
+  const rankBy = (key, dir) => { // dir: 1 = kecil terbaik, -1 = besar terbaik
+    const valid = basis.filter(r => isFinite(key(r)) && key(r) !== Infinity);
+    valid.sort((a, b) => (key(a) - key(b)) * dir);
+    const m = new Map();
+    valid.forEach((r, i) => m.set(r.s, i + 1));
+    const fallback = valid.length + 1;
+    rows.forEach(r => { if (!m.has(r.s)) m.set(r.s, fallback + basis.length); });
+    return m;
+  };
+  const rP = rankBy(r => r.F.pbv, 1), rO = rankBy(r => r.F.roe, -1),
+        rE = rankBy(r => r.F.per, 1), rD = rankBy(r => nz(r.s.der), 1);
+
+  rows.forEach(r => {
+    r.rank = { pbv: rP.get(r.s), roe: rO.get(r.s), per: rE.get(r.s), der: rD.get(r.s),
+               likuid: likuidSkor(r.s.nilaiHarian), trend: EPS_TREND_SKOR[r.s.epsTrend] || 200 };
+    r.total = r.rank.pbv + r.rank.roe + r.rank.per + r.rank.der + r.rank.likuid + r.rank.trend;
+  });
+  const sorted = rows.slice().sort((a, b) => a.total - b.total);
+  sorted.forEach((r, i) => { r.pos = i + 1; });
+  RANKED = sorted;
+  return sorted;
+}
+
+/* =========================================================================
+   LANGKAH 4 — 6 METODE VALUASI
+   ========================================================================= */
+function valuate(s, F, opts) {
+  opts = opts || {};
+  const gRaw = nz(s.cagr, 0);
+  const g = clamp(gRaw, -50, 15) / 100;          // growth di-cap maks 15%
+  const roe = F.roe / 100;
+  const out = { g, gRaw, capped: gRaw > 15 };
+
+  /* --- F1: Adjusted Benjamin Graham --- */
+  const gov = nz(opts.gov, 7.8), corp = nz(opts.corp, 11.4);
+  out.graham = F.epsAnn > 0 && corp > 0 ? (F.epsAnn * (7 + 1 * (g * 100)) * gov) / corp : NaN;
+  out.grahamNote = "EPS× (7 + 1g) × " + fmt(gov, 1) + " ÷ " + fmt(corp, 1);
+
+  /* --- F2: EPS Discounted Model (5 tahun) --- */
+  const r = nz(opts.disc, 7) / 100;
+  let acc = 0, e = F.epsAnn;
+  for (let t = 1; t <= 5; t++) { e = e * (1 + g); acc += e / Math.pow(1 + r, t); }
+  out.epsDisc = F.epsAnn > 0 ? F.bvps + acc : NaN;
+  out.epsDiscPvEps = acc;
+
+  /* --- F3: Equity Growth Model --- */
+  out.equityGrowth = F.bvps > 0 ? F.bvps * Math.pow(1 + roe, 5) : NaN;
+
+  /* --- F4: ROE–PBV Matrix --- */
+  out.roePbv = F.bvps > 0 ? F.bvps * (F.roe / 10) : NaN;
+  out.fairPbv = F.roe / 10;
+
+  /* --- F5: DCF --- */
+  if (nz(s.fcf) > 0 && nz(s.wacc) > 0) {
+    const w = nz(s.wacc) / 100;
+    let pv = 0, f = nz(s.fcf);
+    const n = 5;
+    for (let t = 1; t <= n; t++) { f = f * (1 + g); pv += f / Math.pow(1 + w, t); }
+    if (s.fcfTerminal) {
+      const gt = nz(s.gTerminal, 2.5) / 100;
+      const tv = w > gt ? (f * (1 + gt)) / (w - gt) : 0;
+      pv += tv / Math.pow(1 + w, n);
+    }
+    const eq = pv + nz(s.kas) - nz(s.utang);
+    out.dcf = eq > 0 && nz(s.saham) > 0 ? eq / nz(s.saham) : NaN;
+    out.dcfEq = eq;
+  } else out.dcf = NaN;
+
+  /* --- F6: Konsensus (median) --- */
+  const list = [["Graham", out.graham], ["EPS Disc.", out.epsDisc], ["Equity Growth", out.equityGrowth],
+                ["ROE-PBV", out.roePbv], ["DCF", out.dcf]]
+               .filter(x => isFinite(x[1]) && x[1] > 0);
+  const vals = list.map(x => x[1]).sort((a, b) => a - b);
+  out.methods = list;
+  out.n = vals.length;
+  out.composite = vals.length ? (vals.length % 2 ? vals[(vals.length - 1) / 2]
+                              : (vals[vals.length / 2 - 1] + vals[vals.length / 2]) / 2) : NaN;
+  out.min = vals.length ? vals[0] : NaN;
+  out.max = vals.length ? vals[vals.length - 1] : NaN;
+  out.mean = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : NaN;
+
+  /* --- LANGKAH 5: MOS & sinyal --- */
+  const cyclical = !!(s.cyclical || nz(s.der) > 1 || s.volatil);
+  const base = cyclical ? 50 : nz(opts.mosNormal, 30);
+  const quad = KUADRAN[S.macro.quad] || KUADRAN.slowdown;
+  const liqAdj = S.macro.liq === "naik" ? 5 : (S.macro.liq === "turun" ? -5 : 0);
+  const riskAdj = S.macro.risk === "konservatif" ? 5 : (S.macro.risk === "agresif" ? -5 : 0);
+  out.cyclical = cyclical;
+  out.targetMos = clamp(base + quad.mosAdj + liqAdj + riskAdj, 15, 65);
+  out.targetBase = base;
+  out.macroAdj = quad.mosAdj + liqAdj + riskAdj;
+  out.mos = isFinite(out.composite) && out.composite > 0 ? (out.composite - nz(s.harga)) / out.composite * 100 : NaN;
+  out.maxBuy = isFinite(out.composite) ? out.composite * (1 - out.targetMos / 100) : NaN;
+  out.upside = isFinite(out.composite) && nz(s.harga) > 0 ? (out.composite / nz(s.harga) - 1) * 100 : NaN;
+
+  if (!isFinite(out.composite) || out.composite <= 0) out.signal = "DATA KURANG";
+  else if (nz(s.harga) <= out.maxBuy) out.signal = "STRONG BUY";
+  else if (nz(s.harga) < out.composite) out.signal = "HOLD / WATCHLIST";
+  else out.signal = "TAKE PROFIT / OVERVALUED";
+  return out;
+}
+
+/* =========================================================================
+   LANGKAH 5b — OVERLAY SWING BANDARMOLOGY
+   ========================================================================= */
+function swingScore(s) {
+  const parts = [];
+  const add = (nama, skor, maks, ket) => parts.push({ nama, skor, maks, ket });
+
+  add("Sideways di area bottoming", s.sSideways ? 20 : 0, 20,
+      s.sSideways ? "Pola sideways di dasar — indikasi akumulasi sunyi" : "Belum sideways di dasar");
+
+  const vr = nz(s.sVolRatio, 1);
+  const vSkor = vr <= 0.5 ? 15 : vr <= 0.7 ? 10 : vr <= 1.0 ? 5 : 0;
+  add("Volume dry-out", vSkor, 15, "Rasio volume vs rata-rata 20 hari = " + fmt(vr, 2) + "×");
+
+  add("Frequency spike / tiang listrik", s.sFreqSpike ? 20 : 0, 20,
+      s.sFreqSpike ? "Ada lonjakan volume tanpa kenaikan harga signifikan" : "Tidak terdeteksi anomali volume");
+
+  const c = nz(s.sTopBuyer, 0);
+  const cSkor = c >= 70 ? 20 : c >= 50 ? 14 : c >= 30 ? 8 : 0;
+  add("Konsentrasi Top Buyer", cSkor, 20, "1–3 broker menguasai " + fmt(c, 0) + "% pembelian");
+
+  add("Spring / false break", s.sSpring ? 15 : 0, 15,
+      s.sSpring ? "Guncangan terakhir menembus support lalu diserap" : "Belum ada spring");
+  add("Close kembali di atas support", s.sCloseAbove ? 10 : 0, 10,
+      s.sCloseAbove ? "Konfirmasi V-shape rebound di akhir perdagangan" : "Belum ada konfirmasi penutupan");
+
+  const score = parts.reduce((a, b) => a + b.skor, 0);
+  const checks = parts.filter(p => p.skor > 0).length;
+  const status = checks >= 6 ? "SIAP ENTRY" : checks >= 4 ? "HAMPIR SIAP" : "BELUM SIAP";
+
+  /* Eksekusi */
+  const entry = nz(s.harga);
+  const springLow = nz(s.sSpringLow, 0);
+  let sl = springLow > 0 ? springLow - 1 : entry * 0.97;
+  let slPct = entry > 0 ? (entry - sl) / entry * 100 : 0;
+  if (slPct > 3) { sl = entry * 0.97; slPct = 3; }
+  if (slPct < 2) { sl = entry * 0.98; slPct = 2; }
+  const tp1 = entry * 1.05, tp2 = entry * 1.07;
+  const rr = entry - sl > 0 ? (tp1 - entry) / (entry - sl) : 0;
+  const modal = nz(S.cfg.modal, 1000000), riskPct = nz(S.cfg.risk, 3);
+  const lotModal = entry > 0 ? Math.floor(modal / (entry * 100)) : 0;
+  const lotRisk = entry - sl > 0 ? Math.floor((modal * riskPct / 100) / ((entry - sl) * 100)) : 0;
+  const lot = Math.max(0, Math.min(lotModal, lotRisk));
+
+  return { parts, score, checks, status, entry, sl, slPct, tp1, tp2, rr, lot,
+           lotModal, lotRisk, riskRp: lot * 100 * (entry - sl),
+           nilaiPosisi: lot * 100 * entry,
+           resistance: nz(s.sResistance, 0), springLow };
+}
+
+/* =========================================================================
+   LANGKAH 6 — SKOR TERPADU & KEPUTUSAN
+   ========================================================================= */
+function finalScore(r, v, sw) {
+  const s = r.s, F = r.F;
+
+  /* Skor Nilai (40%) */
+  const mosScore = isFinite(v.mos) ? clamp(v.mos / v.targetMos * 100, 0, 100) : 0;
+  const nBasis = RANKED.length;
+  const rankScore = nBasis > 1 ? clamp(100 * (1 - (r.total - RANKED[0].total) / Math.max(1, RANKED[nBasis - 1].total - RANKED[0].total)), 0, 100) : 50;
+  const valueScore = 0.6 * mosScore + 0.4 * rankScore;
+
+  /* Skor Kualitas (25%) */
+  const qRoe = clamp(F.roe / 25, 0, 1) * 40;
+  const d = nz(s.der);
+  const qDer = d < 0.5 ? 25 : d < 1 ? 18 : d < 2 ? 8 : 0;
+  const qTrend = s.epsTrend === "up" ? 20 : s.epsTrend === "fluktuatif" ? 10 : 0;
+  const qDiv = s.dividen ? 15 : 0;
+  const qualityScore = qRoe + qDer + qTrend + qDiv;
+
+  /* Skor Timing (20%) */
+  const timingScore = sw.score;
+
+  /* Kesesuaian Makro (15%) */
+  const quad = KUADRAN[S.macro.quad] || KUADRAN.slowdown;
+  const macroFit = quad.sektor.indexOf(s.sektor) >= 0 ? 100 : 55;
+
+  const total = 0.40 * valueScore + 0.25 * qualityScore + 0.20 * timingScore + 0.15 * macroFit;
+  const tier = total >= 75 ? "A" : total >= 60 ? "B" : "C";
+
+  /* Matriks keputusan terpadu */
+  const vSig = v.signal, ready = sw.status;
+  let action, actionNote;
+  if (vSig === "STRONG BUY" && ready === "SIAP ENTRY") {
+    action = "AKUMULASI BERTAHAP";
+    actionNote = "Fundamental diskon + timing bandar terkonfirmasi. Scaling in 50% sekarang, 50% saat tembus resistance " + (sw.resistance ? fmtRp(sw.resistance) : "lokal") + ".";
+  } else if (vSig === "STRONG BUY" && ready === "HAMPIR SIAP") {
+    action = "AKUMULASI AWAL";
+    actionNote = "Nilai sudah diskon, timing belum penuh. Ambil 25–50% posisi, sisanya tunggu konfirmasi spring.";
+  } else if (vSig === "STRONG BUY") {
+    action = "WATCHLIST VALUE";
+    actionNote = "Saham murah secara fundamental tapi belum ada jejak akumulasi bandar. Pasang alert di harga beli maksimal " + (isFinite(v.maxBuy) ? fmtRp(v.maxBuy) : "—") + ".";
+  } else if (vSig === "HOLD / WATCHLIST" && ready === "SIAP ENTRY") {
+    action = "SWING SAJA (porsi kecil)";
+    actionNote = "Valuasi belum cukup diskon untuk investasi, tapi timing bandar siap. Perlakukan sebagai trading jangka pendek dengan SL disiplin 2–3%.";
+  } else if (vSig === "HOLD / WATCHLIST" && ready === "HAMPIR SIAP") {
+    action = "PANTAU";
+    actionNote = "Dua-duanya setengah matang. Tunggu salah satu terkonfirmasi (harga turun ke beli maksimal, atau spring muncul).";
+  } else if (vSig === "TAKE PROFIT / OVERVALUED" && ready === "SIAP ENTRY") {
+    action = "SWING MURNI (bukan investasi)";
+    actionNote = "Valuasi sudah di atas nilai wajar, jadi ini bukan posisi investasi — hanya trading jangka pendek yang didukung jejak akumulasi bandar. Porsi kecil, SL disiplin 2–3%, jangan dipegang bila gagal breakout.";
+  } else if (vSig === "TAKE PROFIT / OVERVALUED") {
+    action = "HINDARI ENTRY BARU";
+    actionNote = "Harga sudah di atas nilai wajar dan tidak ada dukungan timing. Jika sedang memegang, siapkan rencana exit.";
+  } else if (vSig === "DATA KURANG") {
+    action = "DATA BELUM LENGKAP";
+    actionNote = "Lengkapi EPS, ekuitas, dan jumlah saham agar nilai intrinsik bisa dihitung.";
+  } else {
+    action = "PANTAU";
+    actionNote = "Belum memenuhi kriteria gabungan.";
+  }
+  return { valueScore, qualityScore, timingScore, macroFit, total, tier, action, actionNote, mosScore, rankScore };
+}
+/* =========================================================================
+   UI
+   ========================================================================= */
+const $ = id => document.getElementById(id);
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 2200); }
+
+/* =========================================================================
+   KOMPONEN VISUAL — progress bar, gauge, bar chart, peta sebar, peta harga
+   ========================================================================= */
+const CLR = {
+  blue: "#378ADD", blueD: "#185FA5", blueDD: "#0C447C", blueL: "#E6F1FB",
+  teal: "#1D9E75", tealD: "#0F6E56", tealL: "#E1F5EE",
+  green: "#97C459", greenD: "#3B6D11", greenL: "#EAF3DE",
+  amber: "#EF9F27", amberD: "#854F0B", amberL: "#FAEEDA",
+  red: "#E24B4A", redD: "#A32D2D", redL: "#FCEBEB",
+  purple: "#7F77DD", purpleD: "#534AB7", purpleL: "#EEEDFE",
+  gray: "#B4B2A9", grayD: "#5F5E5A", grayL: "#F1EFE8",
+  track: "#EEF1F4", ink: "#171A1F", mut: "#6B7280"
+};
+
+/* Progress bar mini (untuk di dalam tabel) */
+function mbar(pct, color, w, h) {
+  const p = clamp(isFinite(pct) ? pct : 0, 0, 100);
+  return '<span class="mbar" style="width:' + (w || 52) + "px;height:" + (h || 6) + 'px">' +
+    '<i style="width:' + p + "%;background:" + color + '"></i></span>';
+}
+/* Progress bar panjang (untuk di dalam kartu) */
+function bigBar(pct, color, label, right) {
+  const p = clamp(isFinite(pct) ? pct : 0, 0, 100);
+  return '<div style="margin-bottom:9px">' +
+    '<div class="row" style="margin-bottom:3px"><span class="mini" style="font-weight:600;color:var(--ink2)">' + label + "</span>" +
+    '<span class="sp"></span><span class="mini mono">' + (right || "") + "</span></div>" +
+    '<div class="bar" style="height:8px"><i style="width:' + p + "%;background:" + color + '"></i></div></div>';
+}
+/* Bar bertumpuk untuk komposisi skor */
+function stackBar(segs, h) {
+  const tot = segs.reduce((a, b) => a + Math.max(0, b.v), 0) || 1;
+  return '<span class="stack" style="height:' + (h || 9) + 'px">' +
+    segs.map(s => '<i style="width:' + (Math.max(0, s.v) / tot * 100).toFixed(2) + "%;background:" + s.c +
+      '" title="' + esc(s.t || "") + '"></i>').join("") + "</span>";
+}
+function legend(items) {
+  return '<div class="lg">' + items.map(i => '<span><i class="dot" style="background:' + i.c + '"></i>' + esc(i.t) + "</span>").join("") + "</div>";
+}
+
+/* Gauge setengah lingkaran untuk Margin of Safety */
+function gaugeMos(mos, target, harga, maxBuy) {
+  const cx = 128, cy = 122, r = 96, H = 152;
+  const f = clamp((isFinite(mos) ? mos : 0) / 100, 0, 1);
+  const tf = clamp(target / 100, 0, 1);
+  const pt = (fr, rr) => { const a = Math.PI * (1 - fr); return [cx + rr * Math.cos(a), cy - rr * Math.sin(a)]; };
+  const arc = (f0, f1, rr) => {
+    const a = pt(f0, rr), b = pt(f1, rr);
+    return "M " + a[0].toFixed(1) + " " + a[1].toFixed(1) + " A " + rr + " " + rr + " 0 0 1 " + b[0].toFixed(1) + " " + b[1].toFixed(1);
+  };
+  const col = mos >= target ? CLR.tealD : (mos > 0 ? CLR.amberD : CLR.redD);
+  let s = '<svg class="chart" viewBox="0 0 680 ' + H + '" role="img"><title>Gauge Margin of Safety</title>';
+  s += '<path d="' + arc(0, 1, r) + '" fill="none" stroke="' + CLR.track + '" stroke-width="16" stroke-linecap="round"/>';
+  if (f > 0.004) s += '<path d="' + arc(0, f, r) + '" fill="none" stroke="' + col + '" stroke-width="16" stroke-linecap="round"/>';
+  const tm = pt(tf, r);
+  const t1 = pt(tf, r - 13), t2 = pt(tf, r + 13);
+  s += '<line x1="' + t1[0].toFixed(1) + '" y1="' + t1[1].toFixed(1) + '" x2="' + t2[0].toFixed(1) + '" y2="' + t2[1].toFixed(1) + '" stroke="' + CLR.ink + '" stroke-width="1.5"/>';
+  s += '<text x="' + tm[0].toFixed(1) + '" y="' + (tm[1] - 20).toFixed(1) + '" font-size="11" fill="' + CLR.ink + '" text-anchor="middle">target ' + fmt(target, 0) + "%</text>";
+  s += '<text x="' + (cx - r) + '" y="' + (cy + 18) + '" font-size="11" fill="' + CLR.grayD + '">0%</text>';
+  s += '<text x="' + (cx + r) + '" y="' + (cy + 18) + '" font-size="11" fill="' + CLR.grayD + '" text-anchor="end">100%</text>';
+  s += '<text x="' + cx + '" y="' + (cy - 34) + '" font-size="27" font-weight="500" fill="' + col + '" text-anchor="middle">' + (isFinite(mos) ? fmt(mos, 1) + "%" : "—") + "</text>";
+  s += '<text x="' + cx + '" y="' + (cy - 12) + '" font-size="11.5" fill="' + CLR.mut + '" text-anchor="middle">Margin of Safety aktual</text>';
+  s += '<text x="' + cx + '" y="' + (cy + 40) + '" font-size="12" fill="' + CLR.ink + '" text-anchor="middle">Beli maksimal Rp ' + (isFinite(maxBuy) ? fmtRp(maxBuy) : "—") + " · harga Rp " + fmtRp(harga) + "</text>";
+  s += "</svg>";
+  return s;
+}
+
+/* Bar chart horizontal: nilai intrinsik per metode vs harga pasar */
+function chartMethods(v, harga) {
+  const rows = [["1 · Graham", v.graham], ["2 · EPS Disc.", v.epsDisc], ["3 · Equity Growth", v.equityGrowth],
+                ["4 · ROE–PBV", v.roePbv], ["5 · DCF", v.dcf], ["6 · Konsensus", v.composite]];
+  const vals = rows.filter(r => isFinite(r[1]) && r[1] > 0).map(r => r[1]).concat([nz(harga)]).filter(x => x > 0);
+  const mx = (vals.length ? Math.max.apply(null, vals) : 1) * 1.02;
+  const L = 124, R = 596, W = R - L, rh = 25, top = 40, n = rows.length;
+  const H = top + n * rh + 16;
+  const x = p => L + clamp(p / mx, 0, 1) * W;
+  let s = '<svg class="chart" viewBox="0 0 680 ' + H + '" role="img"><title>Nilai intrinsik per metode dibanding harga pasar</title>';
+  const px = x(nz(harga));
+  s += '<line x1="' + px.toFixed(1) + '" y1="' + (top - 16) + '" x2="' + px.toFixed(1) + '" y2="' + (top + n * rh - 5) + '" stroke="' + CLR.redD + '" stroke-width="1" stroke-dasharray="3 3"/>';
+  s += '<text x="' + clamp(px, 62, 600).toFixed(1) + '" y="' + (top - 22) + '" font-size="11" fill="' + CLR.redD + '" text-anchor="middle">harga Rp ' + fmtRp(harga) + "</text>";
+  rows.forEach((r, i) => {
+    const y = top + i * rh, val = r[1], ok = isFinite(val) && val > 0, isC = i === n - 1;
+    const w = ok ? Math.max(3, x(val) - L) : 0;
+    s += '<text x="4" y="' + (y + 12) + '" font-size="11.5" fill="' + (isC ? CLR.ink : CLR.grayD) + '"' + (isC ? ' font-weight="500"' : "") + ">" + esc(r[0]) + "</text>";
+    s += '<rect x="' + L + '" y="' + (y + 1) + '" width="' + W + '" height="15" rx="3" fill="' + CLR.track + '"/>';
+    if (ok) s += '<rect x="' + L + '" y="' + (y + 1) + '" width="' + w.toFixed(1) + '" height="15" rx="3" fill="' + (isC ? CLR.blueDD : CLR.blue) + '"/>';
+    const txt = ok ? fmtRp(val) : "—";
+    if (ok && w > 74) s += '<text x="' + (L + w - 7).toFixed(1) + '" y="' + (y + 13) + '" font-size="11.5" fill="#FFFFFF" text-anchor="end">' + txt + "</text>";
+    else s += '<text x="' + (L + w + 6).toFixed(1) + '" y="' + (y + 13) + '" font-size="11.5" fill="' + (isC ? CLR.ink : CLR.grayD) + '">' + txt + "</text>";
+  });
+  s += '<text x="4" y="' + (top - 22) + '" font-size="11" fill="' + CLR.mut + '">batang lebih panjang dari garis putus-putus = di atas harga (diskon)</text>';
+  s += "</svg>";
+  return s;
+}
+
+/* Peta harga: zona risiko vs zona imbalan */
+function ladderPrice(w) {
+  if (!(w.entry > 0)) return '<div class="mini">Harga emiten belum diisi, peta harga tidak bisa digambar.</div>';
+  const lo = Math.min(w.sl, w.entry) * 0.99, hi = Math.max(w.tp2, w.entry) * 1.01;
+  const L = 46, R = 634, W = R - L, H = 100, y = 28, bh = 14;
+  const x = p => L + clamp((p - lo) / (hi - lo), 0, 1) * W;
+  let s = '<svg class="chart" viewBox="0 0 680 ' + H + '" role="img"><title>Peta harga rencana eksekusi</title>';
+  s += '<rect x="' + x(w.sl).toFixed(1) + '" y="' + y + '" width="' + (x(w.entry) - x(w.sl)).toFixed(1) + '" height="' + bh + '" rx="3" fill="' + CLR.redL + '" stroke="' + CLR.redD + '" stroke-width="0.5"/>';
+  s += '<rect x="' + x(w.entry).toFixed(1) + '" y="' + y + '" width="' + (x(w.tp2) - x(w.entry)).toFixed(1) + '" height="' + bh + '" rx="3" fill="' + CLR.tealL + '" stroke="' + CLR.tealD + '" stroke-width="0.5"/>';
+  const marks = [["Stop loss", w.sl, CLR.redD, "-" + fmt(w.slPct, 1) + "%"],
+                 ["Entry", w.entry, CLR.ink, "masuk"],
+                 ["TP 1", w.tp1, CLR.tealD, "+5%"],
+                 ["TP 2", w.tp2, CLR.tealD, "+7%"]];
+  marks.forEach(m => {
+    const px = x(m[1]);
+    s += '<line x1="' + px.toFixed(1) + '" y1="' + (y + bh) + '" x2="' + px.toFixed(1) + '" y2="' + (y + bh + 9) + '" stroke="' + m[2] + '" stroke-width="1"/>';
+    s += '<text x="' + clamp(px, 30, 650).toFixed(1) + '" y="' + (y + bh + 24) + '" font-size="11" fill="' + m[2] + '" text-anchor="middle">' + m[0] + "</text>";
+    s += '<text x="' + clamp(px, 30, 650).toFixed(1) + '" y="' + (y + bh + 40) + '" font-size="11.5" fill="' + CLR.ink + '" text-anchor="middle">' + fmtRp(m[1]) + "</text>";
+    s += '<text x="' + clamp(px, 30, 650).toFixed(1) + '" y="' + (y + bh + 54) + '" font-size="10.5" fill="' + CLR.mut + '" text-anchor="middle">' + m[3] + "</text>";
+  });
+  s += "</svg>";
+  return s;
+}
+
+/* Peta sebar: Margin of Safety (x) vs kesiapan timing (y) */
+function chartScatter(items) {
+  const L = 62, R = 620, T = 30, B = 316;
+  const H = B + 46;
+  const X = mos => L + clamp((clamp(isFinite(mos) ? mos : 0, -100, 100) + 100) / 200, 0, 1) * (R - L);
+  const Y = sc => B - clamp(sc, 0, 100) / 100 * (B - T);
+  const q = [[X(0), Y(100), R - X(0), Y(50) - Y(100), CLR.amberL, "Timing siap, harga belum diskon", CLR.amberD],
+             [X(0), Y(50), R - X(0), B - Y(50), CLR.tealL, "Timing siap + harga diskon", CLR.tealD],
+             [L, Y(100), X(0) - L, Y(50) - Y(100), CLR.grayL, "Belum ada apa-apa", CLR.grayD],
+             [L, Y(50), X(0) - L, B - Y(50), CLR.blueL, "Diskon, timing belum", CLR.blueDD]];
+  let s = '<svg class="chart" viewBox="0 0 680 ' + H + '" role="img"><title>Peta sebar Margin of Safety versus kesiapan timing</title>';
+  q.forEach(c => {
+    s += '<rect x="' + c[0].toFixed(1) + '" y="' + c[1].toFixed(1) + '" width="' + c[2].toFixed(1) + '" height="' + c[3].toFixed(1) + '" fill="' + c[4] + '"/>';
+    s += '<text x="' + (c[0] + 8).toFixed(1) + '" y="' + (c[1] + 16).toFixed(1) + '" font-size="11" fill="' + c[6] + '">' + c[5] + "</text>";
+  });
+  s += '<line x1="' + X(0).toFixed(1) + '" y1="' + T + '" x2="' + X(0).toFixed(1) + '" y2="' + B + '" stroke="' + CLR.gray + '" stroke-width="1"/>';
+  s += '<line x1="' + L + '" y1="' + Y(50).toFixed(1) + '" x2="' + R + '" y2="' + Y(50).toFixed(1) + '" stroke="' + CLR.gray + '" stroke-width="1"/>';
+  s += '<rect x="' + L + '" y="' + T + '" width="' + (R - L) + '" height="' + (B - T) + '" fill="none" stroke="' + CLR.gray + '" stroke-width="0.5"/>';
+  [-100, -50, 0, 50, 100].forEach(v => {
+    s += '<text x="' + X(v).toFixed(1) + '" y="' + (B + 16) + '" font-size="11" fill="' + CLR.mut + '" text-anchor="middle">' + v + "%</text>";
+  });
+  [0, 25, 50, 75, 100].forEach(v => {
+    s += '<text x="' + (L - 8) + '" y="' + (Y(v) + 4).toFixed(1) + '" font-size="11" fill="' + CLR.mut + '" text-anchor="end">' + v + "</text>";
+  });
+  s += '<text x="' + R + '" y="' + (B + 32) + '" font-size="11.5" fill="' + CLR.grayD + '" text-anchor="end">Margin of Safety (%)</text>';
+  s += '<text x="' + L + '" y="' + (T - 12) + '" font-size="11.5" fill="' + CLR.grayD + '">Skor timing bandarmology</text>';
+  items.forEach(x => {
+    const cx = X(x.v.mos), cy = Y(x.sw.score);
+    const col = x.f.tier === "A" ? CLR.tealD : x.f.tier === "B" ? CLR.blueD : CLR.grayD;
+    s += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="5" fill="' + col + '" stroke="#FFFFFF" stroke-width="1.5"/>';
+    s += '<text x="' + (cx + 8).toFixed(1) + '" y="' + (cy + 4).toFixed(1) + '" font-size="11" font-weight="500" fill="' + CLR.ink + '">' + esc(x.s.kode) + "</text>";
+  });
+  s += "</svg>";
+  return s;
+}
+
+/* Grafik batang laba bersih tahunan (miliar rupiah).
+   Batang di atas garis nol = laba (biru), di bawah = rugi (merah).
+   Ini yang tidak bisa diberikan sumber data lain: 10 tahun sekaligus, jadi
+   pola untung-rugi emiten cyclical langsung terlihat. */
+function chartLaba(hist, satuan) {
+  if (!hist || hist.length < 2) return "";
+  const L = 60, R = 644, T = 30, B = 244;
+  const H = B + 44;
+  const vals = hist.map(p => p.v);
+  const maxV = Math.max.apply(null, vals.concat([0]));
+  const minV = Math.min.apply(null, vals.concat([0]));
+  const span = (maxV - minV) || 1;
+  const Y = v => B - (v - minV) / span * (B - T);
+  const n = hist.length;
+  const slot = (R - L) / n;
+  const bw = Math.max(13, Math.min(36, slot * 0.6));
+  const y0 = Y(0);
+  let s = '<svg class="chart" viewBox="0 0 680 ' + H + '" role="img"><title>Laba bersih tahunan</title>';
+  // garis bantu
+  [maxV, (maxV + minV) / 2, minV].forEach(v => {
+    const y = Y(v);
+    s += '<line x1="' + L + '" y1="' + y.toFixed(1) + '" x2="' + R + '" y2="' + y.toFixed(1) +
+      '" stroke="' + CLR.track + '" stroke-width="1"/>';
+  });
+  s += '<line x1="' + L + '" y1="' + y0.toFixed(1) + '" x2="' + R + '" y2="' + y0.toFixed(1) +
+    '" stroke="' + CLR.gray + '" stroke-width="1.2"/>';
+  hist.forEach((p, i) => {
+    const cx = L + slot * i + slot / 2;
+    const yv = Y(p.v);
+    const top = Math.min(yv, y0), hgt = Math.max(2, Math.abs(yv - y0));
+    const col = p.v >= 0 ? CLR.blueD : CLR.redD;
+    s += '<rect x="' + (cx - bw / 2).toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw.toFixed(1) +
+      '" height="' + hgt.toFixed(1) + '" rx="2" fill="' + col + '"><title>' + p.t + ": " +
+      (p.v >= 0 ? "+" : "") + fmt(p.v, 0) + "</title></rect>";
+    // nilai di ujung batang
+    const diAtas = p.v >= 0;
+    s += '<text x="' + cx.toFixed(1) + '" y="' + (diAtas ? top - 5 : top + hgt + 12).toFixed(1) +
+      '" font-size="9.5" fill="' + col + '" text-anchor="middle">' + fmt(p.v, 0) + "</text>";
+    s += '<text x="' + cx.toFixed(1) + '" y="' + (B + 18) + '" font-size="10.5" fill="' + CLR.mut +
+      '" text-anchor="middle">' + String(p.t).slice(2) + "</text>";
+  });
+  s += '<text x="' + L + '" y="' + (T - 12) + '" font-size="11.5" fill="' + CLR.grayD + '">Laba bersih tahunan (' +
+    (satuan || "miliar rupiah") + ")</text>";
+  s += '<text x="' + R + '" y="' + (B + 34) + '" font-size="11" fill="' + CLR.mut + '" text-anchor="end">tahun (2 digit terakhir)</text>';
+  s += "</svg>";
+  return s;
+}
+
+const NAV = [
+  ["s0", "Alur", "Alur tunggal & cara pakai"],
+  ["s1", "Makro", "Regime makro: kuadran, likuiditas, sektor unggulan"],
+  ["s2", "Data", "Data emiten & normalisasi laporan kuartal"],
+  ["s3", "Screening", "Screening & ranking"],
+  ["s4", "Valuasi", "Valuasi 6 metode"],
+  ["s5", "Swing", "Overlay swing bandarmology"],
+  ["s6", "Dashboard", "Dashboard keputusan"],
+  ["s7", "Panduan", "Panduan, rumus, format berkas"]
+];
+
+/* ---------- Navigasi ---------- */
+/* =========================================================================
+   PANDUAN PER LANGKAH
+   Tiap langkah menjawab dua pertanyaan: "datanya dari mana?" dan
+   "indikatornya dibaca bagaimana?". Ditulis satu per satu, bukan ringkasan.
+   ========================================================================= */
+const GUIDE = {
+  s0: {
+    sumber: [["Semua langkah", "campuran", "Lihat tabel tiap langkah", "Langkah 1 otomatis, Langkah 2 bisa otomatis atau manual, Langkah 3-7 dihitung sendiri dari data itu."]],
+    baca: "<p>Mulai dari Langkah 1. Urutannya penting: makro menentukan <b>seberapa murah</b> Anda menuntut, bukan sekadar latar belakang.</p>"
+  },
+  s1: {
+    sumber: [
+      ["Kuadran siklus", "auto", "Riwayat IHSG 1 tahun (Yahoo, simbol <code>^JKSE</code>)",
+        "Dihitung dari return 3 bulan, posisi harga terhadap MA50 &amp; MA200, dan jarak dari puncak 52 minggu. Jalankan <code>python fetch-data-idx.py --pasar</code>."],
+      ["Tren likuiditas", "auto", "Nilai transaksi harian IDX (<code>GetIndexSummary</code>)",
+        "Nilai hari terakhir dibanding rata-rata 30 hari. Rasio &ge;1,15&times; = longgar, &le;0,85&times; = ketat."],
+      ["Sektor unggulan", "semi", "Agregasi return 6 bulan emiten yang ditarik",
+        "Ini <b>perkiraan</b>, bukan indeks sektor resmi (IDX tidak menyediakan riwayat indeks sektor secara gratis). Makin banyak emiten yang ditarik, makin layak dipakai."],
+      ["BI Rate", "manual", "bi.go.id", "Tidak ada sumber gratis yang stabil. Perbarui setiap selesai RDG BI."],
+      ["Toleransi risiko", "manual", "Selera Anda sendiri", "Menggeser target MOS: konservatif +10%, agresif &minus;10%."]
+    ],
+    baca:
+      "<h5>1. Kuadran siklus &mdash; indikator paling berpengaruh</h5>" +
+      "<p>Kuadran bukan ramalan, tapi <b>penentu seberapa besar diskon yang Anda tuntut</b>. Membaca kuadran = melihat di mana IHSG berada dibanding dua garis rata-rata dan puncaknya:</p>" +
+      '<table class="tbl" style="margin:8px 0"><thead><tr><th style="width:88px">Kuadran</th><th>Ciri di grafik</th><th>Apa artinya</th></tr></thead><tbody>' +
+      '<tr><td><b>Recovery</b></td><td>Masih jauh di bawah puncak, tapi sudah naik dan di atas MA50</td><td>Pasar bangkit dari keterpurukan. Waktu terbaik mengakumulasi &mdash; tapi bertahap, bukan sekaligus.</td></tr>' +
+      '<tr><td><b>Overheat</b></td><td>Dekat puncak 52 minggu, di atas MA50 dan MA200</td><td>Euforia. Harga mahal, risiko koreksi tinggi. Saatnya <b>mengurangi</b>, bukan menambah.</td></tr>' +
+      '<tr><td><b>Slowdown</b></td><td>Di bawah MA50, tren 3 bulan negatif</td><td>Melemah dari puncak. Perketat MOS, tahan diri dari beli karena &ldquo;sudah murah&rdquo;.</td></tr>' +
+      '<tr><td><b>Bust</b></td><td>Turun tajam (&gt;10% dalam 3 bulan) dan masih di bawah MA50</td><td>Ketakutan. Jangan menangkap pisau jatuh; tunggu harga berhenti turun dulu.</td></tr>' +
+      "</tbody></table>" +
+      "<h5>2. Tren likuiditas</h5><p>Likuiditas yang menggerakkan pasar, bukan berita. <b>Longgar</b> = uang berputar banyak, koreksi cepat pulih, MOS boleh sedikit dilonggarkan. <b>Ketat</b> = uang keluar dari pasar, tuntut diskon lebih besar. Angka yang dipakai adalah nilai transaksi harian IDX dibanding rata-rata 30 hari &mdash; bukan tebakan.</p>" +
+      "<h5>3. BI Rate</h5><p>Naiknya suku bunga acuan menaikkan biaya modal, sehingga harga wajar dari model DCF ikut turun. Di alat ini BI Rate dipakai sebagai pembanding: kalau imbal hasil saham tidak jauh di atas BI Rate, risiko tidak sepadan.</p>" +
+      "<h5>4. Toleransi risiko</h5><p>Murni selera Anda, dan efeknya besar: konservatif menuntut diskon 10% lebih besar, agresif 10% lebih kecil. Ini yang membuat dua orang bisa mengambil keputusan berbeda dari data yang sama &mdash; dan keduanya benar.</p>" +
+      "<h5>5. Sektor unggulan</h5><p>Diberi bonus pada skor makro (15% dari skor total). Pilih hanya sektor yang <i>memang</i> diuntungkan kuadran aktif &mdash; daftar saran muncul otomatis di panel kanan setelah Anda memilih kuadran.</p>" +
+      "<h5>Hasil akhir langkah ini</h5><p>Dua hal: <b>target MOS</b> (diskon minimum yang Anda tuntut) dan <b>bonus sektor</b>. Keduanya mengalir ke Langkah 3&ndash;7.</p>"
+  },
+  s2: {
+    sumber: [
+      ["Laporan keuangan IDX (XBRL)", "auto", "<code>fetch-data-idx.py --laporan</code>",
+        "Laba, ekuitas, liabilitas, arus kas, dan kas <b>asli</b> dari laporan resmi IDX &mdash; bukan turunan Yahoo. Sekaligus riwayat laba 10 tahun dan sektor resmi IDX-IC."],
+      ["F-Score, Altman Z, rasio siap pakai", "manual", "Tempel JSON Key Stats",
+        "Hanya ada di jalur salin-tempel. Laporan resmi IDX tidak memuatnya."],
+      ["Data sendiri", "manual", "Template CSV / Edit baris", "Unduh template, isi di Excel, lalu impor."],
+      ["EPS, BVPS, PER, PBV, ROE", "auto", "Dihitung dari data mentah", "Tidak perlu Anda hitung; semua kolom ini turunan."]
+    ],
+    baca:
+      "<h5>Dua jalur otomatis, pilih sesuai kebutuhan</h5><p><b>Cepat, banyak emiten:</b> <code>python fetch-data-idx.py --tickers BBCA,BBRI,TLKM</code>. <b>Lengkap sampai 10 tahun:</b> tambahkan <code>--laporan</code> &mdash; angka keuangannya lalu diambil dari laporan resmi IDX, dan nilai turunan Yahoo ditimpa. Perlu diketahui, <code>--laporan</code> jauh lebih lambat karena mengunduh satu berkas per emiten per tahun.</p>" +
+      "<h5>Kuartal harus disetahunkan dulu</h5><p>Laba satu kuartal tidak bisa dibandingkan dengan harga setahun. Karena itu Q1 dikali 4, Q2 dikali 2, Q3 dikali 4/3, dan Q4 dibiarkan (sudah setahun penuh). <b>Kalau kolom kuartal salah, semua valuasi ikut salah</b> &mdash; ini kesalahan paling sering terjadi. Jalur <code>--laporan</code> selalu mengisi kuartal = 4 karena yang diambil adalah laporan tahunan.</p>" +
+      "<h5>Jebakan skala pada laporan IDX</h5><p>IDX menyajikan angka dalam pembulatan yang <b>tidak konsisten antar tahun</b>, dan labelnya pun bisa keliru. Contoh nyata: laporan BBCA 2022 dan 2024 dalam <i>jutaan</i> (total aset 1.314.731.674), tetapi 2023 dalam <i>rupiah penuh</i> (1.408.107.010.000.000) &mdash; padahal label ketiga berkas sama-sama &ldquo;Jutaan / In Million&rdquo;. Alat ini menyimpulkan skala dari datanya sendiri dan memberi tahu Anda bila ada tahun yang perlu diselaraskan. Kalau Anda memasukkan angka IDX secara manual, periksa satuan setiap tahunnya.</p>" +
+      "<h5>Kolom demi kolom</h5>" +
+      "<ul><li><b>EPS ann.</b> &mdash; laba per saham setelah disetahunkan. Dasar PER dan semua model valuasi.</li>" +
+      "<li><b>BVPS</b> &mdash; nilai buku per saham (ekuitas &divide; jumlah saham). Dasar PBV dan rumus Graham.</li>" +
+      "<li><b>PER</b> &mdash; harga &divide; EPS. Makin kecil makin murah. Batang di kolom ini menunjukkan posisinya terhadap ambang 15.</li>" +
+      "<li><b>PBV</b> &mdash; harga &divide; BVPS. Di bawah 1 berarti di bawah nilai buku.</li>" +
+      "<li><b>ROE</b> &mdash; laba &divide; ekuitas. Ukuran seberapa efisien modal diolah. Di atas 10% dianggap sehat.</li>" +
+      "<li><b>DER</b> &mdash; utang &divide; ekuitas. Di atas 1 membuat saham diperlakukan sebagai berisiko tinggi (target MOS naik ke 50%).</li>" +
+      "<li><b>Nilai harian</b> &mdash; rata-rata nilai transaksi. Di bawah ambang, saham sulit dijual kembali.</li>" +
+      "<li><b>EPS Trend</b> &mdash; arah laba. &ldquo;Turun&rdquo; langsung mengurangi skor kualitas.</li>" +
+      "<li><b>Mutu data</b> &mdash; <span class='srcbadge sb-auto'>Baik</span> terverifikasi &middot; <span class='srcbadge sb-semi'>Perlu dicek</span> ada kejanggalan &middot; <span class='srcbadge sb-man'>Meragukan</span> jangan dipakai dulu. Arahkan kursor ke label untuk melihat catatan lengkapnya.</li></ul>" +
+      "<h5>Satu hal yang sering menjebak: laba induk vs laba total</h5><p>Laporan IDX memuat dua baris laba: <b>jumlah laba (rugi)</b> yang sudah termasuk kepentingan non-pengendali, dan <b>laba yang dapat diatribusikan ke entitas induk</b>. Yang dipakai di sini adalah <i>yang kedua</i>, karena hanya itu yang konsisten dengan EPS. Bedanya bisa besar: pada TLKM 2024, laba total 30,7 T tetapi laba induk 23,6 T &mdash; sedangkan EPS 238,73 &times; 99,06 miliar saham = 23,65 T. Memakai angka yang salah membuat PER tampak 23% lebih murah dari sebenarnya.</p>"
+  },
+  s3: {
+    sumber: [["Seluruh input", "auto", "Langkah 2", "Tidak ada yang perlu dimasukkan ulang; screening berjalan sendiri setiap kali data berubah."]],
+    baca:
+      "<h5>Cara kerja peringkat</h5><p>Setiap emiten diberi <b>peringkat pada masing-masing parameter</b> (PBV, ROE, PER, DER, likuiditas) &mdash; peringkat 1 untuk yang terbaik. Peringkat itu lalu <b>dijumlahkan</b> menjadi <i>Total Rank</i>. Yang totalnya terkecil berarti paling sering masuk peringkat atas, dan itu yang muncul di puncak.</p>" +
+      "<h5>Kenapa dijumlah, bukan dirata-rata?</h5><p>Penjumlahan peringkat tahan terhadap satu angka ekstrem. Satu emiten dengan PBV 0,1 tidak akan langsung mengalahkan semuanya &mdash; ia tetap harus bagus di parameter lain.</p>" +
+      "<h5>Mode ketat vs longgar</h5><p><b>Longgar</b> (bawaan): lolos jika memenuhi minimal 3 dari 5 filter. <b>Ketat</b>: wajib lolos kelima filter sesuai dokumen. Perlu diketahui, dengan kriteria ketat hampir tidak ada emiten IDX yang lolos &mdash; karena itu bawaan alat ini longgar.</p>"
+  },
+  s4: {
+    sumber: [["Semua angka", "auto", "Dihitung dari Langkah 2", "Enam metode dijalankan serentak; tidak ada input tambahan selain asumsi di panel konfigurasi."]],
+    baca:
+      "<h5>Mengapa enam metode, bukan satu</h5><p>Tiap metode punya titik buta. DCF sangat sensitif pada asumsi pertumbuhan; PBV tidak berguna untuk perusahaan yang asetnya bukan barang berwujud. Dengan menjalankan enam sekaligus, titik buta saling menutupi.</p>" +
+      "<h5>Cara membaca grafik batangnya</h5><p>Tiap batang = harga wajar menurut satu metode. <b>Garis putus-putus</b> = harga pasar sekarang. Kalau mayoritas batang berada di <i>kanan</i> garis, saham sedang dihargai murah.</p>" +
+      "<h5>Konsensus median</h5><p>Angka yang dipakai untuk keputusan adalah <b>median</b> dari keenam hasil, bukan rata-rata. Median mengabaikan satu metode yang hasilnya ekstrem &mdash; biasanya DCF tanpa nilai terminal &mdash; sehingga tidak menyeret kesimpulan.</p>"
+  },
+  s5: {
+    sumber: [
+      ["Dry-out, spike, spring, support", "auto", "Riwayat harga 6 bulan", "Dihitung dari data harga harian yang ditarik."],
+      ["Konsentrasi top buyer", "manual", "Broker summary", "Tidak tersedia di sumber gratis mana pun. Kosong berarti sinyal ini tidak dinilai, bukan dianggap nol."]
+    ],
+    baca:
+      "<h5>Enam sinyal, satu skor</h5><p>Skor 0&ndash;100 menggabungkan: pasar sedang sepi (<i>dry-out</i>), lonjakan frekuensi transaksi, konsentrasi pembeli besar, pola <i>spring</i> (tembus bawah lalu balik), dan konfirmasi penutupan di atas support. Makin banyak yang terpenuhi, makin siap timingnya.</p>" +
+      "<h5>Membaca peta harga</h5><p>Zona <span style='color:#A32D2D'><b>merah</b></span> = daerah risiko menuju stop loss. Zona <span style='color:#0F6E56'><b>hijau</b></span> = daerah imbalan menuju target profit. Perhatikan: warna ini <b>bukan</b> konvensi naik/turun, melainkan risiko/imbalan.</p>" +
+      "<h5>Aturan TP dan SL</h5><p>Target profit 5&ndash;7%, stop loss 2&ndash;3%. Dari keduanya dihitung <i>risk/reward</i>. Di bawah 2,0 sebaiknya dilewati &mdash; menang 5 kali dari 10 pun bisa rugi kalau imbalannya terlalu kecil.</p>"
+  },
+  s6: {
+    sumber: [["Seluruh skor", "auto", "Langkah 1&ndash;5", "Murni gabungan; tidak ada data baru di langkah ini."]],
+    baca:
+      "<h5>Skor terpadu</h5><p>Nilai 40% + Kualitas 25% + Timing 20% + Makro 15%. <b>Tier A</b> &ge;75, <b>B</b> 60&ndash;74, <b>C</b> &lt;60.</p>" +
+      "<h5>Bedanya Tier dan Aksi</h5><p>Ini yang paling sering membingungkan. <b>Tier</b> menjawab &ldquo;seberapa menarik saham ini secara keseluruhan&rdquo;. <b>Aksi</b> menjawab &ldquo;apa yang saya lakukan hari ini&rdquo;. Wajar kalau sebuah saham bertier A tapi aksinya &ldquo;Pantau&rdquo; &mdash; artinya bagus, tapi harganya belum layak dibeli sekarang.</p>" +
+      "<h5>Peta sebar</h5><p>Sumbu mendatar = diskon harga (MOS), sumbu tegak = kesiapan timing. <b>Kanan-atas</b> adalah zona terbaik: sudah murah <i>dan</i> timingnya siap. Kiri-atas hanya untuk trading jangka pendek. Kanan-bawah berarti tunggu, bukan beli.</p>"
+  },
+  s7: {
+    sumber: [["&mdash;", "&mdash;", "&mdash;", "Bagian ini referensi, bukan langkah perhitungan."]],
+    baca: "<p>Berisi peta alur, alasan penggabungan metode, daftar rumus, catatan metodologi, pemetaan ke tiga dokumen sumber, cara membaca visual, dan format berkas.</p>"
+  }
+};
+
+function srcBadge(k) {
+  if (k === "auto") return '<span class="srcbadge sb-auto">Otomatis</span>';
+  if (k === "semi") return '<span class="srcbadge sb-semi">Semi-otomatis</span>';
+  if (k === "manual") return '<span class="srcbadge sb-man">Manual</span>';
+  if (k === "&mdash;" || k === "—" || k === "-") return '<span class="srcbadge sb-ref">Referensi</span>';
+  return '<span class="srcbadge sb-semi">Campuran</span>';
+}
+
+/* Panel panduan disisipkan di awal isi tiap langkah. */
+function renderStepGuides() {
+  NAV.forEach(n => {
+    const id = n[0], g = GUIDE[id];
+    if (!g) return;
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    const bd = sec.querySelector(".bd");
+    if (!bd) return;
+    let h = '<div class="pg" data-pg="' + id + '">' +
+      '<div class="pgh">Cara dapat data &amp; cara membaca indikator <span class="ar">&#9660;</span></div><div class="pgb">';
+    h += '<h5>Dari mana datanya</h5><div class="tw"><table class="tbl"><thead><tr>' +
+      '<th style="width:150px">Indikator</th><th style="width:104px">Sumber data</th><th>Dari mana / caranya</th>' +
+      "</tr></thead><tbody>";
+    g.sumber.forEach(r => {
+      h += "<tr><td><b>" + r[0] + "</b></td><td>" + srcBadge(r[1]) + "</td><td>" + r[3] + "</td></tr>";
+    });
+    h += "</tbody></table></div>";
+    h += '<h5>Cara membaca indikatornya</h5><div class="pgbaca">' + g.baca + "</div>";
+    h += "</div></div>";
+    bd.insertAdjacentHTML("afterbegin", h);
+  });
+}
+
+/* =========================================================================
+   Panel regime pasar di Langkah 1.
+   Menampilkan data pasar nyata + saran kuadran/likuiditas, lengkap dengan
+   alasan yang bisa dibaca. Pengguna tetap yang memutuskan menerapkannya.
+   ========================================================================= */
+const KUADRAN_NAMA = { recovery: "Recovery / Pemulihan", overheat: "Overheat / Panas",
+  slowdown: "Slowdown / Melemah", bust: "Bust / Resesi" };
+
+function renderPasar() {
+  const box = $("pasarBox");
+  if (!box) return;
+  const p = S.pasar;
+
+  if (!p) {
+    box.innerHTML = '<div class="pg" style="border-style:dashed;margin-bottom:14px">' +
+      '<div class="pgh" data-nofold="1" style="cursor:default">' +
+      '<span class="srcbadge sb-auto">Bisa otomatis</span> Regime pasar belum dimuat' +
+      '<span class="ar" style="visibility:hidden">&#9660;</span></div>' +
+      '<div class="pgb"><div class="mini" style="margin-bottom:9px"><b>Langkah 1</b> &mdash; kuadran siklus dan likuiditas <b>tidak perlu Anda tebak</b>. Keduanya bisa dihitung dari data pasar nyata. Jalankan satu perintah ini di folder proyek:</div>' +
+      '<div class="tw" style="padding:9px;background:#fbfcfd;margin-bottom:10px"><code style="background:none;font-size:11.5px">python fetch-data-idx.py --pasar</code></div>' +
+      '<div class="row"><button class="btn pri" id="btnPasar">Muat regime pasar</button>' +
+      '<span class="mini">Butuh berkas <code>pasar.json</code>. Yang tetap manual hanya BI Rate dan toleransi risiko Anda.</span></div>' +
+      "</div></div>";
+    const b = $("btnPasar");
+    if (b) b.onclick = () => $("filePasar").click();
+    return;
+  }
+
+  const i = p.ihsg || {}, l = p.likuiditas || {}, sek = p.sektor || [];
+  let h = '<div class="pg" style="border-color:#bfe4d1;background:#f4fbf8;margin-bottom:14px">' +
+    '<div class="pgh" data-nofold="1" style="cursor:default">' +
+    '<span class="srcbadge sb-auto">Dari data nyata</span> Regime pasar' +
+    (p.dibuat ? ' <span class="mini">diambil ' + esc(String(p.dibuat).slice(0, 16).replace("T", " ")) + "</span>" : "") +
+    '<span class="ar" style="visibility:hidden">&#9660;</span></div><div class="pgb">';
+
+  // Ringkasan angka pasar
+  if (i.tutup) {
+    h += '<div class="grid g4" style="margin-bottom:11px">' +
+      kartu("IHSG", fmt(i.tutup, 2), i.hari + " hari data") +
+      kartu("MA50", i.ma50 ? fmt(i.ma50, 0) : "—", i.di_atas_ma50 ? "harga di atas" : "harga di bawah") +
+      kartu("MA200", i.ma200 ? fmt(i.ma200, 0) : "—", i.di_atas_ma200 ? "harga di atas" : "harga di bawah") +
+      kartu("Dari puncak 52m", fmt(i.jarak_puncak, 1) + "%", "puncak " + fmt(i.tinggi_52m, 0)) +
+      "</div>";
+  }
+
+  // Saran
+  h += '<div class="grid g2" style="margin-bottom:11px">' +
+    '<div class="stat"><div class="k">Saran kuadran siklus</div>' +
+    '<div class="v" style="font-size:15px">' + esc(KUADRAN_NAMA[i.saran_kuadran] || "—") + "</div>" +
+    '<div class="s">Target MOS ' + fmt(targetMosDari(i.saran_kuadran), 0) + "%</div></div>" +
+    '<div class="stat"><div class="k">Saran likuiditas</div>' +
+    '<div class="v" style="font-size:15px">' + esc(l.saran_likuiditas ? l.saran_likuiditas.charAt(0).toUpperCase() + l.saran_likuiditas.slice(1) : "—") + "</div>" +
+    '<div class="s">' + (l.rasio ? "rasio " + fmt(l.rasio, 2) + "× rata-rata " + l.hari + " hari" : "tidak tersedia") + "</div></div>" +
+    "</div>";
+
+  // Alasan
+  if (i.alasan && i.alasan.length) {
+    h += '<div class="mini" style="margin-bottom:5px"><b>Mengapa kuadran ini:</b></div><ul style="margin:0 0 10px;padding-left:19px;font-size:12.5px;color:var(--ink2);line-height:1.55">' +
+      i.alasan.map(a => "<li>" + esc(a) + "</li>").join("") + "</ul>";
+  }
+  if (l.alasan) h += '<div class="mini" style="margin-bottom:10px"><b>Likuiditas:</b> ' + esc(l.alasan) + "</div>";
+
+  // Kekuatan sektor
+  if (sek.length) {
+    const maks = Math.max.apply(null, sek.map(x => Math.abs(x.rata_return)).concat([1]));
+    h += '<div class="mini" style="margin-bottom:6px"><b>Kekuatan sektor</b> (rata-rata return 6 bulan):</div><div style="margin-bottom:6px">';
+    sek.slice(0, 8).forEach(x => {
+      const w = Math.abs(x.rata_return) / maks * 100;
+      const col = x.rata_return >= 0 ? CLR.tealD : CLR.redD;
+      h += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">' +
+        '<span style="width:130px;font-size:11.5px;color:var(--ink2)">' + esc(x.sektor) + "</span>" +
+        '<span style="flex:1"><span class="mbar" style="width:100%"><i style="width:' + w.toFixed(1) +
+        '%;background:' + col + '"></i></span></span>' +
+        '<span style="width:66px;text-align:right;font-size:11.5px;font-weight:600;color:' + col + '">' +
+        (x.rata_return >= 0 ? "+" : "") + fmt(x.rata_return, 2) + "%</span>" +
+        '<span style="width:52px;font-size:10.5px;color:var(--muted)">' + x.jumlah + " emit.</span></div>";
+    });
+    h += "</div>" + '<div class="hint" style="margin-bottom:9px">Perkiraan dari ' +
+      sek.reduce((a, b) => a + b.jumlah, 0) + ' emiten yang ditarik &mdash; bukan indeks sektor resmi. Makin banyak emiten, makin layak dipakai.</div>';
+  }
+
+  h += '<div class="row"><button class="btn pri" id="btnTerapPasar">Terapkan saran ke Langkah 1</button>' +
+    '<button class="btn" id="btnLupPasar">Hapus</button>' +
+    '<span class="mini">Saran bisa Anda timpa manual di panel bawah.</span></div>';
+  h += "</div></div>";
+  box.innerHTML = h;
+
+  const bt = $("btnTerapPasar"), bl = $("btnLupPasar");
+  if (bt) bt.onclick = () => {
+    if (i.saran_kuadran) S.macro.quad = i.saran_kuadran;
+    if (l.saran_likuiditas) {
+      S.macro.liq = l.saran_likuiditas === "longgar" ? "turun"
+        : (l.saran_likuiditas === "ketat" ? "naik" : "netral");
+    }
+    if (sek.length) {
+      const pilih = sek.slice(0, 3).map(x => x.sektor).filter(s => SEKTOR.indexOf(s) >= 0);
+      if (pilih.length) S.macro.sectors = pilih;
+    }
+    renderAll(); save();
+    toast("Saran regime diterapkan");
+  };
+  if (bl) bl.onclick = () => { S.pasar = null; renderPasar(); markNav(); save(); toast("Regime pasar dihapus"); };
+}
+
+function kartu(k, v, s) {
+  return '<div class="stat"><div class="k">' + k + '</div><div class="v" style="font-size:15px">' + v +
+    '</div><div class="s">' + s + "</div></div>";
+}
+function targetMosDari(quad) {
+  if (!quad || !KUADRAN[quad]) return 30;
+  return clamp(30 + nz(KUADRAN[quad].mosAdj), 15, 65);
+}
+
+/* ---------- Lipat / buka ---------- */
+function setFold(id, lipat) {
+  const sec = document.getElementById(id);
+  if (sec) sec.classList.toggle("folded", !!lipat);
+}
+function foldAll(lipat) {
+  NAV.forEach(n => setFold(n[0], lipat));
+}
+function bindFold() {
+  NAV.forEach(n => {
+    const sec = document.getElementById(n[0]);
+    if (!sec) return;
+    const hd = sec.querySelector(".card > .hd");
+    if (!hd || hd.dataset.foldBound) return;
+    hd.dataset.foldBound = "1";
+    if (!hd.querySelector(".chev")) {
+      hd.insertAdjacentHTML("beforeend", '<span class="chev">&#9660;</span>');
+    }
+    hd.addEventListener("click", e => {
+      if (e.target.closest("button,input,select,a")) return;
+      sec.classList.toggle("folded");
+      markNav();
+    });
+  });
+}
+
+function renderNav() {
+  $("navSteps").innerHTML = '<div class="stepper">' + NAV.map((n, i) =>
+    (i ? '<span class="sln"></span>' : "") +
+    '<button class="stp" data-go="' + n[0] + '" title="' + esc(n[2] || n[1]) + '">' +
+    '<span class="sn">' + i + "</span><span class=\"sl\">" + n[1] + "</span></button>"
+  ).join("") + "</div>" +
+    '<div class="sbar"><span class="mini" id="navPos"></span>' +
+    '<button class="btn sm" id="btnUnfoldAll">Buka semua</button>' +
+    '<button class="btn sm" id="btnFoldAll">Tutup semua</button></div>';
+  bindFold();
+  const bu = $("btnUnfoldAll"), bf = $("btnFoldAll");
+  if (bu) bu.onclick = e => { e.stopPropagation(); foldAll(false); markNav(); };
+  if (bf) bf.onclick = e => { e.stopPropagation(); foldAll(true); markNav(); };
+  markNav();
+}
+
+/* Tandai langkah aktif + kesiapan datanya. */
+function stepSiap(id) {
+  if (id === "s0" || id === "s7") return true;
+  if (id === "s1") return !!S.pasar;
+  return S.stocks.length > 0;
+}
+let _navAktif = "s0";
+function markNav() {
+  const chips = $("navSteps").querySelectorAll(".stp");
+  let pos = 0;
+  chips.forEach((c, i) => {
+    const id = c.dataset.go;
+    c.classList.toggle("on", id === _navAktif);
+    c.classList.toggle("done", id !== _navAktif && stepSiap(id));
+    if (id === _navAktif) pos = i;
+  });
+  const np = $("navPos");
+  if (np) np.textContent = "Langkah " + pos + " dari 7";
+}
+function goStep(id) {
+  const sec = document.getElementById(id);
+  if (!sec) return;
+  _navAktif = id;
+  setFold(id, false);
+  const y = sec.getBoundingClientRect().top + window.scrollY - 108;
+  window.scrollTo({ top: y, behavior: "smooth" });
+  markNav();
+}
+function renderFlow() {
+  const F = [
+    ["Langkah 1", "Regime Makro", "Tentukan kuadran siklus, likuiditas, sektor unggulan. Output: target MOS & bonus sektor."],
+    ["Langkah 2", "Data & Normalisasi", "Input laporan keuangan kuartalan, disetahunkan (Q1×4, Q2×2, Q3×4/3, Q4×1)."],
+    ["Langkah 3", "Screening & Ranking", "Filter PBV/ROE/PER/DER/likuiditas lalu beri peringkat. Total Rank terkecil = teratas."],
+    ["Langkah 4", "Valuasi 6 Metode", "Graham, EPS Discounted, Equity Growth, ROE-PBV, DCF, lalu konsensus median."],
+    ["Langkah 5", "MOS & Sinyal", "MOS vs target MOS, harga beli maksimal, sinyal STRONG BUY / HOLD / TAKE PROFIT."],
+    ["Langkah 6", "Overlay Swing", "Skor bandarmology: dry-out, frequency spike, top buyer, spring, konfirmasi close."],
+    ["Langkah 7", "Keputusan Terpadu", "Nilai × Kualitas × Timing × Makro → Tier A/B/C + aksi + ukuran posisi."]
+  ];
+  $("flowBox").innerHTML = F.map((f, i) =>
+    '<div class="fbox"><div class="k">' + f[0] + "</div><b>" + f[1] + "</b><span>" + f[2] + "</span></div>" +
+    (i < F.length - 1 ? '<div class="farr">→</div>' : "")).join("");
+}
+
+/* ---------- Langkah 1: Makro ---------- */
+function renderMacro() {
+  $("mQuad").innerHTML = Object.keys(KUADRAN).map(k =>
+    '<option value="' + k + '"' + (S.macro.quad === k ? " selected" : "") + ">" + KUADRAN[k].label + "</option>").join("");
+  $("mLiq").value = S.macro.liq; $("mBi").value = S.macro.bi; $("mRisk").value = S.macro.risk;
+  $("mSectors").innerHTML = SEKTOR.map(s =>
+    '<label class="chk"><input type="checkbox" data-sek="' + esc(s) + '"' +
+    (S.macro.sectors.indexOf(s) >= 0 ? " checked" : "") + "> " + esc(s) + "</label>").join("");
+
+  const q = KUADRAN[S.macro.quad];
+  const liqAdj = S.macro.liq === "naik" ? 5 : (S.macro.liq === "turun" ? -5 : 0);
+  const riskAdj = S.macro.risk === "konservatif" ? 5 : (S.macro.risk === "agresif" ? -5 : 0);
+  const quadMap = '<div class="quad">' + Object.keys(KUADRAN).map(k => {
+    const qq = KUADRAN[k], on = k === S.macro.quad;
+    const adj = qq.mosAdj + (k === S.macro.quad ? liqAdj + riskAdj : 0);
+    return '<div class="qcell' + (on ? " on" : "") + '">' +
+      '<div class="qn">' + qq.label + (on ? ' <span class="qtag">AKTIF</span>' : "") + "</div>" +
+      '<div class="qa">' + qq.alokasi + "</div>" +
+      '<div class="qm">Target MOS ' + (adj >= 0 ? "+" : "") + adj + " poin &nbsp;·&nbsp; " + qq.sektor.slice(0, 2).join(", ") + "…</div></div>";
+  }).join("") + "</div>";
+  $("macroOut").innerHTML = quadMap +
+    '<div class="viz"><h4>Seberapa ketat regime ini menyaring saham</h4>' +
+    bigBar(clamp((30 + (KUADRAN[S.macro.quad].mosAdj + liqAdj + riskAdj)) / 65 * 100, 0, 100), CLR.amberD,
+      "Target MOS saham normal", fmt(30 + KUADRAN[S.macro.quad].mosAdj + liqAdj + riskAdj, 0) + "%") +
+    bigBar(clamp((50 + (KUADRAN[S.macro.quad].mosAdj + liqAdj + riskAdj)) / 65 * 100, 0, 100), CLR.redD,
+      "Target MOS saham cyclical / berutang", fmt(50 + KUADRAN[S.macro.quad].mosAdj + liqAdj + riskAdj, 0) + "%") +
+    '<div class="mini">Batang lebih panjang = syarat diskon makin ketat, sehingga makin sedikit saham yang masuk zona beli.</div></div>';
+  $("macroNote").innerHTML = '<div class="note"><b>Bagaimana ini memengaruhi keputusan?</b><br>' +
+    "Kuadran <b>" + q.label + "</b> menaikkan/menurunkan target Margin of Safety, dan sektor yang Anda pilih mendapat bonus 100 vs 55 pada komponen kesesuaian makro (15% dari skor akhir). " +
+    "Ini cara menerjemahkan prinsip <i>top-down</i> dan <i>liquidity moves the market</i> menjadi angka yang bisa dihitung.</div>";
+}
+
+/* ---------- Langkah 2: Data ---------- */
+/* Label mutu data pada kolom "Mutu data".
+   Penarik otomatis menuliskan hasil validasinya ke kolom `sumber`, jadi label
+   ini cara tercepat melihat baris mana yang jangan dipercaya sebelum dipakai. */
+function sumberTag(sumber) {
+  const t = String(sumber == null ? "" : sumber).trim();
+  const abu = ' style="background:#f2f3f5;color:#6b7280;border-color:#e2e4e8"';
+  if (!t) return '<span class="tag"' + abu + ">—</span>";
+  let cls = "", label = "";
+  if (/meragukan/i.test(t)) { cls = "t-r"; label = "Meragukan"; }
+  else if (/perlu dicek/i.test(t)) { cls = "t-w"; label = "Perlu dicek"; }
+  else if (/kualitas baik/i.test(t)) { cls = "t-g"; label = "Baik"; }
+  else if (/yahoo|idx|otomatis/i.test(t)) { cls = "t-w"; label = "Otomatis"; }
+  else { label = "Manual"; }
+  return '<span class="tag ' + cls + '"' + (cls ? "" : abu) + ' title="' + esc(t) + '">' + label + "</span>";
+}
+/* Panel metrik tambahan yang hanya ada bila data datang dari parsing
+   (Stockbit). Sumber lain tidak menyediakan F-Score, Altman Z, ROIC, dsb. */
+function panelTambahan(s) {
+  const adaAngka = [s.piotroski, s.rsRating, s.altmanZ, s.interestCov, s.currentRatio, s.quickRatio,
+    s.roic, s.roce, s.evEbitda, s.peg, s.divYield].some(v => nz(v) !== 0);
+  const adaHist = s.histLaba && s.histLaba.length > 1;
+  if (!adaAngka && !adaHist) return "";
+
+  let h = '<div class="sep"></div><h3 style="font-size:13.5px;margin-bottom:8px">Metrik tambahan (dari parsing)</h3>';
+
+  if (adaAngka) {
+    // Tiap metrik diberi tafsir singkat supaya angkanya bisa langsung dibaca.
+    const baris = [
+      ["Piotroski F-Score", nz(s.piotroski) ? fmt(s.piotroski, 0) + " / 9" : "—",
+        nz(s.piotroski) >= 7 ? "kokoh" : nz(s.piotroski) >= 4 ? "sedang" : "lemah",
+        nz(s.piotroski) >= 7 ? CLR.tealD : nz(s.piotroski) >= 4 ? CLR.amberD : CLR.redD],
+      ["Altman Z (modifikasi)", nz(s.altmanZ) ? fmt(s.altmanZ, 2) : "—",
+        nz(s.altmanZ) >= 2.6 ? "aman" : nz(s.altmanZ) >= 1.1 ? "zona kelabu" : "rawan gagal bayar",
+        nz(s.altmanZ) >= 2.6 ? CLR.tealD : nz(s.altmanZ) >= 1.1 ? CLR.amberD : CLR.redD],
+      ["Cakupan bunga", nz(s.interestCov) ? fmt(s.interestCov, 2) + "x" : "—",
+        nz(s.interestCov) >= 8 ? "nyaman" : nz(s.interestCov) >= 3 ? "cukup" : "ketat",
+        nz(s.interestCov) >= 8 ? CLR.tealD : nz(s.interestCov) >= 3 ? CLR.amberD : CLR.redD],
+      ["Rasio lancar", nz(s.currentRatio) ? fmt(s.currentRatio, 2) : "—",
+        nz(s.currentRatio) >= 1.5 ? "sehat" : nz(s.currentRatio) >= 1 ? "pas-pasan" : "di bawah 1",
+        nz(s.currentRatio) >= 1.5 ? CLR.tealD : nz(s.currentRatio) >= 1 ? CLR.amberD : CLR.redD],
+      ["Rasio cepat", nz(s.quickRatio) ? fmt(s.quickRatio, 2) : "—", "tanpa persediaan", CLR.grayD],
+      ["ROIC", nz(s.roic) ? fmt(s.roic, 2) + "%" : "—", "imbal hasil modal investasi", CLR.blueD],
+      ["ROCE", nz(s.roce) ? fmt(s.roce, 2) + "%" : "—", "imbal hasil modal terpakai", CLR.blueD],
+      ["EV / EBITDA", nz(s.evEbitda) ? fmt(s.evEbitda, 2) + "x" : "—",
+        nz(s.evEbitda) && nz(s.evEbitda) < 8 ? "murah" : "perhatikan", CLR.grayD],
+      ["PEG", nz(s.peg) ? fmt(s.peg, 2) : "—",
+        nz(s.peg) < 0 ? "pertumbuhan negatif" : nz(s.peg) < 1 ? "menarik" : "mahal",
+        nz(s.peg) < 0 ? CLR.redD : nz(s.peg) < 1 ? CLR.tealD : CLR.grayD],
+      ["Kekuatan relatif", nz(s.rsRating) ? fmt(s.rsRating, 0) + " / 100" : "—",
+        nz(s.rsRating) >= 70 ? "kuat" : nz(s.rsRating) >= 40 ? "sedang" : "lemah",
+        nz(s.rsRating) >= 70 ? CLR.tealD : nz(s.rsRating) >= 40 ? CLR.amberD : CLR.redD],
+      ["Imbal hasil dividen", nz(s.divYield) ? fmt(s.divYield, 2) + "%" : "—",
+        s.dividen ? "membagi dividen" : "tidak membagi", s.dividen ? CLR.tealD : CLR.grayD]
+    ];
+    h += '<div class="tw"><table class="tbl"><thead><tr><th>Metrik</th><th class="n">Nilai</th><th>Tafsir</th></tr></thead><tbody>';
+    baris.forEach(r => {
+      h += "<tr><td>" + r[0] + '</td><td class="n"><b>' + r[1] + '</b></td><td style="color:' + r[3] + '">' + r[2] + "</td></tr>";
+    });
+    h += "</tbody></table></div>";
+  }
+
+  if (adaHist) {
+    const satuan = "miliar rupiah";
+    const a = s.histLaba.slice().sort((x, y) => x.t - y.t);
+    const untung = a.filter(p => p.v > 0).length;
+    h += '<div style="margin-top:12px">' + chartLaba(a, satuan) + "</div>" +
+      '<div class="hint">Dari ' + a.length + " tahun data: " + untung + " tahun laba, " +
+      (a.length - untung) + ' tahun rugi. Pola ini yang menentukan apakah emiten layak dinilai dengan asumsi pertumbuhan.</div>';
+  }
+  return h;
+}
+
+/* Pratinjau hasil pemetaan JSON Stockbit, ditampilkan di dialog tempel. */
+function tempelPreview(list) {
+  let h = '<div class="mini" style="margin-bottom:6px">Pratinjau hasil pemetaan &mdash; periksa dulu sebelum dipakai:</div>' +
+    '<div class="tw"><table class="tbl"><thead><tr><th>Kode</th><th>Sektor</th><th class="n">Harga</th>' +
+    '<th class="n">EPS</th><th class="n">Ekuitas</th><th class="n">FCF</th><th class="n">F-Skor</th>' +
+    '<th class="n">RS</th><th>Mutu</th></tr></thead><tbody>';
+  list.forEach(s => {
+    h += "<tr><td><b>" + esc(s.kode) + "</b></td><td>" + esc(s.sektor) + "</td>" +
+      '<td class="n">' + fmtRp(s.harga) + "</td>" +
+      '<td class="n">' + fmt(s.eps, 2) + "</td>" +
+      '<td class="n">' + fmtBig(s.ekuitas) + "</td>" +
+      '<td class="n">' + fmtBig(s.fcf) + "</td>" +
+      '<td class="n">' + (s.piotroski ? s.piotroski + "/9" : "—") + "</td>" +
+      '<td class="n">' + (s.rsRating ? fmt(s.rsRating, 0) : "—") + "</td>" +
+      "<td>" + sumberTag(s.sumber) + "</td></tr>";
+  });
+  return h + "</tbody></table></div>";
+}
+function renderData() {
+  const cols = [["kode", "Kode"], ["nama", "Nama"], ["sektor", "Sektor"], ["sumber", "Mutu data"], ["harga", "Harga"],
+    ["epsAnn", "EPS ann."], ["bvps", "BVPS"], ["per", "PER"], ["pbv", "PBV"], ["roe", "ROE %"],
+    ["der", "DER"], ["nilaiHarian", "Nilai harian"], ["epsTrend", "EPS Trend"], ["div", "Div."], ["cyc", "Cyc."], ["act", ""]];
+  let h = "<thead><tr>" + cols.map(c => '<th class="' + (["harga","epsAnn","bvps","per","pbv","roe","der","nilaiHarian"].indexOf(c[0]) >= 0 ? "n" : "") + '">' + c[1] + "</th>").join("") + "</tr></thead><tbody>";
+  if (!S.stocks.length) h += '<tr><td colspan="' + cols.length + '" class="mut" style="padding:20px;text-align:center">Belum ada data. Klik "Muat Data Contoh" atau "+ Tambah Emiten".</td></tr>';
+  S.stocks.forEach((s, i) => {
+    const F = fund(s);
+    const maxNilai = Math.max.apply(null, S.stocks.map(x => nz(x.nilaiHarian)).concat([1]));
+    h += '<tr class="clickable' + (F.mismatch ? " fail" : "") + '" data-edit="' + i + '">' +
+      "<td><b>" + esc(s.kode) + "</b></td><td>" + esc(s.nama) + "</td><td>" + esc(s.sektor) + "</td>" +
+      "<td>" + sumberTag(s.sumber) + "</td>" +
+      '<td class="n">' + fmtRp(s.harga) + "</td>" +
+      '<td class="n">' + fmt(F.epsAnn, 1) + ' <span class="mut">(Q' + s.kuartal + "×" + fmt(F.f, 2) + ")</span></td>" +
+      '<td class="n">' + fmt(F.bvps, 1) + "</td>" +
+      '<td class="n"><span class="cellbar">' + mbar(clamp(F.per / 30 * 100, 0, 100), F.per < S.cfg.thr.per ? CLR.tealD : CLR.gray, 42) +
+        (isFinite(F.per) ? fmt(F.per, 2) : "—") + "</span></td>" +
+      '<td class="n"><span class="cellbar">' + mbar(clamp(F.pbv / 5 * 100, 0, 100), F.pbv < S.cfg.thr.pbv ? CLR.tealD : CLR.gray, 42) +
+        (isFinite(F.pbv) ? fmt(F.pbv, 2) : "—") + "</span></td>" +
+      '<td class="n"><span class="cellbar">' + mbar(F.roe / 30 * 100, F.roe >= S.cfg.thr.roe ? CLR.tealD : CLR.gray, 42) + fmt(F.roe, 2) + "</span></td>" +
+      '<td class="n"><span class="cellbar">' + mbar(clamp(nz(s.der) / 2 * 100, 0, 100), nz(s.der) < S.cfg.thr.der ? CLR.tealD : CLR.redD, 42) + fmt(s.der, 2) + "</span></td>" +
+      '<td class="n"><span class="cellbar">' + mbar(nz(s.nilaiHarian) / maxNilai * 100, nz(s.nilaiHarian) >= S.cfg.thr.minNilai ? CLR.blueD : CLR.gray, 42) + fmtBig(s.nilaiHarian) + "</span></td>" +
+      "<td>" + (EPS_TREND_LABEL[s.epsTrend] || "—") + "</td>" +
+      "<td>" + (s.dividen ? "Ya" : "—") + "</td>" +
+      "<td>" + (s.cyclical ? "Ya" : "—") + "</td>" +
+      '<td><button class="btn sm" data-edit="' + i + '">Edit</button></td></tr>';
+  });
+  h += "</tbody>";
+  $("tblData").innerHTML = h;
+  $("cntEmiten").textContent = S.stocks.length + " emiten";
+}
+
+/* ---------- Langkah 3: Screening ---------- */
+function renderThresholds() {
+  const T = S.cfg.thr;
+  const defs = [["pbv", "Maks PBV", "0.05"], ["roe", "Min ROE (%)", "1"],
+                ["per", "Maks PER", "0.5"], ["der", "Maks DER", "0.1"],
+                ["minNilai", "Min nilai transaksi harian (Rp)", "1e9"]];
+  $("thrBox").innerHTML = defs.map(d =>
+    '<div><label class="f">' + d[1] + '</label><input type="number" step="' + d[2] + '" data-thr="' + d[0] + '" value="' + T[d[0]] + '"></div>').join("");
+  $("thrStrict").checked = S.cfg.strict;
+}
+function renderScreen() {
+  const rows = RANKED.length ? RANKED : screenStocks();
+  const pass = rows.filter(r => r.pass).length;
+  $("screenSummary").innerHTML = "<b>" + pass + "</b> dari " + rows.length + " emiten lolos filter (" +
+    (S.cfg.strict ? "mode ketat" : "mode longgar ≥3 dari 5") + "). Basis peringkat = emiten yang lolos.";
+  const cols = ["#", "Kode", "Sektor", "Harga", "PBV", "ROE%", "PER", "DER", "EPS Trend", "Likuiditas",
+                "R.PBV", "R.ROE", "R.PER", "R.DER", "R.Lik", "R.Trd", "TOTAL", "Status"];
+  let h = "<thead><tr>" + cols.map(c => '<th class="' + (["Harga","PBV","ROE%","PER","DER","R.PBV","R.ROE","R.PER","R.DER","R.Lik","R.Trd","TOTAL"].indexOf(c) >= 0 ? "n" : "") + '">' + c + "</th>").join("") + "</tr></thead><tbody>";
+  const totals = rows.map(r => r.total);
+  const minT = Math.min.apply(null, totals), maxT = Math.max.apply(null, totals);
+  const span = Math.max(1, maxT - minT);
+  const T = S.cfg.thr;
+  rows.forEach(r => {
+    const s = r.s, F = r.F, c = r.c;
+    const frac = (v, t) => clamp((t / (v || 1)) * 100, 0, 100);
+    const mk = (ok, pct, txt) => '<span class="cellbar">' + mbar(pct, ok ? CLR.tealD : CLR.amberD, 40) +
+      '<span class="' + (ok ? "up" : "mut") + '">' + txt + "</span></span>";
+    const tPct = clamp(100 - (r.total - minT) / span * 100, 6, 100);
+    const tCol = r.pos <= 3 ? CLR.tealD : r.pos <= 6 ? CLR.blueD : CLR.gray;
+    h += "<tr" + (r.pass ? "" : ' class="fail"') + '><td class="n"><b>' + r.pos + "</b></td><td><b>" + esc(s.kode) + "</b></td><td>" + esc(s.sektor) + "</td>" +
+      '<td class="n">' + fmtRp(s.harga) + "</td>" +
+      '<td class="n">' + mk(c.pbv, frac(F.pbv, T.pbv), fmt(F.pbv, 2)) + "</td>" +
+      '<td class="n">' + mk(c.roe, clamp(F.roe / T.roe * 100, 0, 100), fmt(F.roe, 2)) + "</td>" +
+      '<td class="n">' + mk(c.per, frac(F.per, T.per), isFinite(F.per) ? fmt(F.per, 2) : "—") + "</td>" +
+      '<td class="n">' + mk(c.der, frac(nz(s.der), T.der), fmt(s.der, 2)) + "</td>" +
+      "<td>" + (EPS_TREND_LABEL[s.epsTrend] || "—") + "</td>" +
+      "<td>" + likuidLabel(s.nilaiHarian) + "</td>" +
+      '<td class="n mut">' + r.rank.pbv + '</td><td class="n mut">' + r.rank.roe + '</td><td class="n mut">' + r.rank.per +
+      '</td><td class="n mut">' + r.rank.der + '</td><td class="n mut">' + r.rank.likuid + '</td><td class="n mut">' + r.rank.trend +
+      '</td><td class="n"><span class="cellbar">' + mbar(tPct, tCol, 54, 8) + "<b>" + r.total + "</b></span></td>" +
+      "<td>" + (r.pass ? '<span class="badge b-ok">LOLOS</span>' : '<span class="badge b-no">GAGAL</span>') + "</td></tr>";
+  });
+  $("tblScreen").innerHTML = h + "</tbody>";
+  $("screenSummary").innerHTML += '<div class="lg" style="margin-top:5px">' +
+    '<span><i class="dot" style="background:' + CLR.tealD + '"></i>memenuhi syarat</span>' +
+    '<span><i class="dot" style="background:' + CLR.amberD + '"></i>belum memenuhi</span>' +
+    '<span><i class="dot" style="background:' + CLR.gray + '"></i>peringkat lemah</span>' +
+    "<span>panjang batang = seberapa penuh syarat terpenuhi; batang Total Rank panjang = peringkat makin baik</span></div>";
+}
+
+/* ---------- Langkah 4: Valuasi ---------- */
+function computeAll() {
+  const rows = screenStocks();
+  VALUED = rows.map(r => {
+    const v = valuate(r.s, r.F, S.cfg);
+    const sw = swingScore(r.s);
+    const f = finalScore(r, v, sw);
+    return { r, s: r.s, F: r.F, v, sw, f };
+  });
+  FINAL = VALUED.slice().sort((a, b) => b.f.total - a.f.total);
+  FINAL.forEach((x, i) => { x.rankFinal = i + 1; });
+}
+function sigBadge(sig) {
+  const c = sig === "STRONG BUY" ? "b-sbuy" : sig === "HOLD / WATCHLIST" ? "b-hold" : sig === "DATA KURANG" ? "b-no" : "b-tp";
+  return '<span class="badge ' + c + '">' + sig + "</span>";
+}
+function statusBadge(st) {
+  const c = st === "SIAP ENTRY" ? "b-ok" : st === "HAMPIR SIAP" ? "b-hold" : "b-no";
+  return '<span class="badge ' + c + '">' + st + "</span>";
+}
+function renderVal() {
+  const box = $("valList");
+  if (!VALUED.length) { box.innerHTML = '<div class="mut">Belum ada data.</div>'; return; }
+  const ok = VALUED.filter(x => x.v.signal === "STRONG BUY").length;
+  $("valSummary").innerHTML = ok + " emiten berstatus STRONG BUY dari " + VALUED.length;
+  box.innerHTML = VALUED.map((x, i) => {
+    const s = x.s, v = x.v;
+    const rowM = (nama, val, note) => {
+      const vs = isFinite(val) && val > 0 ? (val > s.harga ? '<span class="up">diskon ' + fmt((1 - s.harga / val) * 100, 1) + "%</span>"
+                            : '<span class="down">premium ' + fmt((s.harga / val - 1) * 100, 1) + "%</span>") : "—";
+      return "<tr><td>" + nama + '</td><td class="n">' + (isFinite(val) && val > 0 ? fmtRp(val) : "—") +
+        '</td><td class="n">' + vs + '</td><td class="mut">' + note + "</td></tr>";
+    };
+    const mosPct = clamp(v.mos / v.targetMos * 100, 0, 100);
+    const segs = [
+      { v: x.f.valueScore * 0.40, c: CLR.blueD, t: "Nilai (bobot 40%)" },
+      { v: x.f.qualityScore * 0.25, c: CLR.greenD, t: "Kualitas (bobot 25%)" },
+      { v: x.f.timingScore * 0.20, c: CLR.amberD, t: "Timing (bobot 20%)" },
+      { v: x.f.macroFit * 0.15, c: CLR.purpleD, t: "Makro (bobot 15%)" }
+    ];
+    return '<div class="acc' + (i === 0 ? " open" : "") + '" data-acc="' + i + '">' +
+      '<div class="ah"><span class="caret">&#9654;</span><b>' + esc(s.kode) + '</b><span class="mut">' + esc(s.nama) + "</span>" +
+      '<span class="pill">' + esc(s.sektor) + "</span>" +
+      '<span class="sp"></span><span class="mut">Harga ' + fmtRp(s.harga) + " · Wajar " + (isFinite(v.composite) ? fmtRp(v.composite) : "—") + "</span>" +
+      mbar(mosPct, v.mos >= v.targetMos ? CLR.tealD : v.mos > 0 ? CLR.amberD : CLR.redD, 64, 8) +
+      sigBadge(v.signal) + "</div>" +
+      '<div class="ab"><div class="grid g2">' +
+        "<div>" +
+          '<h3 style="font-size:13px;margin-bottom:8px">Perbandingan nilai intrinsik</h3>' +
+          chartMethods(v, s.harga) +
+          '<h3 style="font-size:13px;margin:16px 0 6px">Rincian 6 metode</h3>' +
+          '<div class="tw"><table><thead><tr><th>Metode</th><th class="n">Nilai intrinsik</th><th class="n">vs harga</th><th>Catatan</th></tr></thead><tbody>' +
+          rowM("1. Adjusted Benjamin Graham", v.graham, v.grahamNote) +
+          rowM("2. EPS Discounted (5 tahun)", v.epsDisc, "BVPS + Σ EPS/(1+" + fmt(S.cfg.disc, 1) + "%)^t") +
+          rowM("3. Equity Growth (BVPS×(1+ROE)^5)", v.equityGrowth, "Proyeksi 5 tahun, agresif untuk ROE tinggi") +
+          rowM("4. ROE–PBV Matrix", v.roePbv, "PBV wajar = ROE/10% = " + fmt(v.fairPbv, 2) + "×") +
+          rowM("5. Discounted Cash Flow", v.dcf, nz(s.fcf) > 0 ? "WACC " + fmt(s.wacc, 1) + "%, " + (s.fcfTerminal ? "dengan" : "tanpa") + " terminal value" : "FCF tidak tersedia") +
+          '<tr style="background:#f8fbff"><td><b>6. Konsensus (median)</b></td><td class="n"><b>' + (isFinite(v.composite) ? fmtRp(v.composite) : "—") +
+          '</b></td><td class="n">' + (isFinite(v.upside) ? sgn(v.upside, 1) : "—") + '</td><td class="mut">' +
+          (isFinite(v.min) ? "Rentang " + fmtRp(v.min) + " – " + fmtRp(v.max) + " · " + v.n + " metode valid" : "tidak cukup data") + "</td></tr>" +
+          "</tbody></table></div>" +
+          (v.capped ? '<div class="warn" style="margin-top:10px">CAGR laba ' + fmt(v.gRaw, 1) + "% dipotong ke 15% sesuai batas atas formula.</div>" : "") +
+        "</div>" +
+        "<div>" +
+          '<h3 style="font-size:13px;margin-bottom:6px">Margin of Safety</h3>' +
+          gaugeMos(v.mos, v.targetMos, s.harga, v.maxBuy) +
+          '<div class="kv"><span class="k">Nilai wajar konsensus</span><span class="v">Rp ' + (isFinite(v.composite) ? fmtRp(v.composite) : "—") + "</span></div>" +
+          '<div class="kv"><span class="k">Target MOS (' + (v.cyclical ? "cyclical / risiko tinggi" : "saham normal") + ')</span><span class="v">' + fmt(v.targetMos, 0) + "%</span></div>" +
+          '<div class="kv"><span class="k">Penyesuaian makro</span><span class="v">' + (v.macroAdj >= 0 ? "+" : "") + v.macroAdj + " poin</span></div>" +
+          '<div class="kv"><span class="k">Ruang kenaikan ke nilai wajar</span><span class="v ' + (v.upside > 0 ? "up" : "down") + '">' + (isFinite(v.upside) ? sgn(v.upside, 1) : "—") + "</span></div>" +
+          '<div class="kv"><span class="k">Sinyal</span><span class="v">' + sigBadge(v.signal) + "</span></div>" +
+          '<h3 style="font-size:13px;margin:16px 0 8px">Komposisi skor keputusan</h3>' +
+          bigBar(x.f.total, x.f.tier === "A" ? CLR.tealD : x.f.tier === "B" ? CLR.blueD : CLR.gray, "Skor terpadu · Tier " + x.f.tier, fmt(x.f.total, 1) + " / 100") +
+          stackBar(segs, 11) +
+          legend(segs.map(y => ({ c: y.c, t: y.t }))) +
+          '<div class="note" style="margin-top:11px">' + decisionText(s, v) + "</div>" +
+        "</div></div></div></div>";
+  }).join("");
+}
+function decisionText(s, v) {
+  if (!isFinite(v.composite)) return "Data belum lengkap untuk menghitung nilai intrinsik.";
+  const gap = Math.abs(nz(s.harga) - v.maxBuy);
+  if (v.signal === "STRONG BUY") return "Harga Rp " + fmtRp(s.harga) + " berada <b>" + fmt(gap, 0) + "</b> di bawah harga beli maksimal Rp " + fmtRp(v.maxBuy) + ". Diskon melebihi target MOS " + fmt(v.targetMos, 0) + "% — zona beli bertahap.";
+  if (v.signal === "HOLD / WATCHLIST") return "Harga masih <b>" + fmt(gap, 0) + "</b> di atas harga beli maksimal Rp " + fmtRp(v.maxBuy) + ". Tunggu koreksi ke area tersebut, atau simpan jika sudah dimiliki.";
+  return "Harga Rp " + fmtRp(s.harga) + " sudah " + fmt((nz(s.harga) / v.composite - 1) * 100, 1) + "% di atas nilai wajar Rp " + fmtRp(v.composite) + ". Risiko lebih besar dari imbalan.";
+}
+
+/* ---------- Langkah 5: Swing ---------- */
+function renderSwing() {
+  const box = $("swingList");
+  if (!VALUED.length) { box.innerHTML = '<div class="mut">Belum ada data.</div>'; return; }
+  const chk = (k, lbl, on) => '<label class="chk"><input type="checkbox" data-sw="' + k + '"' + (on ? " checked" : "") + "> " + lbl + "</label>";
+  box.innerHTML = VALUED.map((x, i) => {
+    const s = x.s, w = x.sw;
+    const chkPct = w.checks / 6 * 100;
+    const limLot = Math.max(1, Math.max(w.lotModal, w.lotRisk));
+    const rewardRp = w.lot * 100 * (w.tp1 - w.entry);
+    return '<div class="acc' + (w.status === "SIAP ENTRY" ? " open" : "") + '">' +
+      '<div class="ah"><span class="caret">&#9654;</span><b>' + esc(s.kode) + "</b>" +
+      mbar(w.score, w.status === "SIAP ENTRY" ? CLR.tealD : w.status === "HAMPIR SIAP" ? CLR.amberD : CLR.gray, 62, 8) +
+      '<span class="pill">Skor ' + w.score + "/100</span>" + statusBadge(w.status) +
+      '<span class="sp"></span><span class="mut">Entry ' + fmtRp(w.entry) + " · TP " + fmtRp(w.tp1) + " · SL " + fmtRp(w.sl) + "</span></div>" +
+      '<div class="ab"><div class="grid g2">' +
+        '<div><h3 style="font-size:13px;margin-bottom:8px">Checklist bandarmology</h3>' +
+        bigBar(chkPct, chkPct === 100 ? CLR.tealD : CLR.amberD, "Syarat terpenuhi " + w.checks + " dari 6", fmt(chkPct, 0) + "%") +
+        '<div class="row" style="margin-bottom:10px">' +
+          chk("sSideways", "Sideways di dasar", s.sSideways) +
+          chk("sFreqSpike", "Frequency spike", s.sFreqSpike) +
+          chk("sSpring", "Spring / false break", s.sSpring) +
+          chk("sCloseAbove", "Close di atas support", s.sCloseAbove) +
+        "</div>" +
+        '<div class="tw"><table><thead><tr><th>Indikator</th><th class="n">Skor</th><th>Keterangan</th></tr></thead><tbody>' +
+        w.parts.map(p => "<tr><td>" + p.nama + '</td><td class="n"><span class="cellbar">' +
+          mbar(p.maks ? p.skor / p.maks * 100 : 0, p.skor === p.maks ? CLR.tealD : p.skor > 0 ? CLR.amberD : CLR.gray, 46) +
+          '<span class="mut">' + p.skor + "/" + p.maks + '</span></span></td><td class="mut">' + p.ket + "</td></tr>").join("") +
+        '<tr style="background:#f8fbff"><td><b>TOTAL</b></td><td class="n"><span class="cellbar">' +
+          mbar(w.score, CLR.blueDD, 46, 8) + "<b>" + w.score + "/100</b></span></td><td>" + statusBadge(w.status) + "</td></tr>" +
+        "</tbody></table></div>" +
+        '<div class="grid g2" style="margin-top:11px">' +
+          '<div><label class="f">Rasio volume vs rata-rata 20 hari</label><input type="number" step="0.05" data-swn="sVolRatio" value="' + nz(s.sVolRatio, 1) + '"></div>' +
+          '<div><label class="f">Konsentrasi Top Buyer (%)</label><input type="number" step="1" data-swn="sTopBuyer" value="' + nz(s.sTopBuyer, 0) + '"></div>' +
+          '<div><label class="f">Low candle spring (Rp)</label><input type="number" step="1" data-swn="sSpringLow" value="' + nz(s.sSpringLow, 0) + '"></div>' +
+          '<div><label class="f">Resistance lokal (Rp)</label><input type="number" step="1" data-swn="sResistance" value="' + nz(s.sResistance, 0) + '"></div>' +
+        "</div>" +
+        "</div>" +
+        '<div><h3 style="font-size:13px;margin-bottom:8px">Peta harga &amp; rencana eksekusi</h3>' +
+        ladderPrice(w) +
+        legend([{ c: CLR.redL, t: "zona risiko (menuju stop loss)" }, { c: CLR.tealL, t: "zona imbalan (menuju take profit)" }]) +
+        '<div style="margin-top:12px">' +
+          bigBar(w.lot / limLot * 100, CLR.blueD, "Ukuran posisi " + fmt(w.lot, 0) + " lot dari batas " + fmt(limLot, 0) + " lot", "Rp " + fmtRp(w.nilaiPosisi)) +
+          '<div class="mini" style="font-weight:600;color:var(--ink2);margin-bottom:3px">Perbandingan risiko vs potensi imbalan</div>' +
+          stackBar([{ v: w.riskRp, c: CLR.redD, t: "Risiko" }, { v: rewardRp, c: CLR.tealD, t: "Imbalan" }], 11) +
+          legend([{ c: CLR.redD, t: "risiko Rp " + fmtRp(w.riskRp) }, { c: CLR.tealD, t: "imbalan Rp " + fmtRp(rewardRp) }]) +
+        "</div>" +
+        '<div style="margin-top:11px">' +
+          '<div class="kv"><span class="k">Stop loss (' + fmt(w.slPct, 1) + '%)</span><span class="v down">Rp ' + fmtRp(w.sl) + "</span></div>" +
+          '<div class="kv"><span class="k">Risk–Reward Ratio</span><span class="v">' + fmt(w.rr, 2) + " : 1</span></div>" +
+          '<div class="kv"><span class="k">Lot (batas modal / batas risiko)</span><span class="v">' + fmt(w.lotModal, 0) + " / " + fmt(w.lotRisk, 0) + " lot</span></div>" +
+        "</div>" +
+        '<div class="note" style="margin-top:10px">Eksekusi <i>scaling in</i>: 50% posisi saat sinyal spring terkonfirmasi' +
+          (w.resistance ? ", 50% sisanya bila harga menembus resistance Rp " + fmtRp(w.resistance) : "") +
+          ". Pasang sell limit TP sebelum euforia ritel muncul.</div>" +
+        (w.rr > 0 && w.rr < 2 ? '<div class="warn" style="margin-top:8px">Risk–Reward hanya ' + fmt(w.rr, 2) + " : 1 (di bawah 2:1). " +
+          "Pertimbangkan menurunkan entry atau memperlebar target ke +7% agar rasio imbalan terhadap risiko lebih sehat.</div>" : "") +
+        "</div></div></div></div>";
+  }).join("");
+}
+
+/* ---------- Langkah 6: Dashboard ---------- */
+let dashSort = null, dashDir = -1;
+function dashVal(x, k) {
+  switch (k) {
+    case "rankFinal": return x.rankFinal;
+    case "kode": return x.s.kode;
+    case "sektor": return x.s.sektor;
+    case "harga": return nz(x.s.harga);
+    case "composite": return isFinite(x.v.composite) ? x.v.composite : -1e18;
+    case "mos": return isFinite(x.v.mos) ? x.v.mos : -1e18;
+    case "targetMos": return x.v.targetMos;
+    case "maxBuy": return isFinite(x.v.maxBuy) ? x.v.maxBuy : -1e18;
+    case "signal": return x.v.signal;
+    case "komposisi": return x.f.total;
+    case "valueScore": return x.f.valueScore;
+    case "qualityScore": return x.f.qualityScore;
+    case "timingScore": return x.f.timingScore;
+    case "macroFit": return x.f.macroFit;
+    case "total": return x.f.total;
+    case "tier": return x.f.tier;
+    case "action": return x.f.action;
+  }
+  return 0;
+}
+function renderDash() {
+  const onlyPass = $("dashOnlyPass").checked;
+  const data = FINAL.filter(x => !onlyPass || x.r.pass);
+  if (dashSort) data.sort((a, b) => {
+    const va = dashVal(a, dashSort), vb = dashVal(b, dashSort);
+    if (typeof va === "string" || typeof vb === "string") return String(va).localeCompare(String(vb)) * dashDir;
+    return (va - vb) * dashDir;
+  });
+  const st = { A: 0, B: 0, C: 0 };
+  FINAL.forEach(x => st[x.f.tier]++);
+  const buys = FINAL.filter(x => x.f.action.indexOf("AKUMULASI") === 0).length;
+  const q = KUADRAN[S.macro.quad];
+  const passN = FINAL.filter(x => x.r.pass).length;
+  const nAll = FINAL.length || 1;
+  const stCard = (k, v, s, viz) => '<div class="stat"><div class="k">' + k + '</div><div class="v" style="font-size:15px">' + v + '</div><div class="s">' + s + "</div>" + (viz || "") + "</div>";
+  $("dashStats").innerHTML =
+    stCard("Kuadran aktif", q.label, q.alokasi, "") +
+    stCard("Distribusi tier", "A " + st.A + " · B " + st.B + " · C " + st.C, "Tier A ≥75 · B 60–74 · C &lt;60",
+      '<div style="margin-top:7px">' + stackBar([{ v: st.A, c: CLR.tealD, t: "Tier A" }, { v: st.B, c: CLR.blueD, t: "Tier B" }, { v: st.C, c: CLR.gray, t: "Tier C" }], 9) + "</div>") +
+    stCard("Kandidat akumulasi", buys + " emiten", "Nilai + timing selaras",
+      '<div style="margin-top:7px">' + mbar(buys / nAll * 100, CLR.tealD, 150, 8) + "</div>") +
+    stCard("Lolos screening", passN + " / " + FINAL.length, "Filter fundamental",
+      '<div style="margin-top:7px">' + mbar(passN / nAll * 100, CLR.blueD, 150, 8) + "</div>");
+  $("dashSummary").innerHTML = "Menampilkan " + data.length + " emiten, diurutkan skor terpadu.";
+
+  const cols = [["rankFinal", "#"], ["kode", "Kode"], ["sektor", "Sektor"], ["harga", "Harga"],
+    ["composite", "Nilai wajar"], ["mos", "MOS"], ["targetMos", "Target"], ["maxBuy", "Beli maks"],
+    ["signal", "Sinyal"], ["valueScore", "Nilai 40%"], ["qualityScore", "Kualitas 25%"], ["timingScore", "Timing 20%"],
+    ["macroFit", "Makro 15%"], ["total", "SKOR"], ["komposisi", "Komposisi"], ["tier", "Tier"], ["action", "Aksi"]];
+  let h = "<thead><tr>" + cols.map(c => '<th class="n sortable" data-sort="' + c[0] + '">' + c[1] + "</th>").join("") + "</tr></thead><tbody>";
+  data.forEach(x => {
+    const s = x.s, v = x.v, f = x.f;
+    const tierB = '<span class="badge b-' + f.tier + '">' + f.tier + "</span>";
+    const mosPct = clamp(v.mos / v.targetMos * 100, 0, 100);
+    const mosCol = v.mos >= v.targetMos ? CLR.tealD : v.mos > 0 ? CLR.amberD : CLR.redD;
+    const sc = [f.valueScore * 0.4, f.qualityScore * 0.25, f.timingScore * 0.2, f.macroFit * 0.15];
+    h += '<tr class="clickable" data-detail="' + esc(s.kode) + '">' +
+      '<td class="n">' + x.rankFinal + "</td><td><b>" + esc(s.kode) + "</b></td><td>" + esc(s.sektor) + "</td>" +
+      '<td class="n">' + fmtRp(s.harga) + "</td>" +
+      '<td class="n">' + (isFinite(v.composite) ? fmtRp(v.composite) : "—") + "</td>" +
+      '<td class="n"><span class="cellbar">' + mbar(mosPct, mosCol, 44, 8) +
+        '<span class="' + (v.mos > 0 ? "up" : "down") + '">' + (isFinite(v.mos) ? pct(v.mos, 1) : "—") + "</span></span></td>" +
+      '<td class="n mut">' + fmt(v.targetMos, 0) + "%</td>" +
+      '<td class="n">' + (isFinite(v.maxBuy) ? fmtRp(v.maxBuy) : "—") + "</td>" +
+      "<td>" + sigBadge(v.signal) + "</td>" +
+      '<td class="n">' + fmt(f.valueScore, 0) + '</td><td class="n">' + fmt(f.qualityScore, 0) + "</td>" +
+      '<td class="n">' + fmt(f.timingScore, 0) + '</td><td class="n">' + fmt(f.macroFit, 0) + "</td>" +
+      '<td class="n"><span class="cellbar">' + mbar(f.total, f.tier === "A" ? CLR.tealD : f.tier === "B" ? CLR.blueD : CLR.gray, 46, 8) + "<b>" + fmt(f.total, 1) + "</b></span></td>" +
+      '<td style="min-width:110px">' + stackBar([{ v: sc[0], c: CLR.blueD, t: "Nilai" }, { v: sc[1], c: CLR.greenD, t: "Kualitas" },
+        { v: sc[2], c: CLR.amberD, t: "Timing" }, { v: sc[3], c: CLR.purpleD, t: "Makro" }], 9) + "</td>" +
+      "<td>" + tierB + "</td>" +
+      "<td>" + esc(f.action) + "</td></tr>";
+  });
+  $("tblDash").innerHTML = h + "</tbody>";
+  $("dashLegend").innerHTML = legend([{ c: CLR.blueD, t: "Nilai 40%" }, { c: CLR.greenD, t: "Kualitas 25%" },
+    { c: CLR.amberD, t: "Timing 20%" }, { c: CLR.purpleD, t: "Makro 15%" }]) +
+    '<div class="lg"><span><i class="dot" style="background:' + CLR.tealD + '"></i>batang penuh / hijau = memenuhi target</span>' +
+    '<span><i class="dot" style="background:' + CLR.amberD + '"></i>mendekati target</span>' +
+    '<span><i class="dot" style="background:' + CLR.redD + '"></i>di bawah target</span></div>';
+  $("dashScatter").innerHTML = chartScatter(FINAL);
+  $("scatterLegend").innerHTML = legend([{ c: CLR.tealD, t: "Tier A" }, { c: CLR.blueD, t: "Tier B" }, { c: CLR.grayD, t: "Tier C" }]);
+
+  $("tblMatrix").innerHTML = "<thead><tr><th>Nilai \\ Timing</th><th>SIAP ENTRY</th><th>HAMPIR SIAP</th><th>BELUM SIAP</th></tr></thead><tbody>" +
+    [["STRONG BUY", "Akumulasi bertahap 50/50", "Akumulasi awal 25–50%", "Watchlist value + alert"],
+     ["HOLD / WATCHLIST", "Swing saja, porsi kecil", "Pantau", "Pantau"],
+     ["TAKE PROFIT", "Swing murni, bukan investasi", "Hindari entry baru", "Hindari entry baru"]]
+    .map(r => "<tr><td><b>" + r[0] + "</b></td><td>" + r[1] + "</td><td>" + r[2] + "</td><td>" + r[3] + "</td></tr>").join("") + "</tbody>";
+
+  $("tblAlloc").innerHTML = "<thead><tr><th>Kuadran</th><th>Alokasi</th><th>Penyesuaian MOS</th><th>Sektor unggulan</th></tr></thead><tbody>" +
+    Object.keys(KUADRAN).map(k => { const qq = KUADRAN[k];
+      return "<tr" + (k === S.macro.quad ? ' style="background:#f0f6ff"' : "") + "><td>" + (k === S.macro.quad ? "<b>" : "") + qq.label + (k === S.macro.quad ? " (aktif)</b>" : "") +
+        "</td><td>" + qq.alokasi + "</td><td>" + (qq.mosAdj >= 0 ? "+" : "") + qq.mosAdj + " poin</td><td class=\"mut\">" + qq.sektor.join(", ") + "</td></tr>";
+    }).join("") + "</tbody>";
+}
+/* =========================================================================
+   DRAWER: Editor data emiten
+   ========================================================================= */
+const FIELD_GROUPS = [
+  { t: "Identitas", f: [["kode", "Kode saham", "text"], ["nama", "Nama emiten", "text"], ["sektor", "Sektor", "sel"], ["sumber", "Sumber data", "text"]] },
+  { t: "Harga & laporan keuangan", f: [
+      ["harga", "Harga pasar (Rp)", "num"], ["eps", "EPS periode berjalan (Rp)", "num"],
+      ["kuartal", "Kuartal data", "q"], ["ekuitas", "Total ekuitas (Rp)", "num"],
+      ["saham", "Jumlah saham beredar (lembar)", "num"], ["laba", "Laba bersih periode (Rp)", "num"],
+      ["der", "DER (×)", "num"], ["nilaiHarian", "Nilai transaksi harian rata-rata (Rp)", "num"],
+      ["cagr", "CAGR laba bersih (%)", "num"], ["epsTrend", "Tren EPS", "trend"],
+      ["dividen", "Rutin membagi dividen", "bool"], ["cyclical", "Saham cyclical", "bool"], ["volatil", "Volatilitas tinggi", "bool"]] },
+  { t: "Parameter DCF", f: [["fcf", "Free cash flow tahunan (Rp)", "num"], ["wacc", "WACC (%)", "num"],
+      ["kas", "Kas & setara kas (Rp)", "num"], ["utang", "Total utang (Rp)", "num"],
+      ["fcfTerminal", "Sertakan terminal value", "bool"], ["gTerminal", "Pertumbuhan terminal (%)", "num"]] },
+  { t: "Overlay swing / bandarmology", f: [
+      ["sSideways", "Sideways di area bottoming", "bool"], ["sFreqSpike", "Ada frequency spike", "bool"],
+      ["sSpring", "Terjadi spring / false break", "bool"], ["sCloseAbove", "Close kembali di atas support", "bool"],
+      ["sVolRatio", "Rasio volume vs rata-rata 20 hari", "num"], ["sTopBuyer", "Konsentrasi Top Buyer (%)", "num"],
+      ["sSpringLow", "Low candle spring (Rp)", "num"], ["sResistance", "Resistance lokal (Rp)", "num"]] }
+];
+function openEditor(idx) {
+  const isNew = idx < 0;
+  const s = isNew ? { kode: "", nama: "", sektor: "Energi", harga: 0, eps: 0, kuartal: 4, ekuitas: 0, saham: 0,
+      laba: 0, der: 0, nilaiHarian: 0, epsTrend: "up", dividen: false, cagr: 8, cyclical: false, volatil: false,
+      fcf: 0, wacc: 12, kas: 0, utang: 0, fcfTerminal: false, gTerminal: 2.5,
+      sSideways: false, sVolRatio: 1, sFreqSpike: false, sTopBuyer: 0, sSpring: false, sCloseAbove: false,
+      sSpringLow: 0, sResistance: 0, sumber: "Input manual" } : S.stocks[idx];
+  $("dwTitle").textContent = isNew ? "Tambah emiten baru" : "Edit " + s.kode;
+  let h = "";
+  FIELD_GROUPS.forEach(g => {
+    h += '<h3 style="font-size:13px;margin:14px 0 8px">' + g.t + "</h3><div class=\"grid g3\">";
+    g.f.forEach(f => {
+      const k = f[0], lbl = f[1], ty = f[2];
+      let inp;
+      if (ty === "bool") inp = '<label class="chk" style="margin-top:17px"><input type="checkbox" data-k="' + k + '"' + (s[k] ? " checked" : "") + "> " + lbl + "</label>";
+      else if (ty === "sel") inp = '<select data-k="' + k + '">' + SEKTOR.map(x => '<option' + (s[k] === x ? " selected" : "") + ">" + x + "</option>").join("") + "</select>";
+      else if (ty === "trend") inp = '<select data-k="' + k + '">' + Object.keys(EPS_TREND_LABEL).map(x => '<option value="' + x + '"' + (s[k] === x ? " selected" : "") + ">" + EPS_TREND_LABEL[x] + "</option>").join("") + "</select>";
+      else if (ty === "q") inp = '<select data-k="' + k + '">' + [1, 2, 3, 4].map(q => '<option value="' + q + '"' + (nz(s[k], 4) === q ? " selected" : "") + ">Q" + q + (q === 4 ? " (full year)" : " ×" + fmt(ANN_FACTOR[q], 2)) + "</option>").join("") + "</select>";
+      else inp = '<input type="' + (ty === "num" ? "number" : "text") + '" data-k="' + k + '" value="' + esc(s[k]) + '">';
+      h += "<div>" + (ty === "bool" ? "" : '<label class="f">' + lbl + "</label>") + inp + "</div>";
+    });
+    h += "</div>";
+  });
+  h += '<div class="sep"></div><div class="row"><button class="btn pri" id="edSave">Simpan</button>' +
+       '<button class="btn" id="edCancel">Batal</button><span class="sp"></span>' +
+       (isNew ? "" : '<button class="btn dgr" id="edDel">Hapus emiten</button>') + "</div>";
+  $("dwBody").innerHTML = h;
+  $("drawer").classList.add("on");
+  $("edSave").onclick = () => {
+    const o = isNew ? {} : S.stocks[idx];
+    document.querySelectorAll("#dwBody [data-k]").forEach(el => {
+      const k = el.getAttribute("data-k");
+      o[k] = el.type === "checkbox" ? el.checked : (el.tagName === "SELECT" && k === "kuartal") ? nz(el.value, 4)
+           : (el.tagName === "SELECT") ? el.value : (el.type === "number") ? nz(el.value, 0) : el.value;
+    });
+    if (!o.kode) { toast("Kode saham wajib diisi"); return; }
+    if (isNew) S.stocks.push(o);
+    closeDrawer(); renderAll(); save(); toast("Data " + o.kode + " disimpan");
+  };
+  $("edCancel").onclick = closeDrawer;
+  if ($("edDel")) $("edDel").onclick = () => {
+    if (!confirm("Hapus " + s.kode + " dari daftar?")) return;
+    S.stocks.splice(idx, 1); closeDrawer(); renderAll(); save(); toast("Emiten dihapus");
+  };
+}
+function closeDrawer() { $("drawer").classList.remove("on"); }
+
+/* =========================================================================
+   DRAWER: Rincian 7 langkah per emiten
+   ========================================================================= */
+function openDetail(kode) {
+  const x = VALUED.filter(y => y.s.kode === kode)[0];
+  if (!x) return;
+  const s = x.s, F = x.F, v = x.v, w = x.sw, f = x.f;
+  const q = KUADRAN[S.macro.quad];
+  const step = (no, t, body) => '<h3 style="font-size:13px;margin:15px 0 7px">' + no + ". " + t + "</h3>" + body;
+  const kv = (k, val) => '<div class="kv"><span class="k">' + k + '</span><span class="v">' + val + "</span></div>";
+
+  let h = '<div class="row" style="margin-bottom:10px"><span class="pill">' + esc(s.sektor) + '</span>' +
+    '<span class="pill">Sumber: ' + esc(s.sumber || "—") + '</span><span class="sp"></span>' +
+    '<span class="badge b-' + f.tier + '">Tier ' + f.tier + "</span>" + sigBadge(v.signal) + statusBadge(w.status) + "</div>";
+
+  h += step(1, "Regime makro", '<div class="note">Kuadran aktif <b>' + q.label + "</b>. Alokasi disarankan " + q.alokasi +
+    ". Penyesuaian target MOS " + (v.macroAdj >= 0 ? "+" : "") + v.macroAdj + " poin. Sektor " + esc(s.sektor) +
+    " " + (q.sektor.indexOf(s.sektor) >= 0 ? "<b>termasuk</b> yang diuntungkan" : "tidak termasuk daftar sektor unggulan") + ".</div>");
+
+  h += step(2, "Data & normalisasi", '<div class="grid g2"><div>' +
+    kv("EPS periode (Q" + s.kuartal + ")", "Rp " + fmtRp(s.eps)) + kv("Faktor annualisasi", "×" + fmt(F.f, 4)) +
+    kv("EPS disetahunkan", "Rp " + fmt(F.epsAnn, 2)) + kv("Total ekuitas", "Rp " + fmtBig(s.ekuitas)) +
+    kv("Saham beredar", fmt(F.epsAnn ? s.saham / 1e9 : 0, 3) + " miliar lembar") +
+    kv("BVPS", "Rp " + fmt(F.bvps, 2)) + '</div><div>' +
+    kv("PER", isFinite(F.per) ? fmt(F.per, 2) + "×" : "—") + kv("PBV", isFinite(F.pbv) ? fmt(F.pbv, 2) + "×" : "—") +
+    kv("ROE (annualized)", pct(F.roe, 2)) + kv("DER", fmt(s.der, 2) + "×") +
+    kv("Kapitalisasi pasar", "Rp " + fmtBig(F.mcap)) + kv("Likuiditas", likuidLabel(s.nilaiHarian) + " (Rp " + fmtBig(s.nilaiHarian) + "/hari)") +
+    "</div></div>" + (F.mismatch ? '<div class="warn" style="margin-top:9px">Perhatian: EPS × saham beredar (' + fmtBig(F.epsImplied) + ') berbeda ' + fmt(F.gap, 1) + "% dari laba bersih annualized (" + fmtBig(F.labaAnn) + "). Periksa kembali input.</div>" : ""));
+
+  h += step(3, "Screening & ranking", '<div class="tw"><table><thead><tr><th>Parameter</th><th class="n">Nilai</th><th class="n">Ambang</th><th class="n">Peringkat</th><th>Status</th></tr></thead><tbody>' +
+    [["PBV", fmt(F.pbv, 2), "&lt; " + fmt(S.cfg.thr.pbv, 2), x.r.rank.pbv, x.r.c.pbv],
+     ["ROE", fmt(F.roe, 2) + "%", "≥ " + fmt(S.cfg.thr.roe, 1) + "%", x.r.rank.roe, x.r.c.roe],
+     ["PER", isFinite(F.per) ? fmt(F.per, 2) : "—", "&lt; " + fmt(S.cfg.thr.per, 1), x.r.rank.per, x.r.c.per],
+     ["DER", fmt(s.der, 2), "&lt; " + fmt(S.cfg.thr.der, 2), x.r.rank.der, x.r.c.der],
+     ["Likuiditas", fmtBig(s.nilaiHarian), "≥ Rp " + fmtBig(S.cfg.thr.minNilai), x.r.rank.likuid, x.r.c.likuid],
+     ["EPS Trend", EPS_TREND_LABEL[s.epsTrend] || "—", "Up / Fluktuatif Up", x.r.rank.trend, true]]
+    .map(r => "<tr><td>" + r[0] + '</td><td class="n">' + r[1] + '</td><td class="n">' + r[2] + '</td><td class="n">' + r[3] +
+      '</td><td>' + (r[4] ? '<span class="badge b-ok">OK</span>' : '<span class="badge b-no">Tidak lolos</span>') + "</td></tr>").join("") +
+    '<tr style="background:#f8fbff"><td colspan="3"><b>Total Rank (semakin kecil semakin baik)</b></td><td class="n"><b>' + x.r.total +
+    '</b></td><td>' + (x.r.pass ? '<span class="badge b-ok">LOLOS FILTER</span>' : '<span class="badge b-no">DI LUAR FILTER</span>') + "</td></tr></tbody></table></div>");
+
+  h += step(4, "Valuasi 6 metode", '<div class="tw"><table><thead><tr><th>Metode</th><th class="n">Nilai intrinsik</th><th class="n">Selisih vs harga</th></tr></thead><tbody>' +
+    [["1. Adjusted Benjamin Graham", v.graham], ["2. EPS Discounted 5 tahun", v.epsDisc],
+     ["3. Equity Growth (BVPS×(1+ROE)^5)", v.equityGrowth], ["4. ROE–PBV Matrix", v.roePbv],
+     ["5. Discounted Cash Flow", v.dcf]]
+    .map(r => "<tr><td>" + r[0] + '</td><td class="n">' + (isFinite(r[1]) && r[1] > 0 ? fmtRp(r[1]) : "—") + '</td><td class="n">' +
+      (isFinite(r[1]) && r[1] > 0 ? (r[1] > s.harga ? '<span class="up">diskon ' + fmt((1 - s.harga / r[1]) * 100, 1) + "%</span>" : '<span class="down">premium ' + fmt((s.harga / r[1] - 1) * 100, 1) + "%</span>") : "—") + "</td></tr>").join("") +
+    '<tr style="background:#f8fbff"><td><b>6. Konsensus (median ' + v.n + " metode)</b></td><td class=\"n\"><b>" + (isFinite(v.composite) ? fmtRp(v.composite) : "—") +
+    '</b></td><td class="n">' + (isFinite(v.upside) ? sgn(v.upside, 1) : "—") + "</td></tr></tbody></table></div>" +
+    '<div class="mini" style="margin-top:6px">Rentang nilai wajar antar metode: ' + (isFinite(v.min) ? "Rp " + fmtRp(v.min) + " – Rp " + fmtRp(v.max) : "—") + "</div>");
+
+  h += step(5, "MOS & sinyal", '<div class="grid g2"><div>' +
+    kv("Nilai wajar konsensus", "Rp " + (isFinite(v.composite) ? fmtRp(v.composite) : "—")) +
+    kv("Harga pasar", "Rp " + fmtRp(s.harga)) +
+    kv("MOS aktual", (isFinite(v.mos) ? pct(v.mos, 2) : "—")) +
+    kv("Target MOS", fmt(v.targetMos, 0) + "% (" + (v.cyclical ? "cyclical / risiko tinggi" : "saham normal") + ")") +
+    kv("Harga beli maksimal", "Rp " + (isFinite(v.maxBuy) ? fmtRp(v.maxBuy) : "—")) +
+    "</div><div>" + kv("Sinyal", sigBadge(v.signal)) +
+    kv("Ruang kenaikan ke nilai wajar", isFinite(v.upside) ? sgn(v.upside, 1) : "—") +
+    kv("Selisih harga ke beli maksimal", isFinite(v.maxBuy) ? "Rp " + fmtRp(s.harga - v.maxBuy) : "—") +
+    '<div class="note" style="margin-top:9px">' + decisionText(s, v) + "</div></div></div>");
+
+  h += step(6, "Overlay swing bandarmology", '<div class="grid g2"><div>' +
+    kv("Skor bandarmology", w.score + "/100 — " + w.status) +
+    w.parts.map(p => kv(p.nama, p.skor + "/" + p.maks)).join("") +
+    "</div><div>" +
+    kv("Entry", "Rp " + fmtRp(w.entry)) +
+    kv("TP1 / TP2 (+5% / +7%)", "Rp " + fmtRp(w.tp1) + " / Rp " + fmtRp(w.tp2)) +
+    kv("Stop loss (" + fmt(w.slPct, 1) + "%)", "Rp " + fmtRp(w.sl)) +
+    kv("Risk–Reward", fmt(w.rr, 2) + " : 1") +
+    kv("Lot disarankan", fmt(w.lot, 0) + " lot (" + fmt(w.lot * 100, 0) + " lembar)") +
+    kv("Nilai posisi", "Rp " + fmtRp(w.nilaiPosisi)) +
+    kv("Risiko rupiah", "Rp " + fmtRp(w.riskRp)) + "</div></div>");
+
+  h += step(7, "Keputusan terpadu", '<div class="grid g2"><div>' +
+    '<div class="kv"><span class="k">Skor Nilai (bobot 40%)</span><span class="v">' + fmt(f.valueScore, 1) + "</span></div>" +
+    '<div class="bar"><i style="width:' + f.valueScore + '%"></i></div>' +
+    '<div class="kv" style="margin-top:9px"><span class="k">Skor Kualitas (25%)</span><span class="v">' + fmt(f.qualityScore, 1) + "</span></div>" +
+    '<div class="bar"><i style="width:' + f.qualityScore + '%"></i></div>' +
+    '<div class="kv" style="margin-top:9px"><span class="k">Skor Timing (20%)</span><span class="v">' + fmt(f.timingScore, 1) + "</span></div>" +
+    '<div class="bar"><i style="width:' + f.timingScore + '%"></i></div>' +
+    '<div class="kv" style="margin-top:9px"><span class="k">Kesesuaian Makro (15%)</span><span class="v">' + fmt(f.macroFit, 0) + "</span></div>" +
+    '<div class="bar"><i style="width:' + f.macroFit + '%"></i></div>' +
+    "</div><div>" +
+    kv("Skor terpadu", fmt(f.total, 1) + " / 100") +
+    kv("Tier", "Tier " + f.tier) +
+    kv("Aksi", "<b>" + esc(f.action) + "</b>") +
+    '<div class="note" style="margin-top:9px">' + esc(f.actionNote) + "</div></div></div>");
+
+  h += panelTambahan(s);
+
+  // Asal-usul data: penting untuk menilai seberapa layak angka ini dipercaya.
+  if (s.sumber) {
+    const bermasalah = /meragukan|perlu dicek/i.test(s.sumber);
+    h += '<div class="' + (bermasalah ? "warn" : "note") + '" style="margin-top:12px">' +
+      "<b>Asal data &amp; mutu:</b> " + esc(s.sumber) + sumberTag(s.sumber) +
+      (bermasalah ? '<div class="mini" style="margin-top:5px">Angka dari sumber ini belum terverifikasi. Cocokkan dengan laporan keuangan resmi sebelum dipakai.</div>' : "") +
+      "</div>";
+  }
+
+  $("dwTitle").textContent = s.kode + " — " + s.nama + " — rincian 7 langkah";
+  $("dwBody").innerHTML = h;
+  $("drawer").classList.add("on");
+}
+
+/* =========================================================================
+   PANDUAN
+   ========================================================================= */
+function renderGuide() {
+  const li = (a) => a.map(x => "<li>" + x + "</li>").join("");
+  let h = "";
+  h += '<h3 style="font-size:13.5px;margin-bottom:7px">A. Cara pakai: 7 langkah, satu arah</h3><ol class="steps2">' + li([
+    "<b>Langkah 1 — Regime Makro.</b> Pilih kuadran siklus ekonomi, tren likuiditas, BI Rate, toleransi risiko, dan sektor unggulan. Ini menetapkan target Margin of Safety minimum dan bonus sektor. Tanpa langkah ini, hasil screening bisa benar secara angka tapi salah secara waktu.",
+    "<b>Langkah 2 — Data Emiten.</b> Masukkan data laporan keuangan kuartalan. EPS otomatis disetahunkan (Q1×4, Q2×2, Q3×4/3, Q4×1) sehingga PER, ROE, dan PBV valid meski laporan belum penuh setahun. Bisa juga import CSV massal.",
+    "<b>Langkah 3 — Screening & Ranking.</b> Jalankan filter PBV, ROE, PER, DER, likuiditas. Emiten yang lolos diberi peringkat per parameter (peringkat 1 = terbaik), lalu Total Rank dihitung. Semakin kecil Total Rank, semakin menarik.",
+    "<b>Langkah 4 — Valuasi.</b> Untuk setiap emiten dihitung 5 metode valuasi plus 1 konsensus median. Median dipakai sebagai nilai wajar agar satu metode yang ekstrem tidak menyeret kesimpulan.",
+    "<b>Langkah 5 — MOS & Sinyal.</b> Bandingkan harga pasar dengan nilai wajar dan target MOS. Hasilnya: harga beli maksimal dan sinyal STRONG BUY / HOLD / TAKE PROFIT.",
+    "<b>Langkah 6 — Overlay Swing.</b> Periksa jejak bandar: sideways dry-out, frequency spike, konsentrasi top buyer, spring, dan konfirmasi close. Skor 0–100 menentukan status SIAP / HAMPIR / BELUM SIAP ENTRY, lengkap dengan TP, SL, dan jumlah lot.",
+    "<b>Langkah 7 — Keputusan Terpadu.</b> Empat skor digabung (Nilai 40%, Kualitas 25%, Timing 20%, Makro 15%) menjadi skor 0–100, Tier A/B/C, dan satu aksi konkret dari matriks nilai × timing."
+  ]) + "</ol>";
+
+  h += '<div class="sep"></div><h3 style="font-size:13.5px;margin-bottom:7px">B. Kenapa digabung jadi satu alur</h3>' +
+    '<div class="grid g3">' +
+    '<div class="note"><b>Screening saja tidak cukup.</b> Saham PBV 0,5× bisa tetap murah bertahun-tahun karena tidak ada permintaan. Ranking hanya menjawab "apa yang murah".</div>' +
+    '<div class="note"><b>Bandarmology saja tidak cukup.</b> Jejak akumulasi bandar pada emiten dengan fundamental rusak = jebakan. Timing harus berdiri di atas <i>safety net</i> fundamental.</div>' +
+    '<div class="note"><b>Makro menyetel kehati-hatian.</b> Di fase Bust, target MOS naik sehingga lebih sedikit saham yang lolos ke zona beli. Ini kontrol risiko otomatis.</div>' +
+    "</div>";
+
+  h += '<div class="sep"></div><h3 style="font-size:13.5px;margin-bottom:7px">C. Rumus yang dipakai</h3><div class="tw"><table><thead><tr><th>Metode</th><th>Formula</th><th>Sumber</th></tr></thead><tbody>' +
+    [["Annualisasi kuartal", "Q1 ×4 &nbsp;|&nbsp; Q2 ×2 &nbsp;|&nbsp; Q3 ×(4/3) &nbsp;|&nbsp; Q4 ×1", "Dok. spesifikasi §2.1"],
+     ["Adjusted Benjamin Graham", "(EPS_ann × (7 + 1g) × 7,8) ÷ Y &nbsp;&nbsp;<span class=\"mut\">g dibatasi 15%, Y = yield korporasi AAA</span>", "Dok. spesifikasi §4.1"],
+     ["EPS Discounted Model", "BVPS + Σ<sub>t=1..5</sub> EPS<sub>t</sub> ÷ (1+r)<sup>t</sup> &nbsp;&nbsp;<span class=\"mut\">r = inflasi 5% + buffer 2%</span>", "Dok. spesifikasi §4.2"],
+     ["Equity Growth Model", "BVPS × (1 + ROE)<sup>5</sup>", "Dok. spesifikasi §4.3"],
+     ["ROE–PBV Matrix", "BVPS × (ROE ÷ 10%)", "Dok. spesifikasi §4.4"],
+     ["Discounted Cash Flow", "(Σ FCF<sub>t</sub>÷(1+WACC)<sup>t</sup> + kas − utang) ÷ saham", "Dok. spesifikasi §4.5"],
+     ["Konsensus", "Median dari metode yang valid", "Tambahan agar hasil tahan outlier"],
+     ["Margin of Safety", "(Nilai wajar − Harga) ÷ Nilai wajar × 100%", "Dok. spesifikasi §5.1"],
+     ["Harga beli maksimal", "Nilai wajar × (1 − target MOS) &nbsp;&nbsp;<span class=\"mut\">30% normal / 50% cyclical</span>", "Dok. spesifikasi §5.2"],
+     ["Total Rank", "R.PBV + R.ROE + R.PER + R.DER + R.Likuiditas + R.EPS Trend", "Dok. spesifikasi §3.2"],
+     ["Skor bandarmology", "Sideways 20 + dry-out 15 + spike 20 + top buyer 20 + spring 15 + close 10", "Pola swing, §2 & §6"],
+     ["Ukuran posisi", "min( modal ÷ (harga×100),  (modal × %risiko) ÷ ((entry−SL)×100) )", "Pola swing, §4"]]
+    .map(r => "<tr><td>" + r[0] + "</td><td>" + r[1] + '</td><td class="mut">' + r[2] + "</td></tr>").join("") +
+    "</tbody></table></div>";
+
+  h += '<div class="sep"></div><h3 style="font-size:13.5px;margin-bottom:7px">D. Catatan metodologi &amp; keterbatasan</h3><div class="grid g2">' +
+    '<div><div class="warn"><b>Data contoh bukan data riil.</b> Angka emiten bawaan hanya ilustrasi supaya tool langsung bisa dicoba. Ganti dengan data laporan keuangan resmi (IDX, RTI, Yahoo Finance) sebelum dipakai mengambil keputusan.</div>' +
+    '<div class="note" style="margin-top:10px"><b>Perbedaan kecil dari dokumen sumber.</b> Pada formula EPS Discounted, dokumen menulis pendiskontoan per tahun, tetapi contoh kode Python-nya mendiskontokan total 5 tahun sekaligus. Tool ini memakai versi rumus (per tahun) karena lebih konsisten secara finansial.</div></div>' +
+    '<div><div class="note"><b>Enam metode, lima rumus.</b> Dokumen menyebut "6 metode" tetapi menjabarkan 5 rumus. Metode keenam di sini adalah konsensus median &mdash; berfungsi sebagai penengah antar metode sekaligus rentang nilai wajar.</div>' +
+    '<div class="warn" style="margin-top:10px"><b>Yang belum tercakup.</b> Tool ini tidak mengambil data otomatis dan tidak memodelkan pajak, biaya transaksi, fraksi harga IDX, maupun auto-rejection. Angka lot bersifat estimasi.</div></div>' +
+    "</div>";
+
+  h += '<div class="sep"></div><h3 style="font-size:13.5px;margin-bottom:7px">E. Peta sumber dokumen</h3><div class="tw"><table><thead><tr><th>Dokumen</th><th>Bagian yang dipakai</th><th>Menjadi langkah</th></tr></thead><tbody>' +
+    [["panduan-software-screening-valuasi-saham.md", "§2 normalisasi, §3 screening &amp; ranking, §4 valuasi, §5 MOS &amp; matriks keputusan", "Langkah 2, 3, 4, 5"],
+     ["panduan-investasi-hendriko-gani.md", "Cycle investing 4 kuadran, analisis top-down, likuiditas, fundamental sebagai safety net, manajemen risiko &amp; dana dingin", "Langkah 1 (dan bobot makro 15%)"],
+     ["pola-swing-antitesis-bandar.md", "§2 parameter screening bandar, §3 trigger spring, §4 TP/SL &amp; position sizing, §6 checklist entri", "Langkah 6 (dan bobot timing 20%)"]]
+    .map(r => "<tr><td><code>" + r[0] + "</code></td><td>" + r[1] + "</td><td>" + r[2] + "</td></tr>").join("") +
+    "</tbody></table></div>";
+
+  h += '<div class="sep"></div><h3 style="font-size:13.5px;margin-bottom:7px">F. Cara membaca tampilan visual</h3><div class="grid g2">' +
+    '<div class="tw"><table><thead><tr><th>Elemen visual</th><th>Artinya</th></tr></thead><tbody>' +
+    [["Progress bar mini di tabel", "Seberapa penuh syarat terpenuhi. Batang panjang = makin dekat/melewati ambang."],
+     ["Gauge setengah lingkaran", "Margin of Safety aktual. Tanda hitam = target MOS yang disyaratkan."],
+     ["Bar chart horizontal", "Nilai intrinsik tiap metode. Garis putus-putus merah = harga pasar sekarang."],
+     ["Stack bar komposisi", "Sumbangan tiap komponen (nilai, kualitas, timing, makro) terhadap skor akhir."],
+     ["Peta harga", "Zona merah = jarak ke stop loss (risiko). Zona hijau = jarak ke take profit (imbalan)."],
+     ["Peta sebar", "Setiap titik satu emiten. Kanan = makin diskon. Atas = timing bandar makin siap."]]
+    .map(r => "<tr><td>" + r[0] + '</td><td class="mut">' + r[1] + "</td></tr>").join("") +
+    "</tbody></table></div>" +
+    '<div><div class="note"><b>Aturan baca cepat:</b> kuadran kanan-atas pada peta sebar adalah zona terbaik &mdash; harga sudah diskon <i>dan</i> bandar sudah selesai mengumpulkan barang. Kiri-atas hanya cocok untuk trading jangka pendek. Kanan-bawah berarti tunggu, bukan beli.</div>' +
+    '<div class="warn" style="margin-top:10px"><b>Batang panjang bukan berarti pasti untung.</b> Semua visual hanya meringkas angka yang Anda masukkan. Kualitas keputusan tetap bergantung pada kualitas data dan pembacaan siklus Anda.</div></div>' +
+    "</div>";
+
+  h += '<div class="sep"></div><h3 style="font-size:13.5px;margin-bottom:7px">G. Cara memasukkan data</h3>' +
+    '<div class="mini" style="margin-bottom:8px">Ada empat jalan. Yang ketiga menarik data sendiri; yang keempat paling lengkap.</div>' +
+    '<table class="tbl" style="margin-bottom:10px"><thead><tr><th style="width:118px">Jalan</th><th>Kelengkapan</th><th>Cara pakai</th></tr></thead><tbody>' +
+    '<tr><td><b>1. Contoh</b></td><td><span class="tag t-w">Ilustrasi</span></td><td>Tombol <b>Muat Data Contoh</b> &mdash; 9 emiten untuk mencoba alur. Bukan data riil.</td></tr>' +
+    '<tr><td><b>2. Manual</b></td><td><span class="tag t-w">Seadanya</span></td><td><b>Unduh Template CSV</b>, isi di Excel, lalu <b>Import CSV/JSON</b>.</td></tr>' +
+    '<tr><td><b>3. Otomatis</b></td><td><span class="tag t-w">Sedang</span></td><td>Jalankan <code>fetch-data-idx.py</code>, lalu impor hasilnya. Cepat, tapi FCF &amp; ekuitas belum asli.</td></tr>' +
+    '<tr><td><b>4. Tempel</b></td><td><span class="tag t-g">Paling lengkap</span></td><td>Tombol <b>Tempel Data Stockbit</b> &mdash; laba 10 tahun, neraca, arus kas, F-Score, Altman Z. Rincian di bagian G.</td></tr>' +
+    "</tbody></table>" +
+    '<h4 style="font-size:12.5px;margin:10px 0 6px">G.1 Penarikan otomatis (fetch-data-idx.py)</h4>' +
+    '<div class="mini" style="margin-bottom:7px">Skrip Python ini mengambil data dari <b>IDX</b> (nama &amp; sektor resmi, 962 emiten, tanpa API key) dan <b>Yahoo Finance</b> (harga, EPS, BVPS, jumlah saham, DER, arus kas, plus riwayat harga 6 bulan untuk menghitung sinyal swing). Hasilnya ditulis dalam format yang bisa langsung diimpor.</div>' +
+    '<div class="tw" style="padding:10px;background:#fafbfc"><code style="background:none;font-size:11px">' +
+    "python fetch-data-idx.py --pasar              # regime makro saja (Langkah 1)\n" +
+    "python fetch-data-idx.py --tickers BBCA,TLKM,ANTM,PTBA\n" +
+    "python fetch-data-idx.py --file daftar-saya.txt --out data-idx\n" +
+    "python fetch-data-idx.py --all --delay 2      # seluruh emiten (lama)\n" +
+    "python fetch-data-idx.py --tickers BBCA --no-idx --ringkas</code></div>" +
+    '<div class="mini" style="margin-top:8px">Perintah <code>--pasar</code> menulis <code>pasar.json</code>: kuadran siklus dihitung dari riwayat IHSG, dan likuiditas dari nilai transaksi harian IDX. Muat berkasnya lewat tombol <b>Muat regime pasar</b> di Langkah 1.</div>' +
+    '<div class="note" style="margin-top:9px"><b>Kenapa harus skrip lokal, bukan di dalam halaman ini?</b> Baik Yahoo Finance maupun IDX tidak mengirim header CORS dan IDX berada di belakang Cloudflare, sehingga browser menolak permintaan langsung dari halaman. Skrip lokal tidak terkena batas itu.</div>' +
+    '<h4 style="font-size:12.5px;margin:10px 0 6px">G.2 Batas data otomatis yang perlu Anda tahu</h4>' +
+    '<div class="mini">Skrip sudah menandai setiap baris dengan label kualitas di kolom <code>sumber</code>, tetapi ini daftar jujurnya:</div>' +
+    '<table class="tbl"><thead><tr><th style="width:150px">Kolom</th><th>Status</th></tr></thead><tbody>' +
+    '<tr><td><code>ekuitas</code></td><td><span class="tag t-w">Turunan</span> dihitung BVPS &times; jumlah saham (Yahoo tidak memberi ekuitas langsung untuk emiten IDX).</td></tr>' +
+    '<tr><td><code>s_topbuyer</code></td><td><span class="tag t-r">Kosong</span> konsentrasi top buyer (bandarmology) tidak tersedia di sumber gratis. Isi manual dari broker summary.</td></tr>' +
+    '<tr><td><code>fcf</code>, <code>kas</code>, <code>utang</code></td><td><span class="tag t-w">Perlu dicek</span> laporan kuartalan Yahoo untuk IDX umumnya kosong; angkanya dari laporan tahunan terakhir.</td></tr>' +
+    '<tr><td><code>cagr</code>, <code>eps_trend</code></td><td><span class="tag t-w">Perkiraan</span> diturunkan dari <code>earningsGrowth</code> Yahoo, bukan deret EPS 5 tahun.</td></tr>' +
+    '<tr><td>emiten kecil</td><td><span class="tag t-r">Rawan</span> untuk kapitalisasi kecil data Yahoo sering salah (BVPS 0,035 atau EPS kosong). Skrip menandainya &ldquo;data meragukan&rdquo;.</td></tr>' +
+    "</tbody></table>" +
+    '<h4 style="font-size:12.5px;margin:10px 0 6px">G.3 Format berkas</h4>' +
+    '<div class="mini" style="margin-bottom:7px">CSV: baris pertama = header, pemisah koma atau titik koma, kolom yang tidak ada diisi 0/kosong. JSON: berkas <code>data-idx.json</code> dengan larik <code>saham</code> juga diterima &mdash; tombol impor mendeteksi keduanya otomatis.</div>' +
+    '<div class="tw" style="padding:10px;background:#fafbfc"><code style="background:none;font-size:11px">' + CSV_HEADER.join(",") + "</code></div>" +
+    '<div class="hint">Nama kolom harus persis seperti di atas. 31 kolom pertama adalah kontrak inti; 12 kolom terakhir (piotroski, rs_rating, altman_z, hist_laba, &hellip;) bersifat tambahan dan boleh kosong. Nilai <code>sektor</code> boleh memakai nama IDX-IC (mis. &ldquo;Barang Konsumen Non-Primer&rdquo;) &mdash; otomatis dipetakan ke daftar sektor di dalam alat ini.</div>' +
+    '<h4 style="font-size:12.5px;margin:12px 0 6px">G.4 Tempel data Key Stats (paling lengkap)</h4>' +
+    '<div class="mini" style="margin-bottom:7px">Sumber data ini memberi hal yang tidak dimiliki Yahoo untuk emiten IDX: <b>laba bersih 10 tahun</b>, neraca lengkap, arus kas, dan rasio siap pakai (Piotroski F-Score, Altman Z, ROIC, cakupan bunga). Caranya menempel, bukan mengambil otomatis.</div>' +
+    '<table class="tbl" style="margin-bottom:9px"><thead><tr><th style="width:150px">Yang didapat</th><th>Kegunaan di alur ini</th></tr></thead><tbody>' +
+    '<tr><td>Laba 10 tahun</td><td>Grafik untung-rugi + CAGR nyata, bukan taksiran dari satu angka pertumbuhan.</td></tr>' +
+    '<tr><td>Neraca &amp; arus kas</td><td><code>ekuitas</code>, <code>FCF</code>, <code>kas</code>, <code>utang</code> asli &mdash; tidak lagi diturunkan dari BVPS.</td></tr>' +
+    '<tr><td>Piotroski F-Score</td><td>Ukuran kualitas fundamental siap pakai (0&ndash;9).</td></tr>' +
+    '<tr><td>Altman Z</td><td>Deteksi risiko gagal bayar &mdash; melengkapi skor Kualitas.</td></tr>' +
+    '<tr><td>Cakupan bunga</td><td>Menajamkan WACC: di bawah 3x menambah premi risiko.</td></tr>' +
+    '<tr><td>Rentang harga per periode</td><td>Level support/resistance dan deteksi sideways untuk modul swing.</td></tr>' +
+    "</tbody></table>" +
+    '<div class="note"><b>Kenapa harus menempel, bukan mengambil sendiri?</b> Data ini ada di balik login, dan pengambilan otomatis melanggar ketentuan layanan sumbernya sekaligus rapuh terhadap perubahan halaman. Dengan menempel, <b>Anda</b> yang membuka halamannya di peramban Anda sendiri; alat ini tidak membuka koneksi apa pun ke luar. Pola inilah yang dipakai proyek SahamLens &mdash; dan itu pilihan yang tepat.</div>' +
+    '<div class="hint">Tombol <b>Tempel Data Stockbit</b> menerima satu objek atau larik berisi banyak emiten. Boleh ditempel bersama teks halaman lain &mdash; alat ini akan mencari bagian JSON-nya sendiri. Sebelum masuk, hasilnya ditampilkan sebagai pratinjau supaya Anda bisa memeriksa pemetaannya.</div>' +
+    '<div class="note" style="margin-top:9px"><b>Soal titik dan koma.</b> Pembaca angka menerima dua gaya sekaligus: gaya berkas mesin <code>0.1924</code> (titik = desimal) dan gaya Indonesia <code>1.234,56</code> atau <code>0,1924</code> (koma = desimal). Titik baru dianggap pemisah ribuan bila polanya jelas bergrup seperti <code>1.234.567</code>. Jadi satu angka seperti <code>6.300</code> yang berdiri sendiri tetap dibaca 6,3 &mdash; kalau Anda mengetik manual dari Excel berlokal Indonesia, pakai bentuk berkoma (<code>6.300,00</code>) agar tidak salah baca.</div>';
+
+  $("guideBox").innerHTML = h;
+}
+
+/* =========================================================================
+   CSV
+   ========================================================================= */
+/* 31 kolom inti (kontrak dengan fetch-data-idx.py) + 12 kolom tambahan di
+   bagian AKHIR. Kolom tambahan sengaja diletakkan di belakang agar berkas lama
+   tetap bisa diimpor (kolom yang tidak ada cukup dianggap kosong). */
+const CSV_HEADER = ["kode", "nama", "sektor", "harga", "eps", "kuartal", "ekuitas", "saham", "laba", "der",
+  "nilai_harian", "eps_trend", "dividen", "cagr", "cyclical", "volatil", "fcf", "wacc", "kas", "utang",
+  "fcf_terminal", "g_terminal", "s_sideways", "s_vol_ratio", "s_freqspike", "s_topbuyer", "s_spring",
+  "s_closeabove", "s_springlow", "s_resistance", "sumber",
+  "piotroski", "rs_rating", "altman_z", "interest_cov", "current_ratio", "quick_ratio",
+  "roic", "roce", "ev_ebitda", "peg", "div_yield", "hist_laba"];
+/* Riwayat laba tahunan disimpan sebagai "2021:-7|2022:580" agar aman di dalam CSV
+   (tidak memakai koma maupun titik koma yang bisa bentrok dengan pemisah kolom). */
+function histToStr(a) {
+  if (!a || !a.length) return "";
+  return a.map(p => p.t + ":" + p.v).join("|");
+}
+function histFromStr(t) {
+  return String(t || "").split("|").map(s => {
+    const m = s.match(/^(-?\d+)\s*:\s*(-?[\d.]+)$/);
+    return m ? { t: parseInt(m[1], 10), v: parseFloat(m[2]) } : null;
+  }).filter(Boolean);
+}
+/* Ambang tren laba: 5% dari laba tipikal per tahun (sama dengan AMBANG_TREN
+   di fetch-data-idx.py, supaya CSV dan tempelan manual dinilai dengan ukuran
+   yang persis sama). */
+const AMBANG_TREN = 0.05;
+/* Tren laba dari riwayat tahunan -> "up" | "fluktuatif" | "down" ("" bila < 4 titik).
+   Regresi linear pada laba yang dinormalkan terhadap laba tipikal (rata-rata
+   nilai absolut), sehingga kemiringannya terbaca sebagai "berapa persen dari
+   laba tipikal per tahun" dan tidak bergantung skala. Tetap bekerja walau ada
+   tahun merugi -- beda dengan regresi log-linear yang tidak terdefinisi di sana.
+   Ini cadangan untuk impor manual: kalau kolom eps_trend sudah diisi, isinya
+   yang dipakai. */
+function trenDariHist(hist) {
+  if (!hist || hist.length < 4) return "";
+  const a = hist.slice().sort((x, y) => x.t - y.t);
+  const n = a.length;
+  const skala = a.reduce((s, p) => s + Math.abs(nz(p.v)), 0) / n;
+  if (!(skala > 0)) return "";
+  const xs = a.map(p => p.t), ys = a.map(p => nz(p.v) / skala);
+  const mx = xs.reduce((s, x) => s + x, 0) / n, my = ys.reduce((s, y) => s + y, 0) / n;
+  const bawah = xs.reduce((s, x) => s + (x - mx) * (x - mx), 0);
+  if (!(bawah > 0)) return "";
+  const lereng = xs.reduce((s, x, i) => s + (x - mx) * (ys[i] - my), 0) / bawah;
+  if (lereng >= AMBANG_TREN) return "up";
+  if (lereng <= -AMBANG_TREN) return "down";
+  return "fluktuatif";
+}
+function toRow(s) {
+  return [s.kode, s.nama, s.sektor, s.harga, s.eps, s.kuartal, s.ekuitas, s.saham, s.laba, s.der, s.nilaiHarian,
+    s.epsTrend, s.dividen ? 1 : 0, s.cagr, s.cyclical ? 1 : 0, s.volatil ? 1 : 0, s.fcf, s.wacc, s.kas, s.utang,
+    s.fcfTerminal ? 1 : 0, s.gTerminal, s.sSideways ? 1 : 0, s.sVolRatio, s.sFreqSpike ? 1 : 0, s.sTopBuyer,
+    s.sSpring ? 1 : 0, s.sCloseAbove ? 1 : 0, s.sSpringLow, s.sResistance, s.sumber,
+    nz(s.piotroski), nz(s.rsRating), nz(s.altmanZ), nz(s.interestCov), nz(s.currentRatio), nz(s.quickRatio),
+    nz(s.roic), nz(s.roce), nz(s.evEbitda), nz(s.peg), nz(s.divYield), histToStr(s.histLaba)];
+}
+function csvLine(arr) { return arr.map(v => { const t = String(v == null ? "" : v); return /[",;\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; }).join(","); }
+/* Pemisah ditentukan SEKALI dari baris judul, bukan dicoba keduanya sekaligus.
+   Sebelumnya koma dan titik koma sama-sama diperlakukan sebagai pemisah, jadi
+   satu titik koma di dalam kolom bebas seperti "sumber" menggeser seluruh kolom
+   sesudahnya -- hist_laba dan div_yield hilang tanpa peringatan apa pun. */
+function pemisahCsv(text) {
+  let koma = 0, titikKoma = 0, inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQ) { if (c === '"') inQ = false; continue; }
+    if (c === '"') { inQ = true; continue; }
+    if (c === "\n" || c === "\r") break;
+    if (c === ",") koma++; else if (c === ";") titikKoma++;
+  }
+  return titikKoma > koma ? ";" : ",";
+}
+function parseCsv(text) {
+  const P = pemisahCsv(text);
+  const rows = [];
+  let row = [], cur = "", inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQ) { if (c === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else inQ = false; } else cur += c; }
+    else if (c === '"') inQ = true;
+    else if (c === P) { row.push(cur); cur = ""; }
+    else if (c === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; }
+    else if (c === "\r") { }
+    else cur += c;
+  }
+  if (cur !== "" || row.length) { row.push(cur); rows.push(row); }
+  return rows.filter(r => r.some(x => String(x).trim() !== ""));
+}
+/* Baca angka dari teks dengan dua konvensi sekaligus.
+   Gaya Indonesia "1.234,56" -> titik ribuan, koma desimal.
+   Gaya berkas mesin  "0.1924" -> titik desimal, tanpa pemisah ribuan.
+   Titik baru dianggap pemisah ribuan bila polanya jelas bergrup (1.234.567),
+   sebab menebak salah arah membuat DER 0,19 menjadi 1.924 (10.000x lipat). */
+function toNum(v) {
+  if (typeof v === "number") return isFinite(v) ? v : 0;
+  if (typeof v === "boolean") return v ? 1 : 0;
+  const raw = String(v == null ? "" : v).trim();
+  if (!raw) return 0;
+  // Ambil inti angkanya saja; "Rp", "%", nama kolom, dan spasi diabaikan.
+  // Regex (bukan buang karakter) supaya huruf "e" di kata seperti "DER" tidak
+  // ikut terbaca sebagai notasi eksponen.
+  const m = raw.match(/-?\d+(?:[.,]\d+)*(?:[eE][-+]?\d+)?/g);
+  if (!m) return 0;
+  let t = m.reduce((a, b) => (b.length > a.length ? b : a), "");
+  if (t.indexOf(",") >= 0) {
+    t = t.replace(/\./g, "").replace(/,/g, ".");        // gaya Indonesia 1.234,56
+  } else if (t.indexOf(".") >= 0 && /^-?\d{1,3}(\.\d{3}){2,}$/.test(t)) {
+    t = t.replace(/\./g, "");                            // gaya ribuan 1.234.567
+  }
+  const n = parseFloat(t);
+  return isFinite(n) ? n : 0;
+}
+/* Ubah satu record mentah (dari CSV maupun JSON) ke bentuk internal. */
+function mapStock(o) {
+  const s = k => { const v = o[k]; return v == null ? "" : String(v).trim(); };
+  const n = k => toNum(o[k]);
+  const b = k => ["1", "true", "ya", "yes", "y"].indexOf(s(k).toLowerCase()) >= 0;
+  const kode = s("kode").toUpperCase();
+  if (!kode) return null;
+  const histLaba = histFromStr(s("hist_laba"));
+  // eps_trend kosong? Hitung dari riwayat laba supaya peringkat tidak
+  // bertentangan dengan datanya sendiri. Isi eksplisit tetap dihormati.
+  const trenTeks = s("eps_trend");
+  const epsTrend = ["up", "fluktuatif", "down"].indexOf(trenTeks) >= 0
+    ? trenTeks : (trenDariHist(histLaba) || "fluktuatif");
+  return {
+    kode, nama: s("nama") || kode, sektor: normSektor(s("sektor")) || "Energi",
+    harga: n("harga"), eps: n("eps"), kuartal: clamp(n("kuartal") || 4, 1, 4),
+    ekuitas: n("ekuitas"), saham: n("saham"), laba: n("laba"), der: n("der"),
+    nilaiHarian: n("nilai_harian") || n("nilaiharian"),
+    epsTrend,
+    dividen: b("dividen"), cagr: n("cagr"), cyclical: b("cyclical"), volatil: b("volatil"),
+    fcf: n("fcf"), wacc: n("wacc") || 12, kas: n("kas"), utang: n("utang"),
+    fcfTerminal: b("fcf_terminal"), gTerminal: n("g_terminal") || 2.5,
+    sSideways: b("s_sideways"), sVolRatio: n("s_vol_ratio") || 1, sFreqSpike: b("s_freqspike"),
+    sTopBuyer: n("s_topbuyer"), sSpring: b("s_spring"), sCloseAbove: b("s_closeabove"),
+    sSpringLow: n("s_springlow"), sResistance: n("s_resistance"),
+    sumber: s("sumber") || "Impor",
+    piotroski: n("piotroski"), rsRating: n("rs_rating"), altmanZ: n("altman_z"),
+    interestCov: n("interest_cov"), currentRatio: n("current_ratio"), quickRatio: n("quick_ratio"),
+    roic: n("roic"), roce: n("roce"), evEbitda: n("ev_ebitda"), peg: n("peg"), divYield: n("div_yield"),
+    histLaba: histLaba
+  };
+}
+function applyImport(list, catatan) {
+  if (!list.length) { toast("Tidak ada baris valid"); return; }
+  S.stocks = list; renderAll(); save();
+  toast(list.length + " emiten berhasil diimpor" + (catatan ? " — " + catatan : ""));
+}
+function importCsv(text) {
+  // Buang BOM: skrip Python menulis CSV dengan utf-8-sig, tanpa ini nama kolom
+  // pertama menjadi "\ufeffkode" dan semua baris akan ikut terbuang.
+  const rows = parseCsv(String(text).replace(/^\ufeff/, ""));
+  if (rows.length < 2) { toast("CSV kosong atau tidak valid"); return; }
+  const head = rows[0].map(x => x.trim().toLowerCase().replace(/^\ufeff/, ""));
+  const list = [];
+  let miring = 0;
+  for (let i = 1; i < rows.length; i++) {
+    // Jumlah kolom yang tidak sama dengan judul berarti pemisahnya salah tebak.
+    // Dulu baris seperti itu tetap diterima diam-diam, sehingga kolom terakhir
+    // (hist_laba, div_yield) hilang tanpa jejak.
+    if (rows[i].length !== head.length) miring++;
+    const o = {};
+    head.forEach((k, j) => { if (k) o[k] = rows[i][j]; });
+    const st = mapStock(o);
+    if (st) list.push(st);
+  }
+  applyImport(list, miring ? miring + " baris jumlah kolomnya tidak sama dengan judul" : "");
+}
+function importJson(text) {
+  let d;
+  try { d = JSON.parse(String(text).replace(/^\ufeff/, "")); }
+  catch (e) { toast("JSON tidak valid"); return; }
+  const arr = Array.isArray(d) ? d : (d.saham || d.stocks || d.data || []);
+  if (!arr.length) { toast("Tidak ada data saham di JSON"); return; }
+  applyImport(arr.map(mapStock).filter(Boolean));
+}
+function importFile(text, name) {
+  if (/\.json$/i.test(name || "") || /^\s*[{[]/.test(text)) importJson(text);
+  else importCsv(text);
+}
+
+/* =========================================================================
+   PARSER JSON STOCKBIT ("Key Stats")
+   Sumber data ini jauh lebih lengkap daripada Yahoo untuk emiten IDX:
+   ada laporan laba 10 tahun, neraca, arus kas, dan rasio siap pakai.
+   Cara mendapatkannya: salin manual dari halaman yang Anda buka sendiri
+   (bukan mengambil otomatis dari server), lalu tempel di sini.
+   ========================================================================= */
+const BIDX = 1e9;                       // nilai "*_idr_billion" -> rupiah
+
+/* Sektor dari daftar indeks, dipakai bila kolom sektor tidak bisa dipercaya
+   (pada contoh, `sector` berisi "ID flag" — artefak parsing, bukan sektor). */
+const SEKTOR_INDEKS = {
+  "energy": "Energi", "basic-materials": "Barang Baku", "industrials": "Perindustrian",
+  "consumer-non-cyclicals": "Konsumer Primer", "consumer-cyclicals": "Konsumer Non-Primer",
+  "healthcare": "Kesehatan", "financials": "Keuangan", "properties-real-estate": "Properti",
+  "technology": "Teknologi", "infrastructures": "Infrastruktur",
+  "transportation-logistics": "Transportasi", "utilities": "Utilitas"
+};
+
+/* Ambil nilai bersarang dengan aman: gv(obj, "a.b.c") */
+function gv(o, path, d) {
+  let cur = o;
+  const parts = String(path).split(".");
+  for (let i = 0; i < parts.length; i++) {
+    if (cur == null || typeof cur !== "object") return d === undefined ? null : d;
+    cur = cur[parts[i]];
+  }
+  return cur === undefined ? (d === undefined ? null : d) : cur;
+}
+function nv(o, path, d) {
+  const v = gv(o, path, null);
+  if (v == null || v === "") return d === undefined ? 0 : d;
+  const n = toNum(v);
+  return isFinite(n) ? n : (d === undefined ? 0 : d);
+}
+
+/* CAGR dari deret laba tahunan: hanya dihitung bila titik awal DAN akhir
+   positif, karena akar pangkat dari bilangan negatif tidak terdefinisi. */
+function cagrDariHist(hist, tahunMaks) {
+  if (!hist || hist.length < 2) return 0;
+  const a = hist.slice().sort((x, y) => x.t - y.t);
+  const akhir = a[a.length - 1].t;
+  const win = a.filter(p => p.t >= akhir - (tahunMaks || 5));
+  const pertama = win.filter(p => p.v > 0)[0];
+  const terakhir = win.filter(p => p.v > 0).slice(-1)[0];
+  if (!pertama || !terakhir) return 0;
+  const n = terakhir.t - pertama.t;
+  if (n <= 0 || pertama.v <= 0) return 0;
+  const g = Math.pow(terakhir.v / pertama.v, 1 / n) - 1;
+  return isFinite(g) ? g * 100 : 0;
+}
+
+/* Tebak sektor: kolom sektor dulu, lalu daftar indeks, lalu nama emiten. */
+function sektorStockbit(d, catatan) {
+  const kandidat = [gv(d, "company_profile.sector"), gv(d, "stock_identity.sector")];
+  for (let i = 0; i < kandidat.length; i++) {
+    const s = normSektor(kandidat[i]);
+    if (s) return s;
+  }
+  const idx = gv(d, "company_profile.indices", []) || [];
+  for (let i = 0; i < idx.length; i++) {
+    const k = String(idx[i]).trim().toLowerCase();
+    if (SEKTOR_INDEKS[k]) return SEKTOR_INDEKS[k];
+  }
+  const nm = String(gv(d, "stock_identity.company_name", "") || "").toLowerCase();
+  const kata = [["energy", "Energi"], ["coal", "Energi"], ["mining", "Barang Baku"],
+    ["metal", "Barang Baku"], ["bank", "Keuangan"], ["finance", "Keuangan"],
+    ["telekomunikasi", "Telekomunikasi"], ["telecom", "Telekomunikasi"],
+    ["property", "Properti"], ["properti", "Properti"], ["farmasi", "Kesehatan"],
+    ["pharma", "Kesehatan"], ["kesehatan", "Kesehatan"], ["teknologi", "Teknologi"]];
+  for (let i = 0; i < kata.length; i++) if (nm.indexOf(kata[i][0]) >= 0) return kata[i][1];
+  if (catatan) catatan.push("sektor tidak dikenali, dipaksa ke Energi");
+  return "Energi";
+}
+
+function parseStockbitOne(d) {
+  if (!d || typeof d !== "object" || Array.isArray(d)) return null;
+  const kode = String(gv(d, "stock_identity.ticker", "") || "").trim().toUpperCase();
+  if (!kode) return null;
+
+  const catatan = [];
+  const saham = nv(d, "market_data.current_share_outstanding_billion") * BIDX;
+  const ekuitas = (nv(d, "balance_sheet.common_equity_idr_billion") ||
+                    nv(d, "balance_sheet.total_equity_idr_billion")) * BIDX;
+  const laba = nv(d, "income_statement.net_income_ttm_idr_billion") * BIDX;
+
+  /* --- Harga: snapshot harga biasanya kosong, jadi diturunkan dua cara lalu
+         dibandingkan. Selisih >5% dilaporkan sebagai catatan mutu data. --- */
+  let harga = 0, sumberHarga = "";
+  const mcap = nv(d, "market_data.market_cap_idr_billion") * BIDX;
+  if (mcap > 0 && saham > 0) { harga = mcap / saham; sumberHarga = "kapitalisasi / saham"; }
+  const epsTtm = nv(d, "per_share.current_eps_ttm", null);
+  const peTtm = nv(d, "current_valuation.current_pe_ratio_ttm", null);
+  if (peTtm !== null && epsTtm !== null && peTtm > 0 && epsTtm > 0) {
+    const alt = peTtm * epsTtm;
+    if (harga <= 0) { harga = alt; sumberHarga = "PER x EPS"; }
+    else if (Math.abs(alt - harga) / harga > 0.05) {
+      catatan.push("harga turunan tidak konsisten (kapitalisasi/saham " + fmt(harga, 0) +
+        " vs PER x EPS " + fmt(alt, 0) + ")");
+    }
+  }
+  if (harga <= 0) {
+    const lo = nv(d, "price_performance.periods.1D.low", null);
+    const hi = nv(d, "price_performance.periods.1D.high", null);
+    if (lo !== null && hi !== null) { harga = (lo + hi) / 2; sumberHarga = "titik tengah rentang 1 hari"; }
+  }
+  if (harga > 0) harga = Math.round(harga);
+  else catatan.push("harga tidak bisa diturunkan");
+  if (sumberHarga && harga > 0) sumberHarga = "diturunkan dari " + sumberHarga;
+
+  /* --- EPS: pakai TTM dengan kuartal=4, sehingga faktor annualisasi = 1. --- */
+  let eps = epsTtm !== null ? epsTtm : nv(d, "per_share.current_eps_annualised", null);
+  if (eps === null) { eps = 0; catatan.push("EPS tidak tersedia"); }
+  if (eps !== null && laba > 0 && saham > 0) {
+    const epsLaba = laba / saham;
+    if (Math.abs(eps) > 0.01 && Math.abs(epsLaba - eps) / Math.abs(eps) > 0.15) {
+      catatan.push("EPS tidak sinkron dengan laba bersih / jumlah saham");
+    }
+  }
+
+  /* --- Riwayat laba tahunan (miliar rupiah) untuk grafik & CAGR. --- */
+  const ann = gv(d, "historical_net_income.annualised", {}) || {};
+  const histLaba = Object.keys(ann).map(t => ({ t: parseInt(t, 10), v: nv(ann, t) }))
+    .filter(p => isFinite(p.t)).sort((a, b) => a.t - b.t);
+
+  /* --- Tren EPS: YoY kuartalan lebih peka; kalau tidak ada, pakai deret tahunan. --- */
+  let epsTrend = "fluktuatif";
+  const yoy = nv(d, "growth.net_income_quarter_yoy_growth_percent", null);
+  if (yoy !== null) {
+    epsTrend = yoy > 5 ? "up" : (yoy < -5 ? "down" : "fluktuatif");
+  } else if (histLaba.length >= 3) {
+    const t3 = histLaba.slice(-3).map(p => p.v);
+    epsTrend = (t3[2] > t3[1] && t3[1] > t3[0]) ? "up"
+      : (t3[2] < t3[1] && t3[1] < t3[0]) ? "down" : "fluktuatif";
+  }
+
+  const sektor = sektorStockbit(d, catatan);
+  const cyclical = SEKTOR_CYCLICAL_IDX.indexOf(sektor) >= 0 ? 1 : 0;
+  const der = nv(d, "solvency.debt_to_equity_ratio_quarter");
+  const icov = nv(d, "solvency.interest_coverage_ttm", null);
+
+  /* --- Volatilitas dari rentang harga nyata, bukan tebakan. --- */
+  const p3 = nv(d, "price_performance.periods.3M.return_percent", null);
+  const p1y = nv(d, "price_performance.periods.1Y.return_percent", null);
+  let volatil = 0;
+  if ((p3 !== null && Math.abs(p3) > 35) || (p1y !== null && Math.abs(p1y) > 60)) volatil = 1;
+
+  /* --- WACC: basis + premi risiko dari data nyata (DER, cakupan bunga). --- */
+  let wacc = 10 + (cyclical ? 1.5 : 0) + (der > 1 ? 2 : 0) + (volatil ? 1 : 0);
+  if (icov !== null && icov < 3) wacc += 1.5;
+  if (icov !== null && icov >= 8) wacc -= 1;
+  wacc = clamp(wacc, 8, 18);
+
+  /* --- Sinyal swing dari rentang harga periode (bukan dari bar harian). --- */
+  const p1m = gv(d, "price_performance.periods.1M", {}) || {};
+  const p1w = gv(d, "price_performance.periods.1W", {}) || {};
+  const sResistance = nv(p1m, "high");
+  const sSpringLow = nv(p1m, "low");
+  const rW = nv(p1w, "high") - nv(p1w, "low");
+  const rM = nv(p1m, "high") - nv(p1m, "low");
+  const sSideways = (rM > 0 && rW / rM < 0.35) ? 1 : 0;
+  const sCloseAbove = (sSpringLow > 0 && harga > sSpringLow) ? 1 : 0;
+
+  const divYield = nv(d, "dividend.dividend_yield", null);
+  const adaDividen = (gv(d, "dividend.dividend", null) != null) ||
+                     (divYield !== null && divYield > 0);
+
+  const st = {
+    kode, nama: String(gv(d, "stock_identity.company_name", "") || "").trim() || kode,
+    sektor, harga, eps, kuartal: 4,
+    ekuitas, saham, laba, der,
+    nilaiHarian: 0,
+    epsTrend, dividen: adaDividen ? 1 : 0, cagr: cagrDariHist(histLaba, 5),
+    cyclical, volatil,
+    fcf: nv(d, "cash_flow_statement.free_cashflow_ttm_idr_billion") * BIDX,
+    wacc,
+    kas: nv(d, "balance_sheet.cash_quarter_idr_billion") * BIDX,
+    utang: nv(d, "balance_sheet.total_debt_quarter_idr_billion") * BIDX,
+    fcfTerminal: 0, gTerminal: 2.5,
+    sSideways: !!sSideways, sVolRatio: 1, sFreqSpike: false,
+    sTopBuyer: 0, sSpring: false, sCloseAbove: !!sCloseAbove,
+    sSpringLow, sResistance,
+    piotroski: nv(d, "market_rank.piotroski_f_score"),
+    rsRating: nv(d, "market_rank.relative_strength_rating_percent"),
+    altmanZ: nv(d, "solvency.altman_z_score_modified"),
+    interestCov: icov === null ? 0 : icov,
+    currentRatio: nv(d, "solvency.current_ratio_quarter"),
+    quickRatio: nv(d, "solvency.quick_ratio_quarter"),
+    roic: nv(d, "management_effectiveness.return_on_invested_capital_ttm_percent"),
+    roce: nv(d, "management_effectiveness.return_on_capital_employed_ttm_percent"),
+    evEbitda: nv(d, "current_valuation.ev_to_ebitda_ttm"),
+    peg: nv(d, "current_valuation.peg_ratio"),
+    divYield: divYield === null ? 0 : divYield,
+    histLaba,
+    sumber: "Stockbit (tempel)" + (sumberHarga ? " — " + sumberHarga : "") +
+      (catatan.length ? " — perlu dicek: " + catatan.join("; ")
+        : " — lengkap (10 tahun, neraca, arus kas)")
+  };
+
+  if (!ekuitas) st.sumber += (catatan.length ? "; " : " — ") + "ekuitas kosong";
+  if (saham <= 0) st.sumber += (catatan.length ? "; " : " — ") + "jumlah saham kosong";
+  st.sumber = st.sumber.replace(" — perlu dicek:  — ", " — perlu dicek: ");
+  return st;
+}
+
+/* Terima JSON murni maupun JSON yang masih tercampur teks halaman:
+   bila parse langsung gagal, ambil bentang dari '{'/'[' pertama sampai
+   penutup terakhir yang sepadan, lalu coba lagi. */
+function ekstrakJson(teks) {
+  const t = String(teks || "").replace(/^\ufeff/, "").trim();
+  try { return JSON.parse(t); } catch (e) {}
+  const iB = t.indexOf("{"), iA = t.indexOf("[");
+  let mulai = -1;
+  if (iB >= 0 && (iA < 0 || iB < iA)) mulai = iB;
+  else if (iA >= 0) mulai = iA;
+  if (mulai >= 0) {
+    const buka = t[mulai], tutup = buka === "{" ? "}" : "]";
+    const akhir = t.lastIndexOf(tutup);
+    if (akhir > mulai) {
+      try { return JSON.parse(t.slice(mulai, akhir + 1)); } catch (e) {}
+    }
+  }
+  throw new Error("tidak menemukan JSON yang valid di dalam teks");
+}
+function parseStockbit(text) {
+  const bersih = String(text || "").trim();
+  if (!bersih) throw new Error("Teks kosong");
+  let d;
+  try { d = ekstrakJson(bersih); }
+  catch (e) { throw new Error("JSON tidak valid: " + e.message); }
+  const arr = Array.isArray(d) ? d : [d];
+  const out = arr.map(parseStockbitOne).filter(Boolean);
+  if (!out.length) throw new Error("Tidak ada objek dengan stock_identity.ticker di dalam JSON ini");
+  return out;
+}
+function download(name, text, mime) {
+  const b = new Blob([text], { type: (mime || "text/csv") + ";charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(b); a.download = name;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+}
+function exportCsv() {
+  const head = ["peringkat", "kode", "nama", "sektor", "harga", "nilai_wajar", "mos_pct", "target_mos_pct",
+    "harga_beli_maks", "sinyal", "total_rank", "skor_nilai", "skor_kualitas", "skor_timing", "skor_makro",
+    "skor_total", "tier", "aksi", "swing_score", "swing_status", "entry", "tp1", "tp2", "stop_loss",
+    "lot_disarankan", "catatan"];
+  const lines = [head.join(",")];
+  FINAL.forEach(x => lines.push(csvLine([x.rankFinal, x.s.kode, x.s.nama, x.s.sektor, x.s.harga,
+    isFinite(x.v.composite) ? Math.round(x.v.composite) : "", isFinite(x.v.mos) ? fmt(x.v.mos, 2) : "",
+    fmt(x.v.targetMos, 0), isFinite(x.v.maxBuy) ? Math.round(x.v.maxBuy) : "", x.v.signal, x.r.total,
+    fmt(x.f.valueScore, 1), fmt(x.f.qualityScore, 1), fmt(x.f.timingScore, 0), fmt(x.f.macroFit, 0),
+    fmt(x.f.total, 2), x.f.tier, x.f.action, x.sw.score, x.sw.status, x.sw.entry, x.sw.tp1, x.sw.tp2, x.sw.sl,
+    x.sw.lot, x.f.actionNote])));
+  download("hasil-screening-saham.csv", lines.join("\n"));
+  toast("Hasil diekspor ke CSV");
+}
+
+/* =========================================================================
+   RENDER ALL & EVENTS
+   ========================================================================= */
+function renderAll() {
+  renderMacro(); renderData(); renderThresholds();
+  computeAll();
+  renderScreen(); renderVal(); renderSwing(); renderDash();
+  $("cfgGov").value = S.cfg.gov; $("cfgCorp").value = S.cfg.corp; $("cfgDisc").value = S.cfg.disc;
+  $("cfgMosN").value = S.cfg.mosNormal; $("cfgModal").value = S.cfg.modal; $("cfgRisk").value = S.cfg.risk;
+}
+
+function bind() {
+  /* Navigasi */
+  $("navSteps").addEventListener("click", e => {
+    const b = e.target.closest("[data-go]"); if (!b) return;
+    goStep(b.getAttribute("data-go"));
+  });
+  // Panel panduan bisa dilipat sendiri-sendiri
+  document.addEventListener("click", e => {
+    const h = e.target.closest(".pg > .pgh");
+    if (h && !h.dataset.nofold) h.parentElement.classList.toggle("folded");
+  });
+  // Tandai langkah aktif saat menggulir
+  let _scrollT = null;
+  window.addEventListener("scroll", () => {
+    if (_scrollT) return;
+    _scrollT = setTimeout(() => {
+      _scrollT = null;
+      let best = _navAktif, bestD = Infinity;
+      NAV.forEach(n => {
+        const sec = document.getElementById(n[0]);
+        if (!sec) return;
+        const d = Math.abs(sec.getBoundingClientRect().top - 110);
+        if (d < bestD) { bestD = d; best = n[0]; }
+      });
+      if (best !== _navAktif) { _navAktif = best; markNav(); }
+    }, 120);
+  }, { passive: true });
+
+  /* Berkas regime pasar (Langkah 1). Tombol di dalam panel dipasang oleh
+     renderPasar() sendiri supaya tetap hidup setiap kali panel digambar ulang. */
+  $("filePasar").addEventListener("change", e => {
+    const fl = e.target.files[0]; if (!fl) return;
+    const rd = new FileReader();
+    rd.onload = () => {
+      try {
+        const d = JSON.parse(String(rd.result).replace(/^\ufeff/, ""));
+        if (!d.ihsg && !d.likuiditas) throw new Error("bukan berkas regime pasar");
+        S.pasar = d; renderPasar(); markNav(); save();
+        toast("Regime pasar dimuat");
+      } catch (err) { toast("Gagal membaca pasar.json: " + err.message); }
+    };
+    rd.readAsText(fl, "utf-8");
+    e.target.value = "";
+  });
+
+  /* Langkah 1 */
+  $("mQuad").addEventListener("change", e => { S.macro.quad = e.target.value; renderAll(); save(); });
+  $("mLiq").addEventListener("change", e => { S.macro.liq = e.target.value; renderAll(); save(); });
+  $("mBi").addEventListener("change", e => { S.macro.bi = nz(e.target.value); save(); });
+  $("mRisk").addEventListener("change", e => { S.macro.risk = e.target.value; renderAll(); save(); });
+  $("mSectors").addEventListener("change", e => {
+    const k = e.target.getAttribute("data-sek"); if (!k) return;
+    const i = S.macro.sectors.indexOf(k);
+    if (e.target.checked && i < 0) S.macro.sectors.push(k);
+    if (!e.target.checked && i >= 0) S.macro.sectors.splice(i, 1);
+    renderAll(); save();
+  });
+
+  /* Langkah 2 */
+  $("btnAdd").onclick = () => openEditor(-1);
+  $("tblData").addEventListener("click", e => {
+    const t = e.target.closest("[data-edit]"); if (!t) return;
+    openEditor(parseInt(t.getAttribute("data-edit"), 10));
+  });
+
+  /* Langkah 3 */
+  $("thrBox").addEventListener("change", e => {
+    const k = e.target.getAttribute("data-thr"); if (!k) return;
+    S.cfg.thr[k] = nz(e.target.value); renderAll(); save();
+  });
+  $("thrStrict").addEventListener("change", e => { S.cfg.strict = e.target.checked; renderAll(); save(); });
+  $("btnScreen").onclick = () => { renderAll(); toast("Screening dijalankan ulang"); };
+
+  /* Langkah 4 */
+  ["cfgGov:gov", "cfgCorp:corp", "cfgDisc:disc", "cfgMosN:mosNormal", "cfgModal:modal", "cfgRisk:risk"].forEach(p => {
+    const a = p.split(":");
+    $(a[0]).addEventListener("change", e => { S.cfg[a[1]] = nz(e.target.value); renderAll(); save(); });
+  });
+  $("btnVal").onclick = () => { renderAll(); toast("Valuasi & MOS dihitung ulang"); };
+
+  /* Accordion di daftar valuasi & swing */
+  document.addEventListener("click", e => {
+    const ah = e.target.closest(".ah");
+    if (ah && ah.parentElement.classList.contains("acc")) {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "LABEL") return;
+      ah.parentElement.classList.toggle("open");
+    }
+  });
+
+  /* Langkah 5: input swing langsung */
+  $("swingList").addEventListener("change", e => {
+    const k = e.target.getAttribute("data-sw");
+    const n = e.target.getAttribute("data-swn");
+    if (!k && !n) return;
+    const acc = e.target.closest(".acc");
+    const idx = Array.prototype.indexOf.call($("swingList").children, acc);
+    const st = VALUED[idx] && VALUED[idx].s;
+    if (!st) return;
+    if (k) st[k] = e.target.checked;
+    if (n) st[n] = nz(e.target.value);
+    renderAll(); save();
+  });
+
+  /* Langkah 6 */
+  $("dashOnlyPass").addEventListener("change", renderDash);
+  $("tblDash").addEventListener("click", e => {
+    const th = e.target.closest("[data-sort]");
+    if (th) {
+      const k = th.getAttribute("data-sort");
+      if (dashSort === k) dashDir = -dashDir; else { dashSort = k; dashDir = (k === "kode" || k === "sektor" || k === "tier" || k === "action") ? 1 : -1; }
+      renderDash(); return;
+    }
+    const t = e.target.closest("[data-detail]"); if (!t) return;
+    openDetail(t.getAttribute("data-detail"));
+  });
+
+  /* Drawer */
+  $("dwClose").onclick = closeDrawer;
+  $("drawer").addEventListener("click", e => { if (e.target === $("drawer")) closeDrawer(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+
+  /* Toolbar */
+  $("btnSample").onclick = () => { S.stocks = sampleStocks(); renderAll(); save(); toast("Data contoh dimuat (ilustrasi)"); };
+  $("btnReset").onclick = () => {
+    if (!confirm("Hapus semua data dan pengaturan dari browser ini?")) return;
+    try { localStorage.removeItem(LS_KEY); } catch (e) {}
+    S.stocks = []; S.macro = { quad: "slowdown", liq: "netral", bi: 5.75, risk: "moderat", sectors: [] };
+    renderAll(); toast("Data direset");
+  };
+  $("btnCsv").onclick = () => $("fileCsv").click();
+  $("fileCsv").addEventListener("change", e => {
+    const f = e.target.files[0]; if (!f) return;
+    const rd = new FileReader();
+    rd.onload = () => importFile(String(rd.result), f.name);
+    rd.readAsText(f, "utf-8");
+    e.target.value = "";
+  });
+
+  /* ---- Tempel data Stockbit ---- */
+  $("btnPaste").onclick = () => { $("pasteDlg").classList.add("on"); $("pText").focus(); };
+  $("pClose").onclick = () => $("pasteDlg").classList.remove("on");
+  $("pClear").onclick = () => { $("pText").value = ""; $("pMsg").innerHTML = ""; $("pPrev").innerHTML = ""; };
+  $("pDemo").onclick = () => {
+    $("pText").value = JSON.stringify(CONTOH_STOCKBIT, null, 2);
+    $("pMsg").innerHTML = '<div class="mini">Contoh dimuat: IATA. Perhatikan bahwa kolom sektor berisi "ID flag" (artefak parsing) &mdash; sektor yang benar ditebak dari daftar indeks menjadi <b>Energi</b>.</div>';
+    $("pPrev").innerHTML = "";
+  };
+  $("pGo").onclick = () => {
+    const msg = $("pMsg"), prev = $("pPrev");
+    let list;
+    try { list = parseStockbit($("pText").value); }
+    catch (e) {
+      msg.innerHTML = '<div class="warn"><b>Tidak bisa dibaca:</b> ' + esc(e.message) + "</div>";
+      prev.innerHTML = ""; return;
+    }
+    let ditambah = 0, diperbarui = 0;
+    list.forEach(st => {
+      const i = S.stocks.findIndex(x => x.kode === st.kode);
+      if (i >= 0) { S.stocks[i] = st; diperbarui++; } else { S.stocks.push(st); ditambah++; }
+    });
+    renderAll(); save();
+    msg.innerHTML = '<div class="note"><b>Berhasil:</b> ' + list.length + " emiten dibaca &mdash; " +
+      ditambah + " ditambah, " + diperbarui + " diperbarui.</div>";
+    prev.innerHTML = tempelPreview(list);
+    toast(list.length + " emiten dari Stockbit dimasukkan");
+  };
+  $("btnTpl").onclick = () => {
+    const lines = [CSV_HEADER.join(",")];
+    sampleStocks().forEach(s => lines.push(csvLine(toRow(s))));
+    download("template-screener-saham.csv", lines.join("\n"));
+    toast("Template CSV diunduh");
+  };
+  $("btnExpCsv").onclick = exportCsv;
+  $("btnExpJson").onclick = () => {
+    const out = { dibuat: new Date().toISOString(), makro: S.macro, konfigurasi: S.cfg,
+      hasil: FINAL.map(x => ({ kode: x.s.kode, nama: x.s.nama, sektor: x.s.sektor, harga: x.s.harga,
+        fundamental: { epsAnn: x.F.epsAnn, bvps: x.F.bvps, per: x.F.per, pbv: x.F.pbv, roe: x.F.roe, der: x.s.der },
+        valuasi: { graham: x.v.graham, epsDisc: x.v.epsDisc, equityGrowth: x.v.equityGrowth, roePbv: x.v.roePbv,
+          dcf: x.v.dcf, konsensus: x.v.composite, rentang: [x.v.min, x.v.max], mos: x.v.mos,
+          targetMos: x.v.targetMos, beliMaks: x.v.maxBuy, sinyal: x.v.signal },
+        swing: { skor: x.sw.score, status: x.sw.status, entry: x.sw.entry, tp1: x.sw.tp1, tp2: x.sw.tp2,
+          sl: x.sw.sl, rr: x.sw.rr, lot: x.sw.lot },
+        keputusan: { skorNilai: x.f.valueScore, skorKualitas: x.f.qualityScore, skorTiming: x.f.timingScore,
+          skorMakro: x.f.macroFit, skorTotal: x.f.total, tier: x.f.tier, aksi: x.f.action, catatan: x.f.actionNote } })) };
+    download("hasil-screening-saham.json", JSON.stringify(out, null, 2), "application/json");
+    toast("Hasil diekspor ke JSON");
+  };
+}
+
+/* ---------- Init ---------- */
+function init() {
+  renderNav(); renderFlow(); renderGuide(); renderStepGuides();
+  if (!load()) S.stocks = sampleStocks();
+  renderPasar();          // sebelum bind(): panel ini memasang tombolnya sendiri
+  renderAll(); bind();
+  $("dashOnlyPass").checked = false;
+  toast(S.stocks.length + " emiten siap dianalisis");
+}
+init();
+
+let gagal=0;
+function cek(n,s,i){console.log((s?"  OK   ":"  GAGAL")+" | "+n+(i?"  -> "+i:""));if(!s)gagal++;}
+function imbang(h){return (h.match(/<div/g)||[]).length===(h.match(/<\/div>/g)||[]).length;}
+const SRC=require("fs").readFileSync("screener-saham-indonesia.html","utf-8");
+const fs=require("fs");
+
+console.log("=== A. struktur sumber HTML ===");
+for(let i=0;i<=7;i++){
+  const m=SRC.match(new RegExp('id="s'+i+'"([\\s\\S]*?)</section>'));
+  const isi=m?m[1]:"";
+  cek("seksi #s"+i+" punya .hd", /class="hd"/.test(isi));
+  cek("seksi #s"+i+" punya .bd", /class="bd"/.test(isi));
+  cek("seksi #s"+i+" punya .card", /class="card"/.test(isi));
+}
+
+console.log("\n=== B. konten panduan lengkap ===");
+const ids=Object.keys(GUIDE);
+cek("panduan ada untuk 8 bagian (s0..s7)",ids.length===8,"dapat "+ids.length);
+ids.forEach(k=>{
+  const g=GUIDE[k];
+  cek("GUIDE."+k+" punya sumber[]",Array.isArray(g.sumber)&&g.sumber.length>0);
+  cek("GUIDE."+k+" punya baca",typeof g.baca==="string"&&g.baca.length>80,g.baca.length+" char");
+  const jenis=new Set(g.sumber.map(r=>r[1]));
+  [...jenis].forEach(j=>cek("  label sumber '"+j+"' dikenali",["auto","semi","manual","&mdash;","campuran"].indexOf(j)>=0));
+  g.sumber.forEach(r=>cek("  baris sumber lengkap 4 kolom",r.length===4));
+});
+// langkah 1 harus dibahas paling rinci
+cek("Langkah 1 dibahas paling rinci",GUIDE.s1.baca.length>1500,GUIDE.s1.baca.length+" char");
+cek("Langkah 1 menyebut 4 kuadran",
+  ["Recovery","Overheat","Slowdown","Bust"].every(q=>GUIDE.s1.baca.indexOf(q)>=0));
+cek("Langkah 1 menjelaskan ke-5 indikator",
+  ["1. Kuadran","2. Tren likuiditas","3. BI Rate","4. Toleransi risiko","5. Sektor unggulan"]
+    .every(t=>GUIDE.s1.baca.indexOf(t)>=0));
+cek("Langkah 1 menutup dengan hasil akhir",/Hasil akhir langkah ini/.test(GUIDE.s1.baca));
+
+console.log("\n=== C. badge sumber ===");
+cek("badge Otomatis",/Otomatis/.test(srcBadge("auto")));
+cek("badge Semi",/Semi-otomatis/.test(srcBadge("semi")));
+cek("badge Manual",/Manual/.test(srcBadge("manual")));
+
+console.log("\n=== D. panel regime pasar — keadaan kosong ===");
+S.pasar=null; renderPasar();
+const kosong=document.getElementById("pasarBox").innerHTML;
+cek("markup seimbang",imbang(kosong));
+cek("menampilkan ajakan muat",/Muat regime pasar/.test(kosong));
+cek("menyebut perintah --pasar",/fetch-data-idx\.py --pasar/.test(kosong));
+cek("menyebut tombol di Langkah 1",/Langkah 1/.test(kosong));
+cek("tidak ada undefined/NaN",!/undefined|NaN/.test(kosong));
+
+console.log("\n=== E. panel regime pasar — terisi ===");
+S.pasar=JSON.parse(fs.readFileSync("pasar.json","utf-8"));
+// lengkapi sektor seperti hasil mode penuh
+S.pasar.sektor=[{sektor:"Energi",rata_return:0.38,jumlah:1},
+                {sektor:"Keuangan",rata_return:-8.70,jumlah:1},
+                {sektor:"Barang Baku",rata_return:-24.17,jumlah:2}];
+renderPasar();
+const isi=document.getElementById("pasarBox").innerHTML;
+cek("markup seimbang",imbang(isi));
+cek("menampilkan angka IHSG",/6\.441,16/.test(isi),isi.match(/6\.441[^<]*/));
+cek("menampilkan MA50 & MA200",/6\.363/.test(isi)&&/7\.279/.test(isi));
+cek("menampilkan jarak dari puncak",/-29,5%/.test(isi)||/-29\.5/.test(isi));
+cek("menampilkan saran kuadran RECOVERY",/Recovery/.test(isi));
+cek("menampilkan saran likuiditas Longgar",/Longgar/.test(isi));
+cek("menampilkan alasan kuadran",/Mengapa kuadran ini/.test(isi));
+cek("alasan menyebut MA50",/MA50/.test(isi));
+cek("menampilkan kekuatan sektor",/Kekuatan sektor/.test(isi));
+cek("sektor teratas = Energi",isi.indexOf("Energi")<isi.indexOf("Barang Baku"));
+cek("bar sektor memakai elemen <i>",/class="mbar"[^>]*>\s*<i style="width/.test(isi));
+cek("menyebut ini perkiraan, bukan indeks resmi",/bukan indeks sektor resmi/.test(isi));
+cek("ada tombol terapkan",/Terapkan saran/.test(isi));
+cek("target MOS ikut ditampilkan",/Target MOS/.test(isi));
+cek("tidak ada undefined/NaN",!/undefined|NaN|Infinity/.test(isi));
+
+console.log("\n=== F. target MOS dari kuadran ===");
+["recovery","overheat","slowdown","bust"].forEach(q=>{
+  const v=targetMosDari(q);
+  cek("target MOS "+q+" wajar (15-65)",v>=15&&v<=65,v+"%");
+});
+cek("kuadran tidak dikenal -> 30%",targetMosDari("ngawur")===30);
+
+console.log("\n=== G. panduan disisipkan ke tiap seksi ===");
+// jalankan dengan querySelector yang bisa dicatat
+NAV.forEach(n=>{
+  const sec=document.getElementById(n[0]);
+  sec.querySelector=function(sel){ return global._mkQ(n[0],sel); };
+});
+renderStepGuides();
+NAV.forEach(n=>{
+  const bd=global._mkQ(n[0],".bd");
+  const ins=bd._ins||"";
+  cek("panduan masuk ke #"+n[0],ins.length>200,ins.length+" char");
+  cek("  markup seimbang di #"+n[0],imbang(ins));
+  cek("  ada judul 'Cara membaca indikatornya' di #"+n[0],/Cara membaca indikatornya/.test(ins));
+  cek("  ada tabel sumber data di #"+n[0],/Dari mana datanya/.test(ins));
+});
+
+console.log("\n=== H. navigasi ===");
+cek("NAV 8 langkah",NAV.length===8);
+cek("NAV punya label & deskripsi",NAV.every(n=>n.length===3&&n[1]&&n[2]));
+cek("langkah 1..7 berurutan",NAV[1][1]==="Makro"&&NAV[7][1]==="Panduan");
+cek("stepSiap: s1 butuh regime pasar",(function(){S.pasar=null;const a=stepSiap("s1");S.pasar={ihsg:1};const b=stepSiap("s1");return a===false&&b===true;})());
+cek("stepSiap: s2 butuh data emiten",(function(){S.stocks=[];const a=stepSiap("s2");S.stocks=[1];const b=stepSiap("s2");return a===false&&b===true;})());
+
+console.log("\n=== I. putaran impor CSV 43 kolom ===");
+(function(){
+  // Berkas ini ditulis skrip Python dengan utf-8-sig, jadi BOM harus dibuang dulu —
+  // tanpa itu nama kolom pertama jadi "\ufeffkode" dan seluruh baris ikut terbuang.
+  const mentah = fs.readFileSync("contoh-laporan-idx.csv","utf-8");
+  cek("CSV diawali BOM", mentah.charCodeAt(0)===0xFEFF);
+  const rows = parseCsv(mentah.replace(/^\ufeff/,""));
+  cek("header CSV 43 kolom",rows[0].length===43,rows[0].length+" kolom");
+  cek("kolom hist_laba ada di header",rows[0].indexOf("hist_laba")>=0);
+  cek("kolom div_yield ada di header",rows[0].indexOf("div_yield")>=0);
+
+  const head = rows[0].map(x=>x.trim().toLowerCase().replace(/^\ufeff/,""));
+  const list=[];
+  for(let i=1;i<rows.length;i++){
+    const o={}; head.forEach((k,j)=>{ if(k) o[k]=rows[i][j]; });
+    const st=mapStock(o); if(st) list.push(st);
+  }
+  cek("4 emiten terbaca",list.length===4,list.map(x=>x.kode).join(", "));
+
+  const b=list.filter(x=>x.kode==="BBCA")[0];
+  cek("BBCA ada",!!b);
+  if(b){
+    cek("laba induk = 54,836 T",b.laba===54836305000000,String(b.laba));
+    cek("kuartal = 4 (audit)",b.kuartal===4,String(b.kuartal));
+    cek("ekuitas = 262,8 T",b.ekuitas===262835087000000,String(b.ekuitas));
+    cek("fcf = arus kas operasi 53,8 T",b.fcf===53820229000000,String(b.fcf));
+    cek("utang = total liabilitas 1.177 T",b.utang===1177403108000000,String(b.utang));
+    cek("kas = 85,5 T",b.kas===85482530000000,String(b.kas));
+    cek("der = 4,48",Math.abs(b.der-4.4796)<1e-9,String(b.der));
+    cek("divYield = 6,05%",b.divYield===6.05,String(b.divYield));
+    cek("saham = 122,8 miliar",b.saham===122841751300,String(b.saham));
+    cek("sektor ternormalisasi",b.sektor==="Keuangan",b.sektor);
+    cek("sumber menyebut IDX",/IDX Laporan Keuangan/.test(b.sumber),b.sumber);
+
+    cek("histLaba 6 titik",b.histLaba.length===6,b.histLaba.map(p=>p.t).join(","));
+    cek("histLaba tahun 2019..2024",
+        b.histLaba.map(p=>p.t).join(",")==="2019,2020,2021,2022,2023,2024");
+    cek("histLaba 2024 = 54.836,3 miliar",b.histLaba[5].v===54836.3,String(b.histLaba[5].v));
+    cek("histLaba 2019 = 28.565,1 miliar",b.histLaba[0].v===28565.1,String(b.histLaba[0].v));
+    cek("histLaba satuan miliar (bukan rupiah penuh)",b.histLaba[5].v<1e6,String(b.histLaba[5].v));
+    cek("kolom kosong jadi 0, bukan NaN",b.piotroski===0&&b.roic===0,String(b.piotroski));
+    cek("chartLaba bisa digambar dari histLaba",
+        typeof chartLaba(b.histLaba,"miliar")==="string"&&chartLaba(b.histLaba,"miliar").length>50);
+  }
+
+  // Putaran penuh: screening -> valuasi -> swing, memastikan tidak ada NaN menyusup.
+  S.stocks=list;
+  const scr=screenStocks();
+  cek("screenStocks mengembalikan 4 baris",scr.length===4,String(scr.length));
+  cek("setiap baris punya rank & total",scr.every(r=>r.rank&&isFinite(r.total)));
+  const badV=[],badM=[],badS=[];
+  scr.forEach(r=>{
+    const v=valuate(r.s,r.F,{}), sw=swingScore(r.s);
+    if(!isFinite(v.composite)||!isFinite(v.upside)||!isFinite(v.maxBuy)||!v.signal) badV.push(r.s.kode);
+    if(!isFinite(v.mos)) badM.push(r.s.kode);
+    if(!isFinite(sw.score)||!isFinite(sw.rr)||!isFinite(sw.lot)) badS.push(r.s.kode);
+  });
+  cek("valuasi bersih dari NaN",badV.length===0,badV.join(",")||"bersih");
+  cek("MOS terhitung semua emiten",badM.length===0,badM.join(",")||"bersih");
+  cek("swing score & eksekusi wajar",badS.length===0,badS.join(",")||"bersih");
+
+  // Kriteria ketat: inilah kenyataan pasar IDX yang perlu ditunjukkan ke pengguna.
+  S.cfg.strict=true;  const ketat=screenStocks().filter(r=>r.pass).length;
+  S.cfg.strict=false; const longgar=screenStocks().filter(r=>r.pass).length;
+  cek("mode ketat jauh lebih sedikit dari mode longgar",ketat<=longgar,ketat+" ketat vs "+longgar+" longgar");
+
+  // Ekspor -> impor ulang harus identik (bukti kolom baru tidak hilang di perjalanan).
+  if(b){
+    const ulang=parseCsv([head.join(","),csvLine(toRow(b))].join("\n"));
+    const o2={}; ulang[0].forEach((k,j)=>{ o2[k]=ulang[1][j]; });
+    const b2=mapStock(o2);
+    cek("round-trip: 43 kolom utuh",ulang[1].length===43,String(ulang[1].length));
+    cek("round-trip: laba utuh",b2.laba===b.laba,String(b2.laba));
+    cek("round-trip: ekuitas utuh",b2.ekuitas===b.ekuitas,String(b2.ekuitas));
+    cek("round-trip: histLaba utuh",histToStr(b2.histLaba)===histToStr(b.histLaba),histToStr(b2.histLaba));
+    cek("round-trip: divYield utuh",b2.divYield===b.divYield,String(b2.divYield));
+    cek("round-trip: der utuh",Math.abs(b2.der-b.der)<1e-9,String(b2.der));
+    cek("round-trip: kode utuh",b2.kode===b.kode,b2.kode);
+  }
+})();
+
+console.log("\n=== J. tren laba dihitung dari riwayat, bukan dibiarkan basi ===");
+(function(){
+  const naik =[{t:2019,v:10},{t:2020,v:20},{t:2021,v:30},{t:2022,v:40}];
+  const turun=[{t:2019,v:40},{t:2020,v:30},{t:2021,v:20},{t:2022,v:10}];
+  const datar=[{t:2019,v:10},{t:2020,v:10},{t:2021,v:10},{t:2022,v:10}];
+  cek("naik tajam -> up",trenDariHist(naik)==="up",trenDariHist(naik));
+  cek("turun tajam -> down",trenDariHist(turun)==="down",trenDariHist(turun));
+  cek("datar -> fluktuatif",trenDariHist(datar)==="fluktuatif",trenDariHist(datar));
+  cek("kurang dari 4 titik -> tidak menebak",trenDariHist(naik.slice(0,3))==="",trenDariHist(naik.slice(0,3)));
+  cek("semua nol -> tidak menebak",trenDariHist([{t:1,v:0},{t:2,v:0},{t:3,v:0},{t:4,v:0}])==="");
+  cek("urutan tahun terbalik tetap benar",trenDariHist(naik.slice().reverse())==="up");
+  cek("tahun merugi lalu pulih -> up",trenDariHist([{t:2019,v:-5},{t:2020,v:2},{t:2021,v:6},{t:2022,v:9}])==="up");
+  cek("rugi makin dalam -> down",trenDariHist([{t:2019,v:-2},{t:2020,v:-5},{t:2021,v:-9},{t:2022,v:-14}])==="down");
+
+  // Cadangan impor manual: kolom eps_trend kosong -> dihitung dari hist_laba.
+  const rr = parseCsv(fs.readFileSync("contoh-laporan-idx.csv","utf-8").replace(/^\ufeff/,""));
+  const hh = rr[0].map(x=>x.trim().toLowerCase());
+  const ambil = kode => { const i=rr.findIndex((r,j)=>j>0&&r[0]===kode);
+    const o={}; hh.forEach((k,j)=>{ if(k) o[k]=rr[i][j]; }); return o; };
+  const kosong=ambil("ASII"); kosong.eps_trend="";
+  cek("eps_trend kosong -> dihitung dari hist_laba",mapStock(kosong).epsTrend==="up",mapStock(kosong).epsTrend);
+  const isi=ambil("ASII"); isi.eps_trend="down";
+  cek("eps_trend eksplisit tetap dihormati",mapStock(isi).epsTrend==="down",mapStock(isi).epsTrend);
+
+  const list=[]; for(let i=1;i<rr.length;i++){const o={};hh.forEach((k,j)=>{if(k)o[k]=rr[i][j];});const st=mapStock(o);if(st)list.push(st);}
+  const tren={}; list.forEach(s=>tren[s.kode]=s.epsTrend);
+  cek("ASII tidak lagi 'down' (laba 21,7 -> 34,1 T)",tren.ASII==="up",tren.ASII);
+  cek("BBCA 'up' (laba 28,6 -> 54,8 T)",tren.BBCA==="up",tren.BBCA);
+  cek("TLKM 'fluktuatif' (hanya ~4%/tahun)",tren.TLKM==="fluktuatif",tren.TLKM);
+  cek("ANTM 'up' (laba 0,19 -> 3,65 T)",tren.ANTM==="up",tren.ANTM);
+
+  // Akibatnya: emiten yang lolos SEMUA kriteria tidak lagi terlempar ke bawah.
+  S.stocks=list; S.cfg.strict=false;
+  const urut=screenStocks();
+  cek("ASII naik ke peringkat 1",urut[0].s.kode==="ASII",urut.map(r=>r.s.kode).join(" > "));
+  cek("ASII satu-satunya yang lolos 5/5",(function(){
+    S.cfg.strict=true; const p=screenStocks().filter(r=>r.pass).map(r=>r.s.kode);
+    S.cfg.strict=false; return p.length===1&&p[0]==="ASII";})());
+
+  // Ambang likuiditas di filter dan di tier harus satu angka.
+  cek("likuidSkor sejalan dengan ambang filter",(function(){
+    const t=nz(S.cfg.thr.minNilai);
+    return likuidSkor(t*1.5)===1 && likuidSkor(t*0.5)===1000;})(),nz(S.cfg.thr.minNilai)/1e9+" M");
+})();
+
+console.log("\n=== K. pemisah CSV dipilih sekali, bukan dua-duanya ===");
+(function(){
+  cek("berkas koma -> pemisah koma",pemisahCsv("a,b,c\n1,2,3")===",",pemisahCsv("a,b,c\n1,2,3"));
+  cek("berkas titik koma -> pemisah titik koma",pemisahCsv("a;b;c\n1;2;3")===";",pemisahCsv("a;b;c\n1;2;3"));
+  cek("koma di dalam kutip tidak dihitung",pemisahCsv('a;b;c\n1;"x,y";3')===";");
+  cek("kutip di dalam sel",parseCsv('a,b\n"ka""ta",2')[1][0]==='ka"ta',parseCsv('a,b\n"ka""ta",2')[1][0]);
+  cek("baris kosong dibuang",parseCsv("a,b\n\n1,2\n").length===2,String(parseCsv("a,b\n\n1,2\n").length));
+  cek("pemisah titik koma + kutip koma",(function(){
+    const r=parseCsv('a;b;c\n1;"x,y";3'); return r[1].length===3&&r[1][1]==="x,y";})());
+
+  // Inti perbaikannya: titik koma di dalam kolom bebas tidak boleh menggeser kolom.
+  cek("titik koma TANPA kutip tetap satu kolom",(function(){
+    const r=parseCsv("a,b,c\n1,x;y,3");
+    return r[0].length===3&&r[1].length===3&&r[1][1]==="x;y";})(),JSON.stringify(parseCsv("a,b,c\n1,x;y,3")[1]));
+  cek("titik koma DI DALAM kutip tetap satu kolom",(function(){
+    const r=parseCsv('a,b,c\n1,"x;y",3'); return r[1].length===3&&r[1][1]==="x;y";})());
+
+  // Berkas contoh harus selamat dari perjalanan penuh.
+  const rr=parseCsv(fs.readFileSync("contoh-laporan-idx.csv","utf-8").replace(/^\ufeff/,""));
+  cek("contoh: judul 43 kolom",rr[0].length===43,String(rr[0].length));
+  cek("contoh: setiap baris 43 kolom",rr.every(r=>r.length===43),
+      rr.map(r=>r.length).join(","));
+  const hj=rr[0].map(x=>x.trim().toLowerCase());
+  const js=hj.indexOf("sumber"), jd=hj.indexOf("div_yield"), jl=hj.indexOf("hist_laba");
+  cek("contoh: titik koma di kolom sumber tetap utuh",
+      rr.slice(1).filter(r=>r[js].indexOf(";")>=0).length>=2,
+      rr.slice(1).map(r=>r[js].indexOf(";")>=0?"ada":"-").join(","));
+  cek("contoh: div_yield terbaca dari kolomnya sendiri",
+      rr.slice(1).every(r=>parseFloat(r[jd])>0),rr.slice(1).map(r=>r[jd]).join(","));
+  cek("contoh: hist_laba terbaca dari kolomnya sendiri",
+      rr.slice(1).every(r=>(r[jl].match(/:/g)||[]).length===6),
+      rr.slice(1).map(r=>(r[jl].match(/:/g)||[]).length).join(","));
+
+  // Baris yang jumlah kolomnya beda harus diberi tahu, bukan diterima diam-diam.
+  cek("impor baris miring memberi peringatan",(function(){
+    importCsv("kode,nama,harga\nBBCA,BCA,6300\nBBRI,RI\n");
+    return /tidak sama dengan judul/.test(document.getElementById("toast").textContent);})(),
+    document.getElementById("toast").textContent);
+})();
+
+console.log("\n"+(gagal?gagal+" TES GAGAL":"SEMUA TES UI LULUS"));
+process.exit(gagal?1:0);

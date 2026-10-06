@@ -1,0 +1,28 @@
+{
+  "daftar_saham": [
+    "BBCA",
+    "BBRI",
+    "BMRI",
+    "BBNI",
+    "TLKM",
+    "ASII",
+    "ANTM",
+    "ADRO",
+    "ICBP",
+    "PTBA",
+    "BRMS",
+    "CBRE",
+    "ENRG",
+    "MEDC",
+    "VKTR",
+    "ULTJ",
+    "SEMA",
+    "SMAR",
+    "MBSS",
+    "BUVA",
+    "CSMI",
+    "MITI",
+    "KDTN"
+  ],
+  "bulan_ksei": 24
+}

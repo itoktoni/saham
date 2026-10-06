@@ -1,0 +1,188 @@
+{
+  "dibuat": "2026-10-05T23:38:01+0700",
+  "sumber": "Yahoo Finance (IHSG) + IDX GetIndexSummary (nilai transaksi) + SEKI Bank Indonesia (BI Rate)",
+  "catatan": "Kuadran, likuiditas, dan BI Rate dihitung otomatis. Toleransi risiko tetap manual. Kekuatan sektor diagregasi dari emiten yang ditarik, bukan indeks sektor resmi.",
+  "ihsg": {
+    "tutup": 6118.86,
+    "ma50": 6375.49,
+    "ma200": 7154.61,
+    "tinggi_52m": 9134.7,
+    "rendah_52m": 5342.14,
+    "jarak_puncak": -33.0,
+    "jarak_dasar": 14.5,
+    "r1": -7.8,
+    "r3": 3.43,
+    "r6": -13.78,
+    "di_atas_ma50": false,
+    "di_atas_ma200": false,
+    "hari": 239,
+    "saran_kuadran": "recovery",
+    "alasan": [
+      "naik 3.4% dalam 3 bulan dari posisi masih 33.0% di bawah puncak",
+      "harga di bawah MA50 (tren pendek masih lemah)",
+      "harga di bawah MA200"
+    ]
+  },
+  "likuiditas": null,
+  "suku_bunga_bi": 5.75,
+  "bi_rate": {
+    "nilai": 5.75,
+    "periode": "2026-08",
+    "sheet": "1.25A_1",
+    "jumlah_data": 116,
+    "rentang": [
+      "2017-01",
+      "2026-08"
+    ],
+    "riwayat": [
+      {
+        "periode": "2024-08",
+        "nilai": 6.25
+      },
+      {
+        "periode": "2024-09",
+        "nilai": 6.0
+      },
+      {
+        "periode": "2024-10",
+        "nilai": 6.0
+      },
+      {
+        "periode": "2024-11",
+        "nilai": 6.0
+      },
+      {
+        "periode": "2024-12",
+        "nilai": 6.0
+      },
+      {
+        "periode": "2025-01",
+        "nilai": 5.75
+      },
+      {
+        "periode": "2025-02",
+        "nilai": 5.75
+      },
+      {
+        "periode": "2025-03",
+        "nilai": 5.75
+      },
+      {
+        "periode": "2025-04",
+        "nilai": 5.75
+      },
+      {
+        "periode": "2025-05",
+        "nilai": 5.5
+      },
+      {
+        "periode": "2025-06",
+        "nilai": 5.5
+      },
+      {
+        "periode": "2025-07",
+        "nilai": 5.25
+      },
+      {
+        "periode": "2025-08",
+        "nilai": 5.0
+      },
+      {
+        "periode": "2025-09",
+        "nilai": 4.75
+      },
+      {
+        "periode": "2025-10",
+        "nilai": 4.75
+      },
+      {
+        "periode": "2025-11",
+        "nilai": 4.75
+      },
+      {
+        "periode": "2025-12",
+        "nilai": 4.75
+      },
+      {
+        "periode": "2026-01",
+        "nilai": 4.75
+      },
+      {
+        "periode": "2026-02",
+        "nilai": 4.75
+      },
+      {
+        "periode": "2026-03",
+        "nilai": 4.75
+      },
+      {
+        "periode": "2026-04",
+        "nilai": 4.75
+      },
+      {
+        "periode": "2026-05",
+        "nilai": 5.25
+      },
+      {
+        "periode": "2026-06",
+        "nilai": 5.75
+      },
+      {
+        "periode": "2026-07",
+        "nilai": 5.75
+      },
+      {
+        "periode": "2026-08",
+        "nilai": 5.75
+      }
+    ],
+    "alasan": "data akhir periode 2026-08 dari sheet '1.25A_1' (116 bulan data, 2017-01 s/d 2026-08)"
+  },
+  "sektor": [
+    {
+      "sektor": "Konsumer Primer",
+      "rata_return": 296.35,
+      "jumlah": 3
+    },
+    {
+      "sektor": "Barang Baku",
+      "rata_return": 250.88,
+      "jumlah": 3
+    },
+    {
+      "sektor": "Teknologi",
+      "rata_return": 176.54,
+      "jumlah": 1
+    },
+    {
+      "sektor": "Energi",
+      "rata_return": 132.88,
+      "jumlah": 1
+    },
+    {
+      "sektor": "Konsumer Non-Primer",
+      "rata_return": 116.37,
+      "jumlah": 4
+    },
+    {
+      "sektor": "Perindustrian",
+      "rata_return": 115.32,
+      "jumlah": 3
+    },
+    {
+      "sektor": "Infrastruktur",
+      "rata_return": 47.43,
+      "jumlah": 2
+    },
+    {
+      "sektor": "Properti",
+      "rata_return": 4.81,
+      "jumlah": 4
+    },
+    {
+      "sektor": "Keuangan",
+      "rata_return": 0.0,
+      "jumlah": 1
+    }
+  ]
+}

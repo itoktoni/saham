@@ -1,0 +1,980 @@
+[2026-10-01 18:22:11] ==================================================
+[2026-10-01 18:22:11] Aplikasi Screener dimulai
+[2026-10-01 18:22:13] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:22:14] Daftar pantau: 10 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 18:22:14] Mengunduh kepemilikan KSEI...
+[2026-10-01 18:22:15] ksei Periode terbaru : 20260930
+[2026-10-01 18:22:15] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:22:15] ksei Terbaca 1005 emiten EQUITY dari BalanceposEfek20260930.zip
+[2026-10-01 18:22:15] ksei Terbaca 1007 emiten dari bulan sebelumnya
+[2026-10-01 18:22:15] Mengunduh harga & fundamental (10 emiten)...
+[2026-10-01 18:22:19] emiten [1/10] BBCA ok
+[2026-10-01 18:22:20] emiten [2/10] BBRI ok
+[2026-10-01 18:22:20] emiten [3/10] BMRI ok
+[2026-10-01 18:22:21] emiten [4/10] BBNI ok
+[2026-10-01 18:22:21] emiten [5/10] TLKM ok
+[2026-10-01 18:22:22] emiten [6/10] ASII ok
+[2026-10-01 18:22:23] emiten [7/10] ANTM ok
+[2026-10-01 18:22:23] emiten [8/10] ADRO ok
+[2026-10-01 18:22:24] emiten [9/10] ICBP ok
+[2026-10-01 18:22:24] emiten [10/10] PTBA ok
+[2026-10-01 18:22:24] Selesai. 10 emiten siap.
+[2026-10-01 18:22:40] ==================================================
+[2026-10-01 18:22:40] Aplikasi Screener dimulai
+[2026-10-01 18:22:42] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:22:43] Daftar pantau: 10 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 18:22:43] Mengunduh kepemilikan KSEI...
+[2026-10-01 18:22:43] ksei Periode terbaru : 20260930
+[2026-10-01 18:22:43] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:22:43] ksei Terbaca 1005 emiten EQUITY dari BalanceposEfek20260930.zip
+[2026-10-01 18:22:43] ksei Terbaca 1007 emiten dari bulan sebelumnya
+[2026-10-01 18:22:43] Mengunduh harga & fundamental (10 emiten)...
+[2026-10-01 18:22:47] emiten [1/10] BBCA ok
+[2026-10-01 18:22:48] emiten [2/10] BBRI ok
+[2026-10-01 18:22:48] emiten [3/10] BMRI ok
+[2026-10-01 18:22:49] emiten [4/10] BBNI ok
+[2026-10-01 18:22:50] emiten [5/10] TLKM ok
+[2026-10-01 18:22:50] emiten [6/10] ASII ok
+[2026-10-01 18:22:51] emiten [7/10] ANTM ok
+[2026-10-01 18:22:51] emiten [8/10] ADRO ok
+[2026-10-01 18:22:52] emiten [9/10] ICBP ok
+[2026-10-01 18:22:53] emiten [10/10] PTBA ok
+[2026-10-01 18:22:53] Selesai. 10 emiten siap.
+[2026-10-01 18:22:53] Daftar pantau: 10 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 18:22:53] Mengunduh kepemilikan KSEI...
+[2026-10-01 18:22:53] [cache] memakai ksei yang tersimpan (0 menit lalu)
+[2026-10-01 18:22:53] Mengunduh harga & fundamental (10 emiten)...
+[2026-10-01 18:22:53] [cache] memakai emiten yang tersimpan (0 menit lalu)
+[2026-10-01 18:22:53] Selesai. 10 emiten siap.
+[2026-10-01 18:23:27] ==================================================
+[2026-10-01 18:23:27] Aplikasi Screener dimulai
+[2026-10-01 18:23:29] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:31:53] ==================================================
+[2026-10-01 18:31:53] Aplikasi Screener dimulai
+[2026-10-01 18:31:55] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:31:57] ksei Periode terbaru : 20260930
+[2026-10-01 18:31:57] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:31:57] ksei Terbaca 1005 emiten EQUITY dari BalanceposEfek20260930.zip
+[2026-10-01 18:31:57] ksei Terbaca 1007 emiten dari bulan sebelumnya
+[2026-10-01 18:32:11] ==================================================
+[2026-10-01 18:32:11] Aplikasi Screener dimulai
+[2026-10-01 18:32:13] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:32:16] ksei Periode terbaru : 20260930
+[2026-10-01 18:32:16] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:32:16] ksei Terbaca 1005 emiten EQUITY dari BalanceposEfek20260930.zip
+[2026-10-01 18:32:16] ksei Terbaca 1007 emiten dari bulan sebelumnya
+[2026-10-01 18:36:13] ==================================================
+[2026-10-01 18:36:13] Aplikasi Screener dimulai
+[2026-10-01 18:36:15] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:36:15] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 18:36:55] ==================================================
+[2026-10-01 18:36:55] Aplikasi Screener dimulai
+[2026-10-01 18:36:57] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:36:57] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 18:37:02] ERROR /api/scan: No module named 'xml'
+[2026-10-01 18:37:42] ==================================================
+[2026-10-01 18:37:42] Aplikasi Screener dimulai
+[2026-10-01 18:37:44] Melayani di http://127.0.0.1:8766/
+[2026-10-01 18:37:44] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-01 18:37:50] ERROR /api/scan: No module named 'xml'
+[2026-10-01 18:37:50] Daftar pantau: 10 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 18:37:50] Mengunduh kepemilikan KSEI...
+[2026-10-01 18:37:50] ERROR /api/download: No module named 'xml'
+[2026-10-01 18:38:23] ==================================================
+[2026-10-01 18:38:23] Aplikasi Screener dimulai
+[2026-10-01 18:38:25] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:38:25] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 18:38:32] ksei Periode terbaru : 20260930
+[2026-10-01 18:38:32] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:38:32] ksei Terbaca 1005 emiten EQUITY dari BalanceposEfek20260930.zip
+[2026-10-01 18:38:32] ksei Terbaca 1007 emiten dari bulan sebelumnya
+[2026-10-01 18:38:33] Daftar pantau: 10 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 18:38:33] Mengunduh kepemilikan KSEI...
+[2026-10-01 18:38:33] [cache] memakai ksei yang tersimpan (0 menit lalu)
+[2026-10-01 18:38:33] Mengunduh harga & fundamental (10 emiten)...
+[2026-10-01 18:38:38] emiten [1/10] BBCA ok
+[2026-10-01 18:38:38] emiten [2/10] BBRI ok
+[2026-10-01 18:38:39] emiten [3/10] BMRI ok
+[2026-10-01 18:38:39] emiten [4/10] BBNI ok
+[2026-10-01 18:38:40] emiten [5/10] TLKM ok
+[2026-10-01 18:38:40] emiten [6/10] ASII ok
+[2026-10-01 18:38:41] emiten [7/10] ANTM ok
+[2026-10-01 18:38:41] emiten [8/10] ADRO ok
+[2026-10-01 18:38:42] emiten [9/10] ICBP ok
+[2026-10-01 18:38:43] emiten [10/10] PTBA ok
+[2026-10-01 18:38:43] Selesai. 10 emiten siap.
+[2026-10-01 18:44:10] ==================================================
+[2026-10-01 18:44:10] Aplikasi Screener dimulai
+[2026-10-01 18:44:12] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:44:12] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 18:44:24] Daftar pantau: 10 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 18:44:24] Mengunduh kepemilikan KSEI...
+[2026-10-01 18:44:25] ksei Periode terbaru : 20260930
+[2026-10-01 18:44:25] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:44:25] ksei Terbaca 1005 emiten EQUITY dari BalanceposEfek20260930.zip
+[2026-10-01 18:44:25] ksei Terbaca 1007 emiten dari bulan sebelumnya
+[2026-10-01 18:44:25] Mengunduh harga & fundamental (10 emiten)...
+[2026-10-01 18:44:29] emiten [1/10] BBCA ok
+[2026-10-01 18:44:30] emiten [2/10] BBRI ok
+[2026-10-01 18:44:31] emiten [3/10] BMRI ok
+[2026-10-01 18:44:31] emiten [4/10] BBNI ok
+[2026-10-01 18:44:32] emiten [5/10] TLKM ok
+[2026-10-01 18:44:32] emiten [6/10] ASII ok
+[2026-10-01 18:44:33] emiten [7/10] ANTM ok
+[2026-10-01 18:44:33] emiten [8/10] ADRO ok
+[2026-10-01 18:44:34] emiten [9/10] ICBP ok
+[2026-10-01 18:44:35] emiten [10/10] PTBA ok
+[2026-10-01 18:44:35] Selesai. 10 emiten siap.
+[2026-10-01 18:47:32] ==================================================
+[2026-10-01 18:47:32] Aplikasi Screener dimulai
+[2026-10-01 18:47:34] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:47:34] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 18:50:45] ==================================================
+[2026-10-01 18:50:45] Aplikasi Screener dimulai
+[2026-10-01 18:50:47] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:50:47] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 18:50:49] ksei Periode terbaru : 20260930
+[2026-10-01 18:50:49] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:50:49] ksei Menyusun seri 9 bulan untuk estimasi harga rata-rata asing...
+[2026-10-01 18:50:51] ksei Terbaca 1009 emiten EQUITY; seri 9 bulan
+[2026-10-01 18:51:19] ==================================================
+[2026-10-01 18:51:19] Aplikasi Screener dimulai
+[2026-10-01 18:51:21] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:51:21] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 18:51:24] ksei arsip 2026: 9 berkas
+[2026-10-01 18:51:24] ksei arsip 2025: 9 berkas
+[2026-10-01 18:51:24] ksei arsip 2024: 9 berkas
+[2026-10-01 18:51:24] ksei Periode terbaru : 20260930
+[2026-10-01 18:51:24] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:51:24] ksei Menyusun seri 9 bulan untuk estimasi harga rata-rata asing...
+[2026-10-01 18:51:25] ksei Terbaca 1009 emiten EQUITY; seri 9 bulan
+[2026-10-01 18:52:19] ==================================================
+[2026-10-01 18:52:19] Aplikasi Screener dimulai
+[2026-10-01 18:52:21] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:52:21] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 18:52:36] ksei Periode terbaru : 20260930
+[2026-10-01 18:52:36] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:52:36] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-01 18:52:36] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-01 18:53:00] ==================================================
+[2026-10-01 18:53:00] Aplikasi Screener dimulai
+[2026-10-01 18:53:02] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:53:02] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 18:53:11] ksei Periode terbaru : 20260930
+[2026-10-01 18:53:11] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:53:11] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-01 18:53:11] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-01 18:54:09] ==================================================
+[2026-10-01 18:54:09] Aplikasi Screener dimulai
+[2026-10-01 18:54:11] Melayani di http://127.0.0.1:8765/
+[2026-10-01 18:54:11] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 18:54:25] ksei Periode terbaru : 20260930
+[2026-10-01 18:54:25] ksei Periode sebelumnya: 20260831
+[2026-10-01 18:54:25] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-01 18:54:25] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-01 19:04:41] ==================================================
+[2026-10-01 19:04:41] Aplikasi Screener dimulai
+[2026-10-01 19:04:43] Melayani di http://127.0.0.1:8765/
+[2026-10-01 19:04:43] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 19:06:55] ==================================================
+[2026-10-01 19:06:55] Aplikasi Screener dimulai
+[2026-10-01 19:06:57] Melayani di http://127.0.0.1:8766/
+[2026-10-01 19:06:57] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-01 19:07:19] ==================================================
+[2026-10-01 19:07:19] Aplikasi Screener dimulai
+[2026-10-01 19:07:21] Melayani di http://127.0.0.1:8765/
+[2026-10-01 19:07:21] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 19:07:23] ERROR POST /api/config: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+[2026-10-01 19:07:23] ERROR POST /api/config: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+[2026-10-01 19:07:31] ==================================================
+[2026-10-01 19:07:31] Aplikasi Screener dimulai
+[2026-10-01 19:07:33] Melayani di http://127.0.0.1:8765/
+[2026-10-01 19:07:33] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 19:07:35] ERROR POST /api/config: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+[2026-10-01 19:07:35] ERROR POST /api/config: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+[2026-10-01 19:07:51] ==================================================
+[2026-10-01 19:07:51] Aplikasi Screener dimulai
+[2026-10-01 19:07:53] Melayani di http://127.0.0.1:8765/
+[2026-10-01 19:07:53] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 19:07:55] konfigurasi disimpan: 3 emiten, 6 bulan KSEI
+[2026-10-01 19:07:55] konfigurasi disimpan: 10 emiten, 24 bulan KSEI
+[2026-10-01 19:08:11] ==================================================
+[2026-10-01 19:08:11] Aplikasi Screener dimulai
+[2026-10-01 19:08:13] Melayani di http://127.0.0.1:8765/
+[2026-10-01 19:08:13] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 19:08:46] konfigurasi disimpan: 10 emiten, 24 bulan KSEI
+[2026-10-01 19:08:59] ==================================================
+[2026-10-01 19:08:59] Aplikasi Screener dimulai
+[2026-10-01 19:09:01] Melayani di http://127.0.0.1:8765/
+[2026-10-01 19:09:01] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 19:09:05] konfigurasi disimpan: 3 emiten, 12 bulan KSEI
+[2026-10-01 19:09:06] konfigurasi disimpan: 10 emiten, 24 bulan KSEI
+[2026-10-01 19:09:34] ==================================================
+[2026-10-01 19:09:34] Aplikasi Screener dimulai
+[2026-10-01 19:09:36] Melayani di http://127.0.0.1:8765/
+[2026-10-01 19:09:36] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 19:11:15] ==================================================
+[2026-10-01 19:11:15] Aplikasi Screener dimulai
+[2026-10-01 19:11:17] Melayani di http://127.0.0.1:8765/
+[2026-10-01 19:11:17] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-01 19:17:13] konfigurasi disimpan: 15 emiten, 24 bulan KSEI
+[2026-10-01 19:17:19] Daftar pantau: 15 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 19:17:19] Mengunduh kepemilikan KSEI...
+[2026-10-01 19:17:29] ksei Periode terbaru : 20260930
+[2026-10-01 19:17:29] ksei Periode sebelumnya: 20260831
+[2026-10-01 19:17:29] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-01 19:17:30] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-01 19:17:30] Mengunduh harga & fundamental (15 emiten)...
+[2026-10-01 19:17:34] emiten [1/15] BBCA ok
+[2026-10-01 19:17:35] emiten [2/15] BBRI ok
+[2026-10-01 19:17:35] emiten [3/15] BMRI ok
+[2026-10-01 19:17:36] emiten [4/15] BBNI ok
+[2026-10-01 19:17:37] emiten [5/15] TLKM ok
+[2026-10-01 19:17:37] emiten [6/15] ASII ok
+[2026-10-01 19:17:38] emiten [7/15] ANTM ok
+[2026-10-01 19:17:38] emiten [8/15] ADRO ok
+[2026-10-01 19:17:39] emiten [9/15] ICBP ok
+[2026-10-01 19:17:40] emiten [10/15] PTBA ok
+[2026-10-01 19:17:40] emiten [11/15] BRMS ok
+[2026-10-01 19:17:41] emiten [12/15] CBRE ok
+[2026-10-01 19:17:41] emiten [13/15] ENRG ok
+[2026-10-01 19:17:42] emiten [14/15] MEDC ok
+[2026-10-01 19:17:42] emiten [15/15] VKTR ok
+[2026-10-01 19:17:42] Selesai. 15 emiten siap.
+[2026-10-01 19:36:08] ==================================================
+[2026-10-01 19:36:08] Aplikasi Screener dimulai
+[2026-10-01 19:36:10] Melayani di http://127.0.0.1:8766/
+[2026-10-01 19:36:10] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-01 19:36:30] Daftar pantau: 15 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 19:36:30] Mengunduh kepemilikan KSEI...
+[2026-10-01 19:36:39] ksei Periode terbaru : 20260930
+[2026-10-01 19:36:39] ksei Periode sebelumnya: 20260831
+[2026-10-01 19:36:39] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-01 19:36:39] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-01 19:36:39] Mengunduh harga & fundamental (15 emiten)...
+[2026-10-01 19:36:44] emiten [1/15] BBCA ok
+[2026-10-01 19:36:44] emiten [2/15] BBRI ok
+[2026-10-01 19:36:45] emiten [3/15] BMRI ok
+[2026-10-01 19:36:45] emiten [4/15] BBNI ok
+[2026-10-01 19:36:46] emiten [5/15] TLKM ok
+[2026-10-01 19:36:47] emiten [6/15] ASII ok
+[2026-10-01 19:36:47] emiten [7/15] ANTM ok
+[2026-10-01 19:36:48] emiten [8/15] ADRO ok
+[2026-10-01 19:36:48] emiten [9/15] ICBP ok
+[2026-10-01 19:36:49] emiten [10/15] PTBA ok
+[2026-10-01 19:36:49] emiten [11/15] BRMS ok
+[2026-10-01 19:36:50] emiten [12/15] CBRE ok
+[2026-10-01 19:36:51] emiten [13/15] ENRG ok
+[2026-10-01 19:36:51] emiten [14/15] MEDC ok
+[2026-10-01 19:36:52] emiten [15/15] VKTR ok
+[2026-10-01 19:36:52] Selesai. 15 emiten siap.
+[2026-10-01 23:30:00] Daftar pantau: 15 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 23:30:00] Mengunduh kepemilikan KSEI...
+[2026-10-01 23:30:00] [cache] memakai ksei yang tersimpan (233 menit lalu)
+[2026-10-01 23:30:00] Mengunduh harga & fundamental (15 emiten)...
+[2026-10-01 23:30:06] emiten [1/15] BBCA ok
+[2026-10-01 23:30:06] emiten [2/15] BBRI ok
+[2026-10-01 23:30:07] emiten [3/15] BMRI ok
+[2026-10-01 23:30:07] emiten [4/15] BBNI ok
+[2026-10-01 23:30:08] emiten [5/15] TLKM ok
+[2026-10-01 23:30:09] emiten [6/15] ASII ok
+[2026-10-01 23:30:09] emiten [7/15] ANTM ok
+[2026-10-01 23:30:10] emiten [8/15] ADRO ok
+[2026-10-01 23:30:10] emiten [9/15] ICBP ok
+[2026-10-01 23:30:11] emiten [10/15] PTBA ok
+[2026-10-01 23:30:11] emiten [11/15] BRMS ok
+[2026-10-01 23:30:12] emiten [12/15] CBRE ok
+[2026-10-01 23:30:13] emiten [13/15] ENRG ok
+[2026-10-01 23:30:13] emiten [14/15] MEDC ok
+[2026-10-01 23:30:14] emiten [15/15] VKTR ok
+[2026-10-01 23:30:14] Selesai. 15 emiten siap.
+[2026-10-01 23:31:00] konfigurasi disimpan: 16 emiten, 24 bulan KSEI
+[2026-10-01 23:31:02] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 23:31:02] Mengunduh kepemilikan KSEI...
+[2026-10-01 23:31:14] ksei Periode terbaru : 20260930
+[2026-10-01 23:31:14] ksei Periode sebelumnya: 20260831
+[2026-10-01 23:31:14] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-01 23:31:14] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-01 23:31:14] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-01 23:31:14] [cache] memakai emiten yang tersimpan (1 menit lalu)
+[2026-10-01 23:31:14] Selesai. 15 emiten siap.
+[2026-10-01 23:55:25] konfigurasi disimpan: 16 emiten, 24 bulan KSEI
+[2026-10-01 23:55:30] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-01 23:55:30] Mengunduh kepemilikan KSEI...
+[2026-10-01 23:55:42] ksei Periode terbaru : 20260930
+[2026-10-01 23:55:42] ksei Periode sebelumnya: 20260831
+[2026-10-01 23:55:42] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-01 23:55:42] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-01 23:55:42] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-01 23:55:42] [cache] memakai emiten yang tersimpan (25 menit lalu)
+[2026-10-01 23:55:42] Selesai. 15 emiten siap.
+[2026-10-02 00:01:09] ==================================================
+[2026-10-02 00:01:09] Aplikasi Screener dimulai
+[2026-10-02 00:01:12] Melayani di http://127.0.0.1:8765/
+[2026-10-02 00:01:12] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-02 00:01:31] ksei Periode terbaru : 20260930
+[2026-10-02 00:01:31] ksei Periode sebelumnya: 20260831
+[2026-10-02 00:01:31] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-02 00:01:31] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-02 01:00:29] ksei [cache] memakai ksei yang tersimpan (59 menit lalu)
+[2026-10-02 01:00:47] ksei [cache] memakai ksei yang tersimpan (59 menit lalu)
+[2026-10-02 01:00:47] tv [cache] memakai tv yang tersimpan (0 menit lalu)
+[2026-10-02 01:05:49] ksei [cache] memakai ksei yang tersimpan (64 menit lalu)
+[2026-10-02 01:05:49] tv [cache] memakai tv yang tersimpan (5 menit lalu)
+[2026-10-02 09:18:19] ==================================================
+[2026-10-02 09:18:19] Aplikasi Screener dimulai
+[2026-10-02 09:18:21] Melayani di http://127.0.0.1:8765/
+[2026-10-02 09:18:21] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-02 09:18:59] ksei Periode terbaru : 20260930
+[2026-10-02 09:18:59] ksei Periode sebelumnya: 20260831
+[2026-10-02 09:18:59] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-02 09:19:00] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-02 11:14:33] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-02 11:14:33] Mengunduh kepemilikan KSEI...
+[2026-10-02 11:14:33] [cache] memakai ksei yang tersimpan (116 menit lalu)
+[2026-10-02 11:14:33] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-02 11:14:38] emiten [1/16] BBCA ok
+[2026-10-02 11:14:38] emiten [2/16] BBRI ok
+[2026-10-02 11:14:39] emiten [3/16] BMRI ok
+[2026-10-02 11:14:40] emiten [4/16] BBNI ok
+[2026-10-02 11:14:40] emiten [5/16] TLKM ok
+[2026-10-02 11:14:41] emiten [6/16] ASII ok
+[2026-10-02 11:14:41] emiten [7/16] ANTM ok
+[2026-10-02 11:14:42] emiten [8/16] ADRO ok
+[2026-10-02 11:14:43] emiten [9/16] ICBP ok
+[2026-10-02 11:14:43] emiten [10/16] PTBA ok
+[2026-10-02 11:14:44] ksei [cache] memakai ksei yang tersimpan (116 menit lalu)
+[2026-10-02 11:14:44] emiten [11/16] BRMS ok
+[2026-10-02 11:14:44] emiten [12/16] CBRE ok
+[2026-10-02 11:14:45] emiten [13/16] ENRG ok
+[2026-10-02 11:14:46] emiten [14/16] MEDC ok
+[2026-10-02 11:14:46] emiten [15/16] VKTR ok
+[2026-10-02 11:14:47] emiten [16/16] ULTJ ok
+[2026-10-02 11:14:47] Selesai. 16 emiten siap.
+[2026-10-02 15:56:11] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-02 15:56:11] Mengunduh kepemilikan KSEI...
+[2026-10-02 15:56:22] ksei Periode terbaru : 20260930
+[2026-10-02 15:56:22] ksei Periode sebelumnya: 20260831
+[2026-10-02 15:56:22] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-02 15:56:22] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-02 15:56:22] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-02 15:56:23] ksei Periode terbaru : 20260930
+[2026-10-02 15:56:23] ksei Periode sebelumnya: 20260831
+[2026-10-02 15:56:23] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-02 15:56:24] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-02 15:56:27] emiten [1/16] BBCA ok
+[2026-10-02 15:56:28] emiten [2/16] BBRI ok
+[2026-10-02 15:56:28] emiten [3/16] BMRI ok
+[2026-10-02 15:56:29] emiten [4/16] BBNI ok
+[2026-10-02 15:56:29] emiten [5/16] TLKM ok
+[2026-10-02 15:56:30] emiten [6/16] ASII ok
+[2026-10-02 15:56:31] emiten [7/16] ANTM ok
+[2026-10-02 15:56:31] emiten [8/16] ADRO ok
+[2026-10-02 15:56:32] emiten [9/16] ICBP ok
+[2026-10-02 15:56:32] emiten [10/16] PTBA ok
+[2026-10-02 15:56:33] emiten [11/16] BRMS ok
+[2026-10-02 15:56:33] emiten [12/16] CBRE ok
+[2026-10-02 15:56:34] emiten [13/16] ENRG ok
+[2026-10-02 15:56:35] emiten [14/16] MEDC ok
+[2026-10-02 15:56:35] emiten [15/16] VKTR ok
+[2026-10-02 15:56:36] emiten [16/16] ULTJ ok
+[2026-10-02 15:56:36] Selesai. 16 emiten siap.
+[2026-10-02 16:12:31] ksei [cache] memakai ksei yang tersimpan (16 menit lalu)
+[2026-10-02 16:12:40] ksei [cache] memakai ksei yang tersimpan (16 menit lalu)
+[2026-10-02 16:12:40] tv [cache] memakai tv yang tersimpan (0 menit lalu)
+[2026-10-02 16:13:07] ksei [cache] memakai ksei yang tersimpan (17 menit lalu)
+[2026-10-02 16:13:07] tv [cache] memakai tv yang tersimpan (1 menit lalu)
+[2026-10-02 16:13:14] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-02 16:13:14] Mengunduh kepemilikan KSEI...
+[2026-10-02 16:13:14] [cache] memakai ksei yang tersimpan (17 menit lalu)
+[2026-10-02 16:13:14] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-02 16:13:14] [cache] memakai emiten yang tersimpan (17 menit lalu)
+[2026-10-02 16:13:14] Selesai. 16 emiten siap.
+[2026-10-02 16:24:14] ==================================================
+[2026-10-02 16:24:14] Aplikasi Screener dimulai
+[2026-10-02 16:24:16] Melayani di http://127.0.0.1:8766/
+[2026-10-02 16:24:16] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-02 16:55:16] ksei [cache] memakai ksei yang tersimpan (59 menit lalu)
+[2026-10-02 17:32:03] ksei [cache] memakai ksei yang tersimpan (96 menit lalu)
+[2026-10-03 08:55:20] ==================================================
+[2026-10-03 08:55:20] Aplikasi Screener dimulai
+[2026-10-03 08:55:22] Melayani di http://127.0.0.1:8765/
+[2026-10-03 08:55:22] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 09:00:36] ==================================================
+[2026-10-03 09:00:36] Aplikasi Screener dimulai
+[2026-10-03 09:00:38] Melayani di http://127.0.0.1:8765/
+[2026-10-03 09:00:38] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 09:00:58] ==================================================
+[2026-10-03 09:00:58] Aplikasi Screener dimulai
+[2026-10-03 09:01:00] Melayani di http://127.0.0.1:8766/
+[2026-10-03 09:01:00] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-03 09:02:17] ==================================================
+[2026-10-03 09:02:17] Aplikasi Screener dimulai
+[2026-10-03 09:02:19] Melayani di http://127.0.0.1:8766/
+[2026-10-03 09:02:19] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-03 09:03:22] ==================================================
+[2026-10-03 09:03:22] Aplikasi Screener dimulai
+[2026-10-03 09:03:24] Melayani di http://127.0.0.1:8765/
+[2026-10-03 09:03:24] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 09:07:21] ==================================================
+[2026-10-03 09:07:21] Aplikasi Screener dimulai
+[2026-10-03 09:07:23] Melayani di http://127.0.0.1:8765/
+[2026-10-03 09:07:23] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 09:07:39] ksei Periode terbaru : 20260930
+[2026-10-03 09:07:39] ksei Periode sebelumnya: 20260831
+[2026-10-03 09:07:39] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 09:07:40] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 09:44:57] ==================================================
+[2026-10-03 09:44:57] Aplikasi Screener dimulai
+[2026-10-03 09:44:59] Melayani di http://127.0.0.1:8766/
+[2026-10-03 09:44:59] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-03 09:45:05] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-03 09:45:05] Mengunduh kepemilikan KSEI...
+[2026-10-03 09:45:15] ksei Periode terbaru : 20260930
+[2026-10-03 09:45:15] ksei Periode sebelumnya: 20260831
+[2026-10-03 09:45:15] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 09:45:15] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 09:45:15] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-03 09:45:21] emiten [1/16] BBCA ok
+[2026-10-03 09:45:21] emiten [2/16] BBRI ok
+[2026-10-03 09:45:22] emiten [3/16] BMRI ok
+[2026-10-03 09:45:23] emiten [4/16] BBNI ok
+[2026-10-03 09:45:23] emiten [5/16] TLKM ok
+[2026-10-03 09:45:24] emiten [6/16] ASII ok
+[2026-10-03 09:45:24] emiten [7/16] ANTM ok
+[2026-10-03 09:45:25] emiten [8/16] ADRO ok
+[2026-10-03 09:45:26] emiten [9/16] ICBP ok
+[2026-10-03 09:45:26] emiten [10/16] PTBA ok
+[2026-10-03 09:45:27] emiten [11/16] BRMS ok
+[2026-10-03 09:45:27] emiten [12/16] CBRE ok
+[2026-10-03 09:45:28] emiten [13/16] ENRG ok
+[2026-10-03 09:45:29] emiten [14/16] MEDC ok
+[2026-10-03 09:45:29] emiten [15/16] VKTR ok
+[2026-10-03 09:45:30] emiten [16/16] ULTJ ok
+[2026-10-03 09:45:30] Selesai. 16 emiten siap.
+[2026-10-03 09:45:36] ksei [cache] memakai ksei yang tersimpan (0 menit lalu)
+[2026-10-03 09:54:59] ==================================================
+[2026-10-03 09:54:59] Aplikasi Screener dimulai
+[2026-10-03 09:55:01] Melayani di http://127.0.0.1:8767/
+[2026-10-03 09:55:01] Screener Praktis berjalan di http://127.0.0.1:8767/
+[2026-10-03 09:55:15] ksei Periode terbaru : 20260930
+[2026-10-03 09:55:15] ksei Periode sebelumnya: 20260831
+[2026-10-03 09:55:15] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 09:55:16] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 10:09:29] ==================================================
+[2026-10-03 10:09:29] Aplikasi Screener dimulai
+[2026-10-03 10:09:31] Melayani di http://127.0.0.1:8768/
+[2026-10-03 10:09:31] Screener Praktis berjalan di http://127.0.0.1:8768/
+[2026-10-03 10:09:45] ksei Periode terbaru : 20260930
+[2026-10-03 10:09:45] ksei Periode sebelumnya: 20260831
+[2026-10-03 10:09:45] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 10:09:45] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 10:15:09] ==================================================
+[2026-10-03 10:15:09] Aplikasi Screener dimulai
+[2026-10-03 10:15:11] Melayani di http://127.0.0.1:8769/
+[2026-10-03 10:15:11] Screener Praktis berjalan di http://127.0.0.1:8769/
+[2026-10-03 10:15:27] ksei Periode terbaru : 20260930
+[2026-10-03 10:15:27] ksei Periode sebelumnya: 20260831
+[2026-10-03 10:15:27] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 10:15:27] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 10:31:25] ==================================================
+[2026-10-03 10:31:25] Aplikasi Screener dimulai
+[2026-10-03 10:31:27] Melayani di http://127.0.0.1:8770/
+[2026-10-03 10:31:27] Screener Praktis berjalan di http://127.0.0.1:8770/
+[2026-10-03 10:32:22] ksei Periode terbaru : 20260930
+[2026-10-03 10:32:22] ksei Periode sebelumnya: 20260831
+[2026-10-03 10:32:22] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 10:32:22] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 11:28:51] ==================================================
+[2026-10-03 11:28:51] Aplikasi Screener dimulai
+[2026-10-03 11:28:53] Melayani di http://127.0.0.1:8771/
+[2026-10-03 11:28:53] Screener Praktis berjalan di http://127.0.0.1:8771/
+[2026-10-03 11:28:58] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-03 11:28:58] Mengunduh kepemilikan KSEI...
+[2026-10-03 11:28:58] [cache] memakai ksei yang tersimpan (141 menit lalu)
+[2026-10-03 11:28:58] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-03 11:29:04] emiten [1/16] BBCA ok
+[2026-10-03 11:29:05] emiten [2/16] BBRI ok
+[2026-10-03 11:29:05] emiten [3/16] BMRI ok
+[2026-10-03 11:29:06] emiten [4/16] BBNI ok
+[2026-10-03 11:29:07] emiten [5/16] TLKM ok
+[2026-10-03 11:29:07] emiten [6/16] ASII ok
+[2026-10-03 11:29:08] emiten [7/16] ANTM ok
+[2026-10-03 11:29:08] emiten [8/16] ADRO ok
+[2026-10-03 11:29:09] emiten [9/16] ICBP ok
+[2026-10-03 11:29:09] emiten [10/16] PTBA ok
+[2026-10-03 11:29:10] emiten [11/16] BRMS ok
+[2026-10-03 11:29:11] emiten [12/16] CBRE ok
+[2026-10-03 11:29:11] emiten [13/16] ENRG ok
+[2026-10-03 11:29:12] emiten [14/16] MEDC ok
+[2026-10-03 11:29:12] emiten [15/16] VKTR ok
+[2026-10-03 11:29:13] emiten [16/16] ULTJ ok
+[2026-10-03 11:29:13] Selesai. 16 emiten siap.
+[2026-10-03 11:29:40] ==================================================
+[2026-10-03 11:29:40] Aplikasi Screener dimulai
+[2026-10-03 11:29:42] Melayani di http://127.0.0.1:8765/
+[2026-10-03 11:29:42] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 11:29:49] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-03 11:29:49] Mengunduh kepemilikan KSEI...
+[2026-10-03 11:29:56] ksei Periode terbaru : 20260930
+[2026-10-03 11:29:56] ksei Periode sebelumnya: 20260831
+[2026-10-03 11:29:56] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 11:29:56] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 11:29:56] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-03 11:30:00] emiten [1/16] BBCA ok
+[2026-10-03 11:30:01] emiten [2/16] BBRI ok
+[2026-10-03 11:30:02] emiten [3/16] BMRI ok
+[2026-10-03 11:30:02] emiten [4/16] BBNI ok
+[2026-10-03 11:30:03] emiten [5/16] TLKM ok
+[2026-10-03 11:30:03] emiten [6/16] ASII ok
+[2026-10-03 11:30:04] emiten [7/16] ANTM ok
+[2026-10-03 11:30:05] emiten [8/16] ADRO ok
+[2026-10-03 11:30:05] emiten [9/16] ICBP ok
+[2026-10-03 11:30:06] emiten [10/16] PTBA ok
+[2026-10-03 11:30:06] emiten [11/16] BRMS ok
+[2026-10-03 11:30:07] emiten [12/16] CBRE ok
+[2026-10-03 11:30:08] emiten [13/16] ENRG ok
+[2026-10-03 11:30:08] emiten [14/16] MEDC ok
+[2026-10-03 11:30:09] emiten [15/16] VKTR ok
+[2026-10-03 11:30:09] emiten [16/16] ULTJ ok
+[2026-10-03 11:30:09] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-03 11:30:11] scope BBCA ok
+[2026-10-03 11:30:14] scope BBRI ok
+[2026-10-03 11:30:17] scope BMRI ok
+[2026-10-03 11:30:20] scope BBNI ok
+[2026-10-03 11:30:21] scope TLKM ok
+[2026-10-03 11:30:24] scope ASII ok
+[2026-10-03 11:30:27] scope ANTM ok
+[2026-10-03 11:30:30] scope ADRO ok
+[2026-10-03 11:30:33] scope ICBP ok
+[2026-10-03 11:30:35] scope PTBA ok
+[2026-10-03 11:30:38] scope BRMS ok
+[2026-10-03 11:30:40] scope CBRE ok
+[2026-10-03 11:30:43] scope ENRG ok
+[2026-10-03 11:30:45] scope MEDC ok
+[2026-10-03 11:30:47] scope VKTR ok
+[2026-10-03 11:30:50] scope ULTJ ok
+[2026-10-03 11:30:50] Selesai. 16 emiten siap.
+[2026-10-03 12:25:01] ==================================================
+[2026-10-03 12:25:01] Aplikasi Screener dimulai
+[2026-10-03 12:25:03] Melayani di http://127.0.0.1:8765/
+[2026-10-03 12:25:03] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 12:25:07] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-03 12:25:07] Mengunduh kepemilikan KSEI...
+[2026-10-03 12:25:13] ksei Periode terbaru : 20260930
+[2026-10-03 12:25:13] ksei Periode sebelumnya: 20260831
+[2026-10-03 12:25:13] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 12:25:14] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 12:25:14] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-03 12:25:18] emiten [1/16] BBCA ok
+[2026-10-03 12:25:19] emiten [2/16] BBRI ok
+[2026-10-03 12:25:19] emiten [3/16] BMRI ok
+[2026-10-03 12:25:20] emiten [4/16] BBNI ok
+[2026-10-03 12:25:21] emiten [5/16] TLKM ok
+[2026-10-03 12:25:21] emiten [6/16] ASII ok
+[2026-10-03 12:25:22] emiten [7/16] ANTM ok
+[2026-10-03 12:25:22] emiten [8/16] ADRO ok
+[2026-10-03 12:25:23] emiten [9/16] ICBP ok
+[2026-10-03 12:25:23] emiten [10/16] PTBA ok
+[2026-10-03 12:25:24] emiten [11/16] BRMS ok
+[2026-10-03 12:25:24] emiten [12/16] CBRE ok
+[2026-10-03 12:25:25] emiten [13/16] ENRG ok
+[2026-10-03 12:25:26] emiten [14/16] MEDC ok
+[2026-10-03 12:25:26] emiten [15/16] VKTR ok
+[2026-10-03 12:25:27] emiten [16/16] ULTJ ok
+[2026-10-03 12:25:27] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-03 12:25:42] scope gagal: SahamScope gagal total (BBCA: HTTP Error 429: Too Many Requests; BBRI: HTTP Error 429: Too Many Requests; BMRI: HTTP Error 429: Too Many Requests; BBNI: HTTP Error 429: Too Many Reques)
+[2026-10-03 12:25:42] SahamScope gagal — memakai cache lama bila ada.
+[2026-10-03 12:25:42] Selesai. 16 emiten siap.
+[2026-10-03 12:27:04] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-03 12:27:04] Mengunduh kepemilikan KSEI...
+[2026-10-03 12:27:04] [cache] memakai ksei yang tersimpan (2 menit lalu)
+[2026-10-03 12:27:04] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-03 12:27:04] [cache] memakai emiten yang tersimpan (2 menit lalu)
+[2026-10-03 12:27:04] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-03 12:27:18] scope gagal: SahamScope gagal total (BBCA: HTTP Error 429: Too Many Requests; BBRI: HTTP Error 429: Too Many Requests; BMRI: HTTP Error 429: Too Many Requests; BBNI: HTTP Error 429: Too Many Reques)
+[2026-10-03 12:27:18] SahamScope gagal — memakai cache lama bila ada.
+[2026-10-03 12:27:18] Selesai. 16 emiten siap.
+[2026-10-03 13:45:56] ==================================================
+[2026-10-03 13:45:56] Aplikasi Screener dimulai
+[2026-10-03 13:45:58] Melayani di http://127.0.0.1:8765/
+[2026-10-03 13:45:58] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 13:46:04] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-03 13:46:04] Mengunduh kepemilikan KSEI...
+[2026-10-03 13:46:16] ksei Periode terbaru : 20260930
+[2026-10-03 13:46:16] ksei Periode sebelumnya: 20260831
+[2026-10-03 13:46:16] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 13:46:16] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 13:46:16] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-03 13:46:22] emiten [1/16] BBCA ok
+[2026-10-03 13:46:23] emiten [2/16] BBRI ok
+[2026-10-03 13:46:24] emiten [3/16] BMRI ok
+[2026-10-03 13:46:24] emiten [4/16] BBNI ok
+[2026-10-03 13:46:25] emiten [5/16] TLKM ok
+[2026-10-03 13:46:25] emiten [6/16] ASII ok
+[2026-10-03 13:46:26] emiten [7/16] ANTM ok
+[2026-10-03 13:46:27] emiten [8/16] ADRO ok
+[2026-10-03 13:46:27] emiten [9/16] ICBP ok
+[2026-10-03 13:46:28] emiten [10/16] PTBA ok
+[2026-10-03 13:46:28] emiten [11/16] BRMS ok
+[2026-10-03 13:46:29] emiten [12/16] CBRE ok
+[2026-10-03 13:46:29] emiten [13/16] ENRG ok
+[2026-10-03 13:46:30] emiten [14/16] MEDC ok
+[2026-10-03 13:46:31] emiten [15/16] VKTR ok
+[2026-10-03 13:46:31] emiten [16/16] ULTJ ok
+[2026-10-03 13:46:31] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-03 13:47:00] scope gagal: SahamScope gagal total (BBCA: HTTP Error 429: Too Many Requests; BBRI: HTTP Error 429: Too Many Requests; BMRI: HTTP Error 429: Too Many Requests; BBNI: HTTP Error 429: Too Many Reques)
+[2026-10-03 13:47:00] SahamScope gagal — memakai cache lama bila ada.
+[2026-10-03 13:47:00] Selesai. 16 emiten siap.
+[2026-10-03 13:47:00] Memuat peta tema...
+[2026-10-03 13:47:00] tema peta-produk-komoditas/coal: 25 baris
+[2026-10-03 13:47:03] tema peta-produk-komoditas/crude-oil: 5 baris
+[2026-10-03 13:47:05] tema peta-produk-komoditas/lignite: 6 baris
+[2026-10-03 13:47:07] tema peta-industri/minyak-gas: 18 baris
+[2026-10-03 13:47:10] tema peta-produk-komoditas/gold: 7 baris
+[2026-10-03 13:47:12] tema peta-produk-komoditas/gold-ore: 7 baris
+[2026-10-03 13:47:15] tema peta-produk-komoditas/nickel-ore: 15 baris
+[2026-10-03 13:47:17] tema peta-produk-komoditas/nickel-matte: 3 baris
+[2026-10-03 13:47:19] tema peta-produk-komoditas/data-center: 1 baris
+[2026-10-03 13:47:22] tema peta-industri/aplikasi-jasa-internet: 11 baris
+[2026-10-03 13:48:51] ==================================================
+[2026-10-03 13:48:51] Aplikasi Screener dimulai
+[2026-10-03 13:48:53] Melayani di http://127.0.0.1:8765/
+[2026-10-03 13:48:53] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 13:49:16] ksei Periode terbaru : 20260930
+[2026-10-03 13:49:16] ksei Periode sebelumnya: 20260831
+[2026-10-03 13:49:16] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 13:49:16] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 13:54:30] ==================================================
+[2026-10-03 13:54:30] Aplikasi Screener dimulai
+[2026-10-03 13:54:32] Melayani di http://127.0.0.1:8766/
+[2026-10-03 13:54:32] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-03 13:55:27] ksei Periode terbaru : 20260930
+[2026-10-03 13:55:27] ksei Periode sebelumnya: 20260831
+[2026-10-03 13:55:27] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 13:55:27] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 13:55:52] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-03 13:55:52] Mengunduh kepemilikan KSEI...
+[2026-10-03 13:55:52] [cache] memakai ksei yang tersimpan (0 menit lalu)
+[2026-10-03 13:55:52] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-03 13:55:57] emiten [1/16] BBCA ok
+[2026-10-03 13:55:57] emiten [2/16] BBRI ok
+[2026-10-03 13:55:58] emiten [3/16] BMRI ok
+[2026-10-03 13:55:58] emiten [4/16] BBNI ok
+[2026-10-03 13:55:59] emiten [5/16] TLKM ok
+[2026-10-03 13:56:00] emiten [6/16] ASII ok
+[2026-10-03 13:56:00] emiten [7/16] ANTM ok
+[2026-10-03 13:56:01] emiten [8/16] ADRO ok
+[2026-10-03 13:56:01] emiten [9/16] ICBP ok
+[2026-10-03 13:56:02] emiten [10/16] PTBA ok
+[2026-10-03 13:56:03] emiten [11/16] BRMS ok
+[2026-10-03 13:56:03] emiten [12/16] CBRE ok
+[2026-10-03 13:56:04] emiten [13/16] ENRG ok
+[2026-10-03 13:56:05] emiten [14/16] MEDC ok
+[2026-10-03 13:56:05] emiten [15/16] VKTR ok
+[2026-10-03 13:56:06] emiten [16/16] ULTJ ok
+[2026-10-03 13:56:06] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-03 13:56:06] [cache] memakai scope yang tersimpan (2 menit lalu)
+[2026-10-03 13:56:06] Selesai. 16 emiten siap.
+[2026-10-03 13:56:06] Memuat peta tema...
+[2026-10-03 13:57:37] ksei [cache] memakai ksei yang tersimpan (2 menit lalu)
+[2026-10-03 13:57:37] tv [cache] memakai tv yang tersimpan (2 menit lalu)
+[2026-10-03 13:58:01] ==================================================
+[2026-10-03 13:58:01] Aplikasi Screener dimulai
+[2026-10-03 13:58:03] Melayani di http://127.0.0.1:8765/
+[2026-10-03 13:58:03] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 13:58:20] ksei Periode terbaru : 20260930
+[2026-10-03 13:58:20] ksei Periode sebelumnya: 20260831
+[2026-10-03 13:58:20] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 13:58:20] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 13:58:41] ksei [cache] memakai ksei yang tersimpan (0 menit lalu)
+[2026-10-03 13:58:41] tv [cache] memakai tv yang tersimpan (0 menit lalu)
+[2026-10-03 13:59:42] ==================================================
+[2026-10-03 13:59:42] Aplikasi Screener dimulai
+[2026-10-03 13:59:44] Melayani di http://127.0.0.1:8765/
+[2026-10-03 13:59:44] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 14:02:09] ksei Periode terbaru : 20260930
+[2026-10-03 14:02:09] ksei Periode sebelumnya: 20260831
+[2026-10-03 14:02:09] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 14:02:09] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 14:30:18] ==================================================
+[2026-10-03 14:30:18] Aplikasi Screener dimulai
+[2026-10-03 14:30:20] Melayani di http://127.0.0.1:8766/
+[2026-10-03 14:30:20] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-03 14:30:45] emiten [1/2] BBCA ok
+[2026-10-03 14:30:45] emiten [2/2] TLKM ok
+[2026-10-03 14:30:51] scope detail gagal: SahamScope gagal total (BBCA: HTTP Error 429: Too Many Requests; TLKM: HTTP Error 429: Too Many Requests)
+[2026-10-03 14:31:00] ksei Periode terbaru : 20260930
+[2026-10-03 14:31:00] ksei Periode sebelumnya: 20260831
+[2026-10-03 14:31:00] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 14:31:00] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 14:48:41] ==================================================
+[2026-10-03 14:48:41] Aplikasi Screener dimulai
+[2026-10-03 14:48:43] Melayani di http://127.0.0.1:8766/
+[2026-10-03 14:48:43] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-03 15:09:52] ==================================================
+[2026-10-03 15:09:52] Aplikasi Screener dimulai
+[2026-10-03 15:09:54] Melayani di http://127.0.0.1:8765/
+[2026-10-03 15:09:54] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 15:10:09] ksei Periode terbaru : 20260930
+[2026-10-03 15:10:09] ksei Periode sebelumnya: 20260831
+[2026-10-03 15:10:09] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 15:10:09] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 16:37:02] ==================================================
+[2026-10-03 16:37:02] Aplikasi Screener dimulai
+[2026-10-03 16:37:04] Melayani di http://127.0.0.1:8766/
+[2026-10-03 16:37:04] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-03 16:37:11] Daftar pantau: 16 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-03 16:37:11] Mengunduh kepemilikan KSEI...
+[2026-10-03 16:37:19] ksei Periode terbaru : 20260930
+[2026-10-03 16:37:19] ksei Periode sebelumnya: 20260831
+[2026-10-03 16:37:19] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 16:37:20] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 16:37:20] Mengunduh harga & fundamental (16 emiten)...
+[2026-10-03 16:37:24] emiten [1/16] BBCA ok
+[2026-10-03 16:37:24] emiten [2/16] BBRI ok
+[2026-10-03 16:37:25] emiten [3/16] BMRI ok
+[2026-10-03 16:37:25] emiten [4/16] BBNI ok
+[2026-10-03 16:37:26] emiten [5/16] TLKM ok
+[2026-10-03 16:37:27] emiten [6/16] ASII ok
+[2026-10-03 16:37:27] emiten [7/16] ANTM ok
+[2026-10-03 16:37:28] emiten [8/16] ADRO ok
+[2026-10-03 16:37:28] emiten [9/16] ICBP ok
+[2026-10-03 16:37:29] emiten [10/16] PTBA ok
+[2026-10-03 16:37:29] emiten [11/16] BRMS ok
+[2026-10-03 16:37:30] emiten [12/16] CBRE ok
+[2026-10-03 16:37:30] emiten [13/16] ENRG ok
+[2026-10-03 16:37:31] emiten [14/16] MEDC ok
+[2026-10-03 16:37:31] emiten [15/16] VKTR ok
+[2026-10-03 16:37:32] emiten [16/16] ULTJ ok
+[2026-10-03 16:37:32] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-03 16:37:47] scope gagal: SahamScope gagal total (BBCA: HTTP Error 502: Bad Gateway; BBRI: HTTP Error 502: Bad Gateway; BMRI: HTTP Error 502: Bad Gateway; BBNI: HTTP Error 502: Bad Gateway; TLKM: HTTP Error 502)
+[2026-10-03 16:37:47] SahamScope gagal — memakai cache lama bila ada.
+[2026-10-03 16:37:47] Menambah avg broker IndoPremier (SQLite)...
+[2026-10-03 16:38:24] Avg broker IndoPremier: 16 emiten.
+[2026-10-03 16:38:24] Selesai. 16 emiten siap.
+[2026-10-03 16:38:24] Memuat peta tema...
+[2026-10-03 16:50:17] ==================================================
+[2026-10-03 16:50:17] Aplikasi Screener dimulai
+[2026-10-03 16:50:19] Melayani di http://127.0.0.1:8766/
+[2026-10-03 16:50:19] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-03 16:52:07] ==================================================
+[2026-10-03 16:52:07] Aplikasi Screener dimulai
+[2026-10-03 16:52:09] Melayani di http://127.0.0.1:8765/
+[2026-10-03 16:52:09] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 17:24:51] ==================================================
+[2026-10-03 17:24:51] Aplikasi Screener dimulai
+[2026-10-03 17:24:53] Melayani di http://127.0.0.1:8765/
+[2026-10-03 17:24:53] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 17:39:07] ksei Periode terbaru : 20260930
+[2026-10-03 17:39:07] ksei Periode sebelumnya: 20260831
+[2026-10-03 17:39:07] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 17:39:07] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 18:16:48] ==================================================
+[2026-10-03 18:16:48] Aplikasi Screener dimulai
+[2026-10-03 18:16:50] Melayani di http://127.0.0.1:8765/
+[2026-10-03 18:16:50] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 18:17:06] ksei Periode terbaru : 20260930
+[2026-10-03 18:17:06] ksei Periode sebelumnya: 20260831
+[2026-10-03 18:17:06] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 18:17:06] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 18:31:51] ==================================================
+[2026-10-03 18:31:51] Aplikasi Screener dimulai
+[2026-10-03 18:31:53] Melayani di http://127.0.0.1:8766/
+[2026-10-03 18:31:53] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-03 18:35:07] ==================================================
+[2026-10-03 18:35:07] Aplikasi Screener dimulai
+[2026-10-03 18:35:09] Melayani di http://127.0.0.1:8767/
+[2026-10-03 18:35:09] Screener Praktis berjalan di http://127.0.0.1:8767/
+[2026-10-03 18:41:20] ==================================================
+[2026-10-03 18:41:20] Aplikasi Screener dimulai
+[2026-10-03 18:41:22] Melayani di http://127.0.0.1:8768/
+[2026-10-03 18:41:22] Screener Praktis berjalan di http://127.0.0.1:8768/
+[2026-10-03 18:41:29] emiten !!!: tidak ada data
+[2026-10-03 18:41:45] emiten [1/1] BBCA ok
+[2026-10-03 18:41:50] scope stock gagal: SahamScope gagal total (BBCA: HTTP Error 429: Too Many Requests)
+[2026-10-03 18:41:51] fund BBCA ok
+[2026-10-03 18:45:34] ==================================================
+[2026-10-03 18:45:34] Aplikasi Screener dimulai
+[2026-10-03 18:45:36] Melayani di http://127.0.0.1:8768/
+[2026-10-03 18:45:36] Screener Praktis berjalan di http://127.0.0.1:8768/
+[2026-10-03 18:45:48] emiten [1/1] BBCA ok
+[2026-10-03 18:45:49] scope stock gagal: SahamScope gagal total (BBCA: HTTP Error 429: Too Many Requests)
+[2026-10-03 18:46:36] ksei [cache] memakai ksei yang tersimpan (30 menit lalu)
+[2026-10-03 18:48:07] ==================================================
+[2026-10-03 18:48:07] Aplikasi Screener dimulai
+[2026-10-03 18:48:09] Melayani di http://127.0.0.1:8765/
+[2026-10-03 18:48:09] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-03 18:48:27] emiten [1/1] MERK ok
+[2026-10-03 18:48:28] scope stock gagal: SahamScope gagal total (MERK: HTTP Error 429: Too Many Requests)
+[2026-10-03 18:48:30] fund MERK ok
+[2026-10-03 18:49:47] ksei Periode terbaru : 20260930
+[2026-10-03 18:49:47] ksei Periode sebelumnya: 20260831
+[2026-10-03 18:49:47] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 18:49:47] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 18:50:00] emiten [1/1] MERK ok
+[2026-10-03 18:50:01] scope stock gagal: SahamScope gagal total (MERK: HTTP Error 429: Too Many Requests)
+[2026-10-03 19:03:50] ==================================================
+[2026-10-03 19:03:50] Aplikasi Screener dimulai
+[2026-10-03 19:03:52] Melayani di http://127.0.0.1:8766/
+[2026-10-03 19:03:52] Screener Praktis berjalan di http://127.0.0.1:8766/
+[2026-10-03 21:55:15] ksei Periode terbaru : 20260930
+[2026-10-03 21:55:15] ksei Periode sebelumnya: 20260831
+[2026-10-03 21:55:15] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-03 21:55:15] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-03 21:59:08] emiten [1/1] MAPA ok
+[2026-10-03 21:59:13] scope stock gagal: SahamScope gagal total (MAPA: HTTP Error 429: Too Many Requests)
+[2026-10-03 21:59:15] fund MAPA ok
+[2026-10-03 22:23:48] ksei [cache] memakai ksei yang tersimpan (29 menit lalu)
+[2026-10-03 22:30:16] emiten [1/1] ADRO ok
+[2026-10-03 22:30:22] scope stock gagal: SahamScope gagal total (ADRO: HTTP Error 429: Too Many Requests)
+[2026-10-03 22:30:24] fund ADRO ok
+[2026-10-04 09:04:15] ==================================================
+[2026-10-04 09:04:15] Aplikasi Screener dimulai
+[2026-10-04 09:04:17] Melayani di http://127.0.0.1:8765/
+[2026-10-04 09:04:17] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-04 09:04:36] ==================================================
+[2026-10-04 09:04:36] Aplikasi Screener dimulai
+[2026-10-04 09:04:38] Melayani di http://127.0.0.1:8765/
+[2026-10-04 09:04:38] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-04 09:04:53] ksei Periode terbaru : 20260930
+[2026-10-04 09:04:53] ksei Periode sebelumnya: 20260831
+[2026-10-04 09:04:53] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-04 09:04:54] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-05 08:48:00] ==================================================
+[2026-10-05 08:48:00] Aplikasi Screener dimulai
+[2026-10-05 08:48:02] Melayani di http://127.0.0.1:8765/
+[2026-10-05 08:48:02] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-05 08:48:46] ksei Periode terbaru : 20260930
+[2026-10-05 08:48:46] ksei Periode sebelumnya: 20260831
+[2026-10-05 08:48:46] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-05 08:48:47] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-05 10:07:40] konfigurasi disimpan: 19 emiten, 24 bulan KSEI
+[2026-10-05 10:07:40] Daftar pantau: 19 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-05 10:07:40] Mengunduh kepemilikan KSEI...
+[2026-10-05 10:07:53] ksei Periode terbaru : 20260930
+[2026-10-05 10:07:53] ksei Periode sebelumnya: 20260831
+[2026-10-05 10:07:53] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-05 10:07:53] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-05 10:07:53] Mengunduh harga & fundamental (19 emiten)...
+[2026-10-05 10:07:58] emiten [1/19] BBCA ok
+[2026-10-05 10:07:59] emiten [2/19] BBRI ok
+[2026-10-05 10:07:59] emiten [3/19] BMRI ok
+[2026-10-05 10:08:00] emiten [4/19] BBNI ok
+[2026-10-05 10:08:01] emiten [5/19] TLKM ok
+[2026-10-05 10:08:01] emiten [6/19] ASII ok
+[2026-10-05 10:08:02] emiten [7/19] ANTM ok
+[2026-10-05 10:08:02] emiten [8/19] ADRO ok
+[2026-10-05 10:08:03] emiten [9/19] ICBP ok
+[2026-10-05 10:08:04] emiten [10/19] PTBA ok
+[2026-10-05 10:08:04] emiten [11/19] BRMS ok
+[2026-10-05 10:08:05] emiten [12/19] CBRE ok
+[2026-10-05 10:08:05] emiten [13/19] ENRG ok
+[2026-10-05 10:08:06] emiten [14/19] MEDC ok
+[2026-10-05 10:08:06] emiten [15/19] VKTR ok
+[2026-10-05 10:08:07] emiten [16/19] ULTJ ok
+[2026-10-05 10:08:08] emiten [17/19] SEMA ok
+[2026-10-05 10:08:08] emiten [18/19] SMAR ok
+[2026-10-05 10:08:09] emiten [19/19] MBSS ok
+[2026-10-05 10:08:09] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-05 10:08:16] scope BBCA ok
+[2026-10-05 10:08:18] scope BBRI ok
+[2026-10-05 10:08:20] scope BMRI ok
+[2026-10-05 10:08:23] scope BBNI ok
+[2026-10-05 10:08:25] scope TLKM ok
+[2026-10-05 10:08:27] scope ASII ok
+[2026-10-05 10:08:30] scope ANTM ok
+[2026-10-05 10:08:32] scope ADRO ok
+[2026-10-05 10:08:34] scope ICBP ok
+[2026-10-05 10:08:37] scope PTBA ok
+[2026-10-05 10:08:39] scope BRMS ok
+[2026-10-05 10:08:41] scope CBRE ok
+[2026-10-05 10:08:44] scope ENRG ok
+[2026-10-05 10:08:46] scope MEDC ok
+[2026-10-05 10:08:48] scope VKTR ok
+[2026-10-05 10:08:51] scope ULTJ ok
+[2026-10-05 10:08:53] scope SEMA ok
+[2026-10-05 10:08:55] scope SMAR ok
+[2026-10-05 10:08:58] scope MBSS ok
+[2026-10-05 10:08:58] Menambah avg broker IndoPremier (SQLite)...
+[2026-10-05 10:09:47] Avg broker IndoPremier: 19 emiten.
+[2026-10-05 10:09:47] Selesai. 19 emiten siap.
+[2026-10-05 10:09:47] Memuat peta tema...
+[2026-10-05 10:09:47] Memuat fundamental gabungan...
+[2026-10-05 10:11:32] ksei [cache] memakai ksei yang tersimpan (4 menit lalu)
+[2026-10-05 22:00:54] ==================================================
+[2026-10-05 22:00:54] Aplikasi Screener dimulai
+[2026-10-05 22:00:57] Melayani di http://127.0.0.1:8765/
+[2026-10-05 22:00:57] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-05 22:30:17] ksei Periode terbaru : 20260930
+[2026-10-05 22:30:17] ksei Periode sebelumnya: 20260831
+[2026-10-05 22:30:17] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-05 22:30:18] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-05 23:26:09] emiten [1/1] MBSS ok
+[2026-10-05 23:26:19] scope stock gagal: SahamScope gagal total (MBSS: HTTP Error 429: Too Many Requests)
+[2026-10-05 23:26:20] fund MBSS ok
+[2026-10-05 23:27:44] konfigurasi disimpan: 23 emiten, 24 bulan KSEI
+[2026-10-05 23:27:44] Daftar pantau: 23 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-05 23:27:44] Mengunduh kepemilikan KSEI...
+[2026-10-05 23:27:55] ksei Periode terbaru : 20260930
+[2026-10-05 23:27:55] ksei Periode sebelumnya: 20260831
+[2026-10-05 23:27:55] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-05 23:27:56] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-05 23:27:56] Mengunduh harga & fundamental (23 emiten)...
+[2026-10-05 23:28:01] emiten [1/23] BBCA ok
+[2026-10-05 23:28:01] emiten [2/23] BBRI ok
+[2026-10-05 23:28:02] emiten [3/23] BMRI ok
+[2026-10-05 23:28:02] emiten [4/23] BBNI ok
+[2026-10-05 23:28:03] emiten [5/23] TLKM ok
+[2026-10-05 23:28:03] emiten [6/23] ASII ok
+[2026-10-05 23:28:04] emiten [7/23] ANTM ok
+[2026-10-05 23:28:05] emiten [8/23] ADRO ok
+[2026-10-05 23:28:05] emiten [9/23] ICBP ok
+[2026-10-05 23:28:06] emiten [10/23] PTBA ok
+[2026-10-05 23:28:06] emiten [11/23] BRMS ok
+[2026-10-05 23:28:07] emiten [12/23] CBRE ok
+[2026-10-05 23:28:08] emiten [13/23] ENRG ok
+[2026-10-05 23:28:08] emiten [14/23] MEDC ok
+[2026-10-05 23:28:09] emiten [15/23] VKTR ok
+[2026-10-05 23:28:09] emiten [16/23] ULTJ ok
+[2026-10-05 23:28:10] emiten [17/23] SEMA ok
+[2026-10-05 23:28:10] emiten [18/23] SMAR ok
+[2026-10-05 23:28:11] emiten [19/23] MBSS ok
+[2026-10-05 23:28:11] emiten [20/23] BUVA ok
+[2026-10-05 23:28:12] emiten [21/23] CSMI ok
+[2026-10-05 23:28:13] emiten [22/23] MITI ok
+[2026-10-05 23:28:13] emiten [23/23] KDTN ok
+[2026-10-05 23:28:13] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-05 23:28:36] scope gagal: SahamScope gagal total (BBCA: HTTP Error 429: Too Many Requests; BBRI: HTTP Error 429: Too Many Requests; BMRI: HTTP Error 429: Too Many Requests; BBNI: HTTP Error 429: Too Many Reques)
+[2026-10-05 23:28:36] SahamScope gagal — memakai cache lama bila ada.
+[2026-10-05 23:28:36] Menambah avg broker IndoPremier (SQLite)...
+[2026-10-05 23:28:46] Avg broker IndoPremier: 23 emiten.
+[2026-10-05 23:28:46] Selesai. 23 emiten siap.
+[2026-10-05 23:28:46] Memuat peta tema...
+[2026-10-05 23:28:46] Memuat fundamental gabungan...
+[2026-10-05 23:29:42] ksei [cache] memakai ksei yang tersimpan (2 menit lalu)
+[2026-10-05 23:29:42] tv [cache] memakai tv yang tersimpan (59 menit lalu)
+[2026-10-06 00:06:53] ==================================================
+[2026-10-06 00:06:53] Aplikasi Screener dimulai
+[2026-10-06 00:06:55] Melayani di http://127.0.0.1:8765/
+[2026-10-06 00:06:55] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-06 00:07:06] ksei Periode terbaru : 20260930
+[2026-10-06 00:07:06] ksei Periode sebelumnya: 20260831
+[2026-10-06 00:07:06] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-06 00:07:07] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-06 00:13:37] ==================================================
+[2026-10-06 00:13:37] Aplikasi Screener dimulai
+[2026-10-06 00:13:39] Melayani di http://127.0.0.1:8765/
+[2026-10-06 00:13:39] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-06 00:13:56] ksei Periode terbaru : 20260930
+[2026-10-06 00:13:56] ksei Periode sebelumnya: 20260831
+[2026-10-06 00:13:56] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-06 00:13:57] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-06 00:20:00] ==================================================
+[2026-10-06 00:20:00] Aplikasi Screener dimulai
+[2026-10-06 00:20:02] Melayani di http://127.0.0.1:8765/
+[2026-10-06 00:20:02] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-06 00:20:13] ksei Periode terbaru : 20260930
+[2026-10-06 00:20:13] ksei Periode sebelumnya: 20260831
+[2026-10-06 00:20:13] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-06 00:20:13] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
