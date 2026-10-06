@@ -46,10 +46,12 @@ main{max-width:none;margin:0 auto;padding:18px 20px 80px}
 .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 15px;border-bottom:1px solid var(--line2)}
 .search{flex:1 1 200px;min-width:160px;border:1px solid var(--line);border-radius:10px;padding:7px 11px;outline:none;background:#fff;transition:.15s}
 .search:focus{border-color:var(--accent);box-shadow:var(--ring)}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .chip{border:1px solid var(--line);background:var(--panel2);color:var(--ink2);border-radius:99px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;transition:.15s}
 .chip:hover{border-color:#c9d3e0;transform:translateY(-1px)}
 .chip.on{background:linear-gradient(180deg,#2b6bdb,var(--accent));border-color:var(--accentdark);color:#fff;box-shadow:0 2px 8px rgba(31,95,208,.30)}
+.flab{font-size:11px;color:var(--muted);font-weight:650;text-transform:uppercase;letter-spacing:.04em;margin:0 2px 0 6px}
+.snum{font-size:10px;opacity:.8;font-weight:700}
 .cnt{color:var(--muted);font-size:12px;margin-left:auto}
 .tw{overflow:auto;max-height:70vh}
 .tw::-webkit-scrollbar{height:10px;width:10px}
@@ -148,7 +150,10 @@ tbody tr.dipantau td{background:var(--accent2)}
     <button class="btn" id="btnImpor">Impor Berkas</button>
     <button class="btn" id="btnContoh">Muat Contoh</button>
     <button class="btn" id="btnEkspor">Ekspor CSV</button>
+    <button class="btn" id="btnContohTraining" title="Download contoh CSV training gabungan (gainer+loser)">Contoh Training</button>
+    <button class="btn" id="btnUploadTraining" title="Upload CSV training (gainer/loser gabungan)">Upload Training</button>
     <input type="file" id="fileIn" accept=".csv,.txt,.json" multiple style="display:none">
+    <input type="file" id="trainFileIn" accept=".csv,.txt" multiple style="display:none">
   </div>
 </header>
 
@@ -173,7 +178,9 @@ tbody tr.dipantau td{background:var(--accent2)}
       <div class="tfseg" id="tfSeg" title="Mode timeframe — mengubah bobot skor, filter, dan max-hold"></div>
       <button class="btn pri" id="btnTambah" hidden>Tambah ke Watchlist</button>
       <input class="search" id="q" placeholder="Cari kode / nama…">
-      <div class="chips" id="chips"></div>
+      <span class="flab">Fase</span><div class="chips" id="chips" title="Klik beberapa fase untuk multi-filter"></div>
+      <span class="flab">Aksi</span><div class="chips" id="chipsAksi" title="Klik beberapa aksi untuk multi-filter"></div>
+      <button class="btn" id="btnResetFilter" title="Kembalikan filter & sort ke awal">Reset</button>
       <span class="cnt" id="cnt">0 saham</span>
     </div>
     <div id="cekBar" class="mut" style="padding:8px 15px;border-bottom:1px solid var(--line2)" hidden></div>
@@ -530,16 +537,29 @@ var SP = (function () {
   }
 
   // ---------- suspen heuristik (display-only) ----------
-  function suspen(x) {
+  // Masalah lama: nilai_harian = harga x AVG volume 10-20 hari, jadi saham
+  // suspen tetap >0 (rata-rata masih ada sisa sebelum suspen) -> flag tak muncul.
+  // Perbaikan: cek volume harian aktual (bars_30) 5 hari terakhir.
+  function suspenKet(x) {
     var r = (x && x.r) || {};
-    if (!("harga" in r) && !("nilai_harian" in r) && !("s_vol_ratio" in r) && !("sumber" in r)) return false;
-    if (("harga" in r) && toNum(r.harga) <= 0) return true;
-    if (("nilai_harian" in r) && toNum(r.nilai_harian) <= 0) return true;
-    if (("s_vol_ratio" in r) && toNum(r.s_vol_ratio) <= 0) return true;
+    if (("harga" in r) && toNum(r.harga) <= 0) return "harga kosong";
     var s = String(r.sumber || "").toLowerCase();
-    if (s.indexOf("harga kosong") >= 0) return true;
-    return false;
+    if (s.indexOf("harga kosong") >= 0) return "harga kosong (Yahoo)";
+    var bars = r.bars_30 || [];
+    if (bars.length) {
+      var last = bars.slice(-5);
+      var vols = last.map(function (b) { return toNum(b && b[1]); });
+      var nol = vols.filter(function (v) { return !(v > 0); }).length;
+      if (last.length >= 3 && nol === last.length) return "volume 0 dalam " + last.length + " hari bursa terakhir (diduga suspen/halt)";
+      if (last.length >= 5 && nol >= 4) return "volume 0 dalam 4+/5 hari terakhir (perdagangan mati)";
+      var tgl = vols[vols.length - 1];
+      if (last.length >= 1 && !(tgl > 0)) return "volume 0 pada hari bursa terakhir";
+    }
+    if (("nilai_harian" in r) && toNum(r.nilai_harian) <= 0) return "nilai transaksi 0";
+    if (("s_vol_ratio" in r) && toNum(r.s_vol_ratio) <= 0) return "rasio volume 0";
+    return "";
   }
+  function suspen(x) { return suspenKet(x) !== ""; }
 
   // ---------- banding kompetitor se-industri (display-only) ----------
   function medNum(arr) {
@@ -890,7 +910,7 @@ var SP = (function () {
     toNum: toNum, parseCSV: parseCSV, ingestKsei: ingestKsei, nf: nf, pct: pct,
     posRange: posRange, detectFase: detectFase, valuasi: valuasi,
     skor: skor, aksi: aksi, build: build, TF: TF, tfCfg: tfCfg, skorTF: skorTF, aksiTF: aksiTF, sisaTF: sisaTF,
-    METODE: METODE, matchMetode: matchMetode, agregatSektor: agregatSektor, narasiSektor: narasiSektor, barAkumulasi: barAkumulasi, combo: combo, exitLevel: exitLevel,     smartMoney: smartMoney, bounty: bounty, suspen: suspen, pesaing: pesaing, brokerInfo: brokerInfo, brTag: brTag, gabung: gabung, industriLabel: industriLabel,
+    METODE: METODE, matchMetode: matchMetode, agregatSektor: agregatSektor, narasiSektor: narasiSektor, barAkumulasi: barAkumulasi, combo: combo, exitLevel: exitLevel,     smartMoney: smartMoney, bounty: bounty, suspen: suspen, suspenKet: suspenKet, pesaing: pesaing, brokerInfo: brokerInfo, brTag: brTag, gabung: gabung, industriLabel: industriLabel,
     KALIBRASI: KALIBRASI, expiryKontrak: expiryKontrak, statusKontrak: statusKontrak,
     umurFase: umurFase, tanggalIndo: tanggalIndo
   };
@@ -900,8 +920,11 @@ var SP = (function () {
    Antarmuka
    ===================================================================== */
 (function () {
-  var S = { data: [], ksei: {}, scope: {}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, mode: "watchlist", picked: {}, pasar: null, sortKey: "skor", sortDir: -1, filter: "Semua", q: "", metode: "Semua" };
+  var S = { data: [], ksei: {}, scope: {}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], q: "", metode: "Semua" };
   var FASE_ORDER = ["Semua", "Akumulasi", "Spring", "Markup", "Distribusi", "Netral"];
+  var AKSI_ORDER = ["Semua", "Beli", "Pantau", "Hindari"];
+  var FASE_RANK = { "Akumulasi": 5, "Spring": 4, "Markup": 3, "Netral": 2, "Distribusi": 1 };
+  var AKSI_RANK = { "Beli": 3, "Pantau": 2, "Hindari": 1 };
   var $ = function (id) { return document.getElementById(id); };
   var nf = SP.nf, pct = SP.pct;
   var toast = function (m) { var t = $("toast"); t.textContent = m; t.className = "on"; clearTimeout(t._t); t._t = setTimeout(function () { t.className = ""; }, 2600); };
@@ -999,7 +1022,7 @@ var SP = (function () {
     { k: "nama", t: "Nama", n: false },
     { k: "industri", t: "Industri", n: false },
     { k: "harga", t: "Harga", n: true, get: function (d) { return SP.toNum(d.r.harga); } },
-    { k: "fase", t: "Fase", n: false },
+    { k: "fase", t: "Fase", n: false, get: function (d) { return FASE_RANK[d.fase] || 0; } },
     { k: "umur", t: "Umur Fase", n: true, get: function (d) { return d.umurBaru ? -1 : (d.umurHari || 0); } },
     { k: "asing", t: "Asing %", n: true, get: function (d) { return d.k.asing_pct == null ? -1 : d.k.asing_pct; } },
     { k: "dasing", t: "ΔAsing 1m", n: true, get: function (d) { return d.k.dksei_asing_1m == null ? -999 : d.k.dksei_asing_1m; } },
@@ -1009,7 +1032,7 @@ var SP = (function () {
     { k: "fv", t: "FV", n: true, get: function (d) { return d.val.intrinsic; } },
     { k: "skor", t: "Skor", n: true, get: function (d) { return d._scD != null ? d._scD : d.skor; } },
     { k: "kontrak", t: "Kontrak", n: true, get: function (d) { var t = muatKontrak()[d.kode]; return t ? SP.statusKontrak(t, hariIni()).sisa : -9999; } },
-    { k: "aksi", t: "Aksi", n: false },
+    { k: "aksi", t: "Aksi", n: false, get: function (d) { var a = (d._aksiD != null ? d._aksiD : d.aksi); return AKSI_RANK[a] || 0; } },
     { k: "likuid", t: "Likuid", n: false, get: function (d) { return SP.toNum(d.r.nilai_harian); } },
     { k: "combo", t: "Combo", n: false, get: function (d) { return comboLvl(d); } }
   ];
@@ -1033,40 +1056,71 @@ var SP = (function () {
     return '<span class="' + cls + '" title="' + tip.replace(/"/g, "") + '">C' + c.level + "</span>";
   }
   function likuidBadge(x) {
+    var ket = SP.suspen(x) ? (SP.suspenKet ? SP.suspenKet(x) : "diduga suspensi") : "";
+    if (ket) return '<span class="aksi a-hindar" title="' + String(ket).replace(/"/g, "") + '">SUSPEN</span>';
     var v = SP.toNum(x.r.nilai_harian);
     if (!(v > 0)) return '<span class="mut">—</span>';
     var ok = v >= 5000000000;
-    return '<span class="aksi ' + (ok ? "a-beli" : "a-pantau") + '" title="Rp' + nf(v / 1e9, 1) + 'M/hari">' + (ok ? "Likuid" : "Sepi") + "</span>";
+    return '<span class="aksi ' + (ok ? "a-beli" : "a-pantau") + '" title="Rp' + nf(v / 1e9, 1) + 'M/hari (rata-rata, bukan hari terakhir)">' + (ok ? "Likuid" : "Sepi") + "</span>";
   }
 
   function render() {
     var d = S.data.slice();
-    if (S.filter !== "Semua") d = d.filter(function (x) { return x.fase === S.filter; });
+    // Kompat: migrasi state lama sekali jalan (filter string / sortKey tunggal)
+    if (typeof S.filter === "string" && S.filter !== "Semua") { S.filterFase = [S.filter]; S.filter = undefined; }
+    if (S.sortKey && (!S.sortSpecs || !S.sortSpecs.length)) { S.sortSpecs = [{ key: S.sortKey, dir: S.sortDir || -1 }]; S.sortKey = undefined; }
+    if (!S.sortSpecs || !S.sortSpecs.length) S.sortSpecs = [{ key: "skor", dir: -1 }];
+    if (!S.filterFase) S.filterFase = [];
+    if (!S.filterAksi) S.filterAksi = [];
+    var tf = tfAktif();
+    // Hitung skor/aksi tampilan dulu supaya filter Aksi & sort Aksi pakai nilai TF aktif
+    d.forEach(function (x) {
+      x._scD = SP.skorTF(x.r, x.k, x.fase, x.val, tf);
+      x._hold = SP.sisaTF(x.umurSejak || hariIni(), hariIni(), tf);
+      x._aksiD = SP.aksiTF(x.fase, x._scD, x.val, x.pos, x.asing_pnl != null ? -x.asing_pnl : null, tf, { lewatHold: x._hold.lewat, isLockH0: !!x.lockH0 });
+    });
+    // Multi-filter: fase (OR di dalam grup) + aksi (OR di dalam grup), AND antar grup
+    if (S.filterFase.length) d = d.filter(function (x) { return S.filterFase.indexOf(x.fase) >= 0; });
+    if (S.filterAksi.length) d = d.filter(function (x) { var a = x._aksiD != null ? x._aksiD : x.aksi; return S.filterAksi.indexOf(a) >= 0; });
     if (S.metode && S.metode !== "Semua") d = d.filter(function (x) { return SP.matchMetode(x, S.metode); });
     if (S.temaNama && S.temaNama !== "Semua") d = d.filter(function (x) { return (S._temaMap || {})[x.kode] === S.temaNama; });
     if (S.q) {
       var q = S.q.toLowerCase();
       d = d.filter(function (x) { return x.kode.toLowerCase().indexOf(q) >= 0 || x.nama.toLowerCase().indexOf(q) >= 0; });
     }
-    var tf = tfAktif();
-    d.forEach(function (x) {
-      x._scD = SP.skorTF(x.r, x.k, x.fase, x.val, tf);
-      x._hold = SP.sisaTF(x.umurSejak || hariIni(), hariIni(), tf);
-      x._aksiD = SP.aksiTF(x.fase, x._scD, x.val, x.pos, x.asing_pnl != null ? -x.asing_pnl : null, tf, { lewatHold: x._hold.lewat, isLockH0: !!x.lockH0 });
-    });
     d = d.filter(function (x) { return SP.toNum(x.r.nilai_harian) >= SP.TF[tf].minLiq && !(SP.TF[tf].hideDist && x.fase === "Distribusi"); });
-    var key = S.sortKey, col = COLS.filter(function (c) { return c.k === key; })[0];
+    function colOf(key) { var cs = COLS.filter(function (c) { return c.k === key; }); return cs.length ? cs[0] : null; }
+    function valOf(row, key) {
+      var col = colOf(key);
+      if (col && col.get) return col.get(row);
+      var v = row[key];
+      if (v == null && row.r) v = row.r[key];
+      return v;
+    }
+    function cmpVal(va, vb) {
+      if (typeof va === "string" || typeof vb === "string") {
+        va = String(va == null ? "" : va); vb = String(vb == null ? "" : vb);
+        var c = va.localeCompare(vb);
+        return c < 0 ? -1 : (c > 0 ? 1 : 0);
+      }
+      va = (va == null || !isFinite(va)) ? -Infinity : va;
+      vb = (vb == null || !isFinite(vb)) ? -Infinity : vb;
+      return va < vb ? -1 : (va > vb ? 1 : 0);
+    }
     d.sort(function (a, b) {
-      var va, vb;
-      if (col && col.get) { va = col.get(a); vb = col.get(b); }
-      else { va = a[key]; vb = b[key]; }
-      if (typeof va === "string") return S.sortDir * va.localeCompare(vb);
-      return S.sortDir * ((va || 0) - (vb || 0));
+      for (var i = 0; i < S.sortSpecs.length; i++) {
+        var sp = S.sortSpecs[i];
+        var c = cmpVal(valOf(a, sp.key), valOf(b, sp.key));
+        if (c !== 0) return sp.dir * c;
+      }
+      return a.kode < b.kode ? -1 : (a.kode > b.kode ? 1 : 0);
     });
 
     var thead = (S.mode === "pasar" ? '<tr><th><input type="checkbox" id="pickAll" title="Pilih semua"></th>' : "<tr>") + COLS.map(function (c) {
-      var arrow = c.k === key ? (S.sortDir < 0 ? " ▼" : " ▲") : "";
-      return '<th class="' + (c.n ? "n" : "") + '" data-k="' + c.k + '">' + c.t + arrow + "</th>";
+      var idx = -1, dir = -1;
+      for (var i = 0; i < S.sortSpecs.length; i++) if (S.sortSpecs[i].key === c.k) { idx = i; dir = S.sortSpecs[i].dir; break; }
+      var arrow = idx >= 0 ? (dir < 0 ? " ▼" : " ▲") + (S.sortSpecs.length > 1 ? '<span class="snum">' + (idx + 1) + "</span>" : "") : "";
+      return '<th class="' + (c.n ? "n" : "") + '" data-k="' + c.k + '" title="Klik = sort tunggal · Shift+Klik = tambah multi-sort">' + c.t + arrow + "</th>";
     }).join("") + "</tr>";
     $("tbl").tHead.innerHTML = thead;
 
@@ -1087,7 +1141,7 @@ var SP = (function () {
       var rcls = (dipH[x.kode] && dipH[x.kode].status === "dipantau") ? ' class="dipantau"' : "";
       return "<tr data-kode='" + x.kode + "'" + rcls + ">" +
         (S.mode === "pasar" ? '<td><input type="checkbox" class="pickRow" data-kode="' + x.kode + '"' + (S.picked[x.kode] ? " checked" : "") + "></td>" : "") +
-        '<td class="kode' + (SP.suspen(x) ? " kode-susp" : "") + '"' + (SP.suspen(x) ? ' title="diduga suspensi (heuristik: harga/nilai/volume 0)"' : "") + ">" + x.kode + "</td>" +
+        '<td class="kode' + (SP.suspen(x) ? " kode-susp" : "") + '"' + (SP.suspen(x) ? ' title="diduga suspensi: ' + String(SP.suspenKet(x)).replace(/"/g, "") + '"' : "") + ">" + x.kode + (SP.suspen(x) ? " ⛔" : "") + "</td>" +
         '<td class="nama">' + x.nama + "</td>" +
         (function () { var lb = SP.industriLabel(x.kode, S.fund.emiten || {}, x.sektor); return lb === "—" ? '<td><span class="mut">—</span></td>' : '<td class="nama" title="' + lb.replace(/"/g, "") + '">' + lb + "</td>"; })() +
         '<td class="n">' + nf(SP.toNum(x.r.harga), 0) + "</td>" +
@@ -1208,8 +1262,39 @@ var SP = (function () {
   };
   function renderChips() {
     $("chips").innerHTML = FASE_ORDER.map(function (f) {
-      return '<button class="chip' + (f === S.filter ? " on" : "") + '" data-f="' + f + '">' + f + "</button>";
+      var on = (f === "Semua") ? (S.filterFase.length === 0) : (S.filterFase.indexOf(f) >= 0);
+      return '<button class="chip' + (on ? " on" : "") + '" data-f="' + f + '">' + f + "</button>";
     }).join("");
+    $("chipsAksi").innerHTML = AKSI_ORDER.map(function (a) {
+      var on = (a === "Semua") ? (S.filterAksi.length === 0) : (S.filterAksi.indexOf(a) >= 0);
+      return '<button class="chip' + (on ? " on" : "") + '" data-a="' + a + '">' + a + "</button>";
+    }).join("");
+    var rb = $("btnResetFilter");
+    if (rb) {
+      var aktif = S.filterFase.length + S.filterAksi.length;
+      var srt = (S.sortSpecs.length > 1) ? " · sort " + S.sortSpecs.length : (S.sortSpecs.length && (S.sortSpecs[0].key !== "skor" || S.sortSpecs[0].dir !== -1) ? " · sort" : "");
+      rb.textContent = aktif || srt ? "Reset (" + aktif + srt.replace(" · ", ", ") + ")" : "Reset";
+    }
+  }
+  function simpanFilterSort() {
+    try {
+      localStorage.setItem("sp_filterFase", JSON.stringify(S.filterFase || []));
+      localStorage.setItem("sp_filterAksi", JSON.stringify(S.filterAksi || []));
+      localStorage.setItem("sp_sort", JSON.stringify(S.sortSpecs || []));
+    } catch (e) {}
+  }
+  function muatFilterSort() {
+    try {
+      var ff = JSON.parse(localStorage.getItem("sp_filterFase") || "[]");
+      var fa = JSON.parse(localStorage.getItem("sp_filterAksi") || "[]");
+      var ss = JSON.parse(localStorage.getItem("sp_sort") || "[]");
+      if (ff instanceof Array) S.filterFase = ff.filter(function (f) { return FASE_ORDER.indexOf(f) > 0; });
+      if (fa instanceof Array) S.filterAksi = fa.filter(function (a) { return AKSI_ORDER.indexOf(a) > 0; });
+      if (ss instanceof Array && ss.length) {
+        S.sortSpecs = ss.filter(function (s) { return s && s.key; }).slice(0, 4).map(function (s) { return { key: s.key, dir: s.dir < 0 ? -1 : 1 }; });
+        if (!S.sortSpecs.length) S.sortSpecs = [{ key: "skor", dir: -1 }];
+      }
+    } catch (e) {}
   }
 
   // ---------- mode timeframe ----------
@@ -1903,6 +1988,52 @@ var SP = (function () {
     });
     e.target.value = "";
   };
+  $("btnContohTraining").onclick = function () {
+    var head = "tanggal,tipe,kode,harga,naik_pct,nilai,volume,freq";
+    var lines = [head,
+      "2026-10-06,GAINER,TRUE,62,34.78,35.62B,6.06M,16.21K",
+      "2026-10-06,GAINER,CSMI,515,25.00,52.80B,1.09M,18.30K",
+      "2026-10-06,LOSER,ROCK,3150,-14.86,1.06B,3.23K,780",
+      "2026-10-06,LOSER,FORU,124,-10.79,235.67B,18.51M,42.86K"];
+    var blob = new Blob(["\uFEFF" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = "contoh-training-gainer-loser.csv"; a.click();
+    toast("Contoh training gabungan ter-download (gainer+loser, 1 file)");
+  };
+  $("btnUploadTraining").onclick = function () { $("trainFileIn").click(); };
+  $("trainFileIn").onchange = function (e) {
+    Array.prototype.forEach.call(e.target.files, function (f) {
+      var rd = new FileReader();
+      rd.onload = function () {
+        var teks = String(rd.result || "");
+        var rows = SP.parseCSV(teks);
+        if (!rows.length) { toast("Training kosong: " + f.name); return; }
+        var head = Object.keys(rows[0]).map(function (k) { return k.toLowerCase(); });
+        var hasKode = head.indexOf("kode") >= 0;
+        if (!hasKode) { toast("Header harus ada kolom 'kode': " + f.name); return; }
+        var nG = rows.filter(function (r) { return String(r.tipe || r.type || "").toUpperCase().indexOf("GAIN") >= 0; }).length;
+        var nL = rows.filter(function (r) { return String(r.tipe || r.type || "").toUpperCase().indexOf("LOS") >= 0; }).length;
+        var info = rows.length + " baris" + ((nG || nL) ? " (" + nG + " gainer, " + nL + " loser)" : " (tanpa kolom tipe — tetap diterima)");
+        if (!APP) {
+          try {
+            var lama = JSON.parse(localStorage.getItem("sp_training") || "[]");
+            localStorage.setItem("sp_training", JSON.stringify(lama.concat(rows)));
+          } catch (e2) {}
+          toast(info + " tersimpan lokal (buka via aplikasi agar masuk data/training).");
+          return;
+        }
+        fetch("/api/training", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nama: f.name, csv: teks })
+        }).then(function (r) { return r.json(); }).then(function (j) {
+          if (!j || !j.ok) throw new Error((j && j.error) || "gagal");
+          toast("Training tersimpan: " + j.nama + " (" + j.baris + " baris)");
+        }).catch(function (err) { toast("Gagal upload: " + (err && err.message ? err.message : err)); });
+      };
+      rd.readAsText(f, "utf-8");
+    });
+    e.target.value = "";
+  };
   $("btnContoh").onclick = function () {
     S._csvRows = SP.parseCSV(SAMPLE_CSV);
     SP.ingestKsei(SAMPLE_KSEI, S.ksei);
@@ -1941,7 +2072,36 @@ var SP = (function () {
     render();
   };
   $("q").oninput = function () { S.q = this.value; render(); };
-  $("chips").onclick = function (e) { var b = e.target.closest("[data-f]"); if (!b) return; S.filter = b.getAttribute("data-f"); renderChips(); render(); };
+  $("chips").onclick = function (e) {
+    var b = e.target.closest("[data-f]"); if (!b) return;
+    var f = b.getAttribute("data-f");
+    if (f === "Semua") S.filterFase = [];
+    else {
+      var i = S.filterFase.indexOf(f);
+      if (i >= 0) S.filterFase.splice(i, 1);
+      else S.filterFase.push(f);
+    }
+    renderChips(); simpanFilterSort(); render();
+  };
+  $("chipsAksi").onclick = function (e) {
+    var b = e.target.closest("[data-a]"); if (!b) return;
+    var a = b.getAttribute("data-a");
+    if (a === "Semua") S.filterAksi = [];
+    else {
+      var i = S.filterAksi.indexOf(a);
+      if (i >= 0) S.filterAksi.splice(i, 1);
+      else S.filterAksi.push(a);
+    }
+    renderChips(); simpanFilterSort(); render();
+  };
+  $("btnResetFilter").onclick = function () {
+    S.filterFase = []; S.filterAksi = []; S.sortSpecs = [{ key: "skor", dir: -1 }];
+    S.q = ""; $("q").value = ""; S.metode = "Semua"; $("metode").value = "Semua";
+    try { localStorage.setItem("sp_metode", "Semua"); } catch (e) {}
+    S.temaNama = "Semua"; renderTema();
+    renderChips(); simpanFilterSort(); render();
+    toast("Filter & sort direset");
+  };
   $("tfSeg").onclick = function (e) { var b = e.target.closest("[data-tf]"); if (!b) return; try { localStorage.setItem("sp_tf", b.getAttribute("data-tf")); } catch (e2) {} S.tf = tfAktif(); renderTfSeg(); render(); renderHorizon(); };
   $("tbl").tHead.onclick = function (e) {
     if (e.target.id === "pickAll") {
@@ -1955,8 +2115,21 @@ var SP = (function () {
     }
     var th = e.target.closest("th"); if (!th) return;
     var k = th.getAttribute("data-k");
-    if (S.sortKey === k) S.sortDir = -S.sortDir; else { S.sortKey = k; S.sortDir = -1; }
-    render();
+    if (!k) return;
+    if (e.shiftKey) {
+      // Multi-sort: tambah / ubah arah tanpa menghapus sort lain
+      var idx = -1;
+      for (var i = 0; i < S.sortSpecs.length; i++) if (S.sortSpecs[i].key === k) { idx = i; break; }
+      if (idx >= 0) S.sortSpecs[idx].dir = -S.sortSpecs[idx].dir;
+      else { if (S.sortSpecs.length >= 4) S.sortSpecs.shift(); S.sortSpecs.push({ key: k, dir: -1 }); }
+      toast("Multi-sort " + S.sortSpecs.length + ": " + S.sortSpecs.map(function (s, n) { return (n + 1) + ". " + s.key + (s.dir < 0 ? " ▼" : " ▲"); }).join(" · "));
+    } else {
+      var cur = null;
+      for (var j = 0; j < S.sortSpecs.length; j++) if (S.sortSpecs[j].key === k) { cur = S.sortSpecs[j]; break; }
+      if (cur && S.sortSpecs.length === 1) cur.dir = -cur.dir;
+      else S.sortSpecs = [{ key: k, dir: -1 }];
+    }
+    renderChips(); simpanFilterSort(); render();
   };
   $("tbl").tBodies[0].onclick = function (e) {
     if (e.target.closest("input")) return;
@@ -2010,7 +2183,7 @@ var SP = (function () {
   fetch("/api/fund").then(function (r) { return r.json(); }).then(function (j) {
     if (j && j.ok && j.fund) { S.fund = j.fund; render(); }
   }).catch(function () {});
-  renderChips(); renderTfSeg(); renderAdv(); muatKontrak(); render(); renderHorizon();
+  renderChips(); renderTfSeg(); renderAdv(); muatKontrak(); muatFilterSort(); renderChips(); render(); renderHorizon();
 })();
 </script>
 </body>

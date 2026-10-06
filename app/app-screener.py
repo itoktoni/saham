@@ -597,6 +597,38 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         jalur = urlparse(self.path).path
         try:
+            if jalur == "/api/training":
+                n = int(self.headers.get("Content-Length") or 0)
+                raw = self.rfile.read(n) if n else b"{}"
+                data = json.loads(raw.decode("utf-8-sig"))
+                teks = data.get("csv") or data.get("content") or ""
+                nama = str(data.get("nama") or data.get("filename") or "").strip()
+                if not teks.strip():
+                    return self._json({"ok": False, "error": "isi CSV kosong."}, 400)
+                # Validasi ringan: header wajib ada kode + harga/tanggal
+                baris0 = teks.lstrip("\ufeff").splitlines()
+                head = baris0[0].lower() if baris0 else ""
+                if "kode" not in head:
+                    return self._json({"ok": False, "error": "header CSV harus memuat kolom 'kode'."}, 400)
+                # Nama file aman: huruf/angka/-/_ saja, wajib .csv
+                import re as _re
+                nama = _re.sub(r"[^A-Za-z0-9._-]", "_", nama) or "training.csv"
+                if not nama.lower().endswith(".csv"):
+                    nama += ".csv"
+                if len(nama) > 64:
+                    nama = nama[-64:]
+                tdir = os.path.join(DATA_DIR, "training")
+                os.makedirs(tdir, exist_ok=True)
+                path = os.path.join(tdir, nama)
+                # Tolak path traversal
+                if os.path.abspath(path) != os.path.normpath(path) or \
+                        not os.path.abspath(path).startswith(os.path.abspath(tdir)):
+                    return self._json({"ok": False, "error": "nama file tidak valid."}, 400)
+                with open(path, "w", encoding="utf-8-sig", newline="") as fh:
+                    fh.write(teks if teks.endswith("\n") else teks + "\n")
+                nbar = max(0, len([l for l in teks.splitlines() if l.strip()]) - 1)
+                tulis_log("training tersimpan: %s (%d baris)" % (nama, nbar))
+                return self._json({"ok": True, "nama": nama, "baris": nbar})
             if jalur != "/api/config":
                 return self._json({"ok": False, "error": "rute tidak dikenal"}, 404)
             n = int(self.headers.get("Content-Length") or 0)
