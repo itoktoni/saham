@@ -328,8 +328,27 @@ var SP = (function () {
     return clamp((p - lo) / (hi - lo), 0, 1);
   }
 
+  // ---------- wasit broker: streak akumulasi vs dominan jual ----------
+  function streakBeli(entry) {
+    var acc = (entry && entry.acc) || {};
+    var b1 = (acc.top_buyers || [])[0];
+    if (!b1 || !acc.series || !acc.series[b1.broker]) return false;
+    var last5 = acc.series[b1.broker].slice(-5);
+    if (!last5.length) return false;
+    var hit = last5.filter(function (p) { return toNum(p[0]) > 0; }).length;
+    return hit >= 3;
+  }
+  function dominanJual(entry) {
+    function tot(list) {
+      return (list || []).reduce(function (a, b) { return a + toNum(b.nval); }, 0);
+    }
+    var acc = (entry && entry.acc) || {};
+    var jb = tot(acc.top_buyers), js = tot(acc.top_sellers);
+    return (jb + js) > 0 && js >= jb;
+  }
+
   // ---------- deteksi fase bandar ----------
-  function detectFase(r, k) {
+  function detectFase(r, k, entry) {
     k = k || {};
     var dA = k.dksei_asing_1m == null ? 0 : k.dksei_asing_1m;
     var dI = k.dksei_institusi_1m == null ? 0 : k.dksei_institusi_1m;
@@ -339,6 +358,10 @@ var SP = (function () {
     var sideways = toNum(r.s_sideways) === 1;
     var above = toNum(r.s_closeabove) === 1;
     if (spring) return "Spring";
+    if (entry && pos >= 0.72 && vol >= 1.3) {
+      if (streakBeli(entry)) return "Markup";
+      if (dominanJual(entry)) return "Distribusi";
+    }
     if (pos >= 0.72 && vol >= 1.3 && (dA < 0 || dI < 0)) return "Distribusi";
     if (above && pos >= 0.5 && (vol >= 1.1 || (dA + dI) >= 1.0)) return "Markup";
     if (pos <= 0.65 && (dA > 0 || dI > 0) && vol < 1.2) return "Akumulasi";
@@ -915,6 +938,7 @@ var SP = (function () {
 
   return {
     toNum: toNum, parseCSV: parseCSV, ingestKsei: ingestKsei, nf: nf, pct: pct, fmtBig: fmtBig,
+    posRange: posRange, detectFase: detectFase, streakBeli: streakBeli, dominanJual: dominanJual,
     posRange: posRange, detectFase: detectFase, valuasi: valuasi,
     skor: skor, aksi: aksi, build: build, TF: TF, tfCfg: tfCfg, skorTF: skorTF, aksiTF: aksiTF, sisaTF: sisaTF,
     METODE: METODE, matchMetode: matchMetode, agregatSektor: agregatSektor, narasiSektor: narasiSektor, barAkumulasi: barAkumulasi, combo: combo, exitLevel: exitLevel,     smartMoney: smartMoney, bounty: bounty, suspen: suspen, suspenKet: suspenKet, pesaing: pesaing, brokerInfo: brokerInfo, brTag: brTag, gabung: gabung, industriLabel: industriLabel,
