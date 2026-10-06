@@ -933,7 +933,7 @@ var SP = (function () {
   var FASE_RANK = { "Akumulasi": 5, "Spring": 4, "Markup": 3, "Netral": 2, "Distribusi": 1 };
   var AKSI_RANK = { "Beli": 3, "Pantau": 2, "Hindari": 1 };
   var $ = function (id) { return document.getElementById(id); };
-  var nf = SP.nf, pct = SP.pct;
+  var nf = SP.nf, pct = SP.pct, toNum = SP.toNum;
   var toast = function (m) { var t = $("toast"); t.textContent = m; t.className = "on"; clearTimeout(t._t); t._t = setTimeout(function () { t.className = ""; }, 2600); };
 
   function hariIni() { var d = new Date(); var p2 = function (n) { return (n < 10 ? "0" : "") + n; }; return d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate()); }
