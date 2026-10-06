@@ -143,6 +143,24 @@ def _baca_json(nama):
         return {}
 
 
+def baca_harian_terbaru(data_dir, tanggal=None):
+    import glob as _glob
+    if tanggal:
+        path = os.path.join(data_dir, "harian-%s.json" % tanggal)
+        if not os.path.exists(path):
+            return None
+    else:
+        files = sorted(_glob.glob(os.path.join(data_dir, "harian-*.json")))
+        if not files:
+            return None
+        path = files[-1]
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
 def muat_tema():
     base = _baca_json("tema.json")
     segar = False
@@ -488,6 +506,15 @@ class Handler(BaseHTTPRequestHandler):
                     "ok": True, "jumlah": len(saham), "ksei": ksei or {}, "saham": saham,
                     "dibuat": datetime.now().astimezone().isoformat(timespec="seconds"),
                 })
+            if jalur == "/api/harian":
+                q = parse_qs(u.query)
+                tgl = (q.get("tanggal", [""])[0] or "").strip()
+                d = baca_harian_terbaru(DATA_DIR, tgl or None)
+                if not d:
+                    return self._json({"ok": False, "error": "belum ada data harian."}, 404)
+                return self._json({"ok": True, "tanggal": d.get("tanggal"),
+                                   "jumlah": d.get("jumlah", len(d.get("saham", []))),
+                                   "saham": d.get("saham", [])})
             if jalur == "/api/scope":
                 sc = (_cache.get("scope") or {}).get("v")
                 if not sc:

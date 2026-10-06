@@ -35,8 +35,25 @@ def test_tulis_harian_atomik():
         assert d["saham"][0]["kode"] == "GOTO"
 
 
+def test_baca_harian_terbaru():
+    import tempfile
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    spec = importlib.util.spec_from_file_location(
+        "m_app", os.path.join(root, "app", "app-screener.py"))
+    m_app = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m_app)
+    with tempfile.TemporaryDirectory() as td:
+        p = os.path.join(td, "harian-20261006.json")
+        with open(p, "w", encoding="utf-8") as fh:
+            json.dump({"tanggal": "20261006", "jumlah": 1,
+                "saham": [{"kode": "GOTO", "close": 32, "volume": 1, "value": 2, "freq": 3}]}, fh)
+        d = m_app.baca_harian_terbaru(td)
+        assert d["tanggal"] == "20261006" and d["jumlah"] == 1
+
+
 if __name__ == "__main__":
     test_normalkan_baris_stock()
     test_baris_tanpa_kode_dibuang()
     test_tulis_harian_atomik()
-    print("Task2 OK: 3 passed")
+    test_baca_harian_terbaru()
+    print("Task3 OK: 4 passed")
