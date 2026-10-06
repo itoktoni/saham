@@ -914,7 +914,7 @@ var SP = (function () {
   }
 
   return {
-    toNum: toNum, parseCSV: parseCSV, ingestKsei: ingestKsei, nf: nf, pct: pct,
+    toNum: toNum, parseCSV: parseCSV, ingestKsei: ingestKsei, nf: nf, pct: pct, fmtBig: fmtBig,
     posRange: posRange, detectFase: detectFase, valuasi: valuasi,
     skor: skor, aksi: aksi, build: build, TF: TF, tfCfg: tfCfg, skorTF: skorTF, aksiTF: aksiTF, sisaTF: sisaTF,
     METODE: METODE, matchMetode: matchMetode, agregatSektor: agregatSektor, narasiSektor: narasiSektor, barAkumulasi: barAkumulasi, combo: combo, exitLevel: exitLevel,     smartMoney: smartMoney, bounty: bounty, suspen: suspen, suspenKet: suspenKet, pesaing: pesaing, brokerInfo: brokerInfo, brTag: brTag, gabung: gabung, industriLabel: industriLabel,
@@ -1167,7 +1167,7 @@ var SP = (function () {
         "<td>" + aksiBadge(x._aksiD != null ? x._aksiD : x.aksi) + (x._hold ? '<span class="sisaChip' + (x._hold.lewat ? " kdl" : "") + '" title="Max-hold mode ' + SP.TF[tf].label + '">' + (x._hold.lewat ? "KDL" : "SISA " + x._hold.label) + "</span>" : "") + "</td>" +
         "<td>" + likuidBadge(x) + "</td>" +
         '<td class="n">' + (SP.toNum(x.r._freq) > 0 ? nf(SP.toNum(x.r._freq), 0) : '<span class="mut">—</span>') + "</td>" +
-        '<td class="n">' + (SP.toNum(x.r._hvalue) > 0 ? fmtBig(SP.toNum(x.r._hvalue)) : '<span class="mut">—</span>') + "</td>" +
+        '<td class="n">' + (SP.toNum(x.r._hvalue) > 0 ? SP.fmtBig(SP.toNum(x.r._hvalue)) : '<span class="mut">—</span>') + "</td>" +
         "<td>" + comboBadge(x) + "</td>" +
         "</tr>";
     }).join("");
