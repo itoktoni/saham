@@ -65,3 +65,8 @@ const built = SP.build([Object.assign({ kode: "TST", nama: "T", sektor: "S" }, r
 console.log("build-markup:", built[0].fase === "Markup" ? "OK" : "FAIL:" + built[0].fase);
 const sc = SP.skorTF(rRun, {}, "Markup", valMid, "bulan", true);
 console.log("smom-lunak:", sc === 49 ? "OK-nilai-" + sc : "FAIL:" + sc);
+const rLiquid = Object.assign({}, rRun, { nilai_harian: 1000000000 });
+const rBig = Object.assign({}, rRun, { nilai_harian: 50000000000 });
+const scLiq = SP.skorTF(rLiquid, {}, "Netral", valMid, "bulan");
+const scBig = SP.skorTF(rBig, {}, "Netral", valMid, "bulan");
+console.log("bonus-liquid:", scLiq > scBig ? "OK" : "FAIL:" + scLiq + "vs" + scBig);
