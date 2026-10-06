@@ -819,6 +819,23 @@ def fetch_stock_summary(f, tanggal_yyyymmdd):
     return out or None
 
 
+def tulis_harian(path_tujuan, tanggal, saham):
+    import os
+    from datetime import datetime
+    payload = {
+        "dibuat": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "tanggal": tanggal,
+        "jumlah": len(saham),
+        "sumber": "IDX Stock Summary (Volume/Value/Frequency resmi per emiten)",
+        "saham": saham,
+    }
+    tmp = path_tujuan + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
+    os.replace(tmp, path_tujuan)
+    return path_tujuan
+
+
 def hitung_sektor(records):
     """Kekuatan sektor = rata-rata return 6 bulan emiten per sektor.
 
@@ -1881,6 +1898,10 @@ def main():
     ap.add_argument("--ringkas", action="store_true", help="Hanya cetak ringkasan akhir")
     ap.add_argument("--pasar", action="store_true",
                     help="HANYA ambil regime pasar (IHSG + likuiditas), tanpa data emiten")
+    ap.add_argument("--harian", action="store_true",
+                    help="HANYA ambil Stock Summary harian seluruh pasar (Volume/Value/Freq)")
+    ap.add_argument("--harian-tanggal", default=None, metavar="YYYYMMDD",
+                    help="Tanggal perdagangan, mis. 20261006 (bawaan: hari ini)")
     ap.add_argument("--no-pasar", action="store_true",
                     help="Lewati pengambilan regime pasar")
     ap.add_argument("--pasar-hari", type=int, default=30,
@@ -2004,6 +2025,19 @@ def main():
         log("[!] Gagal mendapatkan crumb Yahoo. Coba lagi beberapa menit kemudian.")
         return 1
     log("Sesi Yahoo siap.")
+
+    # -- mode harian saja: Stock Summary seluruh pasar -----------------------
+    if args.harian:
+        from datetime import datetime as _dt
+        tgl = args.harian_tanggal or _dt.now().strftime("%Y%m%d")
+        data = fetch_stock_summary(f, tgl)
+        if not data:
+            log("[!] Stock Summary %s kosong/gagal (IDX 403 atau libur). File lama tidak diubah." % tgl)
+            return 2
+        path = "harian-%s.json" % tgl
+        tulis_harian(path, tgl, data)
+        log("Harian tersimpan: %s (%d emiten)" % (os.path.abspath(path), len(data)))
+        return 0
 
     # -- mode pasar saja: tidak perlu menarik data emiten --------------------
     if args.pasar:
