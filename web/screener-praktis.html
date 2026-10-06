@@ -757,7 +757,7 @@ var SP = (function () {
   // Nilai: MOS dicap di 50%, di-decay mengukur kedalaman drawdown dari
   // high_52, lalu digabung 60/40 dengan sudut pandang bandar (asing_avg).
   // Momrev: kembalikan 21 hari terakhir (runner memudar -> skor tinggi).
-  function skor(r, k, fase, val) {
+  function skor(r, k, fase, val, streakOk) {
     k = k || {};
     var sNilai = clamp((val.mos + 20) / 70 * 100, 0, val.mos > 50 ? 65 : 100);
     var h52 = toNum(r.high_52), harga = toNum(r.harga);
@@ -788,6 +788,10 @@ var SP = (function () {
 
     var sMom = (r.ret20 == null || r.ret20 === "") ? 50
              : clamp(50 - toNum(r.ret20) * 4, 0, 100);
+    if (fase === "Markup" && streakOk) {
+      sMom = (r.ret20 == null || r.ret20 === "") ? 50
+           : clamp(50 - toNum(r.ret20) * 2, 20, 100);
+    }
 
     return Math.round(0.15 * sNilai + 0.30 * sKualitas + 0.15 * sTiming
                     + 0.10 * sAliran + 0.30 * sMom);
@@ -816,7 +820,7 @@ var SP = (function () {
     bulan: { label: "Bulanan · max 1 month", maxHold: 30, w: { nilai: 0.15, kualitas: 0.30, timing: 0.15, aliran: 0.10, mom: 0.30 }, minLiq: 500000000, hideDist: false, kalibrasi: true }
   };
   function tfCfg(tf) { return TF[tf] || TF.bulan; }
-  function skorTF(r, k, fase, val, tf) {
+  function skorTF(r, k, fase, val, tf, streakOk) {
     var c = tfCfg(tf), w = c.w;
     var sNilai;
     if (w.nilai <= 0) { sNilai = 50; }
@@ -848,6 +852,9 @@ var SP = (function () {
     var dI = k.dksei_institusi_1m == null ? 0 : k.dksei_institusi_1m;
     var sAliran = clamp(50 + Math.max(dA, dI) * 8, 0, 100);
     var sMom = (r.ret20 == null || r.ret20 === "") ? 50 : clamp(50 - toNum(r.ret20) * 4, 0, 100);
+    if (fase === "Markup" && streakOk) {
+      sMom = (r.ret20 == null || r.ret20 === "") ? 50 : clamp(50 - toNum(r.ret20) * 2, 20, 100);
+    }
     return Math.round(w.nilai * sNilai + w.kualitas * sKualitas + w.timing * sTiming + w.aliran * sAliran + w.mom * sMom);
   }
   function aksiTF(fase, sc, val, pos, mosBandar, tf, extra) {
@@ -875,15 +882,18 @@ var SP = (function () {
     return { sisa: sisa, lewat: false, label: "H+" + hari };
   }
 
-  function build(rows, ksei, fundMap) {
+  function build(rows, ksei, fundMap, scopeMap) {
     ksei = ksei || {};
     fundMap = fundMap || {};
+    scopeMap = scopeMap || {};
     return rows.map(function (r) {
       var kode = String(r.kode || "").trim().toUpperCase();
       var k = ksei[kode] || {};
       var val = valuasi(r, fundMap[kode]);
-      var fase = detectFase(r, k);
-      var sc = skor(r, k, fase, val);
+      var entry = scopeMap[kode] || null;
+      var fase = detectFase(r, k, entry);
+      var streak = (fase === "Markup") && streakBeli(entry);
+      var sc = skor(r, k, fase, val, streak);
       var harga = toNum(r.harga);
       var pos_r = posRange(r);
       var asingAvg = (k.asing_avg_price != null && k.asing_avg_price > 0) ? k.asing_avg_price : null;
@@ -891,7 +901,7 @@ var SP = (function () {
       var hi52 = toNum(r.high_52);
       return {
         kode: kode, nama: r.nama || "", sektor: r.sektor || "", r: r, k: k,
-        val: val, fase: fase, skor: sc,
+        val: val, fase: fase, skor: sc, _streak: !!streak,
         aksi: aksi(fase, sc, val, pos_r, asingPnl != null ? -asingPnl : null),
         pos: pos_r,
         asing_avg: asingAvg,
@@ -1108,7 +1118,7 @@ var SP = (function () {
     var tf = tfAktif();
     // Hitung skor/aksi tampilan dulu supaya filter Aksi & sort Aksi pakai nilai TF aktif
     d.forEach(function (x) {
-      x._scD = SP.skorTF(x.r, x.k, x.fase, x.val, tf);
+      x._scD = SP.skorTF(x.r, x.k, x.fase, x.val, tf, x._streak);
       x._hold = SP.sisaTF(x.umurSejak || hariIni(), hariIni(), tf);
       x._aksiD = SP.aksiTF(x.fase, x._scD, x.val, x.pos, x.asing_pnl != null ? -x.asing_pnl : null, tf, { lewatHold: x._hold.lewat, isLockH0: !!x.lockH0 });
     });
@@ -1555,7 +1565,7 @@ var SP = (function () {
       if (j.fundEntry && Object.keys(j.fundEntry).length) S.fund.emiten[kode] = j.fundEntry;
       var m = {};
       m[kode] = j.k || {};
-      var b = SP.build([j.saham], m, S.fund.emiten || {})[0];
+      var b = SP.build([j.saham], m, S.fund.emiten || {}, S.scope.emiten || {})[0];
       if (!b) throw new Error("gagal membangun record");
       for (var sdi = 0; sdi < S.data.length; sdi++) {
         if (S.data[sdi].kode === kode) { S.data[sdi] = b; break; }
@@ -1774,7 +1784,7 @@ var SP = (function () {
       }).then(function (o) {
         if (!o.j || !o.j.ok) return null;
         var m = {}; m[k] = o.j.k || {};
-        var b = SP.build([o.j.saham], m, S.fund.emiten || {})[0];
+        var b = SP.build([o.j.saham], m, S.fund.emiten || {}, S.scope.emiten || {})[0];
         if (o.j.fundEntry && Object.keys(o.j.fundEntry).length) { S.fund.emiten = S.fund.emiten || {}; S.fund.emiten[k] = o.j.fundEntry; }
         return b || null;
       }).catch(function () { return null; });
@@ -1911,7 +1921,7 @@ var SP = (function () {
   }
 
   function rebuild() {
-    S.data = SP.build(S._csvRows || [], S.ksei, S.fund.emiten || {});
+    S.data = SP.build(S._csvRows || [], S.ksei, S.fund.emiten || {}, S.scope.emiten || {});
     updateUmur();
     renderTema();
     render();
@@ -2089,7 +2099,7 @@ var SP = (function () {
     var head = ["kode", "nama", "industri", "harga", "fase", "asing_pct", "dasing_1m", "rata2_asing", "upside_pct", "mos_pct", "fv", "skor", "aksi", "likuid", "freq", "value", "combo"];
     var lines = [head.join(";")];
     rows.forEach(function (x) {
-      var scD = (x._scD != null ? x._scD : SP.skorTF(x.r, x.k, x.fase, x.val, tf));
+      var scD = (x._scD != null ? x._scD : SP.skorTF(x.r, x.k, x.fase, x.val, tf, x._streak));
       var hold = x._hold || SP.sisaTF(x.umurSejak || hariIni(), hariIni(), tf);
       var aksiD = (x._aksiD != null ? x._aksiD : SP.aksiTF(x.fase, scD, x.val, x.pos, x.asing_pnl != null ? -x.asing_pnl : null, tf, { lewatHold: hold.lewat, isLockH0: !!x.lockH0 }));
       var liqV = SP.toNum(x.r.nilai_harian);

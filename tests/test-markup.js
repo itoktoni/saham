@@ -55,3 +55,13 @@ const r = { s_springlow: 100, s_resistance: 200, harga: 190,
 const k = { dksei_asing_1m: -1.0, dksei_institusi_1m: -0.5 };
 console.log("fase-streak:", SP.detectFase(r, k, entryStreak()) === "Markup" ? "OK" : "FAIL");
 console.log("fase-noscope:", SP.detectFase(r, k, null) === "Distribusi" ? "OK" : "FAIL");
+const rRun = { s_springlow: 100, s_resistance: 200, harga: 190,
+  s_vol_ratio: 2.0, s_spring: 0, s_sideways: 0, s_closeabove: 1,
+  high_52: 200, ret20: 25, laba: 100000000000, der: 0.5, eps_trend: "fluktuatif",
+  eps: 100, ekuitas: 1000000000000, saham: 1000000000, cagr: 10, nilai_harian: 0 };
+const valMid = { mos: 10, roe: 10, intrinsic: 200 };
+const built = SP.build([Object.assign({ kode: "TST", nama: "T", sektor: "S" }, rRun)],
+  { TST: { dksei_asing_1m: -1.0, dksei_institusi_1m: -0.5 } }, {}, { TST: entryStreak() });
+console.log("build-markup:", built[0].fase === "Markup" ? "OK" : "FAIL:" + built[0].fase);
+const sc = SP.skorTF(rRun, {}, "Markup", valMid, "bulan", true);
+console.log("smom-lunak:", sc === 49 ? "OK-nilai-" + sc : "FAIL:" + sc);
