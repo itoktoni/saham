@@ -9,7 +9,7 @@
   --bg:#edf1f6; --panel:#fff; --panel2:#f6f8fb; --ink:#161a20; --ink2:#3d444d;
   --muted:#5b6470; --line:#e0e5ec; --line2:#eef1f6;
   --accent:#1f5fd0; --accent2:#eaf1fd; --accentink:#123a86; --accentdark:#164ea8;
-  --up:#c62828; --down:#17795e;
+  --up:#17795e; --down:#c62828;
   --f-akum:#17795e; --f-spring:#1f5fd0; --f-markup:#c62828; --f-dist:#b26a00; --f-netral:#8a8f98;
   --r:14px; --sh:0 1px 2px rgba(16,24,40,.07),0 4px 14px rgba(16,24,40,.07);
   --ring:0 0 0 3px rgba(31,95,208,.13);
@@ -956,9 +956,9 @@ var SP = (function () {
   function umurTxt(x) {
     if (x.umurBaru || x.umurHari == null) return '<span class="mut" title="Fase ini baru terpantau — umur belum diketahui">baru</span>';
     var h = x.umurHari;
-    if (h <= 0) return '<span class="neg" title="Fase terpantau hari ini — umur dihitung per hari kalender">hari ini</span>';    if (h > 60) return '<span class="pos" title="Lewat 60 hari bursa — di luar horizon terkalibrasi">' + h + " hr ⚠</span>";
+    if (h <= 0) return '<span class="mut" title="Fase terpantau hari ini — umur dihitung per hari kalender">hari ini</span>';    if (h > 60) return '<span class="neg" title="Lewat 60 hari bursa — di luar horizon terkalibrasi">' + h + " hr ⚠</span>";
     if (h > 20) return '<span class="kuning" title="Umur fase terpantau">' + h + " hr</span>";
-    return '<span class="neg" title="Segar (≤ 20 hari)">' + h + " hr</span>";
+    return '<span class="mut" title="Segar (≤ 20 hari)">' + h + " hr</span>";
   }
 
   // ---------- kontrak 60 hari bursa ----------
@@ -973,7 +973,7 @@ var SP = (function () {
     var kt = muatKontrak()[kode];
     if (!kt) return '<span class="mut">—</span>';
     var st = SP.statusKontrak(kt, hariIni());
-    if (st.lewat) return '<span class="pos" title="Kontrak kedaluwarsa — evaluasi: tutup atau rol">KDL H+' + st.hari + "</span>";
+    if (st.lewat) return '<span class="neg" title="Kontrak kedaluwarsa — evaluasi: tutup atau rol">KDL H+' + st.hari + "</span>";
     return '<span class="kuning" title="Hari ke-' + st.hari + " dari masa kontrak (sisa " + st.sisa + ' hari kalender)">H+' + st.hari + "</span>";
   }
 
@@ -1137,13 +1137,13 @@ var SP = (function () {
       var dA = x.k.dksei_asing_1m;
       var dAtxt = dA == null ? '<span class="mut">—</span>' : '<span class="' + deltaCls(dA) + '">' + (dA > 0 ? "+" : "") + nf(dA, 2) + "</span>";
       var asing = x.k.asing_pct == null ? '<span class="mut">—</span>' : nf(x.k.asing_pct, 1) + "%";
-      var mos = '<span class="' + (x.val.mos > 0 ? "neg" : "pos") + '">' + nf(x.val.mos, 0) + "%</span>";
+      var mos = '<span class="' + (x.val.mos > 0 ? "pos" : "neg") + '">' + nf(x.val.mos, 0) + "%</span>";
       var fvTxt = x.val.intrinsic > 0
-        ? '<span class="' + (x.val.intrinsic > SP.toNum(x.r.harga) ? "neg" : "pos") + '">' + nf(x.val.intrinsic, 0) + "</span>"
+        ? '<span class="' + (x.val.intrinsic > SP.toNum(x.r.harga) ? "pos" : "neg") + '">' + nf(x.val.intrinsic, 0) + "</span>"
         : '<span class="mut">—</span>';
       var avgTxt = x.asing_avg == null ? '<span class="mut">—</span>' : nf(x.asing_avg, 0);
       var upTxt = x.upside == null ? '<span class="mut">—</span>'
-        : '<span class="' + (x.upside > 0 ? "neg" : "pos") + '">' + (x.upside > 0 ? "+" : "") + nf(x.upside, 0) + "%</span>";
+        : '<span class="' + (x.upside > 0 ? "pos" : "neg") + '">' + (x.upside > 0 ? "+" : "") + nf(x.upside, 0) + "%</span>";
       var scD = (x._scD != null ? x._scD : x.skor);
       var bar = '<span class="bar"><i style="width:' + scD + '%"></i></span>';
       var dipH = (muatQuest()[hariIni()] || {});
@@ -1411,8 +1411,8 @@ var SP = (function () {
       rowx("FV ROE-PBV", v.rincian.roepbv > 0 ? nf(v.rincian.roepbv, 0) : "—", "penilai 2 menaksir dari isi toko dikali kelarisan — makin laris, makin pantas dihargai di atas isi tokonya.") +
       rowx("FV Equity growth", v.rincian.growth > 0 ? nf(v.rincian.growth, 0) : "—", "penilai 3 menumbuhkan isi toko mengikuti kelarisan selama 5 tahun ke depan — paling optimistis, cocok untuk usaha yang sedang melesat.") +
       rowx("Median dari", v.nMetode + " metode valid", "jumlah penilai yang datanya lengkap dan dipakai. Makin banyak (3), makin kokoh taksirannya.") +
-      rowx("Margin of Safety", '<span class="' + (v.mos > 0 ? "neg" : "pos") + '">' + nf(v.mos, 1) + "%</span>", mosSub) +
-      rowx("Upside ke nilai wajar", x.upside == null ? "—" : '<span class="' + (x.upside > 0 ? "neg" : "pos") + '">' + (x.upside > 0 ? "+" : "") + nf(x.upside, 1) + "%</span>", "ruang naik dari harga kini ke nilai wajar. Bukan janji — hanya jarak matematis kalau taksiran benar.") +
+      rowx("Margin of Safety", '<span class="' + (v.mos > 0 ? "pos" : "neg") + '">' + nf(v.mos, 1) + "%</span>", mosSub) +
+      rowx("Upside ke nilai wajar", x.upside == null ? "—" : '<span class="' + (x.upside > 0 ? "pos" : "neg") + '">' + (x.upside > 0 ? "+" : "") + nf(x.upside, 1) + "%</span>", "ruang naik dari harga kini ke nilai wajar. Bukan janji — hanya jarak matematis kalau taksiran benar.") +
       rowx("Ruang ke puncak 52mg", x.ruang52 == null ? "—" : nf(x.ruang52, 1) + "%", "jarak ke harga tertinggi setahun terakhir. Makin kecil, makin dekat pucuk — makin besar risiko beli di harga atas.") +
       fundBox(x) + saingBox(x) + "</div>";
 
@@ -1424,7 +1424,7 @@ var SP = (function () {
       row("Porsi ritel", k.ritel_pct == null ? "—" : nf(k.ritel_pct, 2) + "%") +
       row("Rata2 beli asing (est.)", x.asing_avg == null ? "—" : nf(x.asing_avg, 0)) +
       row("Net beli asing 24bln", k.asing_net_saham == null ? "—" : nf(k.asing_net_saham / 1e6, 1) + " jt lbr") +
-      row("Posisi asing (untung/rugi)", x.asing_pnl == null ? "—" : '<span class="' + (x.asing_pnl > 0 ? "neg" : "pos") + '">' + (x.asing_pnl > 0 ? "+" : "") + nf(x.asing_pnl, 1) + "%</span>") +
+      row("Posisi asing (untung/rugi)", x.asing_pnl == null ? "—" : '<span class="' + (x.asing_pnl > 0 ? "pos" : "neg") + '">' + (x.asing_pnl > 0 ? "+" : "") + nf(x.asing_pnl, 1) + "%</span>") +
       "</div><div>" +
       row("Volume vs rata-rata 20h", nf(SP.toNum(r.s_vol_ratio), 2) + "x") +
       row("Nilai transaksi harian", SP.toNum(r.nilai_harian) > 0 ? "Rp" + nf(SP.toNum(r.nilai_harian) / 1e9, 1) + "M" : "—") +
@@ -1603,7 +1603,7 @@ var SP = (function () {
       rows.sort(function (a, b) { return b.net - a.net; });
       rows = rows.slice(0, 8);
       var trs = rows.map(function (o) {
-        var vsTxt = o.vs == null ? "—" : '<span class="' + (o.vs <= 0 ? "neg" : "pos") + '">' + (o.vs > 0 ? "+" : "") + nf(o.vs, 1) + "%</span>";
+        var vsTxt = o.vs == null ? "—" : '<span class="' + (o.vs <= 0 ? "pos" : "neg") + '">' + (o.vs > 0 ? "+" : "") + nf(o.vs, 1) + "%</span>";
         return "<tr><td>" + o.dot + (o.flag ? ' <span class="mut">(' + o.flag + ")</span>" : "") + "</td>" +
           '<td class="mut">' + o.kat + "</td>" +
           '<td class="n">' + rpSingkat(o.net) + "</td>" +
@@ -1774,7 +1774,7 @@ var SP = (function () {
     var rows = m.rows.map(function (r) {
       var lab = r.sumber + " (avg " + nf(r.avg, 0) + ")";
       if (tbk && r.sumber === "Broker " + tbk) lab = SP.brTag(tbk, 0, S.dirBroker) + " (avg " + nf(r.avg, 0) + ")";
-      return row(lab, '<span class="' + (r.pnl > 0 ? "neg" : "pos") + '">' + (r.pnl > 0 ? "+" : "") + nf(r.pnl, 1) + "%</span>" + (r.extra ? ' <span class="mut">' + r.extra + "</span>" : ""));
+      return row(lab, '<span class="' + (r.pnl > 0 ? "pos" : "neg") + '">' + (r.pnl > 0 ? "+" : "") + nf(r.pnl, 1) + "%</span>" + (r.extra ? ' <span class="mut">' + r.extra + "</span>" : ""));
     }).join("");
     var vonis = m.jarakPct <= 0
       ? "Harga kita " + nf(Math.abs(m.jarakPct), 1) + "% di bawah avg " + m.terbaik.sumber + "."
@@ -1851,7 +1851,7 @@ var SP = (function () {
       row("Kedaluwarsa", SP.tanggalIndo(kt.kdl) + " (≈84 hari kalender)") +
       row("Odds terkalibrasi", "≈" + K.hijau3 + " hijau @3bln vs " + K.base3 + " acak") +
       '<div class="note">Masa kontrak = horizon skor (60 hari bursa). Lewat tanggal ini keunggulan tidak lagi terukur: <b>rol</b> bila aksi masih Beli (ulas ulang), atau <b>tutup</b>.' +
-      (st.lewat ? ' <b class="pos">— kontrak sudah kedaluwarsa.</b>' : "") + "</div>" +
+      (st.lewat ? ' <b class="neg">— kontrak sudah kedaluwarsa.</b>' : "") + "</div>" +
       '<div class="ktl-aksi"><button class="btn" id="dwKtlTutup">Tutup kontrak</button>' +
       (x.aksi === "Beli" ? '<button class="btn pri" id="dwKtlRol">Rol 60 hari lagi</button>' : "") +
       "</div>";
