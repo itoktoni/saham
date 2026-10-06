@@ -50,6 +50,13 @@ Status: disetujui user (broker streak + Beli bersyarat)
   `fase === "Markup" && sc >= 60 && val.mos > -15` → "Beli", selain itu "Pantau".
 - Distribusi tetap "Hindari" tanpa kecuali.
 
+### 4.4 Bonus likuiditas kandang bandar
+- Fakta lapangan: big cap lamban digerakkan; bandar main di value harian 500jt–3M.
+- Di `skor()` dan `skorTF()`, sebelum `sTiming = clamp(...)`: jika
+  `nilai_harian` dalam [500jt, 3M] → `sTiming += 8` (selevel bonus sideways +8 yang ada).
+- Di luar rentang: tidak ada bonus maupun penalti. Ambang 500jt selaras dengan
+  `minLiq` mode Bulanan; angka +8 boleh di-tune nanti tanpa ubah struktur.
+
 ## 5. Error handling
 - `entry` null/undefined, `acc` kosong, `series` kosong → fallback aturan lama.
   Tidak boleh throw bila scope belum diunduh.
