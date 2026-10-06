@@ -70,3 +70,6 @@ const rBig = Object.assign({}, rRun, { nilai_harian: 50000000000 });
 const scLiq = SP.skorTF(rLiquid, {}, "Netral", valMid, "bulan");
 const scBig = SP.skorTF(rBig, {}, "Netral", valMid, "bulan");
 console.log("bonus-liquid:", scLiq > scBig ? "OK" : "FAIL:" + scLiq + "vs" + scBig);
+console.log("aksi-markup-beli:", SP.aksiTF("Markup", 65, { mos: 10 }, 0.8, null, "bulan", {}) === "Beli" ? "OK" : "FAIL");
+console.log("aksi-markup-mahal:", SP.aksiTF("Markup", 65, { mos: -20 }, 0.8, null, "bulan", {}) === "Pantau" ? "OK" : "FAIL");
+console.log("aksi-markup-rendah:", SP.aksiTF("Markup", 55, { mos: 10 }, 0.8, null, "bulan", {}) === "Pantau" ? "OK" : "FAIL");

@@ -809,7 +809,7 @@ var SP = (function () {
       if (mosBandar != null && mosBandar <= -10) return "Pantau";
       return "Beli";
     }
-    if (fase === "Markup") return (pos < 0.55 && sc >= 70) ? "Beli" : "Pantau";
+    if (fase === "Markup") return (sc >= 60 && val.mos > -15) ? "Beli" : "Pantau";
     return sc >= 55 ? "Pantau" : "Hindari";
   }
 
@@ -872,7 +872,7 @@ var SP = (function () {
     if (tf === "kilat") {
       if (extra.isLockH0) return "Pantau";
       if (fase !== "Markup") return "Pantau";
-      return sc >= 60 ? "Beli" : "Pantau";
+      return (sc >= 60 && val.mos > -15) ? "Beli" : "Pantau";
     }
     return aksi(fase, sc, val, pos, mosBandar);
   }
