@@ -1031,7 +1031,6 @@ var SP = (function () {
     { k: "industri", t: "Industri", n: false },
     { k: "harga", t: "Harga", n: true, get: function (d) { return SP.toNum(d.r.harga); } },
     { k: "fase", t: "Fase", n: false, get: function (d) { return FASE_RANK[d.fase] || 0; } },
-    { k: "umur", t: "Umur Fase", n: true, get: function (d) { return d.umurBaru ? -1 : (d.umurHari || 0); } },
     { k: "asing", t: "Asing %", n: true, get: function (d) { return d.k.asing_pct == null ? -1 : d.k.asing_pct; } },
     { k: "dasing", t: "ΔAsing 1m", n: true, get: function (d) { return d.k.dksei_asing_1m == null ? -999 : d.k.dksei_asing_1m; } },
     { k: "asing_avg", t: "Rata2 Asing", n: true, get: function (d) { return d.asing_avg == null ? -1 : d.asing_avg; } },
@@ -1039,7 +1038,6 @@ var SP = (function () {
     { k: "mos", t: "MOS %", n: true, get: function (d) { return d.val.mos; } },
     { k: "fv", t: "FV", n: true, get: function (d) { return d.val.intrinsic; } },
     { k: "skor", t: "Skor", n: true, get: function (d) { return d._scD != null ? d._scD : d.skor; } },
-    { k: "kontrak", t: "Kontrak", n: true, get: function (d) { var t = muatKontrak()[d.kode]; return t ? SP.statusKontrak(t, hariIni()).sisa : -9999; } },
     { k: "aksi", t: "Aksi", n: false, get: function (d) { var a = (d._aksiD != null ? d._aksiD : d.aksi); return AKSI_RANK[a] || 0; } },
     { k: "likuid", t: "Likuid", n: false, get: function (d) { return SP.toNum(d.r.nilai_harian); } },
     { k: "freq", t: "Freq", n: true, get: function (d) { return SP.toNum(d.r._freq); } },
@@ -1080,6 +1078,8 @@ var SP = (function () {
     if (typeof S.filter === "string" && S.filter !== "Semua") { S.filterFase = [S.filter]; S.filter = undefined; }
     if (S.sortKey && (!S.sortSpecs || !S.sortSpecs.length)) { S.sortSpecs = [{ key: S.sortKey, dir: S.sortDir || -1 }]; S.sortKey = undefined; }
     if (!S.sortSpecs || !S.sortSpecs.length) S.sortSpecs = [{ key: "skor", dir: -1 }];
+    S.sortSpecs = S.sortSpecs.filter(function (sp) { return COLS.some(function (c) { return c.k === sp.key; }); });
+    if (!S.sortSpecs.length) S.sortSpecs = [{ key: "skor", dir: -1 }];
     if (!S.filterFase) S.filterFase = [];
     if (!S.filterAksi) S.filterAksi = [];
     var tf = tfAktif();
@@ -1156,7 +1156,6 @@ var SP = (function () {
         (function () { var lb = SP.industriLabel(x.kode, S.fund.emiten || {}, x.sektor); return lb === "—" ? '<td><span class="mut">—</span></td>' : '<td class="nama" title="' + lb.replace(/"/g, "") + '">' + lb + "</td>"; })() +
         '<td class="n">' + nf(SP.toNum(x.r.harga), 0) + "</td>" +
         "<td>" + faseBadge(x.fase) + "</td>" +
-        '<td class="n">' + umurTxt(x) + "</td>" +
         '<td class="n">' + asing + "</td>" +
         '<td class="n">' + dAtxt + "</td>" +
         '<td class="n">' + avgTxt + "</td>" +
@@ -1164,8 +1163,7 @@ var SP = (function () {
         '<td class="n">' + mos + "</td>" +
         '<td class="n">' + fvTxt + "</td>" +
         '<td class="n">' + bar + scD + "</td>" +
-        '<td class="n">' + kontrakTxt(x.kode) + "</td>" +
-        "<td>" + aksiBadge(x._aksiD != null ? x._aksiD : x.aksi) + (x._hold ? '<span class="sisaChip' + (x._hold.lewat ? " kdl" : "") + '" title="Max-hold mode ' + SP.TF[tf].label + '">' + (x._hold.lewat ? "KDL" : "SISA " + x._hold.label) + "</span>" : "") + "</td>" +
+        "<td>" + aksiBadge(x._aksiD != null ? x._aksiD : x.aksi) + "</td>" +
         "<td>" + likuidBadge(x) + "</td>" +
         '<td class="n">' + (SP.toNum(x.r._freq) > 0 ? nf(SP.toNum(x.r._freq), 0) : '<span class="mut">—</span>') + "</td>" +
         '<td class="n">' + (SP.toNum(x.r._hvalue) > 0 ? SP.fmtBig(SP.toNum(x.r._hvalue)) : '<span class="mut">—</span>') + "</td>" +
