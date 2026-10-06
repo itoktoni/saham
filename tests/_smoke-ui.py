@@ -33,12 +33,12 @@ with sync_playwright() as p:
     cek("pill bisa dibuka lagi", "min" not in pg.evaluate("document.getElementById('horizonWarn').className"))
 
     hdr = pg.inner_text("#tbl thead")
-    cek("kolom Umur Fase ada", "umur fase" in hdr.lower(), hdr.replace("\n", " "))
-    cek("kolom Kontrak ada", "kontrak" in hdr.lower(), hdr.replace("\n", " "))
-    cek("baris awal umur 'baru'", "baru" in pg.inner_text("#tbl tbody"))
+    cek("kolom Umur Fase hilang", "umur fase" not in hdr.lower(), hdr.replace("\n", " "))
+    cek("kolom Kontrak hilang", "kontrak" not in hdr.lower(), hdr.replace("\n", " "))
+    cek("chip umur 'baru' hilang", "baru" not in pg.inner_text("#tbl tbody"))
 
-    cek("segmented timeframe tampil", pg.is_visible("#tfSeg"))
-    cek("chip SISA max-hold tampil", "SISA" in pg.inner_text("#tbl tbody"))
+    cek("segmented timeframe hilang", not pg.evaluate("!!document.getElementById('tfSeg')"))
+    cek("chip SISA max-hold hilang", "SISA" not in pg.inner_text("#tbl tbody"))
     pg.click("#tbl tbody tr:first-child")
     pg.wait_for_selector(".drawer.on")
     cek("drawer terbuka + select timeframe ada", pg.is_visible("#dwHorizon"))
@@ -62,7 +62,7 @@ with sync_playwright() as p:
     pg.reload()
     pg.click("#btnContoh")
     pg.wait_for_function("document.querySelectorAll('#tbl tbody tr[data-kode]').length > 0")
-    cek("chip KDL tampil untuk tiket lewat", "KDL" in pg.inner_text("#tbl tbody"))
+    cek("chip KDL hilang dari tabel", "KDL" not in pg.inner_text("#tbl tbody"))
 
     pg.click("tr[data-kode='BBCA']")
     pg.wait_for_selector(".drawer.on")
@@ -86,7 +86,7 @@ with sync_playwright() as p:
         if pg.is_visible("#dwKtlBuka"):
             pg.click("#dwKtlBuka")
             pg.wait_for_timeout(250)
-            cek("chip H+0 setelah dicatat", "H+0" in pg.inner_text("#tbl tbody"))
+            cek("chip H+0 hilang dari tabel", "H+0" not in pg.inner_text("#tbl tbody"))
             cek("kartu kontrak + tombol rol muncul", pg.is_visible("#dwKtlRol"))
     else:
         print("  INFO contoh tak punya aksi Beli â€” alur catat dilewati (alur inti sudah diuji via injeksi)")
