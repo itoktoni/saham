@@ -272,6 +272,13 @@ var SP = (function () {
     return x.toLocaleString("id-ID", { minimumFractionDigits: d, maximumFractionDigits: d });
   }
   function pct(x, d) { return (x > 0 ? "+" : "") + nf(x, d == null ? 2 : d) + "%"; }
+  function fmtBig(v) {
+    v = Number(v || 0);
+    if (v >= 1e9) return (v / 1e9).toFixed(2) + "B";
+    if (v >= 1e6) return (v / 1e6).toFixed(2) + "M";
+    if (v >= 1e3) return (v / 1e3).toFixed(2) + "K";
+    return String(Math.round(v));
+  }
 
   // ---------- CSV ----------
   function splitLine(line, d) {
@@ -1034,6 +1041,8 @@ var SP = (function () {
     { k: "kontrak", t: "Kontrak", n: true, get: function (d) { var t = muatKontrak()[d.kode]; return t ? SP.statusKontrak(t, hariIni()).sisa : -9999; } },
     { k: "aksi", t: "Aksi", n: false, get: function (d) { var a = (d._aksiD != null ? d._aksiD : d.aksi); return AKSI_RANK[a] || 0; } },
     { k: "likuid", t: "Likuid", n: false, get: function (d) { return SP.toNum(d.r.nilai_harian); } },
+    { k: "freq", t: "Freq", n: true, get: function (d) { return SP.toNum(d.r._freq); } },
+    { k: "hvalue", t: "Value", n: true, get: function (d) { return SP.toNum(d.r._hvalue); } },
     { k: "combo", t: "Combo", n: false, get: function (d) { return comboLvl(d); } }
   ];
 
@@ -1157,6 +1166,8 @@ var SP = (function () {
         '<td class="n">' + kontrakTxt(x.kode) + "</td>" +
         "<td>" + aksiBadge(x._aksiD != null ? x._aksiD : x.aksi) + (x._hold ? '<span class="sisaChip' + (x._hold.lewat ? " kdl" : "") + '" title="Max-hold mode ' + SP.TF[tf].label + '">' + (x._hold.lewat ? "KDL" : "SISA " + x._hold.label) + "</span>" : "") + "</td>" +
         "<td>" + likuidBadge(x) + "</td>" +
+        '<td class="n">' + (SP.toNum(x.r._freq) > 0 ? nf(SP.toNum(x.r._freq), 0) : '<span class="mut">—</span>') + "</td>" +
+        '<td class="n">' + (SP.toNum(x.r._hvalue) > 0 ? fmtBig(SP.toNum(x.r._hvalue)) : '<span class="mut">—</span>') + "</td>" +
         "<td>" + comboBadge(x) + "</td>" +
         "</tr>";
     }).join("");
@@ -1952,8 +1963,20 @@ var SP = (function () {
       S._csvRows = j.saham || [];
       SP.ingestKsei(j.ksei || {}, S.ksei);
       S.mode = "pasar"; S.picked = {};
-      rebuild();
-      toast("Seluruh pasar dimuat: " + (j.jumlah || S.data.length) + " saham (TradingView)");
+      return fetch("/api/harian").then(function (r) { return r.json(); }).then(function (h) {
+        if (h && h.ok && h.saham) {
+          var map = {};
+          h.saham.forEach(function (s) { map[String(s.kode || "").toUpperCase()] = s; });
+          S._csvRows.forEach(function (r) {
+            var e = map[String(r.kode || "").toUpperCase()];
+            if (e) { r._freq = e.freq; r._hvalue = e.value; }
+          });
+          S.harianTanggal = h.tanggal;
+        }
+      }).catch(function () {}).then(function () {
+        rebuild();
+        toast("Seluruh pasar dimuat: " + (j.jumlah || S.data.length) + " saham (TradingView)" + (S.harianTanggal ? " · Harian IDX " + S.harianTanggal : " · tanpa data harian"));
+      });
     }).catch(function (e) {
       toast("Gagal: " + (e && e.message ? e.message : e));
     }).then(function () { b.disabled = false; b.textContent = asli; });
