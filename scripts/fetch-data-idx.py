@@ -629,7 +629,7 @@ def build_record(kode, prof, fund, ch, args):
 # ----------------------------------------------------------------------------
 IHSG_SIMBOL = "^JKSE"
 IDX_INDEX_URL = "https://www.idx.co.id/primary/TradingSummary/GetIndexSummary"
-IDX_STOCK_URL = "https://www.idx.co.id/primary/TradingSummary/GetStockSummary"
+IDX_STOCK_URL = "https://www.idx.id/primary/TradingSummary/GetStockSummary"
 
 # BI Rate di-scrape dari tabel resmi SEKI Bank Indonesia (bukan BPS: API-nya
 # diblokir firewall, dan halaman web BI merender angkanya lewat JavaScript
@@ -803,7 +803,7 @@ def normalkan_baris_stock(r):
 def fetch_stock_summary(f, tanggal_yyyymmdd):
     url = "%s?date=%s" % (IDX_STOCK_URL, tanggal_yyyymmdd)
     j = f.get(url, headers={
-        "Referer": "https://www.idx.co.id/",
+        "Referer": "https://www.idx.id/",
         "X-Requested-With": "XMLHttpRequest",
     })
     if not j:
