@@ -2062,16 +2062,18 @@ var SP = (function () {
     var tf = tfAktif();
     function q(v) { v = String(v == null ? "" : v); return (/[;"\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v); }
     function num(v, dp) { if (v == null || !isFinite(Number(v))) return ""; return Number(v).toFixed(dp == null ? 0 : dp).replace(".", ","); }
-    var head = ["kode", "nama", "sektor", "harga", "fase", "asing_pct", "dasing_1m", "mos_pct", "skor", "skor_tf", "aksi", "aksi_tf", "sisa", "mode", "fv", "likuid_rp"];
+    var head = ["kode", "nama", "industri", "harga", "fase", "asing_pct", "dasing_1m", "rata2_asing", "upside_pct", "mos_pct", "fv", "skor", "aksi", "likuid", "freq", "value", "combo"];
     var lines = [head.join(";")];
     rows.forEach(function (x) {
       var scD = (x._scD != null ? x._scD : SP.skorTF(x.r, x.k, x.fase, x.val, tf));
       var hold = x._hold || SP.sisaTF(x.umurSejak || hariIni(), hariIni(), tf);
       var aksiD = (x._aksiD != null ? x._aksiD : SP.aksiTF(x.fase, scD, x.val, x.pos, x.asing_pnl != null ? -x.asing_pnl : null, tf, { lewatHold: hold.lewat, isLockH0: !!x.lockH0 }));
-      lines.push([x.kode, q(x.nama), q(x.sektor), SP.toNum(x.r.harga), x.fase,
-        num(x.k.asing_pct, 1), num(x.k.dksei_asing_1m, 2), num(x.val.mos, 1),
-        x.skor, scD, x.aksi, aksiD, hold.lewat ? "KDL" : hold.label, SP.TF[tf].label,
-        Math.round(x.val.intrinsic), SP.toNum(x.r.nilai_harian)].join(";"));
+      var liqV = SP.toNum(x.r.nilai_harian);
+      var liqT = SP.suspen(x) ? "SUSPEN" : (!(liqV > 0) ? "" : (liqV >= 5000000000 ? "Likuid" : "Sepi"));
+      var cb = comboLvl(x);
+      lines.push([x.kode, q(x.nama), q(SP.industriLabel(x.kode, S.fund.emiten || {}, x.sektor)), SP.toNum(x.r.harga), x.fase,
+        num(x.k.asing_pct, 1), num(x.k.dksei_asing_1m, 2), num(x.asing_avg, 0), num(x.upside, 0), num(x.val.mos, 1),
+        Math.round(x.val.intrinsic), scD, aksiD, liqT, SP.toNum(x.r._freq) || "", SP.toNum(x.r._hvalue) || "", cb < 0 ? "" : ("C" + cb)].join(";"));
     });
     var blob = new Blob(["\uFEFF" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
     var a = document.createElement("a");
