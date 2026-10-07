@@ -461,5 +461,10 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("rk: helper + kolom + drawer", SP.twTrap("Jebakan").indexOf("a-hindar") >= 0 && SP.twTrap("-") === "—" && html.indexOf('"rk"') >= 0 && html.indexOf("Anti Jebakan") >= 0 && html.indexOf("pbv_wajar") >= 0);
 }
 
+// 31) input manual pembanding
+{
+  cek("banding: input custom ada", html.indexOf("bandingTambah-") >= 0 && html.indexOf("bandingPlus-") >= 0 && html.indexOf("_bandingCustom") >= 0);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);

@@ -1474,7 +1474,9 @@ var SP = (function () {
   }
   $("dwBody").onclick = function (e) {
     var b = e.target.closest("[id^='btnBanding-']");
-    if (b) { bandingFetch(b.getAttribute("data-main")); }
+    if (b) { bandingFetch(b.getAttribute("data-main")); return; }
+    var p = e.target.closest("[id^='bandingPlus-']");
+    if (p) { bandingTambah(p.getAttribute("data-main")); return; }
   };
 
   function isiDrawer(x) {
@@ -1866,18 +1868,39 @@ var SP = (function () {
     var sej = f.sejenis || [];
     if (!sej.length) return '<div class="mut" style="margin-top:6px">Belum ada daftar pembanding — klik Download Data.</div>';
     S._bandingPick = S._bandingPick || {};
+    S._bandingCustom = S._bandingCustom || {};
     var pick = S._bandingPick[x.kode] || [];
+    var custom = S._bandingCustom[x.kode] || [];
     var ada = {};
     (S.data || []).forEach(function (d) { ada[d.kode] = 1; });
     var ind = (((f.klasifikasi || {}).industri) || [])[0] || "";
-    var list = sej.map(function (k) {
+    var semua = sej.concat(custom.filter(function (k) { return sej.indexOf(k) < 0 && k !== x.kode; }));
+    var list = semua.map(function (k) {
       var on = pick.indexOf(k) >= 0 ? " checked" : "";
       return '<label style="display:inline-block;margin:0 10px 4px 0;white-space:nowrap"><input type="checkbox" class="saingPick" data-main="' + x.kode + '" value="' + k + '"' + on + "> " + k + (ada[k] ? ' <span class="mut">(termuat)</span>' : "") + "</label>";
     }).join("");
     return '<div style="margin-top:8px"><b>Banding kompetitor</b><div class="mut">Industri: <b>' + (ind || "—") + "</b> · centang lalu tekan Banding (data diambil segar).</div>" +
       '<div style="margin-top:4px">' + list + "</div>" +
+      '<div style="margin-top:4px"><input class="mini-in" id="bandingTambah-' + x.kode + '" data-main="' + x.kode + '" placeholder="Tambah kode, mis. MAIN,SIPD" style="width:220px"> ' +
+      '<button class="btn sm" id="bandingPlus-' + x.kode + '" data-main="' + x.kode + '">Tambah</button></div>' +
       '<div style="margin-top:6px"><button class="btn pri" id="btnBanding-' + x.kode + '" data-main="' + x.kode + '">Banding</button> <span class="mut" id="bandingStat-' + x.kode + '"></span></div>' +
       '<div id="bandingHasil-' + x.kode + '"></div></div>';
+  }
+  function bandingTambah(mainKode) {
+    var inp = document.getElementById("bandingTambah-" + mainKode);
+    var mentah = inp ? inp.value : "";
+    var baru = String(mentah || "").toUpperCase().replace(/\.JK\b/g, "").split(/[^A-Z0-9]+/).filter(function (k) { return /^[A-Z0-9]{3,6}$/.test(k) && k !== mainKode; });
+    if (!baru.length) { toast("Isi kode dulu, mis. MAIN,SIPD"); return; }
+    S._bandingCustom = S._bandingCustom || {};
+    var cur = S._bandingCustom[mainKode] || [];
+    baru.forEach(function (k) { if (cur.indexOf(k) < 0 && cur.length < 10) cur.push(k); });
+    S._bandingCustom[mainKode] = cur;
+    S._bandingPick = S._bandingPick || {};
+    var pick = S._bandingPick[mainKode] || [];
+    baru.forEach(function (k) { if (pick.indexOf(k) < 0) pick.push(k); });
+    S._bandingPick[mainKode] = pick;
+    openDrawer(mainKode);
+    toast(baru.length + " kode masuk daftar banding: " + baru.join(", "));
   }
   function bandingFetch(mainKode) {
     var boxes = document.querySelectorAll('input.saingPick[data-main="' + mainKode + '"]');
