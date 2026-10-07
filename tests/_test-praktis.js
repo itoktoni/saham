@@ -451,5 +451,10 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("klas: chips + order + storage", html.indexOf('id="chipsKlas"') >= 0 && html.indexOf("KLAS_ORDER") >= 0 && html.indexOf("sp_filterKlas") >= 0 && html.indexOf("Bangkit") >= 0);
 }
 
+// 29) merge swing agar fase Spring bisa muncul
+{
+  cek("swing: SWING_F di-merge live", html.indexOf("SWING_F") >= 0 && html.indexOf("s_springlow") >= 0);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);

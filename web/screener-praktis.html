@@ -288,6 +288,7 @@ var SP = (function () {
     return "data kurang";
   }
   var KAS_F = ["ev_cfo", "ev_fcf", "peg_cfo", "cfo_cagr", "gross_margin", "margin_stabil", "capex_inten", "cfo3", "sloan", "cash_badge", "klasifikasi", "thowilz"];
+  var SWING_F = ["s_sideways", "s_vol_ratio", "s_freqspike", "s_spring", "s_closeabove", "s_springlow", "s_resistance"];
   var KAS_TTL = 30 * 864e5, AUTO_LENGKAPI = 60;
   function kasTerap(rows, cache) {
     var n = 0;
@@ -997,7 +998,7 @@ var SP = (function () {
     KALIBRASI: KALIBRASI, expiryKontrak: expiryKontrak, statusKontrak: statusKontrak,
     umurFase: umurFase, tanggalIndo: tanggalIndo,
     twNum: twNum, twBadge: twBadge, twKas: twKas,
-    kasTerap: kasTerap, kasLoad: kasLoad, kasSave: kasSave, KAS_F: KAS_F, AUTO_LENGKAPI: AUTO_LENGKAPI
+    kasTerap: kasTerap, kasLoad: kasLoad, kasSave: kasSave, KAS_F: KAS_F, SWING_F: SWING_F, AUTO_LENGKAPI: AUTO_LENGKAPI
   };
 })();
 
@@ -2109,6 +2110,7 @@ var SP = (function () {
         if (!s) return;
         var v = {};
         SP.KAS_F.forEach(function (k) { if (s[k] !== undefined) { r[k] = s[k]; v[k] = s[k]; } });
+        SP.SWING_F.forEach(function (k) { if (s[k] !== undefined) r[k] = s[k]; });
         cache[String(r.kode).toUpperCase()] = { t: Date.now(), v: v };
         n++;
       });
