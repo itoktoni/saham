@@ -425,5 +425,11 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("scan: banner mode pasar ada", html.indexOf("tanpa data kas") >= 0 && html.indexOf("laporan segar") >= 0);
 }
 
+// 25) banner ciut default + lengkapi kas top-40
+{
+  cek("banner: default ciut", html.indexOf('st !== "full"') >= 0 && html.indexOf('id="hzwMin"') >= 0);
+  cek("lengkapi: tombol + endpoint", html.indexOf('id="btnLengkapi"') >= 0 && html.indexOf("/api/lengkapi") >= 0);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);

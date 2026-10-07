@@ -147,6 +147,7 @@ tbody tr.dipantau td{background:var(--accent2)}
   <div class="acts">
     <button class="btn pri" id="btnDownload">Download Data</button>
     <button class="btn" id="btnScanPasar">Scan Seluruh Pasar</button>
+    <button class="btn" id="btnLengkapi" title="Ambil data kas Yahoo (EV/CFO, badge, klasifikasi, skor) untuk 40 saham paling likuid yang masih kosong">Lengkapi Kas Top-40</button>
     <button class="btn" id="btnImpor">Impor Berkas</button>
     <button class="btn" id="btnContoh">Muat Contoh</button>
     <button class="btn" id="btnEkspor">Ekspor CSV</button>
@@ -1040,11 +1041,13 @@ var SP = (function () {
     var el = $("horizonWarn");
     if (!el) return;
     if (!S.data.length) { el.hidden = true; return; }
-    var col = false;
-    try { col = localStorage.getItem("sp_hzw") === "min"; } catch (e) {}
+    var st = null;
+    try { st = localStorage.getItem("sp_hzw"); } catch (e) {}
     var horizon = "3";
     try { horizon = localStorage.getItem("sp_horizon") || "3"; } catch (e) {}
-    if (horizon === "1") col = false; // rencana ≤1 bulan: peringatan dipaksa tampil
+    // Default ciut (hemat tempat); mengembang hanya bila user meminta ("full")
+    // atau rencana ≤1 bulan (peringatan dipaksa tampil).
+    var col = (horizon === "1") ? false : (st !== "full");
     var K = SP.KALIBRASI;
     var tfH = tfAktif();
     var tfNote = SP.TF[tfH].kalibrasi ? "" : ' Mode <b>' + SP.TF[tfH].label + '</b> <b>belum terkalibrasi</b> — bobot skor tebakan beralasan, pakai sebagai filter bukan ramalan.';
@@ -1057,7 +1060,7 @@ var SP = (function () {
     var mn = $("hzwMin");
     if (mn) mn.onclick = function () { try { localStorage.setItem("sp_hzw", "min"); } catch (e) {} renderHorizon(); };
     var bk = $("hzwBuka");
-    if (bk) bk.onclick = function () { try { localStorage.removeItem("sp_hzw"); } catch (e) {} renderHorizon(); };
+    if (bk) bk.onclick = function () { try { localStorage.setItem("sp_hzw", "full"); } catch (e) {} renderHorizon(); };
   }
 
   var SAMPLE_CSV = "kode,nama,sektor,harga,eps,kuartal,ekuitas,saham,laba,der,nilai_harian,eps_trend,dividen,cagr,cyclical,volatil,fcf,wacc,kas,utang,fcf_terminal,g_terminal,s_sideways,s_vol_ratio,s_freqspike,s_topbuyer,s_spring,s_closeabove,s_springlow,s_resistance,sumber\n" +
@@ -2051,6 +2054,32 @@ var SP = (function () {
         rebuild();
         toast("Seluruh pasar dimuat: " + (j.jumlah || S.data.length) + " saham (TradingView, tanpa data kas)" + (S.harianTanggal ? " · Harian IDX " + S.harianTanggal : " · tanpa data harian") + " · klik baris untuk analisis Thowilz");
       });
+    }).catch(function (e) {
+      toast("Gagal: " + (e && e.message ? e.message : e));
+    }).then(function () { b.disabled = false; b.textContent = asli; });
+  };
+  $("btnLengkapi").onclick = function () {
+    if (!APP) { toast("Buka aplikasi dulu: klik dua kali 'Jalankan Screener'"); return; }
+    var b = this, asli = b.textContent;
+    var kosong = (S._csvRows || []).filter(function (r) { return r && (r.ev_cfo == null || r.ev_cfo === ""); });
+    kosong.sort(function (a, c) { return SP.toNum(c.nilai_harian) - SP.toNum(a.nilai_harian); });
+    var kodes = kosong.slice(0, 40).map(function (r) { return String(r.kode || "").toUpperCase(); }).filter(Boolean);
+    if (!kodes.length) { toast("Semua baris sudah ada data kas."); return; }
+    b.disabled = true; b.textContent = "Melengkapi " + kodes.length + " emiten…";
+    fetch("/api/lengkapi?kodes=" + encodeURIComponent(kodes.join(","))).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || !j.ok) throw new Error((j && j.error) || "gagal melengkapi");
+      var map = {};
+      (j.saham || []).forEach(function (s) { map[String(s.kode || "").toUpperCase()] = s; });
+      var KAS = ["ev_cfo", "ev_fcf", "peg_cfo", "cfo_cagr", "gross_margin", "margin_stabil", "capex_inten", "cfo3", "sloan", "cash_badge", "klasifikasi", "thowilz"];
+      var n = 0;
+      (S._csvRows || []).forEach(function (r) {
+        var s = map[String(r.kode || "").toUpperCase()];
+        if (!s) return;
+        KAS.forEach(function (k) { if (s[k] !== undefined) r[k] = s[k]; });
+        n++;
+      });
+      rebuild();
+      toast("Data kas dilengkapi: " + n + " emiten.");
     }).catch(function (e) {
       toast("Gagal: " + (e && e.message ? e.message : e));
     }).then(function () { b.disabled = false; b.textContent = asli; });

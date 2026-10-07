@@ -506,6 +506,20 @@ class Handler(BaseHTTPRequestHandler):
                     "ok": True, "jumlah": len(saham), "ksei": ksei or {}, "saham": saham,
                     "dibuat": datetime.now().astimezone().isoformat(timespec="seconds"),
                 })
+            if jalur == "/api/lengkapi":
+                # Lengkapi data kas Yahoo untuk daftar kode (maks 40) — dipakai
+                # mode pasar yang barisnya dari TradingView tanpa field kas.
+                q = parse_qs(u.query)
+                kirim = bersih_kode((q.get("kodes", [""])[0] or "").split(","))[:40]
+                if not kirim:
+                    return self._json({"ok": False, "error": "kode kosong."}, 400)
+                recs = ambil_emiten(kirim)
+                if not recs:
+                    return self._json({"ok": False, "error": "Gagal mengambil data Yahoo."}, 502)
+                return self._json({
+                    "ok": True, "jumlah": len(recs), "saham": recs,
+                    "dibuat": datetime.now().astimezone().isoformat(timespec="seconds"),
+                })
             if jalur == "/api/harian":
                 q = parse_qs(u.query)
                 tgl = (q.get("tanggal", [""])[0] or "").strip()
