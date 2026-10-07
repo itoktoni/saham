@@ -314,24 +314,24 @@ def compute_peg_cfo(ev_cfo, cagr):
 
 
 def compute_klasifikasi(sektor, cagr_earn, dividen, der, laba_hist, net_cash_mcap):
-    """Satu label Thowilz. Preseden: Turnaround > AssetPlay > FastGrowing >
-    Cyclical > Stalwart > '-'. cagr_earn dalam persen (mis. 25.0)."""
+    """Satu label Thowilz bahasa sederhana. Preseden: Bangkit > Kaya Kas >
+    Tumbuh Cepat > Siklus > Raksasa Stabil > '-'. cagr_earn persen (mis. 25.0)."""
     lh = sorted([(t, v) for t, v in (laba_hist or []) if t is not None], key=lambda p: p[0])
     if len(lh) >= 2 and lh[-2][1] is not None and lh[-1][1] is not None:
         if lh[-2][1] < 0 < lh[-1][1]:
-            return "Turnaround"
+            return "Bangkit"
     if net_cash_mcap is not None and net_cash_mcap > 0.3:
-        return "AssetPlay"
+        return "Kaya Kas"
     if cagr_earn is not None and cagr_earn > 20:
-        return "FastGrowing"
+        return "Tumbuh Cepat"
     if (sektor or "") in SEKTOR_CYCLICAL:
-        return "Cyclical"
+        return "Siklus"
     try:
         d = float(der or 0)
     except (TypeError, ValueError):
         d = 99.0
     if dividen == 1 and d < 1:
-        return "Stalwart"
+        return "Raksasa Stabil"
     return "-"
 
 

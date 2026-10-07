@@ -1515,7 +1515,7 @@ var SP = (function () {
       rowx("CFO > laba 3 thn", SP.toNum(r.cfo3) === 1 ? "Ya" : ((r.cash_badge == null || r.cash_badge === "" || r.cash_badge === "-") ? "—" : "Tidak"), "cfo3 dari laporan.") +
       rowx("Sloan accrual", (r.sloan == null || r.sloan === "") ? "—" : nf(SP.toNum(r.sloan), 2), ">0,10 laba semu.") +
       rowx("Gross margin", (r.gross_margin == null || r.gross_margin === "") ? "—" : nf(SP.toNum(r.gross_margin), 1) + "%" + (SP.toNum(r.margin_stabil) === 1 ? " (stabil)" : " (labil)"), "proksi pricing power.") +
-      rowx("Klasifikasi", (r.klasifikasi == null || r.klasifikasi === "" || r.klasifikasi === "-") ? "—" : String(r.klasifikasi).replace(/</g, ""), "Turnaround > AssetPlay > FastGrowing > Cyclical > Stalwart.") +
+      rowx("Klasifikasi", (r.klasifikasi == null || r.klasifikasi === "" || r.klasifikasi === "-") ? "—" : String(r.klasifikasi).replace(/</g, ""), "Bangkit = rugi jadi untung · Kaya Kas = kas bersih besar · Tumbuh Cepat = laba +20%/thn · Siklus = ikut komoditas · Raksasa Stabil = besar + dividen.") +
       rowx("Skor Thowilz", SP.toNum(r.thowilz) > 0 ? "<b>" + SP.toNum(r.thowilz) + " / 100</b>" : "—", "Valuasi 35 + Kualitas 35 + Tesis 15 + Timing 15.") +
       rowx("Checklist Thowilz", twOk(evcf && evcf <= 15) + " valuasi · " + twOk(r.cash_badge === "Lolos") + " kas · " + twOk(r.klasifikasi && r.klasifikasi !== "-") + " tesis · " + twOk(SP.toNum(r.s_spring) === 1 || SP.toNum(r.s_sideways) === 1) + " timing", "4 pilar dari doc Thomas William.") +
       "</div>";

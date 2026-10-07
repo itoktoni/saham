@@ -434,7 +434,7 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
 // 26) cache kas + terap
 {
   var rowsK = [{ kode: "AA", ev_cfo: "" }, { kode: "BB", ev_cfo: 5 }];
-  var cacheK = { AA: { t: Date.now(), v: { ev_cfo: 7.5, cash_badge: "Watchlist", klasifikasi: "Cyclical", thowilz: 55 } } };
+  var cacheK = { AA: { t: Date.now(), v: { ev_cfo: 7.5, cash_badge: "Watchlist", klasifikasi: "Siklus", thowilz: 55 } } };
   cek("kas: terap isi yang kosong", SP.kasTerap(rowsK, cacheK) === 1 && rowsK[0].ev_cfo === 7.5 && rowsK[0].thowilz === 55);
   cek("kas: tidak timpa yang ada", rowsK[1].ev_cfo === 5);
   cek("kas: kadaluarsa ditolak", SP.kasTerap([{ kode: "CC", ev_cfo: "" }], { CC: { t: Date.now() - 31 * 864e5, v: { ev_cfo: 9 } } }) === 0);

@@ -97,16 +97,16 @@ def test_peg_cfo():
 
 
 def test_klasifikasi():
-    assert m_idx.compute_klasifikasi("Energi", 5.0, 0, 0.5, [(2023, -10.0), (2024, 20.0)], None) == "Turnaround"
-    assert m_idx.compute_klasifikasi("Energi", 25.0, 0, 0.5, [(2023, 10.0), (2024, 20.0)], None) == "FastGrowing"
-    assert m_idx.compute_klasifikasi("Energi", 5.0, 0, 0.5, [(2023, 10.0), (2024, 20.0)], None) == "Cyclical"
-    assert m_idx.compute_klasifikasi("Konsumer Primer", 5.0, 1, 0.5, [(2023, 10.0), (2024, 20.0)], None) == "Stalwart"
-    assert m_idx.compute_klasifikasi("Konsumer Primer", 5.0, 0, 0.5, [(2023, 10.0), (2024, 20.0)], 0.5) == "AssetPlay"
+    assert m_idx.compute_klasifikasi("Energi", 5.0, 0, 0.5, [(2023, -10.0), (2024, 20.0)], None) == "Bangkit"
+    assert m_idx.compute_klasifikasi("Energi", 25.0, 0, 0.5, [(2023, 10.0), (2024, 20.0)], None) == "Tumbuh Cepat"
+    assert m_idx.compute_klasifikasi("Energi", 5.0, 0, 0.5, [(2023, 10.0), (2024, 20.0)], None) == "Siklus"
+    assert m_idx.compute_klasifikasi("Konsumer Primer", 5.0, 1, 0.5, [(2023, 10.0), (2024, 20.0)], None) == "Raksasa Stabil"
+    assert m_idx.compute_klasifikasi("Konsumer Primer", 5.0, 0, 0.5, [(2023, 10.0), (2024, 20.0)], 0.5) == "Kaya Kas"
     assert m_idx.compute_klasifikasi("Konsumer Primer", 5.0, 0, 2.0, [(2023, 10.0), (2024, 20.0)], None) == "-"
 
 
 def test_thowilz():
-    out = m_idx.compute_thowilz(8.0, 0.5, "Lolos", 1, "FastGrowing", 5, 1, 0)
+    out = m_idx.compute_thowilz(8.0, 0.5, "Lolos", 1, "Tumbuh Cepat", 5, 1, 0)
     assert out["thowilz"] == 100, out
     out2 = m_idx.compute_thowilz(None, None, "Kill", 0, "-", 1, 0, 0)
     assert out2["thowilz"] < 30, out2
@@ -127,7 +127,7 @@ def test_wire_yahoo_thowilz():
     rec = m_idx.build_record("ZZZ", {"nama": "Z", "sektor": "Energi"}, fund, None, None)
     assert rec["margin_stabil"] == 1 and rec["gross_margin"] == 45.0, rec
     assert rec["capex_inten"] == round((1500-800)/1500, 3), rec
-    assert rec["klasifikasi"] == "FastGrowing", rec
+    assert rec["klasifikasi"] == "Tumbuh Cepat", rec
     assert rec["thowilz"] >= 50, rec
 
 
@@ -141,7 +141,7 @@ def test_wire_idx_thowilz():
     out, _ = m_idx.gabung_laporan(rec, lap)
     assert out["cfo_cagr"] == round(((150e9/100e9) ** (1/2) - 1) * 100, 1), out
     assert out["peg_cfo"] is not None and out["peg_cfo"] < 1.5, out
-    assert out["klasifikasi"] == "Cyclical", out
+    assert out["klasifikasi"] == "Siklus", out
     assert out["thowilz"] >= 60, out
 
 
