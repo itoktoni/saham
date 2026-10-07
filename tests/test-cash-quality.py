@@ -145,6 +145,21 @@ def test_wire_idx_thowilz():
     assert out["thowilz"] >= 60, out
 
 
+def test_margin_nol_dilewati():
+    fund = {
+        "price": {"regularMarketPrice": {"raw": 1000}},
+        "summaryDetail": {}, "assetProfile": {},
+        "defaultKeyStatistics": {"sharesOutstanding": {"raw": 10}, "bookValue": {"raw": 500}, "trailingEps": {"raw": 100}, "netIncomeToCommon": {"raw": 1000}},
+        "financialData": {"totalDebt": {"raw": 0}, "totalCash": {"raw": 0}, "operatingCashflow": {"raw": 100}, "freeCashflow": {"raw": 90}},
+        "incomeStatementHistoryQuarterly": {"incomeStatementHistory": []},
+        "incomeStatementHistory": {"incomeStatementHistory": [
+            {"endDate": {"raw": 3}, "totalRevenue": {"raw": 74850923000000}, "grossProfit": {"raw": 0}},
+            {"endDate": {"raw": 2}, "totalRevenue": {"raw": 72597188000000}, "grossProfit": {"raw": 0}}]},
+    }
+    rec = m_idx.build_record("ICBP", {"nama": "I", "sektor": "Konsumer Primer"}, fund, None, None)
+    assert rec["gross_margin"] is None and rec["margin_stabil"] == 0, rec
+
+
 if __name__ == "__main__":
     test_compute_ev()
     test_cfo3_lolos()
@@ -162,4 +177,5 @@ if __name__ == "__main__":
     test_thowilz()
     test_wire_yahoo_thowilz()
     test_wire_idx_thowilz()
-    print("cash-quality OK: 16 passed")
+    test_margin_nol_dilewati()
+    print("cash-quality OK: 17 passed")

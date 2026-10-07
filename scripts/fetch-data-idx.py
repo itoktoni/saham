@@ -626,7 +626,10 @@ def build_record(kode, prof, fund, ch, args):
     for y in sorted(ih, key=lambda z: num((z.get("endDate") or {}).get("raw"), 0)):
         rev = num(y.get("totalRevenue"), None)
         gp = num(y.get("grossProfit"), None)
-        if rev is not None and rev > 0 and gp is not None:
+        # gp == 0 dengan rev > 0 adalah celah data Yahoo untuk IDX (terbukti:
+        # ICBP rev 74T tapi gp 0), bukan margin nol beneran — lewati. Rugi
+        # kotor beneran (gp < 0) tetap dihitung sebagai sinyal distress.
+        if rev is not None and rev > 0 and gp is not None and gp != 0:
             margins.append(gp / rev)
     mq = compute_margin_quality(margins[-4:])
 
