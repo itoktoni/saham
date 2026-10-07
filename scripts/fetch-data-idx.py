@@ -224,6 +224,55 @@ def clean(v, default=0.0):
     return round(x, 4)
 
 
+def compute_ev(market_cap, total_debt, total_cash):
+    """EV = MarketCap + TotalDebt - TotalCash. None bila MarketCap <= 0."""
+    try:
+        mc = float(market_cap or 0)
+        db = float(total_debt or 0)
+        cs = float(total_cash or 0)
+    except (TypeError, ValueError):
+        return None
+    if mc <= 0:
+        return None
+    return mc + db - cs
+
+
+def compute_cash_quality(hist, total_assets, sektor):
+    """hist: [(tahun, laba, cfo)] urut bebas. Return cfo3/sloan/badge/alasan."""
+    pts = sorted([(t, l, c) for t, l, c in (hist or []) if t is not None], key=lambda p: p[0])
+    if len(pts) < 3:
+        return {"cfo3": 0, "sloan": None, "badge": "-", "alasan": "riwayat <3 tahun"}
+    last3 = pts[-3:]
+    cfo3 = 0
+    if all((c is not None and l is not None and c > 0 and c > l) for _, l, c in last3):
+        cfo3 = 1
+    sloan = None
+    try:
+        _, ni, cfo = pts[-1]
+        ta = float(total_assets or 0)
+        if ni is not None and cfo is not None and ta > 0:
+            sloan = (float(ni) - float(cfo)) / ta
+    except (TypeError, ValueError):
+        sloan = None
+    # streak sloan 2 tahun
+    streak = 0
+    for _, l, c in pts[-2:]:
+        try:
+            ta = float(total_assets or 0)
+            s = (float(l) - float(c)) / ta if (l is not None and c is not None and ta > 0) else None
+        except (TypeError, ValueError):
+            s = None
+        if s is not None and s > 0.05:
+            streak += 1
+    is_bank = (sektor or "").strip().lower() == "keuangan"
+    if sloan is not None and (sloan > 0.10 or streak >= 2) and not is_bank:
+        return {"cfo3": cfo3, "sloan": round(sloan, 4), "badge": "Kill", "alasan": "akrual tinggi (Sloan %.2f)" % sloan}
+    if cfo3 == 0 or (sloan is not None and sloan > 0.05):
+        why = "CFO tidak > laba 3thn" if cfo3 == 0 else ("akrual waspada (bank)" if is_bank else "akrual waspada")
+        return {"cfo3": cfo3, "sloan": round(sloan, 4) if sloan is not None else None, "badge": "Watchlist", "alasan": why}
+    return {"cfo3": cfo3, "sloan": round(sloan, 4) if sloan is not None else None, "badge": "Lolos", "alasan": "CFO selaras laba"}
+
+
 # ----------------------------------------------------------------------------
 # HTTP
 # ----------------------------------------------------------------------------
