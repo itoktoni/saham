@@ -180,6 +180,7 @@ tbody tr.dipantau td{background:var(--accent2)}
       <input class="search" id="q" placeholder="Cari kode / nama…">
       <span class="flab">Fase</span><div class="chips" id="chips" title="Klik beberapa fase untuk multi-filter"></div>
       <span class="flab">Aksi</span><div class="chips" id="chipsAksi" title="Klik beberapa aksi untuk multi-filter"></div>
+      <span class="flab">Klas</span><div class="chips" id="chipsKlas" title="Klik beberapa klasifikasi Thowilz untuk multi-filter"></div>
       <button class="btn" id="btnResetFilter" title="Kembalikan filter & sort ke awal">Reset</button>
       <span class="cnt" id="cnt">0 saham</span>
     </div>
@@ -1004,9 +1005,10 @@ var SP = (function () {
    Antarmuka
    ===================================================================== */
 (function () {
-  var S = { data: [], ksei: {}, scope: {}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], q: "", metode: "Semua" };
+  var S = { data: [], ksei: {}, scope: {}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], filterKlas: [], q: "", metode: "Semua" };
   var FASE_ORDER = ["Semua", "Akumulasi", "Spring", "Markup", "Distribusi", "Netral"];
   var AKSI_ORDER = ["Semua", "Beli", "Pantau", "Hindari"];
+  var KLAS_ORDER = ["Semua", "Bangkit", "Kaya Kas", "Tumbuh Cepat", "Siklus", "Raksasa Stabil"];
   var FASE_RANK = { "Akumulasi": 5, "Spring": 4, "Markup": 3, "Netral": 2, "Distribusi": 1 };
   var AKSI_RANK = { "Beli": 3, "Pantau": 2, "Hindari": 1 };
   var $ = function (id) { return document.getElementById(id); };
@@ -1164,6 +1166,7 @@ var SP = (function () {
     if (!S.sortSpecs.length) S.sortSpecs = [{ key: "skor", dir: -1 }];
     if (!S.filterFase) S.filterFase = [];
     if (!S.filterAksi) S.filterAksi = [];
+    if (!S.filterKlas) S.filterKlas = [];
     var tf = tfAktif();
     // Hitung skor/aksi tampilan dulu supaya filter Aksi & sort Aksi pakai nilai TF aktif
     d.forEach(function (x) {
@@ -1174,6 +1177,7 @@ var SP = (function () {
     // Multi-filter: fase (OR di dalam grup) + aksi (OR di dalam grup), AND antar grup
     if (S.filterFase.length) d = d.filter(function (x) { return S.filterFase.indexOf(x.fase) >= 0; });
     if (S.filterAksi.length) d = d.filter(function (x) { var a = x._aksiD != null ? x._aksiD : x.aksi; return S.filterAksi.indexOf(a) >= 0; });
+    if (S.filterKlas.length) d = d.filter(function (x) { var kl = (x.r && x.r.klasifikasi) || "-"; return S.filterKlas.indexOf(kl) >= 0; });
     if (S.metode && S.metode !== "Semua") d = d.filter(function (x) { return SP.matchMetode(x, S.metode); });
     if (S.temaNama && S.temaNama !== "Semua") d = d.filter(function (x) { return (S._temaMap || {})[x.kode] === S.temaNama; });
     if (S.q) {
@@ -1367,9 +1371,13 @@ var SP = (function () {
       var on = (a === "Semua") ? (S.filterAksi.length === 0) : (S.filterAksi.indexOf(a) >= 0);
       return '<button class="chip' + (on ? " on" : "") + '" data-a="' + a + '">' + a + "</button>";
     }).join("");
+    $("chipsKlas").innerHTML = KLAS_ORDER.map(function (k) {
+      var on = (k === "Semua") ? (S.filterKlas.length === 0) : (S.filterKlas.indexOf(k) >= 0);
+      return '<button class="chip' + (on ? " on" : "") + '" data-k="' + k + '">' + k + "</button>";
+    }).join("");
     var rb = $("btnResetFilter");
     if (rb) {
-      var aktif = S.filterFase.length + S.filterAksi.length;
+      var aktif = S.filterFase.length + S.filterAksi.length + S.filterKlas.length;
       var srt = (S.sortSpecs.length > 1) ? " · sort " + S.sortSpecs.length : (S.sortSpecs.length && (S.sortSpecs[0].key !== "skor" || S.sortSpecs[0].dir !== -1) ? " · sort" : "");
       rb.textContent = aktif || srt ? "Reset (" + aktif + srt.replace(" · ", ", ") + ")" : "Reset";
     }
@@ -1378,6 +1386,7 @@ var SP = (function () {
     try {
       localStorage.setItem("sp_filterFase", JSON.stringify(S.filterFase || []));
       localStorage.setItem("sp_filterAksi", JSON.stringify(S.filterAksi || []));
+      localStorage.setItem("sp_filterKlas", JSON.stringify(S.filterKlas || []));
       localStorage.setItem("sp_sort", JSON.stringify(S.sortSpecs || []));
     } catch (e) {}
   }
@@ -1388,6 +1397,8 @@ var SP = (function () {
       var ss = JSON.parse(localStorage.getItem("sp_sort") || "[]");
       if (ff instanceof Array) S.filterFase = ff.filter(function (f) { return FASE_ORDER.indexOf(f) > 0; });
       if (fa instanceof Array) S.filterAksi = fa.filter(function (a) { return AKSI_ORDER.indexOf(a) > 0; });
+      var fk = JSON.parse(localStorage.getItem("sp_filterKlas") || "[]");
+      if (fk instanceof Array) S.filterKlas = fk.filter(function (k) { return KLAS_ORDER.indexOf(k) > 0; });
       if (ss instanceof Array && ss.length) {
         S.sortSpecs = ss.filter(function (s) { return s && s.key; }).slice(0, 4).map(function (s) { return { key: s.key, dir: s.dir < 0 ? -1 : 1 }; });
         if (!S.sortSpecs.length) S.sortSpecs = [{ key: "skor", dir: -1 }];
@@ -2286,8 +2297,19 @@ var SP = (function () {
     }
     renderChips(); simpanFilterSort(); render();
   };
+  $("chipsKlas").onclick = function (e) {
+    var b = e.target.closest("[data-k]"); if (!b) return;
+    var k = b.getAttribute("data-k");
+    if (k === "Semua") S.filterKlas = [];
+    else {
+      var i = S.filterKlas.indexOf(k);
+      if (i >= 0) S.filterKlas.splice(i, 1);
+      else S.filterKlas.push(k);
+    }
+    renderChips(); simpanFilterSort(); render();
+  };
   $("btnResetFilter").onclick = function () {
-    S.filterFase = []; S.filterAksi = []; S.sortSpecs = [{ key: "skor", dir: -1 }];
+    S.filterFase = []; S.filterAksi = []; S.filterKlas = []; S.sortSpecs = [{ key: "skor", dir: -1 }];
     S.q = ""; $("q").value = ""; S.metode = "Semua"; $("metode").value = "Semua";
     try { localStorage.setItem("sp_metode", "Semua"); } catch (e) {}
     S.temaNama = "Semua"; renderTema();

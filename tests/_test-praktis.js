@@ -446,5 +446,10 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("reko: marker ada", html.indexOf('id="rekoTw"') >= 0 && html.indexOf("Rekomendasi Thowilz") >= 0 && html.indexOf("AUTO_LENGKAPI") >= 0 && html.indexOf("lengkapiOtomatis") >= 0);
 }
 
+// 28) filter KLAS
+{
+  cek("klas: chips + order + storage", html.indexOf('id="chipsKlas"') >= 0 && html.indexOf("KLAS_ORDER") >= 0 && html.indexOf("sp_filterKlas") >= 0 && html.indexOf("Bangkit") >= 0);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);
