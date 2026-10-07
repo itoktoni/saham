@@ -286,6 +286,74 @@ def compute_margin_quality(margins):
     return {"gross_margin": round(ms[-1] * 100.0, 1), "margin_stabil": stabil}
 
 
+def compute_cfo_cagr(hist_cf):
+    """CAGR CFO dari [(tahun, laba, cfo)] urut bebas. None bila <2 titik atau
+    titik awal/akhir tidak positif."""
+    pts = sorted([(t, c) for t, _, c in (hist_cf or []) if t is not None], key=lambda p: p[0])
+    if len(pts) < 2:
+        return None
+    awal, akhir = pts[0][1], pts[-1][1]
+    tahun = pts[-1][0] - pts[0][0]
+    if awal is None or akhir is None or awal <= 0 or akhir <= 0 or tahun <= 0:
+        return None
+    return round((akhir / awal) ** (1.0 / tahun) - 1.0, 4)
+
+
+def compute_peg_cfo(ev_cfo, cagr):
+    """PEG-CFO = EV/CFO dibagi pertumbuhan CFO (%). Ambang sama seperti PEG
+    Thowilz: <1.0 murah, >1.5 mahal. None bila tak terhitung."""
+    try:
+        ev = float(ev_cfo) if ev_cfo is not None else None
+        g = float(cagr) if cagr is not None else None
+    except (TypeError, ValueError):
+        return None
+    if ev is None or g is None or ev <= 0 or g <= 0:
+        return None
+    return round(ev / (g * 100.0), 2)
+
+
+def compute_klasifikasi(sektor, cagr_earn, dividen, der, laba_hist, net_cash_mcap):
+    """Satu label Thowilz. Preseden: Turnaround > AssetPlay > FastGrowing >
+    Cyclical > Stalwart > '-'. cagr_earn dalam persen (mis. 25.0)."""
+    lh = sorted([(t, v) for t, v in (laba_hist or []) if t is not None], key=lambda p: p[0])
+    if len(lh) >= 2 and lh[-2][1] is not None and lh[-1][1] is not None:
+        if lh[-2][1] < 0 < lh[-1][1]:
+            return "Turnaround"
+    if net_cash_mcap is not None and net_cash_mcap > 0.3:
+        return "AssetPlay"
+    if cagr_earn is not None and cagr_earn > 20:
+        return "FastGrowing"
+    if (sektor or "") in SEKTOR_CYCLICAL:
+        return "Cyclical"
+    try:
+        d = float(der or 0)
+    except (TypeError, ValueError):
+        d = 99.0
+    if dividen == 1 and d < 1:
+        return "Stalwart"
+    return "-"
+
+
+def compute_thowilz(ev_cfo, peg_cfo, badge, margin_stabil, klasifikasi, hist_years, spring, sideways):
+    """Skor komposit 0-100. Valuasi 35 + Kualitas 35 + Tesis 15 + Timing 15.
+    Timing memakai sinyal chart yang sudah ada (spring ~ SOS, sideways ~ serapan)."""
+    try:
+        ev = float(ev_cfo) if ev_cfo not in (None, "") else None
+    except (TypeError, ValueError):
+        ev = None
+    v = 25 if (ev is not None and ev <= 10) else (18 if (ev is not None and ev <= 15) else (10 if (ev is not None and ev <= 20) else (4 if (ev is not None and ev > 0) else 0)))
+    try:
+        pg = float(peg_cfo) if peg_cfo not in (None, "") else None
+    except (TypeError, ValueError):
+        pg = None
+    v += 10 if (pg is not None and pg < 1) else (5 if (pg is not None and pg < 1.5) else 0)
+    k = {"Lolos": 28, "Watchlist": 12, "Kill": 0}.get(badge, 10) + (7 if margin_stabil else 0)
+    t = (10 if klasifikasi not in (None, "", "-") else 3) + (5 if (hist_years or 0) >= 4 else 0)
+    m = 15 if spring else (10 if sideways else 5)
+    total = min(100, v + k + t + m)
+    return {"thowilz": int(total), "rincian": {"valuasi": v, "kualitas": k, "tesis": t, "timing": m}}
+
+
 # ----------------------------------------------------------------------------
 # HTTP
 # ----------------------------------------------------------------------------

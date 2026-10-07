@@ -84,6 +84,34 @@ def test_margin_kurang():
     assert out["margin_stabil"] == 0 and out["gross_margin"] == 46.0, out
 
 
+def test_cfo_cagr():
+    assert m_idx.compute_cfo_cagr([(2022, 0, 100.0), (2023, 0, 121.0), (2024, 0, 146.4)]) == 0.21
+    assert m_idx.compute_cfo_cagr([(2022, 0, 100.0), (2024, 0, -5.0)]) is None
+    assert m_idx.compute_cfo_cagr([(2024, 0, 10.0)]) is None
+
+
+def test_peg_cfo():
+    assert m_idx.compute_peg_cfo(10.0, 0.30) == 0.33
+    assert m_idx.compute_peg_cfo(None, 0.30) is None
+    assert m_idx.compute_peg_cfo(10.0, 0) is None
+
+
+def test_klasifikasi():
+    assert m_idx.compute_klasifikasi("Energi", 5.0, 0, 0.5, [(2023, -10.0), (2024, 20.0)], None) == "Turnaround"
+    assert m_idx.compute_klasifikasi("Energi", 25.0, 0, 0.5, [(2023, 10.0), (2024, 20.0)], None) == "FastGrowing"
+    assert m_idx.compute_klasifikasi("Energi", 5.0, 0, 0.5, [(2023, 10.0), (2024, 20.0)], None) == "Cyclical"
+    assert m_idx.compute_klasifikasi("Konsumer Primer", 5.0, 1, 0.5, [(2023, 10.0), (2024, 20.0)], None) == "Stalwart"
+    assert m_idx.compute_klasifikasi("Konsumer Primer", 5.0, 0, 0.5, [(2023, 10.0), (2024, 20.0)], 0.5) == "AssetPlay"
+    assert m_idx.compute_klasifikasi("Konsumer Primer", 5.0, 0, 2.0, [(2023, 10.0), (2024, 20.0)], None) == "-"
+
+
+def test_thowilz():
+    out = m_idx.compute_thowilz(8.0, 0.5, "Lolos", 1, "FastGrowing", 5, 1, 0)
+    assert out["thowilz"] == 100, out
+    out2 = m_idx.compute_thowilz(None, None, "Kill", 0, "-", 1, 0, 0)
+    assert out2["thowilz"] < 30, out2
+
+
 if __name__ == "__main__":
     test_compute_ev()
     test_cfo3_lolos()
@@ -95,4 +123,8 @@ if __name__ == "__main__":
     test_margin_stabil()
     test_margin_longor()
     test_margin_kurang()
-    print("cash-quality OK: 10 passed")
+    test_cfo_cagr()
+    test_peg_cfo()
+    test_klasifikasi()
+    test_thowilz()
+    print("cash-quality OK: 14 passed")
