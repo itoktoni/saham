@@ -1573,6 +1573,26 @@ function sumberTag(sumber) {
   else { label = "Manual"; }
   return '<span class="tag ' + cls + '"' + (cls ? "" : abu) + ' title="' + esc(t) + '">' + label + "</span>";
 }
+/* Checklist 4 pilar Thowilz. Ambang sama dengan compute_thowilz() Python. */
+function panelThowilz(s) {
+  if (!nz(s.thowilz) && (s.klasifikasi || "-") === "-" && !s.cashBadge) return "";
+  const vOk = (s.evCfo != null && s.evCfo > 0 && s.evCfo <= 15) && (s.pegCfo == null || s.pegCfo < 1.5);
+  const kOk = s.cashBadge === "Lolos" && !!s.marginStabil;
+  const tOk = (s.klasifikasi || "-") !== "-";
+  const mOk = !!(s.sSpring || s.sSideways);
+  const baris = [
+    ["1. Valuasi", vOk, "EV/CFO " + (s.evCfo != null && s.evCfo > 0 ? fmt(s.evCfo, 1) + "x" : "—") + " · PEG-CFO " + (s.pegCfo != null ? fmt(s.pegCfo, 2) : "—")],
+    ["2. Kesehatan kas", kOk, (s.cashBadge || "—") + " · margin " + (s.marginStabil ? "stabil" : "labil")],
+    ["3. Tesis", tOk, esc(s.klasifikasi || "-")],
+    ["4. Timing", mOk, s.sSpring ? "spring" : s.sSideways ? "sideways" : "netral"]
+  ];
+  let h = '<div class="sep"></div><h3 style="font-size:13.5px;margin-bottom:8px">Checklist Thowilz · skor ' + (nz(s.thowilz) ? nz(s.thowilz) + " / 100" : "—") + "</h3>";
+  h += '<div class="tw"><table class="tbl"><thead><tr><th>Pilar</th><th>Status</th><th>Bukti</th></tr></thead><tbody>';
+  baris.forEach(r => {
+    h += "<tr><td>" + r[0] + '</td><td>' + (r[1] ? '<span class="badge b-ok">OK</span>' : '<span class="badge b-no">X</span>') + "</td><td>" + r[2] + "</td></tr>";
+  });
+  return h + "</tbody></table></div>";
+}
 /* Panel metrik tambahan yang hanya ada bila data datang dari parsing
    (Stockbit). Sumber lain tidak menyediakan F-Score, Altman Z, ROIC, dsb. */
 function panelTambahan(s) {
@@ -1582,7 +1602,7 @@ function panelTambahan(s) {
   const adaHist = s.histLaba && s.histLaba.length > 1;
   if (!adaAngka && !adaHist && !adaKas) return "";
 
-  let h = '<div class="sep"></div><h3 style="font-size:13.5px;margin-bottom:8px">Metrik tambahan (dari parsing)</h3>';
+  let h = panelThowilz(s) + '<div class="sep"></div><h3 style="font-size:13.5px;margin-bottom:8px">Metrik tambahan (dari parsing)</h3>';
 
   if (adaAngka) {
     // Tiap metrik diberi tafsir singkat supaya angkanya bisa langsung dibaca.
@@ -1708,9 +1728,9 @@ function renderScreen() {
   const pass = rows.filter(r => r.pass).length;
   $("screenSummary").innerHTML = "<b>" + pass + "</b> dari " + rows.length + " emiten lolos filter (" +
     (S.cfg.strict ? "mode ketat" : "mode longgar ≥3 dari 5") + "). Basis peringkat = emiten yang lolos.";
-  const cols = ["#", "Kode", "Sektor", "Harga", "PBV", "ROE%", "PER", "DER", "EV/CFO", "Kas", "EPS Trend", "Likuiditas",
+  const cols = ["#", "Kode", "Sektor", "Harga", "PBV", "ROE%", "PER", "DER", "EV/CFO", "Kas", "Klas", "Thowilz", "EPS Trend", "Likuiditas",
                 "R.PBV", "R.ROE", "R.PER", "R.DER", "R.EV", "R.Lik", "R.Trd", "TOTAL", "Status"];
-  let h = "<thead><tr>" + cols.map(c => '<th class="' + (["Harga","PBV","ROE%","PER","DER","EV/CFO","R.PBV","R.ROE","R.PER","R.DER","R.EV","R.Lik","R.Trd","TOTAL"].indexOf(c) >= 0 ? "n" : "") + '">' + c + "</th>").join("") + "</tr></thead><tbody>";
+  let h = "<thead><tr>" + cols.map(c => '<th class="' + (["Harga","PBV","ROE%","PER","DER","EV/CFO","Thowilz","R.PBV","R.ROE","R.PER","R.DER","R.EV","R.Lik","R.Trd","TOTAL"].indexOf(c) >= 0 ? "n" : "") + '">' + c + "</th>").join("") + "</tr></thead><tbody>";
   const totals = rows.map(r => r.total);
   const minT = Math.min.apply(null, totals), maxT = Math.max.apply(null, totals);
   const span = Math.max(1, maxT - minT);
@@ -1730,6 +1750,8 @@ function renderScreen() {
       '<td class="n">' + mk(c.der, frac(nz(s.der), T.der), fmt(s.der, 2)) + "</td>" +
       '<td class="n">' + (s.evCfo != null && s.evCfo > 0 ? fmt(s.evCfo, 1) + "x" : "—") + "</td>" +
       "<td>" + cashBadge(s.cashBadge) + "</td>" +
+      "<td>" + esc(s.klasifikasi || "-") + "</td>" +
+      '<td class="n"><b>' + (nz(s.thowilz) ? nz(s.thowilz) : "—") + "</b></td>" +
       "<td>" + (EPS_TREND_LABEL[s.epsTrend] || "—") + "</td>" +
       "<td>" + likuidLabel(s.nilaiHarian) + "</td>" +
       '<td class="n mut">' + r.rank.pbv + '</td><td class="n mut">' + r.rank.roe + '</td><td class="n mut">' + r.rank.per +
@@ -1912,6 +1934,7 @@ function dashVal(x, k) {
     case "timingScore": return x.f.timingScore;
     case "macroFit": return x.f.macroFit;
     case "total": return x.f.total;
+    case "thowilz": return nz(x.s.thowilz);
     case "tier": return x.f.tier;
     case "action": return x.f.action;
   }
@@ -2291,7 +2314,8 @@ const CSV_HEADER = ["kode", "nama", "sektor", "harga", "eps", "kuartal", "ekuita
   "s_closeabove", "s_springlow", "s_resistance", "sumber",
   "piotroski", "rs_rating", "altman_z", "interest_cov", "current_ratio", "quick_ratio",
   "roic", "roce", "ev_ebitda", "peg", "div_yield", "hist_laba",
-  "ev_cfo", "ev_fcf", "cfo3", "sloan", "cash_badge"];
+  "ev_cfo", "ev_fcf", "cfo3", "sloan", "cash_badge",
+  "peg_cfo", "cfo_cagr", "gross_margin", "margin_stabil", "capex_inten", "klasifikasi", "thowilz"];
 /* Riwayat laba tahunan disimpan sebagai "2021:-7|2022:580" agar aman di dalam CSV
    (tidak memakai koma maupun titik koma yang bisa bentrok dengan pemisah kolom). */
 function histToStr(a) {
@@ -2338,7 +2362,9 @@ function toRow(s) {
     nz(s.piotroski), nz(s.rsRating), nz(s.altmanZ), nz(s.interestCov), nz(s.currentRatio), nz(s.quickRatio),
     nz(s.roic), nz(s.roce), nz(s.evEbitda), nz(s.peg), nz(s.divYield), histToStr(s.histLaba),
     (s.evCfo != null ? s.evCfo : ""), (s.evFcf != null ? s.evFcf : ""), (s.cfo3 ? 1 : 0),
-    (s.sloan != null ? s.sloan : ""), (s.cashBadge && s.cashBadge !== "-" ? s.cashBadge : "")];
+    (s.sloan != null ? s.sloan : ""), (s.cashBadge && s.cashBadge !== "-" ? s.cashBadge : ""),
+    (s.pegCfo != null ? s.pegCfo : ""), (s.cfoCagr != null ? s.cfoCagr : ""), (s.grossMargin != null ? s.grossMargin : ""), (s.marginStabil ? 1 : 0),
+    (s.capexInten != null ? s.capexInten : ""), (s.klasifikasi && s.klasifikasi !== "-" ? s.klasifikasi : ""), (nz(s.thowilz) ? s.thowilz : "")];
 }
 function csvLine(arr) { return arr.map(v => { const t = String(v == null ? "" : v); return /[",;\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; }).join(","); }
 /* Pemisah ditentukan SEKALI dari baris judul, bukan dicoba keduanya sekaligus.
@@ -2427,7 +2453,11 @@ function mapStock(o) {
     roic: n("roic"), roce: n("roce"), evEbitda: n("ev_ebitda"), peg: n("peg"), divYield: n("div_yield"),
     histLaba: histLaba,
     evCfo: s("ev_cfo") === "" ? null : n("ev_cfo"), evFcf: s("ev_fcf") === "" ? null : n("ev_fcf"),
-    cfo3: n("cfo3"), sloan: s("sloan") === "" ? null : n("sloan"), cashBadge: s("cash_badge") || "-"
+    cfo3: n("cfo3"), sloan: s("sloan") === "" ? null : n("sloan"), cashBadge: s("cash_badge") || "-",
+    pegCfo: s("peg_cfo") === "" ? null : n("peg_cfo"), cfoCagr: s("cfo_cagr") === "" ? null : n("cfo_cagr"),
+    grossMargin: s("gross_margin") === "" ? null : n("gross_margin"), marginStabil: b("margin_stabil"),
+    capexInten: s("capex_inten") === "" ? null : n("capex_inten"), klasifikasi: s("klasifikasi") || "-",
+    thowilz: n("thowilz"),
   };
 }
 function applyImport(list, catatan) {
