@@ -2266,6 +2266,7 @@ var SP = (function () {
       }).then(function (r) { return r.json(); });
     }).then(function (j) {
       if (!j || !j.ok) throw new Error((j && j.error) || "gagal menyimpan");
+      if (j.config && j.config.daftar_saham) $("cfgTickers").value = j.config.daftar_saham.join(", ");
       toast(keys.length + " kode masuk watchlist, mengunduh detail…");
       $("btnDownload").click();
     }).catch(function (e) { toast("Gagal: " + (e && e.message ? e.message : e)); })
@@ -2467,6 +2468,7 @@ var SP = (function () {
     if (!APP) { toast("Buka aplikasi dulu: klik dua kali 'Jalankan Screener'"); return; }
     var tk = $("cfgTickers").value.split(/[\s,;]+/).filter(function (x) { return x; })
       .map(function (x) { return x.toUpperCase().replace(/\.JK$/, ""); });
+    if (!tk.length && !confirm("Kosongkan seluruh watchlist?")) return;
     var b = parseInt($("cfgBulan").value, 10) || 24;
     var btn = this; btn.disabled = true;
     fetch("/api/config", {
