@@ -98,6 +98,7 @@ CSV_HEADER = [
     "quick_ratio", "roic", "roce", "ev_ebitda", "peg", "div_yield", "hist_laba",
     "ev_cfo", "ev_fcf", "cfo3", "sloan", "cash_badge",
     "peg_cfo", "cfo_cagr", "gross_margin", "margin_stabil", "capex_inten", "klasifikasi", "thowilz",
+    "pbv_wajar", "pbv_diskon", "payout", "trap_skor", "trap_badge",
 ]
 
 # Pemetaan sektor IDX-IC -> daftar sektor di dalam screener.
@@ -353,6 +354,72 @@ def compute_thowilz(ev_cfo, peg_cfo, badge, margin_stabil, klasifikasi, hist_yea
     m = 15 if spring else (10 if sideways else 5)
     total = min(100, v + k + t + m)
     return {"thowilz": int(total), "rincian": {"valuasi": v, "kualitas": k, "tesis": t, "timing": m}}
+
+
+def compute_pbv_wajar(roe_pct):
+    """PBV wajar RK = ROE(%) / 10%. None bila ROE tidak positif."""
+    try:
+        r = float(roe_pct) if roe_pct is not None else None
+    except (TypeError, ValueError):
+        return None
+    if r is None or r <= 0:
+        return None
+    return round(r / 10.0, 2)
+
+
+def compute_pbv_diskon(pbv, wajar):
+    """Diskon (+) / premium (-) harga vs PBV wajar, persen."""
+    try:
+        p = float(pbv) if pbv is not None else None
+        w = float(wajar) if wajar is not None else None
+    except (TypeError, ValueError):
+        return None
+    if p is None or w is None or w <= 0 or p <= 0:
+        return None
+    return round((w - p) / w * 100.0, 1)
+
+
+def compute_trap(per, pbv, eps_trend, dividen, laba, badge, der, dpr):
+    """Checklist anti value trap RK (3 otomatis; Q2 grup & Q3 janji manual).
+    murah = PER<8 atau PBV<0,5 (laba harus positif). Skor: 0 Aman, 1 Waspada, >=2 Jebakan."""
+    try:
+        pe = float(per) if per is not None else None
+    except (TypeError, ValueError):
+        pe = None
+    try:
+        pb = float(pbv) if pbv is not None else None
+    except (TypeError, ValueError):
+        pb = None
+    try:
+        lb = float(laba or 0)
+    except (TypeError, ValueError):
+        lb = 0
+    try:
+        d = float(der or 0)
+    except (TypeError, ValueError):
+        d = 99.0
+    if pe is None and pb is None and lb == 0:
+        return {"trap_skor": 0, "trap_badge": "-", "alasan": "data kurang"}
+    murah = (pe is not None and pe > 0 and pe < 8) or (pb is not None and pb > 0 and pb < 0.5)
+    hits, why = 0, []
+    if murah and eps_trend == "down":
+        hits += 1
+        why.append("murah tapi laba turun (struktural?)")
+    if dividen != 1 and lb > 0:
+        hits += 1
+        why.append("laba tanpa dividen")
+    try:
+        dp = float(dpr) if dpr is not None else None
+    except (TypeError, ValueError):
+        dp = None
+    if dp is not None and dp > 1:
+        hits += 1
+        why.append("DPR > 100% (tak lestari)")
+    if badge == "Kill" or d > 1:
+        hits += 1
+        why.append("neraca/kas bermasalah")
+    badge_out = "Aman" if hits == 0 else ("Waspada" if hits == 1 else "Jebakan")
+    return {"trap_skor": hits, "trap_badge": badge_out, "alasan": "; ".join(why) if why else "lolos 3 cek otomatis"}
 
 
 # ----------------------------------------------------------------------------
@@ -707,6 +774,14 @@ def build_record(kode, prof, fund, ch, args):
     tw = compute_thowilz(ev_cfo, None, "-", mq["margin_stabil"], klas, 0,
                          sw["s_spring"], sw["s_sideways"])
 
+    per = (harga / eps) if (harga > 0 and eps > 0) else None
+    roe_pct = (laba / ekuitas * 100.0) if ekuitas > 0 else None
+    pbv_now = (mcap / ekuitas) if (mcap > 0 and ekuitas > 0) else None
+    wajar = compute_pbv_wajar(roe_pct)
+    payout = num(sd.get("payoutRatio"), None)
+    payout_pct = round(payout * 100.0, 1) if payout is not None else None
+    tp = compute_trap(per, pbv_now, eps_trend, dividen, laba, "-", der, payout)
+
     # ---- Validasi kualitas ------------------------------------------------
     catatan = []
     if harga <= 0:
@@ -784,6 +859,11 @@ def build_record(kode, prof, fund, ch, args):
         "capex_inten": capex_inten,
         "klasifikasi": klas,
         "thowilz": tw["thowilz"],
+        "pbv_wajar": wajar,
+        "pbv_diskon": compute_pbv_diskon(pbv_now, wajar),
+        "payout": payout_pct,
+        "trap_skor": tp["trap_skor"],
+        "trap_badge": tp["trap_badge"],
     }
 
 
@@ -2049,6 +2129,27 @@ def gabung_laporan(rec, lap_tahun):
                           rec.get("margin_stabil") or 0, rec.get("klasifikasi"), len(lap_tahun),
                           rec.get("s_spring") or 0, rec.get("s_sideways") or 0)
     rec["thowilz"] = tw2["thowilz"]
+    eku2 = float(rec.get("ekuitas") or 0)
+    lb2 = float(rec.get("laba") or 0)
+    roe2 = (lb2 / eku2 * 100.0) if eku2 > 0 else None
+    try:
+        mcap3 = float(rec.get("harga") or 0) * float(rec.get("saham") or 0)
+    except (TypeError, ValueError):
+        mcap3 = 0
+    pbv2 = (mcap3 / eku2) if (mcap3 > 0 and eku2 > 0) else None
+    wajar2 = compute_pbv_wajar(roe2)
+    rec["pbv_wajar"] = wajar2
+    rec["pbv_diskon"] = compute_pbv_diskon(pbv2, wajar2)
+    eps2 = float(rec.get("eps") or 0)
+    hr2 = float(rec.get("harga") or 0)
+    per2 = (hr2 / eps2) if (hr2 > 0 and eps2 > 0) else None
+    dpr2 = (float(rec.get("payout")) / 100.0) if rec.get("payout") is not None else None
+    tp2 = compute_trap(per2, pbv2, rec.get("eps_trend") or "fluktuatif", rec.get("dividen") or 0,
+                       lb2, rec.get("cash_badge") or "-", rec.get("der") or 0, dpr2)
+    rec["trap_skor"] = tp2["trap_skor"]
+    rec["trap_badge"] = tp2["trap_badge"]
+    if tp2["trap_badge"] == "Jebakan":
+        catatan.append("RK: %s" % tp2["alasan"])
 
     # Catatan mutu dari laporan itu sendiri
     if kini.get("opini") and "Unqualified" not in str(kini["opini"]):
