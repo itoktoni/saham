@@ -466,5 +466,10 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("banding: input custom ada", html.indexOf("bandingTambah-") >= 0 && html.indexOf("bandingPlus-") >= 0 && html.indexOf("_bandingCustom") >= 0);
 }
 
+// 32) tampilkan saham sepi
+{
+  cek("sepi: toggle + hitung sembunyi", html.indexOf('id="cekSepi"') >= 0 && html.indexOf("tampilSepi") >= 0 && html.indexOf("disembunyikan") >= 0);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);

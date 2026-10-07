@@ -178,6 +178,7 @@ tbody tr.dipantau td{background:var(--accent2)}
       </select>
       <button class="btn pri" id="btnTambah" hidden>Tambah ke Watchlist</button>
       <input class="search" id="q" placeholder="Cari kode / nama…">
+      <label class="mut" style="white-space:nowrap" title="Termasuk saham sepi di bawah ambang likuiditas (mis. PTSN)"><input type="checkbox" id="cekSepi"> Tampilkan yang sepi</label>
       <span class="flab">Fase</span><div class="chips" id="chips" title="Klik beberapa fase untuk multi-filter"></div>
       <span class="flab">Aksi</span><div class="chips" id="chipsAksi" title="Klik beberapa aksi untuk multi-filter"></div>
       <span class="flab">Klas</span><div class="chips" id="chipsKlas" title="Klik beberapa klasifikasi Thowilz untuk multi-filter"></div>
@@ -1012,7 +1013,7 @@ var SP = (function () {
    Antarmuka
    ===================================================================== */
 (function () {
-  var S = { data: [], ksei: {}, scope: {}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], filterKlas: [], q: "", metode: "Semua" };
+  var S = { data: [], ksei: {}, scope: {}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], filterKlas: [], tampilSepi: false, q: "", metode: "Semua" };
   var FASE_ORDER = ["Semua", "Akumulasi", "Spring", "Markup", "Distribusi", "Netral"];
   var AKSI_ORDER = ["Semua", "Beli", "Pantau", "Hindari"];
   var KLAS_ORDER = ["Semua", "Bangkit", "Kaya Kas", "Tumbuh Cepat", "Siklus", "Raksasa Stabil"];
@@ -1192,7 +1193,12 @@ var SP = (function () {
       var q = S.q.toLowerCase();
       d = d.filter(function (x) { return x.kode.toLowerCase().indexOf(q) >= 0 || x.nama.toLowerCase().indexOf(q) >= 0; });
     }
-    d = d.filter(function (x) { return SP.toNum(x.r.nilai_harian) >= SP.TF[tf].minLiq && !(SP.TF[tf].hideDist && x.fase === "Distribusi"); });
+    var ambangLiq = S.tampilSepi ? 0 : SP.TF[tf].minLiq;
+    var sembunyiSepi = 0;
+    d = d.filter(function (x) {
+      if (SP.toNum(x.r.nilai_harian) < SP.TF[tf].minLiq) sembunyiSepi++;
+      return SP.toNum(x.r.nilai_harian) >= ambangLiq && !(SP.TF[tf].hideDist && x.fase === "Distribusi");
+    });
     function colOf(key) { var cs = COLS.filter(function (c) { return c.k === key; }); return cs.length ? cs[0] : null; }
     function valOf(row, key) {
       var col = colOf(key);
@@ -1272,6 +1278,7 @@ var SP = (function () {
     $("tbl").tBodies[0].innerHTML = body || '<tr><td colspan="' + (COLS.length + (S.mode === "pasar" ? 1 : 0)) + '" class="mut" style="text-align:center;padding:26px">Tidak ada saham cocok dengan filter.</td></tr>';
     renderReko();
     $("cnt").innerHTML = d.length + " dari " + S.data.length + " saham" +
+      (sembunyiSepi && !S.tampilSepi ? ' · <span class="mut">' + sembunyiSepi + " disembunyikan: sepi (<Rp500jt/hari) — centang “Tampilkan yang sepi”</span>" : "") +
       (S.mode === "pasar" ? ' · <span class="mut">mode pasar tanpa data kas: kolom Kas/EV-CFO/Klas/Thowilz kosong — klik baris saham untuk laporan segar + analisis Thowilz, atau pakai Download Data</span>' : "");
     $("empty").hidden = S.data.length > 0;
     $("tw").hidden = S.data.length === 0;
@@ -2338,6 +2345,7 @@ var SP = (function () {
     render();
   };
   $("q").oninput = function () { S.q = this.value; render(); };
+  $("cekSepi").onchange = function () { S.tampilSepi = !!this.checked; render(); };
   $("chips").onclick = function (e) {
     var b = e.target.closest("[data-f]"); if (!b) return;
     var f = b.getAttribute("data-f");
@@ -2372,7 +2380,7 @@ var SP = (function () {
     renderChips(); simpanFilterSort(); render();
   };
   $("btnResetFilter").onclick = function () {
-    S.filterFase = []; S.filterAksi = []; S.filterKlas = []; S.sortSpecs = [{ key: "skor", dir: -1 }];
+    S.filterFase = []; S.filterAksi = []; S.filterKlas = []; S.tampilSepi = false; $("cekSepi").checked = false; S.sortSpecs = [{ key: "skor", dir: -1 }];
     S.q = ""; $("q").value = ""; S.metode = "Semua"; $("metode").value = "Semua";
     try { localStorage.setItem("sp_metode", "Semua"); } catch (e) {}
     S.temaNama = "Semua"; renderTema();
