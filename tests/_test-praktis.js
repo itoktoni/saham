@@ -420,5 +420,10 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("thowilz: drawer panel di HTML", html.indexOf("Kualitas Kas Thowilz") >= 0 && html.indexOf("Checklist Thowilz") >= 0);
 }
 
+// 24) petunjuk mode pasar (scan tanpa data kas)
+{
+  cek("scan: banner mode pasar ada", html.indexOf("tanpa data kas") >= 0 && html.indexOf("laporan segar") >= 0);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);

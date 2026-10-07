@@ -1236,7 +1236,8 @@ var SP = (function () {
         "</tr>";
     }).join("");
     $("tbl").tBodies[0].innerHTML = body || '<tr><td colspan="' + (COLS.length + (S.mode === "pasar" ? 1 : 0)) + '" class="mut" style="text-align:center;padding:26px">Tidak ada saham cocok dengan filter.</td></tr>';
-    $("cnt").textContent = d.length + " dari " + S.data.length + " saham";
+    $("cnt").innerHTML = d.length + " dari " + S.data.length + " saham" +
+      (S.mode === "pasar" ? ' · <span class="mut">mode pasar tanpa data kas: kolom Kas/EV-CFO/Klas/Thowilz kosong — klik baris saham untuk laporan segar + analisis Thowilz, atau pakai Download Data</span>' : "");
     $("empty").hidden = S.data.length > 0;
     $("tw").hidden = S.data.length === 0;
     renderCek();
@@ -2048,7 +2049,7 @@ var SP = (function () {
         }
       }).catch(function () {}).then(function () {
         rebuild();
-        toast("Seluruh pasar dimuat: " + (j.jumlah || S.data.length) + " saham (TradingView)" + (S.harianTanggal ? " · Harian IDX " + S.harianTanggal : " · tanpa data harian"));
+        toast("Seluruh pasar dimuat: " + (j.jumlah || S.data.length) + " saham (TradingView, tanpa data kas)" + (S.harianTanggal ? " · Harian IDX " + S.harianTanggal : " · tanpa data harian") + " · klik baris untuk analisis Thowilz");
       });
     }).catch(function (e) {
       toast("Gagal: " + (e && e.message ? e.message : e));
