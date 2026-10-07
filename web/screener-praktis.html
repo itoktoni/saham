@@ -285,6 +285,22 @@ var SP = (function () {
     if (v === "Kill") return "laba semu";
     return "data kurang";
   }
+  var KAS_F = ["ev_cfo", "ev_fcf", "peg_cfo", "cfo_cagr", "gross_margin", "margin_stabil", "capex_inten", "cfo3", "sloan", "cash_badge", "klasifikasi", "thowilz"];
+  var KAS_TTL = 30 * 864e5, AUTO_LENGKAPI = 60;
+  function kasTerap(rows, cache) {
+    var n = 0;
+    (rows || []).forEach(function (r) {
+      if (!r) return;
+      if (r.ev_cfo != null && r.ev_cfo !== "") return;
+      var e = cache && cache[String(r.kode || "").toUpperCase()];
+      if (!e || !e.v || !(e.t > Date.now() - KAS_TTL)) return;
+      KAS_F.forEach(function (k) { if (e.v[k] !== undefined) r[k] = e.v[k]; });
+      n++;
+    });
+    return n;
+  }
+  function kasLoad() { try { return JSON.parse(localStorage.getItem("sp_kas") || "{}"); } catch (e) { return {}; } }
+  function kasSave(map) { try { localStorage.setItem("sp_kas", JSON.stringify(map || {})); } catch (e) {} }
   function nf(x, d) {
     if (!isFinite(x)) return "-";
     d = d == null ? 0 : d;
@@ -978,7 +994,8 @@ var SP = (function () {
     METODE: METODE, matchMetode: matchMetode, agregatSektor: agregatSektor, narasiSektor: narasiSektor, barAkumulasi: barAkumulasi, combo: combo, exitLevel: exitLevel,     smartMoney: smartMoney, bounty: bounty, suspen: suspen, suspenKet: suspenKet, pesaing: pesaing, brokerInfo: brokerInfo, brTag: brTag, gabung: gabung, industriLabel: industriLabel,
     KALIBRASI: KALIBRASI, expiryKontrak: expiryKontrak, statusKontrak: statusKontrak,
     umurFase: umurFase, tanggalIndo: tanggalIndo,
-    twNum: twNum, twBadge: twBadge, twKas: twKas
+    twNum: twNum, twBadge: twBadge, twKas: twKas,
+    kasTerap: kasTerap, kasLoad: kasLoad, kasSave: kasSave, KAS_F: KAS_F, AUTO_LENGKAPI: AUTO_LENGKAPI
   };
 })();
 
