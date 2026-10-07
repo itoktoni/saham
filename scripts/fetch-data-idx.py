@@ -97,6 +97,7 @@ CSV_HEADER = [
     "piotroski", "rs_rating", "altman_z", "interest_cov", "current_ratio",
     "quick_ratio", "roic", "roce", "ev_ebitda", "peg", "div_yield", "hist_laba",
     "ev_cfo", "ev_fcf", "cfo3", "sloan", "cash_badge",
+    "peg_cfo", "cfo_cagr", "gross_margin", "margin_stabil", "capex_inten", "klasifikasi", "thowilz",
 ]
 
 # Pemetaan sektor IDX-IC -> daftar sektor di dalam screener.
@@ -658,6 +659,8 @@ def build_record(kode, prof, fund, ch, args):
     fcf_y = num(fd.get("freeCashflow"), None)
     ev_cfo = round(ev / ocf, 2) if (ev is not None and ocf is not None and ocf > 0) else None
     ev_fcf = round(ev / fcf_y, 2) if (ev is not None and fcf_y is not None and fcf_y > 0) else None
+    capex_inten = (round((ocf - fcf_y) / ocf, 3)
+                   if (ocf is not None and fcf_y is not None and ocf > 0) else None)
 
     avgvol = (num(sd.get("averageVolume10days")) or num(sd.get("averageVolume"))
               or (sum(ch["volume"][-20:]) / max(1, len(ch["volume"][-20:])) if ch else 0))
@@ -694,6 +697,12 @@ def build_record(kode, prof, fund, ch, args):
         volatil = 1
 
     wacc = 10.0 + (1.5 if cyclical else 0) + (2.0 if der > 1 else 0) + (1.0 if volatil else 0)
+
+    cagr_earn = cagr if growth is not None else None
+    net_cash_mcap = ((kas - utang) / mcap) if mcap > 0 else None
+    klas = compute_klasifikasi(sektor, cagr_earn, dividen, der, [], net_cash_mcap)
+    tw = compute_thowilz(ev_cfo, None, "-", mq["margin_stabil"], klas, 0,
+                         sw["s_spring"], sw["s_sideways"])
 
     # ---- Validasi kualitas ------------------------------------------------
     catatan = []
@@ -767,6 +776,11 @@ def build_record(kode, prof, fund, ch, args):
         "cash_badge": "-",
         "gross_margin": mq["gross_margin"],
         "margin_stabil": mq["margin_stabil"],
+        "peg_cfo": None,
+        "cfo_cagr": None,
+        "capex_inten": capex_inten,
+        "klasifikasi": klas,
+        "thowilz": tw["thowilz"],
     }
 
 
@@ -2017,6 +2031,21 @@ def gabung_laporan(rec, lap_tahun):
     cfo_now = kini.get("arus_kas_operasi")
     if ev_now is not None and cfo_now is not None and cfo_now > 0:
         rec["ev_cfo"] = round(ev_now / float(cfo_now), 2)
+    cagr_cf = compute_cfo_cagr(hist_cf) if len(hist_cf) >= 2 else None
+    rec["cfo_cagr"] = round(cagr_cf * 100.0, 1) if cagr_cf is not None else None
+    rec["peg_cfo"] = compute_peg_cfo(rec.get("ev_cfo"), cagr_cf)
+    laba_hist = [(x["tahun"], x.get("laba")) for x in lap_tahun if x.get("laba") is not None]
+    try:
+        mcap2 = float(rec.get("harga") or 0) * float(rec.get("saham") or 0)
+    except (TypeError, ValueError):
+        mcap2 = 0
+    ncm = ((float(rec.get("kas") or 0) - float(rec.get("utang") or 0)) / mcap2) if mcap2 > 0 else None
+    rec["klasifikasi"] = compute_klasifikasi(rec.get("sektor") or "", rec.get("cagr") if rec.get("cagr") else None,
+                                             rec.get("dividen") or 0, rec.get("der") or 0, laba_hist, ncm)
+    tw2 = compute_thowilz(rec.get("ev_cfo"), rec.get("peg_cfo"), rec.get("cash_badge") or "-",
+                          rec.get("margin_stabil") or 0, rec.get("klasifikasi"), len(lap_tahun),
+                          rec.get("s_spring") or 0, rec.get("s_sideways") or 0)
+    rec["thowilz"] = tw2["thowilz"]
 
     # Catatan mutu dari laporan itu sendiri
     if kini.get("opini") and "Unqualified" not in str(kini["opini"]):

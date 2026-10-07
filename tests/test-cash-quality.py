@@ -112,6 +112,39 @@ def test_thowilz():
     assert out2["thowilz"] < 30, out2
 
 
+def test_wire_yahoo_thowilz():
+    fund = {
+        "price": {"regularMarketPrice": {"raw": 1000}},
+        "summaryDetail": {}, "assetProfile": {},
+        "defaultKeyStatistics": {"sharesOutstanding": {"raw": 10}, "bookValue": {"raw": 500}, "trailingEps": {"raw": 100}, "netIncomeToCommon": {"raw": 1000}},
+        "financialData": {"totalDebt": {"raw": 2000}, "totalCash": {"raw": 500}, "operatingCashflow": {"raw": 1500}, "freeCashflow": {"raw": 800}, "earningsGrowth": {"raw": 0.25}},
+        "incomeStatementHistoryQuarterly": {"incomeStatementHistory": []},
+        "incomeStatementHistory": {"incomeStatementHistory": [
+            {"endDate": {"raw": 3}, "totalRevenue": {"raw": 1000}, "grossProfit": {"raw": 450}},
+            {"endDate": {"raw": 2}, "totalRevenue": {"raw": 900}, "grossProfit": {"raw": 405}},
+            {"endDate": {"raw": 1}, "totalRevenue": {"raw": 800}, "grossProfit": {"raw": 360}}]},
+    }
+    rec = m_idx.build_record("ZZZ", {"nama": "Z", "sektor": "Energi"}, fund, None, None)
+    assert rec["margin_stabil"] == 1 and rec["gross_margin"] == 45.0, rec
+    assert rec["capex_inten"] == round((1500-800)/1500, 3), rec
+    assert rec["klasifikasi"] == "FastGrowing", rec
+    assert rec["thowilz"] >= 50, rec
+
+
+def test_wire_idx_thowilz():
+    rec = {"harga": 1000, "ekuitas": 1, "laba": 0, "eps": 0, "kuartal": 4, "fcf": 0, "kas": 50000.0, "utang": 50000.0, "der": 1.0, "saham": 10, "sektor": "Energi", "cyclical": 1, "cagr": 5.0, "dividen": 0, "ev_cfo": 8.0, "ev_fcf": None, "cfo3": 0, "sloan": None, "cash_badge": "-", "s_sideways": 1, "s_spring": 0, "gross_margin": None, "margin_stabil": 0, "capex_inten": None, "peg_cfo": None, "cfo_cagr": None, "klasifikasi": "-", "thowilz": 0, "_catatan": []}
+    lap = [
+        {"tahun": 2024, "laba": 120e9, "arus_kas_operasi": 150e9, "aset": 1000e9, "ekuitas": 500e9, "liabilitas": 500e9, "kas": 50e9, "pendapatan": 1e12, "eps": 100, "pembulatan": "Satuan", "skala": 1.0},
+        {"tahun": 2023, "laba": 110e9, "arus_kas_operasi": 130e9, "aset": 900e9, "ekuitas": 450e9, "liabilitas": 450e9, "kas": 40e9, "pendapatan": 9e11, "eps": 90, "pembulatan": "Satuan", "skala": 1.0},
+        {"tahun": 2022, "laba": 100e9, "arus_kas_operasi": 100e9, "aset": 800e9, "ekuitas": 400e9, "liabilitas": 400e9, "kas": 30e9, "pendapatan": 8e11, "eps": 80, "pembulatan": "Satuan", "skala": 1.0},
+    ]
+    out, _ = m_idx.gabung_laporan(rec, lap)
+    assert out["cfo_cagr"] == round(((150e9/100e9) ** (1/2) - 1) * 100, 1), out
+    assert out["peg_cfo"] is not None and out["peg_cfo"] < 1.5, out
+    assert out["klasifikasi"] == "Cyclical", out
+    assert out["thowilz"] >= 60, out
+
+
 if __name__ == "__main__":
     test_compute_ev()
     test_cfo3_lolos()
@@ -127,4 +160,6 @@ if __name__ == "__main__":
     test_peg_cfo()
     test_klasifikasi()
     test_thowilz()
-    print("cash-quality OK: 14 passed")
+    test_wire_yahoo_thowilz()
+    test_wire_idx_thowilz()
+    print("cash-quality OK: 16 passed")
