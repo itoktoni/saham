@@ -41,10 +41,25 @@ def test_data_kurang():
     assert out["cfo3"] == 0
 
 
+def test_build_record_ev():
+    fund = {
+        "price": {"regularMarketPrice": {"raw": 1000}},
+        "summaryDetail": {}, "assetProfile": {},
+        "defaultKeyStatistics": {"sharesOutstanding": {"raw": 10}, "bookValue": {"raw": 500}, "trailingEps": {"raw": 100}, "netIncomeToCommon": {"raw": 1000}},
+        "financialData": {"totalDebt": {"raw": 2000}, "totalCash": {"raw": 500}, "operatingCashflow": {"raw": 1500}, "freeCashflow": {"raw": 800}},
+        "incomeStatementHistoryQuarterly": {"incomeStatementHistory": []},
+    }
+    rec = m_idx.build_record("ZZZ", {"nama": "Z", "sektor": "Energi"}, fund, None, None)
+    assert rec["ev_cfo"] == round((1000*10+2000-500)/1500, 2), rec
+    assert rec["ev_fcf"] == round((1000*10+2000-500)/800, 2), rec
+    assert rec["cash_badge"] in ("Lolos", "Watchlist", "Kill", "-")
+
+
 if __name__ == "__main__":
     test_compute_ev()
     test_cfo3_lolos()
     test_sloan_kill()
     test_bank_tidak_dikill()
     test_data_kurang()
-    print("cash-quality OK: 5 passed")
+    test_build_record_ev()
+    print("cash-quality OK: 6 passed")

@@ -562,6 +562,13 @@ def build_record(kode, prof, fund, ch, args):
     kas = num(fd.get("totalCash"))
     der = (utang / ekuitas) if ekuitas > 0 else 0.0
 
+    mcap = harga * shares if (harga > 0 and shares > 0) else 0.0
+    ev = compute_ev(mcap, utang, kas)
+    ocf = num(fd.get("operatingCashflow"), None)
+    fcf_y = num(fd.get("freeCashflow"), None)
+    ev_cfo = round(ev / ocf, 2) if (ev is not None and ocf is not None and ocf > 0) else None
+    ev_fcf = round(ev / fcf_y, 2) if (ev is not None and fcf_y is not None and fcf_y > 0) else None
+
     avgvol = (num(sd.get("averageVolume10days")) or num(sd.get("averageVolume"))
               or (sum(ch["volume"][-20:]) / max(1, len(ch["volume"][-20:])) if ch else 0))
     nilai_harian = harga * avgvol
@@ -663,6 +670,11 @@ def build_record(kode, prof, fund, ch, args):
         "div_yield": round(div_yield * 100.0, 2) if 0 < div_yield < 1 else round(div_yield, 2),
         "sumber": sumber,
         "_catatan": catatan,
+        "ev_cfo": ev_cfo,
+        "ev_fcf": ev_fcf,
+        "cfo3": 0,
+        "sloan": None,
+        "cash_badge": "-",
     }
 
 
