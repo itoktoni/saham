@@ -186,6 +186,7 @@ tbody tr.dipantau td{background:var(--accent2)}
     <div id="cekBar" class="mut" style="padding:8px 15px;border-bottom:1px solid var(--line2)" hidden></div>
     <div id="temaNarasi" class="mut" style="padding:8px 15px;border-bottom:1px solid var(--line2)" hidden></div>
     <div id="horizonWarn" class="hzw" hidden></div>
+    <div id="rekoTw" class="mut" style="padding:8px 15px;border-bottom:1px solid var(--line2)" hidden></div>
     <div class="tw" id="tw"><table id="tbl"><thead></thead><tbody></tbody></table></div>
     <div class="empty" id="empty">
       <h3>Belum ada data</h3>
@@ -1256,6 +1257,7 @@ var SP = (function () {
         "</tr>";
     }).join("");
     $("tbl").tBodies[0].innerHTML = body || '<tr><td colspan="' + (COLS.length + (S.mode === "pasar" ? 1 : 0)) + '" class="mut" style="text-align:center;padding:26px">Tidak ada saham cocok dengan filter.</td></tr>';
+    renderReko();
     $("cnt").innerHTML = d.length + " dari " + S.data.length + " saham" +
       (S.mode === "pasar" ? ' · <span class="mut">mode pasar tanpa data kas: kolom Kas/EV-CFO/Klas/Thowilz kosong — klik baris saham untuk laporan segar + analisis Thowilz, atau pakai Download Data</span>' : "");
     $("empty").hidden = S.data.length > 0;
@@ -2068,38 +2070,83 @@ var SP = (function () {
           S.harianTanggal = h.tanggal;
         }
       }).catch(function () {}).then(function () {
+        var dariCache = SP.kasTerap(S._csvRows, SP.kasLoad());
         rebuild();
-        toast("Seluruh pasar dimuat: " + (j.jumlah || S.data.length) + " saham (TradingView, tanpa data kas)" + (S.harianTanggal ? " · Harian IDX " + S.harianTanggal : " · tanpa data harian") + " · klik baris untuk analisis Thowilz");
+        renderReko();
+        if (S.mode === "pasar") {
+          toast("Seluruh pasar dimuat: " + (j.jumlah || S.data.length) + " saham" + (dariCache ? " (" + dariCache + " dari cache kas)" : "") + " · melengkapi kas otomatis…");
+          lengkapiOtomatis(SP.AUTO_LENGKAPI, "Otomatis").then(function (dd) {
+            rebuild(); renderReko();
+            toast("Kas terisi: " + dd + " emiten (cache 30 hari).");
+          }).catch(function (e) { toast("Lengkapi terhenti: " + (e && e.message ? e.message : e)); });
+        } else {
+          toast("Seluruh pasar dimuat: " + (j.jumlah || S.data.length) + " saham (TradingView)" + (S.harianTanggal ? " · Harian IDX " + S.harianTanggal : " · tanpa data harian"));
+        }
       });
     }).catch(function (e) {
       toast("Gagal: " + (e && e.message ? e.message : e));
     }).then(function () { b.disabled = false; b.textContent = asli; });
   };
-  $("btnLengkapi").onclick = function () {
-    if (!APP) { toast("Buka aplikasi dulu: klik dua kali 'Jalankan Screener'"); return; }
-    var b = this, asli = b.textContent;
-    var kosong = (S._csvRows || []).filter(function (r) { return r && (r.ev_cfo == null || r.ev_cfo === ""); });
-    kosong.sort(function (a, c) { return SP.toNum(c.nilai_harian) - SP.toNum(a.nilai_harian); });
-    var kodes = kosong.slice(0, 40).map(function (r) { return String(r.kode || "").toUpperCase(); }).filter(Boolean);
-    if (!kodes.length) { toast("Semua baris sudah ada data kas."); return; }
-    b.disabled = true; b.textContent = "Melengkapi " + kodes.length + " emiten…";
-    fetch("/api/lengkapi?kodes=" + encodeURIComponent(kodes.join(","))).then(function (r) { return r.json(); }).then(function (j) {
+  function kirimLengkapi(kodes) {
+    return fetch("/api/lengkapi?kodes=" + encodeURIComponent(kodes.join(","))).then(function (r) { return r.json(); }).then(function (j) {
       if (!j || !j.ok) throw new Error((j && j.error) || "gagal melengkapi");
       var map = {};
       (j.saham || []).forEach(function (s) { map[String(s.kode || "").toUpperCase()] = s; });
-      var KAS = ["ev_cfo", "ev_fcf", "peg_cfo", "cfo_cagr", "gross_margin", "margin_stabil", "capex_inten", "cfo3", "sloan", "cash_badge", "klasifikasi", "thowilz"];
-      var n = 0;
+      var cache = SP.kasLoad(), n = 0;
       (S._csvRows || []).forEach(function (r) {
         var s = map[String(r.kode || "").toUpperCase()];
         if (!s) return;
-        KAS.forEach(function (k) { if (s[k] !== undefined) r[k] = s[k]; });
+        var v = {};
+        SP.KAS_F.forEach(function (k) { if (s[k] !== undefined) { r[k] = s[k]; v[k] = s[k]; } });
+        cache[String(r.kode).toUpperCase()] = { t: Date.now(), v: v };
         n++;
       });
-      rebuild();
-      toast("Data kas dilengkapi: " + n + " emiten.");
+      SP.kasSave(cache);
+      return n;
+    });
+  }
+  function lengkapiOtomatis(maks, label) {
+    var kosong = (S._csvRows || []).filter(function (r) { return r && (r.ev_cfo == null || r.ev_cfo === ""); });
+    kosong.sort(function (a, c) { return SP.toNum(c.nilai_harian) - SP.toNum(a.nilai_harian); });
+    var kodes = kosong.slice(0, maks).map(function (r) { return String(r.kode || "").toUpperCase(); }).filter(Boolean);
+    if (!kodes.length) return Promise.resolve(0);
+    var b = $("btnLengkapi"), asli = b.textContent, done = 0, chain = Promise.resolve();
+    b.disabled = true;
+    for (var i = 0; i < kodes.length; i += 40) {
+      (function (batch, awal) {
+        chain = chain.then(function () {
+          b.textContent = (label || "Melengkapi") + " " + (awal + 1) + "-" + Math.min(awal + batch.length, kodes.length) + "/" + kodes.length + "…";
+          return kirimLengkapi(batch).then(function (n) { done += n; });
+        });
+      })(kodes.slice(i, i + 40), i);
+    }
+    return chain.then(function () { return done; }).then(function (done) {
+      b.disabled = false; b.textContent = asli; return done;
+    }, function (e) {
+      b.disabled = false; b.textContent = asli; throw e;
+    });
+  }
+  function renderReko() {
+    var el = $("rekoTw");
+    if (!el) return;
+    var ada = (S.data || []).filter(function (x) { return SP.toNum(x.r.thowilz) > 0; });
+    if (!ada.length) { el.hidden = true; el.innerHTML = ""; return; }
+    ada.sort(function (a, b) { return SP.toNum(b.r.thowilz) - SP.toNum(a.r.thowilz) || ((b._scD != null ? b._scD : b.skor) - (a._scD != null ? a._scD : a.skor)); });
+    var top = ada.slice(0, 5);
+    el.innerHTML = "<b>Rekomendasi Thowilz:</b> " + top.map(function (x, i) {
+      return '<button class="btn sm" data-reko="' + x.kode + '" title="skor ' + SP.toNum(x.r.thowilz) + "/100 · " + SP.twKas(x.r.cash_badge) + '">' + (i + 1) + ". " + x.kode + " (" + SP.toNum(x.r.thowilz) + ")</button>";
+    }).join(" ");
+    el.hidden = false;
+  }
+  $("btnLengkapi").onclick = function () {
+    if (!APP) { toast("Buka aplikasi dulu: klik dua kali 'Jalankan Screener'"); return; }
+    lengkapiOtomatis(40, "Melengkapi").then(function (done) {
+      if (!done) { toast("Semua baris sudah ada data kas."); return; }
+      rebuild(); renderReko();
+      toast("Data kas dilengkapi: " + done + " emiten.");
     }).catch(function (e) {
       toast("Gagal: " + (e && e.message ? e.message : e));
-    }).then(function () { b.disabled = false; b.textContent = asli; });
+    });
   };
   $("btnImpor").onclick = function () { $("fileIn").click(); };
   $("btnTambah").onclick = function () {
@@ -2279,6 +2326,10 @@ var SP = (function () {
     if (e.target.closest("input")) return;
     var tr = e.target.closest("tr[data-kode]"); if (!tr) return;
     openDrawerLive(tr.getAttribute("data-kode"));
+  };
+  $("rekoTw").onclick = function (e) {
+    var b = e.target.closest("[data-reko]"); if (!b) return;
+    openDrawerLive(b.getAttribute("data-reko"));
   };
   $("tbl").tBodies[0].onchange = function (e) {
     var c = e.target.closest("input.pickRow"); if (!c) return;

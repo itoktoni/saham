@@ -441,5 +441,10 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("kas: konstanta", SP.AUTO_LENGKAPI === 60 && SP.KAS_F.length === 12 && SP.KAS_F.indexOf("thowilz") >= 0);
 }
 
+// 27) auto + rekomendasi
+{
+  cek("reko: marker ada", html.indexOf('id="rekoTw"') >= 0 && html.indexOf("Rekomendasi Thowilz") >= 0 && html.indexOf("AUTO_LENGKAPI") >= 0 && html.indexOf("lengkapiOtomatis") >= 0);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);
