@@ -410,5 +410,15 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("ekspor: semua data tanpa filter", html.includes("var rows = S.data;") && !html.includes("S._tampil"));
 }
 
+// 23) thowilz di halaman default exe
+{
+  cek("thowilz: SP.twBadge Lolos", SP.twBadge("Lolos").indexOf("a-beli") >= 0);
+  cek("thowilz: SP.twBadge Kill", SP.twBadge("Kill").indexOf("a-hindar") >= 0);
+  cek("thowilz: SP.twBadge kosong", SP.twBadge("-") === "—" && SP.twBadge("") === "—" && SP.twBadge(null) === "—");
+  cek("thowilz: SP.twNum", SP.twNum(null) === "—" && SP.twNum("") === "—" && SP.twNum(0) === "—" && SP.twNum(7.22, 1) !== "—");
+  cek("thowilz: marker kolom di HTML", html.indexOf("thowilz") >= 0 && html.indexOf("Kualitas Kas") >= 0);
+  cek("thowilz: drawer panel di HTML", html.indexOf("Kualitas Kas Thowilz") >= 0 && html.indexOf("Checklist Thowilz") >= 0);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);

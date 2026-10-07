@@ -265,6 +265,25 @@ var SP = (function () {
     return isFinite(n) ? n : 0;
   }
   function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+  function twNum(v, d) {
+    if (v == null || v === "") return "—";
+    var n = (typeof v === "number") ? v : toNum(v);
+    if (!isFinite(n) || n <= 0) return "—";
+    var p = Math.pow(10, d == null ? 1 : d);
+    return String(Math.round(n * p) / p).replace(".", ",");
+  }
+  function twBadge(v) {
+    if (v === "Lolos") return '<span class="aksi a-beli">Lolos</span>';
+    if (v === "Watchlist") return '<span class="aksi a-pantau">Watch</span>';
+    if (v === "Kill") return '<span class="aksi a-hindar">Kill</span>';
+    return "—";
+  }
+  function twKas(v) {
+    if (v === "Lolos") return "kas sehat";
+    if (v === "Watchlist") return "cek manual";
+    if (v === "Kill") return "laba semu";
+    return "data kurang";
+  }
   function nf(x, d) {
     if (!isFinite(x)) return "-";
     d = d == null ? 0 : d;
@@ -957,7 +976,8 @@ var SP = (function () {
     skor: skor, aksi: aksi, build: build, TF: TF, tfCfg: tfCfg, skorTF: skorTF, aksiTF: aksiTF, sisaTF: sisaTF,
     METODE: METODE, matchMetode: matchMetode, agregatSektor: agregatSektor, narasiSektor: narasiSektor, barAkumulasi: barAkumulasi, combo: combo, exitLevel: exitLevel,     smartMoney: smartMoney, bounty: bounty, suspen: suspen, suspenKet: suspenKet, pesaing: pesaing, brokerInfo: brokerInfo, brTag: brTag, gabung: gabung, industriLabel: industriLabel,
     KALIBRASI: KALIBRASI, expiryKontrak: expiryKontrak, statusKontrak: statusKontrak,
-    umurFase: umurFase, tanggalIndo: tanggalIndo
+    umurFase: umurFase, tanggalIndo: tanggalIndo,
+    twNum: twNum, twBadge: twBadge, twKas: twKas
   };
 })();
 
@@ -1079,7 +1099,11 @@ var SP = (function () {
     { k: "likuid", t: "Likuid", n: false, get: function (d) { return SP.toNum(d.r.nilai_harian); } },
     { k: "freq", t: "Freq", n: true, get: function (d) { return SP.toNum(d.r._freq); } },
     { k: "hvalue", t: "Value", n: true, get: function (d) { return SP.toNum(d.r._hvalue); } },
-    { k: "combo", t: "Combo", n: false, get: function (d) { return comboLvl(d); } }
+    { k: "combo", t: "Combo", n: false, get: function (d) { return comboLvl(d); } },
+    { k: "kas", t: "Kas", n: false, get: function (d) { return d.r.cash_badge || ""; } },
+    { k: "evcfo", t: "EV/CFO", n: true, get: function (d) { var v = d.r.ev_cfo; v = (v == null || v === "") ? -1 : SP.toNum(v); return v > 0 ? v : -1; } },
+    { k: "klas", t: "Klas", n: false, get: function (d) { return d.r.klasifikasi || ""; } },
+    { k: "thowilz", t: "Thowilz", n: true, get: function (d) { var v = SP.toNum(d.r.thowilz); return v > 0 ? v : -1; } }
   ];
 
   function faseBadge(f) {
@@ -1205,6 +1229,10 @@ var SP = (function () {
         '<td class="n">' + (SP.toNum(x.r._freq) > 0 ? nf(SP.toNum(x.r._freq), 0) : '<span class="mut">—</span>') + "</td>" +
         '<td class="n">' + (SP.toNum(x.r._hvalue) > 0 ? SP.fmtBig(SP.toNum(x.r._hvalue)) : '<span class="mut">—</span>') + "</td>" +
         "<td>" + comboBadge(x) + "</td>" +
+        "<td>" + SP.twBadge(x.r.cash_badge) + "</td>" +
+        '<td class="n">' + SP.twNum(x.r.ev_cfo, 1) + "</td>" +
+        '<td>' + ((x.r.klasifikasi == null || x.r.klasifikasi === "" || x.r.klasifikasi === "-") ? '<span class="mut">—</span>' : String(x.r.klasifikasi).replace(/</g, "")) + "</td>" +
+        '<td class="n"><b>' + (SP.toNum(x.r.thowilz) > 0 ? SP.toNum(x.r.thowilz) : '<span class="mut">—</span>') + "</b></td>" +
         "</tr>";
     }).join("");
     $("tbl").tBodies[0].innerHTML = body || '<tr><td colspan="' + (COLS.length + (S.mode === "pasar" ? 1 : 0)) + '" class="mut" style="text-align:center;padding:26px">Tidak ada saham cocok dengan filter.</td></tr>';
@@ -1454,6 +1482,21 @@ var SP = (function () {
       rowx("Ruang ke puncak 52mg", x.ruang52 == null ? "—" : nf(x.ruang52, 1) + "%", "jarak ke harga tertinggi setahun terakhir. Makin kecil, makin dekat pucuk — makin besar risiko beli di harga atas.") +
       fundBox(x) + saingBox(x) + "</div>";
 
+    var twOk = function (ok) { return ok ? '<span class="aksi a-beli">OK</span>' : '<span class="aksi a-hindar">X</span>'; };
+    var evcf = (r.ev_cfo == null || r.ev_cfo === "") ? null : SP.toNum(r.ev_cfo);
+    var s2b = '<div class="step"><h3>2b · Kualitas Kas Thowilz</h3>' +
+      rowx("Badge kas", SP.twBadge(r.cash_badge), "Lolos = CFO selaras laba 3 tahun. Kill = laba semu, hindari. " + SP.twKas(r.cash_badge) + ".") +
+      rowx("EV/CFO", SP.twNum(r.ev_cfo, 1) + (evcf ? "x" : ""), "harga perusahaan vs kas operasi. ≤10 murah, ≤15 wajar.") +
+      rowx("EV/FCF", SP.twNum(r.ev_fcf, 1), "kas bebas setelah belanja modal.") +
+      rowx("PEG-CFO", (r.peg_cfo == null || r.peg_cfo === "" || !(SP.toNum(r.peg_cfo) > 0)) ? "—" : nf(SP.toNum(r.peg_cfo), 2), "<1 murah vs pertumbuhan kas, >1,5 mahal.") +
+      rowx("CFO > laba 3 thn", SP.toNum(r.cfo3) === 1 ? "Ya" : ((r.cash_badge == null || r.cash_badge === "" || r.cash_badge === "-") ? "—" : "Tidak"), "cfo3 dari laporan.") +
+      rowx("Sloan accrual", (r.sloan == null || r.sloan === "") ? "—" : nf(SP.toNum(r.sloan), 2), ">0,10 laba semu.") +
+      rowx("Gross margin", (r.gross_margin == null || r.gross_margin === "") ? "—" : nf(SP.toNum(r.gross_margin), 1) + "%" + (SP.toNum(r.margin_stabil) === 1 ? " (stabil)" : " (labil)"), "proksi pricing power.") +
+      rowx("Klasifikasi", (r.klasifikasi == null || r.klasifikasi === "" || r.klasifikasi === "-") ? "—" : String(r.klasifikasi).replace(/</g, ""), "Turnaround > AssetPlay > FastGrowing > Cyclical > Stalwart.") +
+      rowx("Skor Thowilz", SP.toNum(r.thowilz) > 0 ? "<b>" + SP.toNum(r.thowilz) + " / 100</b>" : "—", "Valuasi 35 + Kualitas 35 + Tesis 15 + Timing 15.") +
+      rowx("Checklist Thowilz", twOk(evcf && evcf <= 15) + " valuasi · " + twOk(r.cash_badge === "Lolos") + " kas · " + twOk(r.klasifikasi && r.klasifikasi !== "-") + " tesis · " + twOk(SP.toNum(r.s_spring) === 1 || SP.toNum(r.s_sideways) === 1) + " timing", "4 pilar dari doc Thomas William.") +
+      "</div>";
+
     var s3 = '<div class="step"><h3>3 · Fase Bandar &amp; Bukti</h3><div class="grid2">' +
       '<div>' +
       row("Kepemilikan asing", k.asing_pct == null ? "—" : nf(k.asing_pct, 2) + "%") +
@@ -1504,7 +1547,7 @@ var SP = (function () {
       row("Kualitas data", (r.sumber || "—")) +
       '<div class="warn">Bukan sinyal beli/jual. Fase dihitung dari harga/volume (Yahoo) + kepemilikan bulanan (KSEI). Verifikasi sebelum bertransaksi.</div></div>';
 
-    $("dwBody").innerHTML = s1 + s2 + s3 + s4 + s5;
+    $("dwBody").innerHTML = s1 + s2 + s2b + s3 + s4 + s5;
     var modal = $("dwModal");
     function hitLot() {
       var m = SP.toNum(modal.value);
