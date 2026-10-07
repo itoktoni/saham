@@ -471,5 +471,10 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("sepi: toggle + hitung sembunyi", html.indexOf('id="cekSepi"') >= 0 && html.indexOf("tampilSepi") >= 0 && html.indexOf("disembunyikan") >= 0);
 }
 
+// 33) centang persisten
+{
+  cek("pick: storage + restore", html.indexOf("sp_picked") >= 0 && html.indexOf("sp_banding") >= 0 && html.indexOf("muatPicked") >= 0 && html.indexOf("simpanBanding") >= 0);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);

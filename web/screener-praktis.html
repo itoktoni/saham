@@ -1406,6 +1406,24 @@ var SP = (function () {
       localStorage.setItem("sp_sort", JSON.stringify(S.sortSpecs || []));
     } catch (e) {}
   }
+  function simpanPicked() { try { localStorage.setItem("sp_picked", JSON.stringify(S.picked || {})); } catch (e) {} }
+  function muatPicked() {
+    try {
+      var p = JSON.parse(localStorage.getItem("sp_picked") || "{}");
+      S.picked = {};
+      if (p) Object.keys(p).forEach(function (k) { if (p[k]) S.picked[String(k).toUpperCase()] = true; });
+    } catch (e) { S.picked = S.picked || {}; }
+  }
+  function simpanBanding() {
+    try { localStorage.setItem("sp_banding", JSON.stringify({ pick: S._bandingPick || {}, custom: S._bandingCustom || {} })); } catch (e) {}
+  }
+  function muatBanding() {
+    try {
+      var b = JSON.parse(localStorage.getItem("sp_banding") || "{}");
+      S._bandingPick = (b && b.pick) || {};
+      S._bandingCustom = (b && b.custom) || {};
+    } catch (e) { S._bandingPick = S._bandingPick || {}; S._bandingCustom = S._bandingCustom || {}; }
+  }
   function muatFilterSort() {
     try {
       var ff = JSON.parse(localStorage.getItem("sp_filterFase") || "[]");
@@ -1874,6 +1892,7 @@ var SP = (function () {
     var f = fm[x.kode] || {};
     var sej = f.sejenis || [];
     if (!sej.length) return '<div class="mut" style="margin-top:6px">Belum ada daftar pembanding — klik Download Data.</div>';
+    if (S._bandingPick === undefined || S._bandingCustom === undefined) muatBanding();
     S._bandingPick = S._bandingPick || {};
     S._bandingCustom = S._bandingCustom || {};
     var pick = S._bandingPick[x.kode] || [];
@@ -1906,6 +1925,7 @@ var SP = (function () {
     var pick = S._bandingPick[mainKode] || [];
     baru.forEach(function (k) { if (pick.indexOf(k) < 0) pick.push(k); });
     S._bandingPick[mainKode] = pick;
+    simpanBanding();
     openDrawer(mainKode);
     toast(baru.length + " kode masuk daftar banding: " + baru.join(", "));
   }
@@ -1915,6 +1935,7 @@ var SP = (function () {
     Array.prototype.forEach.call(boxes, function (c) { if (c.checked) pick.push(c.value); });
     S._bandingPick = S._bandingPick || {};
     S._bandingPick[mainKode] = pick;
+    simpanBanding();
     var stat = document.getElementById("bandingStat-" + mainKode);
     var hasil = document.getElementById("bandingHasil-" + mainKode);
     var mau = pick.filter(function (k) { return k !== mainKode; });
@@ -2123,7 +2144,7 @@ var SP = (function () {
       S.tema = j.tema || {};
       S.dirBroker = j.direktori || {};
       S.fund = j.fund || {};
-      S.mode = "watchlist"; S.picked = {};
+      S.mode = "watchlist"; muatPicked();
       rebuild();
       toast("Data dimuat: " + (j.jumlah || S.data.length) + " emiten · KSEI " + ((j.ksei && j.ksei.periode) || "-"));
     }).catch(function (e) {
@@ -2138,7 +2159,7 @@ var SP = (function () {
       if (!j || !j.ok) throw new Error((j && j.error) || "gagal memindai");
       S._csvRows = j.saham || [];
       SP.ingestKsei(j.ksei || {}, S.ksei);
-      S.mode = "pasar"; S.picked = {};
+      S.mode = "pasar"; muatPicked();
       return fetch("/api/harian").then(function (r) { return r.json(); }).then(function (h) {
         if (h && h.ok && h.saham) {
           var map = {};
@@ -2251,7 +2272,7 @@ var SP = (function () {
       .then(function () { b.disabled = false; renderCek(); });
   };
   $("fileIn").onchange = function (e) {
-    S.mode = "impor"; S.picked = {};
+    S.mode = "impor"; muatPicked();
     Array.prototype.forEach.call(e.target.files, function (f) {
       var rd = new FileReader();
       rd.onload = function () { loadText(String(rd.result), f.name); };
@@ -2308,7 +2329,7 @@ var SP = (function () {
   $("btnContoh").onclick = function () {
     S._csvRows = SP.parseCSV(SAMPLE_CSV);
     SP.ingestKsei(SAMPLE_KSEI, S.ksei);
-    S.mode = "impor"; S.picked = {};
+    S.mode = "impor"; muatPicked();
     rebuild();
     toast("Contoh dimuat (ilustrasi — ganti dengan data nyata)");
   };
@@ -2395,7 +2416,7 @@ var SP = (function () {
         c.checked = on;
         if (on) S.picked[k] = true; else delete S.picked[k];
       });
-      renderCek(); return;
+      simpanPicked(); renderCek(); return;
     }
     var th = e.target.closest("th"); if (!th) return;
     var k = th.getAttribute("data-k");
@@ -2428,7 +2449,7 @@ var SP = (function () {
     var c = e.target.closest("input.pickRow"); if (!c) return;
     var k = c.getAttribute("data-kode");
     if (c.checked) S.picked[k] = true; else delete S.picked[k];
-    renderCek();
+    simpanPicked(); renderCek();
   };
   $("dwClose").onclick = function () { $("drawer").className = "drawer"; };
   $("drawer").onclick = function (e) { if (e.target === this) this.className = "drawer"; };
@@ -2471,7 +2492,7 @@ var SP = (function () {
   fetch("/api/fund").then(function (r) { return r.json(); }).then(function (j) {
     if (j && j.ok && j.fund) { S.fund = j.fund; render(); }
   }).catch(function () {});
-  renderChips(); renderTfSeg(); renderAdv(); muatKontrak(); muatFilterSort(); renderChips(); render(); renderHorizon();
+  renderChips(); renderTfSeg(); renderAdv(); muatKontrak(); muatFilterSort(); muatPicked(); renderChips(); render(); renderHorizon();
 })();
 </script>
 </body>
