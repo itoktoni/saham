@@ -456,5 +456,10 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("swing: SWING_F di-merge live", html.indexOf("SWING_F") >= 0 && html.indexOf("s_springlow") >= 0);
 }
 
+// 30) RK Rivan Kurniawan
+{
+  cek("rk: helper + kolom + drawer", SP.twTrap("Jebakan").indexOf("a-hindar") >= 0 && SP.twTrap("-") === "—" && html.indexOf('"rk"') >= 0 && html.indexOf("Anti Jebakan") >= 0 && html.indexOf("pbv_wajar") >= 0);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);

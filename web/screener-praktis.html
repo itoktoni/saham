@@ -287,6 +287,12 @@ var SP = (function () {
     if (v === "Kill") return "laba semu";
     return "data kurang";
   }
+  function twTrap(v) {
+    if (v === "Aman") return '<span class="aksi a-beli">Aman</span>';
+    if (v === "Waspada") return '<span class="aksi a-pantau">Was</span>';
+    if (v === "Jebakan") return '<span class="aksi a-hindar">Jebak</span>';
+    return "—";
+  }
   var KAS_F = ["ev_cfo", "ev_fcf", "peg_cfo", "cfo_cagr", "gross_margin", "margin_stabil", "capex_inten", "cfo3", "sloan", "cash_badge", "klasifikasi", "thowilz"];
   var SWING_F = ["s_sideways", "s_vol_ratio", "s_freqspike", "s_spring", "s_closeabove", "s_springlow", "s_resistance"];
   var KAS_TTL = 30 * 864e5, AUTO_LENGKAPI = 60;
@@ -997,7 +1003,7 @@ var SP = (function () {
     METODE: METODE, matchMetode: matchMetode, agregatSektor: agregatSektor, narasiSektor: narasiSektor, barAkumulasi: barAkumulasi, combo: combo, exitLevel: exitLevel,     smartMoney: smartMoney, bounty: bounty, suspen: suspen, suspenKet: suspenKet, pesaing: pesaing, brokerInfo: brokerInfo, brTag: brTag, gabung: gabung, industriLabel: industriLabel,
     KALIBRASI: KALIBRASI, expiryKontrak: expiryKontrak, statusKontrak: statusKontrak,
     umurFase: umurFase, tanggalIndo: tanggalIndo,
-    twNum: twNum, twBadge: twBadge, twKas: twKas,
+    twNum: twNum, twBadge: twBadge, twKas: twKas, twTrap: twTrap,
     kasTerap: kasTerap, kasLoad: kasLoad, kasSave: kasSave, KAS_F: KAS_F, SWING_F: SWING_F, AUTO_LENGKAPI: AUTO_LENGKAPI
   };
 })();
@@ -1127,7 +1133,8 @@ var SP = (function () {
     { k: "kas", t: "Kas", n: false, get: function (d) { return d.r.cash_badge || ""; } },
     { k: "evcfo", t: "EV/CFO", n: true, get: function (d) { var v = d.r.ev_cfo; v = (v == null || v === "") ? -1 : SP.toNum(v); return v > 0 ? v : -1; } },
     { k: "klas", t: "Klas", n: false, get: function (d) { return d.r.klasifikasi || ""; } },
-    { k: "thowilz", t: "Thowilz", n: true, get: function (d) { var v = SP.toNum(d.r.thowilz); return v > 0 ? v : -1; } }
+    { k: "thowilz", t: "Thowilz", n: true, get: function (d) { var v = SP.toNum(d.r.thowilz); return v > 0 ? v : -1; } },
+    { k: "rk", t: "RK", n: true, get: function (d) { var v = SP.toNum(d.r.trap_skor); return d.r.trap_badge === "-" || d.r.trap_badge == null ? -1 : v; } }
   ];
 
   function faseBadge(f) {
@@ -1259,6 +1266,7 @@ var SP = (function () {
         '<td class="n">' + SP.twNum(x.r.ev_cfo, 1) + "</td>" +
         '<td>' + ((x.r.klasifikasi == null || x.r.klasifikasi === "" || x.r.klasifikasi === "-") ? '<span class="mut">—</span>' : String(x.r.klasifikasi).replace(/</g, "")) + "</td>" +
         '<td class="n"><b>' + (SP.toNum(x.r.thowilz) > 0 ? SP.toNum(x.r.thowilz) : '<span class="mut">—</span>') + "</b></td>" +
+        '<td class="n">' + SP.twTrap(x.r.trap_badge) + "</td>" +
         "</tr>";
     }).join("");
     $("tbl").tBodies[0].innerHTML = body || '<tr><td colspan="' + (COLS.length + (S.mode === "pasar" ? 1 : 0)) + '" class="mut" style="text-align:center;padding:26px">Tidak ada saham cocok dengan filter.</td></tr>';
@@ -1532,6 +1540,36 @@ var SP = (function () {
       rowx("Checklist Thowilz", twOk(evcf && evcf <= 15) + " valuasi · " + twOk(r.cash_badge === "Lolos") + " kas · " + twOk(r.klasifikasi && r.klasifikasi !== "-") + " tesis · " + twOk(SP.toNum(r.s_spring) === 1 || SP.toNum(r.s_sideways) === 1) + " timing", "4 pilar dari doc Thomas William.") +
       "</div>";
 
+    var perRk = function (rr) { var e = SP.toNum(rr.eps), h = SP.toNum(rr.harga); return (e > 0 && h > 0) ? h / e : null; };
+    var pbvRk = function (rr) {
+      var mc = SP.toNum(rr.harga) * SP.toNum(rr.saham), ek = SP.toNum(rr.ekuitas);
+      return (mc > 0 && ek > 0) ? mc / ek : null;
+    };
+    var murahRk = function (rr) {
+      var pe = perRk(rr), pb = pbvRk(rr);
+      var m = (pe != null && pe < 8) || (pb != null && pb < 0.5);
+      return m ? "ya" + (pe != null ? " (PER " + nf(pe, 1) + ")" : "") : "tidak";
+    };
+    var divRk = function (rr) {
+      if (SP.toNum(rr.dividen) === 1) return "rutin";
+      return SP.toNum(rr.laba) > 0 ? "TIDAK bagi (laba ada)" : "—";
+    };
+    var nrcRk = function (rr) {
+      var jelek = (rr.cash_badge === "Kill") || (SP.toNum(rr.der) > 1);
+      return jelek ? "bermasalah" : "sehat";
+    };
+    var s2d = '<div class="step"><h3>2d · Anti Jebakan (Rivan Kurniawan)</h3>' +
+      rowx("PBV wajar (ROE/10%)", (r.pbv_wajar == null || r.pbv_wajar === "") ? "—" : nf(SP.toNum(r.pbv_wajar), 2) + "x", "ROE 10% = wajar 1,0x · 15% = 1,5x · 20% = 2,0x.") +
+      rowx("Diskon vs wajar", (r.pbv_diskon == null || r.pbv_diskon === "") ? "—" : '<span class="' + (SP.toNum(r.pbv_diskon) > 0 ? "pos" : "neg") + '">' + (SP.toNum(r.pbv_diskon) > 0 ? "+" : "") + nf(SP.toNum(r.pbv_diskon), 1) + "%</span>", "positif = bayar di bawah nilai wajar.") +
+      rowx("DPR", (r.payout == null || r.payout === "") ? "—" : nf(SP.toNum(r.payout), 1) + "%", ">100% tak lestari · 0% + laba = ditahan.") +
+      rowx("1. Mengapa murah?", murahRk(r), "murah + laba turun = struktural, bukan peluang.") +
+      rowx("2. Struktur grup", '<span class="mut">cek sendiri</span>', "waspadai holding berlapis (value leakage).") +
+      rowx("3. Rekam janji", '<span class="mut">cek sendiri</span>', "janji molor = diskon permanen.") +
+      rowx("4. Dividen", divRk(r), "laba tanpa dividen = peringatan.") +
+      rowx("5. Neraca", nrcRk(r), "tumbuh dari utang/jual aset = jebakan.") +
+      rowx("Vonis jebakan", SP.twTrap(r.trap_badge), "Aman / Waspada / Jebakan dari 3 cek otomatis.") +
+      "</div>";
+
     var s3 = '<div class="step"><h3>3 · Fase Bandar &amp; Bukti</h3><div class="grid2">' +
       '<div>' +
       row("Kepemilikan asing", k.asing_pct == null ? "—" : nf(k.asing_pct, 2) + "%") +
@@ -1582,7 +1620,7 @@ var SP = (function () {
       row("Kualitas data", (r.sumber || "—")) +
       '<div class="warn">Bukan sinyal beli/jual. Fase dihitung dari harga/volume (Yahoo) + kepemilikan bulanan (KSEI). Verifikasi sebelum bertransaksi.</div></div>';
 
-    $("dwBody").innerHTML = s1 + s2 + s2b + s3 + s4 + s5;
+    $("dwBody").innerHTML = s1 + s2 + s2b + s2d + s3 + s4 + s5;
     var modal = $("dwModal");
     function hitLot() {
       var m = SP.toNum(modal.value);
