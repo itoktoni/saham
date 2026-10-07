@@ -1,0 +1,8675 @@
+{
+  "dibuat": "2026-10-06T22:54:09+07:00",
+  "tanggal": "20261006",
+  "jumlah": 963,
+  "sumber": "IDX Stock Summary (Volume/Value/Frequency resmi per emiten)",
+  "saham": [
+    {
+      "kode": "AADI",
+      "high": 12375,
+      "low": 11875,
+      "close": 12125,
+      "volume": 8126300,
+      "value": 98862512500,
+      "freq": 7902
+    },
+    {
+      "kode": "AALI",
+      "high": 8525,
+      "low": 8275,
+      "close": 8525,
+      "volume": 2038700,
+      "value": 17229395000,
+      "freq": 1654
+    },
+    {
+      "kode": "ABBA",
+      "high": 0,
+      "low": 0,
+      "close": 30,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ABDA",
+      "high": 0,
+      "low": 0,
+      "close": 4900,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ABMM",
+      "high": 2700,
+      "low": 2620,
+      "close": 2680,
+      "volume": 457600,
+      "value": 1222803000,
+      "freq": 293
+    },
+    {
+      "kode": "ACES",
+      "high": 328,
+      "low": 322,
+      "close": 324,
+      "volume": 23564800,
+      "value": 7670840600,
+      "freq": 3187
+    },
+    {
+      "kode": "ACRO",
+      "high": 56,
+      "low": 50,
+      "close": 52,
+      "volume": 19217500,
+      "value": 1016834300,
+      "freq": 916
+    },
+    {
+      "kode": "ACST",
+      "high": 89,
+      "low": 88,
+      "close": 88,
+      "volume": 903900,
+      "value": 79957400,
+      "freq": 112
+    },
+    {
+      "kode": "ADCP",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ADES",
+      "high": 35150,
+      "low": 34050,
+      "close": 35150,
+      "volume": 31600,
+      "value": 1093875000,
+      "freq": 149
+    },
+    {
+      "kode": "ADHI",
+      "high": 0,
+      "low": 0,
+      "close": 133,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ADMF",
+      "high": 8500,
+      "low": 8300,
+      "close": 8400,
+      "volume": 48000,
+      "value": 403312500,
+      "freq": 99
+    },
+    {
+      "kode": "ADMG",
+      "high": 244,
+      "low": 226,
+      "close": 228,
+      "volume": 440200,
+      "value": 102319600,
+      "freq": 158
+    },
+    {
+      "kode": "ADMR",
+      "high": 1520,
+      "low": 1475,
+      "close": 1510,
+      "volume": 15626700,
+      "value": 23416741500,
+      "freq": 3088
+    },
+    {
+      "kode": "ADRO",
+      "high": 2630,
+      "low": 2550,
+      "close": 2600,
+      "volume": 31806100,
+      "value": 82742789000,
+      "freq": 10823
+    },
+    {
+      "kode": "AEGS",
+      "high": 49,
+      "low": 47,
+      "close": 48,
+      "volume": 731100,
+      "value": 35021200,
+      "freq": 97
+    },
+    {
+      "kode": "AGAR",
+      "high": 2200,
+      "low": 1830,
+      "close": 2030,
+      "volume": 2554400,
+      "value": 5270801500,
+      "freq": 3844
+    },
+    {
+      "kode": "AGII",
+      "high": 3380,
+      "low": 3230,
+      "close": 3260,
+      "volume": 93000,
+      "value": 304686000,
+      "freq": 103
+    },
+    {
+      "kode": "AGRO",
+      "high": 141,
+      "low": 135,
+      "close": 140,
+      "volume": 5881200,
+      "value": 818939900,
+      "freq": 357
+    },
+    {
+      "kode": "AGRS",
+      "high": 60,
+      "low": 58,
+      "close": 60,
+      "volume": 1438300,
+      "value": 85995000,
+      "freq": 71
+    },
+    {
+      "kode": "AHAP",
+      "high": 97,
+      "low": 93,
+      "close": 96,
+      "volume": 28896900,
+      "value": 2748347500,
+      "freq": 1960
+    },
+    {
+      "kode": "AIMS",
+      "high": 0,
+      "low": 0,
+      "close": 825,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "AISA",
+      "high": 119,
+      "low": 114,
+      "close": 119,
+      "volume": 3847800,
+      "value": 447593700,
+      "freq": 517
+    },
+    {
+      "kode": "AKKU",
+      "high": 59,
+      "low": 49,
+      "close": 53,
+      "volume": 39919400,
+      "value": 2155568100,
+      "freq": 2637
+    },
+    {
+      "kode": "AKPI",
+      "high": 525,
+      "low": 515,
+      "close": 515,
+      "volume": 663200,
+      "value": 342819000,
+      "freq": 43
+    },
+    {
+      "kode": "AKRA",
+      "high": 1540,
+      "low": 1490,
+      "close": 1520,
+      "volume": 15241400,
+      "value": 23182976500,
+      "freq": 4935
+    },
+    {
+      "kode": "AKSI",
+      "high": 348,
+      "low": 332,
+      "close": 338,
+      "volume": 243700,
+      "value": 82686600,
+      "freq": 144
+    },
+    {
+      "kode": "ALDO",
+      "high": 1280,
+      "low": 1220,
+      "close": 1240,
+      "volume": 94800,
+      "value": 118442000,
+      "freq": 145
+    },
+    {
+      "kode": "ALII",
+      "high": 720,
+      "low": 695,
+      "close": 705,
+      "volume": 594000,
+      "value": 422544000,
+      "freq": 124
+    },
+    {
+      "kode": "ALKA",
+      "high": 6825,
+      "low": 5950,
+      "close": 6825,
+      "volume": 590500,
+      "value": 3918035000,
+      "freq": 1315
+    },
+    {
+      "kode": "ALMI",
+      "high": 0,
+      "low": 0,
+      "close": 74,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ALTO",
+      "high": 0,
+      "low": 0,
+      "close": 18,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "AMAG",
+      "high": 388,
+      "low": 386,
+      "close": 388,
+      "volume": 23300,
+      "value": 9015600,
+      "freq": 21
+    },
+    {
+      "kode": "AMAN",
+      "high": 224,
+      "low": 212,
+      "close": 220,
+      "volume": 377800,
+      "value": 82751200,
+      "freq": 152
+    },
+    {
+      "kode": "AMAR",
+      "high": 236,
+      "low": 230,
+      "close": 230,
+      "volume": 4837200,
+      "value": 1122428000,
+      "freq": 89
+    },
+    {
+      "kode": "AMFG",
+      "high": 3300,
+      "low": 3200,
+      "close": 3300,
+      "volume": 2100,
+      "value": 6886000,
+      "freq": 8
+    },
+    {
+      "kode": "AMIN",
+      "high": 270,
+      "low": 250,
+      "close": 256,
+      "volume": 81400,
+      "value": 21417200,
+      "freq": 92
+    },
+    {
+      "kode": "AMMN",
+      "high": 4530,
+      "low": 4180,
+      "close": 4500,
+      "volume": 88681000,
+      "value": 389276604000,
+      "freq": 22633
+    },
+    {
+      "kode": "AMMS",
+      "high": 218,
+      "low": 208,
+      "close": 212,
+      "volume": 171200,
+      "value": 36670600,
+      "freq": 51
+    },
+    {
+      "kode": "AMOR",
+      "high": 366,
+      "low": 362,
+      "close": 364,
+      "volume": 37700,
+      "value": 13741800,
+      "freq": 60
+    },
+    {
+      "kode": "AMRT",
+      "high": 1275,
+      "low": 1240,
+      "close": 1255,
+      "volume": 36460300,
+      "value": 45759406500,
+      "freq": 5891
+    },
+    {
+      "kode": "ANDI",
+      "high": 24,
+      "low": 21,
+      "close": 23,
+      "volume": 48527900,
+      "value": 1095658100,
+      "freq": 2718
+    },
+    {
+      "kode": "ANJT",
+      "high": 1535,
+      "low": 1485,
+      "close": 1530,
+      "volume": 78500,
+      "value": 119042500,
+      "freq": 87
+    },
+    {
+      "kode": "ANTM",
+      "high": 3260,
+      "low": 3180,
+      "close": 3250,
+      "volume": 47928200,
+      "value": 154713324000,
+      "freq": 11554
+    },
+    {
+      "kode": "APEX",
+      "high": 186,
+      "low": 180,
+      "close": 185,
+      "volume": 10453200,
+      "value": 1915453800,
+      "freq": 956
+    },
+    {
+      "kode": "APIC",
+      "high": 404,
+      "low": 398,
+      "close": 402,
+      "volume": 348500,
+      "value": 140219400,
+      "freq": 225
+    },
+    {
+      "kode": "APII",
+      "high": 193,
+      "low": 189,
+      "close": 191,
+      "volume": 45200,
+      "value": 8646200,
+      "freq": 44
+    },
+    {
+      "kode": "APLI",
+      "high": 286,
+      "low": 270,
+      "close": 280,
+      "volume": 624900,
+      "value": 174982400,
+      "freq": 97
+    },
+    {
+      "kode": "APLN",
+      "high": 111,
+      "low": 107,
+      "close": 110,
+      "volume": 19415000,
+      "value": 2112335700,
+      "freq": 1012
+    },
+    {
+      "kode": "ARCI",
+      "high": 1285,
+      "low": 1255,
+      "close": 1270,
+      "volume": 16494100,
+      "value": 20922707000,
+      "freq": 3423
+    },
+    {
+      "kode": "AREA",
+      "high": 332,
+      "low": 316,
+      "close": 328,
+      "volume": 3333400,
+      "value": 1081461600,
+      "freq": 667
+    },
+    {
+      "kode": "ARGO",
+      "high": 1170,
+      "low": 1100,
+      "close": 1160,
+      "volume": 151700,
+      "value": 174439000,
+      "freq": 85
+    },
+    {
+      "kode": "ARII",
+      "high": 330,
+      "low": 300,
+      "close": 330,
+      "volume": 186300,
+      "value": 59066600,
+      "freq": 78
+    },
+    {
+      "kode": "ARKA",
+      "high": 0,
+      "low": 0,
+      "close": 22,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ARKO",
+      "high": 3060,
+      "low": 2840,
+      "close": 2940,
+      "volume": 3037500,
+      "value": 8968223000,
+      "freq": 1809
+    },
+    {
+      "kode": "ARMY",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ARNA",
+      "high": 525,
+      "low": 515,
+      "close": 520,
+      "volume": 1873700,
+      "value": 974792000,
+      "freq": 228
+    },
+    {
+      "kode": "ARTA",
+      "high": 1865,
+      "low": 1780,
+      "close": 1780,
+      "volume": 8800,
+      "value": 15862000,
+      "freq": 36
+    },
+    {
+      "kode": "ARTI",
+      "high": 0,
+      "low": 0,
+      "close": 2,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ARTO",
+      "high": 830,
+      "low": 775,
+      "close": 810,
+      "volume": 28846600,
+      "value": 23358737500,
+      "freq": 3949
+    },
+    {
+      "kode": "ASBI",
+      "high": 392,
+      "low": 380,
+      "close": 392,
+      "volume": 16100,
+      "value": 6161400,
+      "freq": 12
+    },
+    {
+      "kode": "ASDM",
+      "high": 510,
+      "low": 510,
+      "close": 510,
+      "volume": 7400,
+      "value": 3774000,
+      "freq": 5
+    },
+    {
+      "kode": "ASGR",
+      "high": 2580,
+      "low": 2450,
+      "close": 2530,
+      "volume": 8476800,
+      "value": 21568213000,
+      "freq": 5257
+    },
+    {
+      "kode": "ASHA",
+      "high": 45,
+      "low": 42,
+      "close": 43,
+      "volume": 7445900,
+      "value": 323070600,
+      "freq": 1006
+    },
+    {
+      "kode": "ASII",
+      "high": 4850,
+      "low": 4750,
+      "close": 4820,
+      "volume": 35508900,
+      "value": 171015669000,
+      "freq": 8918
+    },
+    {
+      "kode": "ASJT",
+      "high": 164,
+      "low": 162,
+      "close": 162,
+      "volume": 38100,
+      "value": 6191400,
+      "freq": 22
+    },
+    {
+      "kode": "ASLC",
+      "high": 58,
+      "low": 57,
+      "close": 58,
+      "volume": 2356200,
+      "value": 135203200,
+      "freq": 240
+    },
+    {
+      "kode": "ASLI",
+      "high": 540,
+      "low": 454,
+      "close": 500,
+      "volume": 331192000,
+      "value": 166770620400,
+      "freq": 23272
+    },
+    {
+      "kode": "ASMI",
+      "high": 33,
+      "low": 25,
+      "close": 33,
+      "volume": 251836000,
+      "value": 7776507800,
+      "freq": 4957
+    },
+    {
+      "kode": "ASPI",
+      "high": 0,
+      "low": 0,
+      "close": 980,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ASPR",
+      "high": 150,
+      "low": 143,
+      "close": 145,
+      "volume": 13218600,
+      "value": 1943664400,
+      "freq": 1451
+    },
+    {
+      "kode": "ASRI",
+      "high": 119,
+      "low": 117,
+      "close": 119,
+      "volume": 5191900,
+      "value": 610957500,
+      "freq": 487
+    },
+    {
+      "kode": "ASRM",
+      "high": 272,
+      "low": 252,
+      "close": 272,
+      "volume": 195900,
+      "value": 50868200,
+      "freq": 105
+    },
+    {
+      "kode": "ASSA",
+      "high": 600,
+      "low": 585,
+      "close": 585,
+      "volume": 7842200,
+      "value": 4631979500,
+      "freq": 784
+    },
+    {
+      "kode": "ATAP",
+      "high": 695,
+      "low": 585,
+      "close": 630,
+      "volume": 14314500,
+      "value": 9204830000,
+      "freq": 3346
+    },
+    {
+      "kode": "ATIC",
+      "high": 436,
+      "low": 430,
+      "close": 432,
+      "volume": 21300,
+      "value": 9200200,
+      "freq": 23
+    },
+    {
+      "kode": "ATLA",
+      "high": 36,
+      "low": 33,
+      "close": 35,
+      "volume": 59542300,
+      "value": 2044744700,
+      "freq": 8829
+    },
+    {
+      "kode": "AUTO",
+      "high": 3490,
+      "low": 3360,
+      "close": 3390,
+      "volume": 3459200,
+      "value": 11758346000,
+      "freq": 2444
+    },
+    {
+      "kode": "AVIA",
+      "high": 346,
+      "low": 338,
+      "close": 344,
+      "volume": 14932200,
+      "value": 5126145000,
+      "freq": 743
+    },
+    {
+      "kode": "AWAN",
+      "high": 160,
+      "low": 151,
+      "close": 157,
+      "volume": 331800,
+      "value": 52441600,
+      "freq": 185
+    },
+    {
+      "kode": "AXIO",
+      "high": 125,
+      "low": 115,
+      "close": 120,
+      "volume": 4300800,
+      "value": 514338600,
+      "freq": 551
+    },
+    {
+      "kode": "AYAM",
+      "high": 535,
+      "low": 510,
+      "close": 530,
+      "volume": 20818700,
+      "value": 10851884500,
+      "freq": 2042
+    },
+    {
+      "kode": "AYLS",
+      "high": 212,
+      "low": 191,
+      "close": 199,
+      "volume": 49743100,
+      "value": 10049902400,
+      "freq": 6845
+    },
+    {
+      "kode": "BABP",
+      "high": 31,
+      "low": 28,
+      "close": 30,
+      "volume": 38209400,
+      "value": 1135588500,
+      "freq": 755
+    },
+    {
+      "kode": "BABY",
+      "high": 191,
+      "low": 184,
+      "close": 188,
+      "volume": 437200,
+      "value": 82155900,
+      "freq": 156
+    },
+    {
+      "kode": "BACA",
+      "high": 112,
+      "low": 110,
+      "close": 110,
+      "volume": 331800,
+      "value": 36720000,
+      "freq": 82
+    },
+    {
+      "kode": "BACH",
+      "high": 376,
+      "low": 356,
+      "close": 366,
+      "volume": 13515000,
+      "value": 4960379600,
+      "freq": 2202
+    },
+    {
+      "kode": "BAIK",
+      "high": 244,
+      "low": 232,
+      "close": 236,
+      "volume": 5096900,
+      "value": 1208571200,
+      "freq": 986
+    },
+    {
+      "kode": "BAJA",
+      "high": 330,
+      "low": 292,
+      "close": 316,
+      "volume": 20619600,
+      "value": 6504826000,
+      "freq": 4490
+    },
+    {
+      "kode": "BALI",
+      "high": 1580,
+      "low": 1415,
+      "close": 1560,
+      "volume": 160900,
+      "value": 242433500,
+      "freq": 333
+    },
+    {
+      "kode": "BANK",
+      "high": 244,
+      "low": 238,
+      "close": 240,
+      "volume": 991100,
+      "value": 237773600,
+      "freq": 223
+    },
+    {
+      "kode": "BAPA",
+      "high": 108,
+      "low": 104,
+      "close": 106,
+      "volume": 5332600,
+      "value": 563136500,
+      "freq": 572
+    },
+    {
+      "kode": "BAPI",
+      "high": 21,
+      "low": 18,
+      "close": 20,
+      "volume": 126863700,
+      "value": 2511787000,
+      "freq": 2506
+    },
+    {
+      "kode": "BATA",
+      "high": 0,
+      "low": 0,
+      "close": 59,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "BATR",
+      "high": 98,
+      "low": 94,
+      "close": 95,
+      "volume": 3286000,
+      "value": 313430800,
+      "freq": 434
+    },
+    {
+      "kode": "BAUT",
+      "high": 32,
+      "low": 29,
+      "close": 32,
+      "volume": 9323600,
+      "value": 282901600,
+      "freq": 383
+    },
+    {
+      "kode": "BAYU",
+      "high": 1320,
+      "low": 1310,
+      "close": 1310,
+      "volume": 58900,
+      "value": 77439500,
+      "freq": 31
+    },
+    {
+      "kode": "BBCA",
+      "high": 6200,
+      "low": 6100,
+      "close": 6100,
+      "volume": 152173400,
+      "value": 936031042500,
+      "freq": 19159
+    },
+    {
+      "kode": "BBHI",
+      "high": 800,
+      "low": 790,
+      "close": 800,
+      "volume": 1200300,
+      "value": 959069000,
+      "freq": 112
+    },
+    {
+      "kode": "BBKP",
+      "high": 43,
+      "low": 40,
+      "close": 42,
+      "volume": 83223100,
+      "value": 3538869500,
+      "freq": 1310
+    },
+    {
+      "kode": "BBLD",
+      "high": 670,
+      "low": 660,
+      "close": 670,
+      "volume": 1200,
+      "value": 794000,
+      "freq": 4
+    },
+    {
+      "kode": "BBMD",
+      "high": 2040,
+      "low": 1975,
+      "close": 2040,
+      "volume": 1100,
+      "value": 2211000,
+      "freq": 7
+    },
+    {
+      "kode": "BBNI",
+      "high": 3520,
+      "low": 3460,
+      "close": 3460,
+      "volume": 20075100,
+      "value": 69888797000,
+      "freq": 6185
+    },
+    {
+      "kode": "BBRI",
+      "high": 3180,
+      "low": 3110,
+      "close": 3110,
+      "volume": 139170200,
+      "value": 437042438000,
+      "freq": 23832
+    },
+    {
+      "kode": "BBRM",
+      "high": 114,
+      "low": 108,
+      "close": 112,
+      "volume": 3436300,
+      "value": 381087600,
+      "freq": 418
+    },
+    {
+      "kode": "BBSI",
+      "high": 4340,
+      "low": 4150,
+      "close": 4340,
+      "volume": 600,
+      "value": 2509000,
+      "freq": 6
+    },
+    {
+      "kode": "BBSS",
+      "high": 94,
+      "low": 90,
+      "close": 91,
+      "volume": 8338200,
+      "value": 766242900,
+      "freq": 661
+    },
+    {
+      "kode": "BBTN",
+      "high": 1095,
+      "low": 1065,
+      "close": 1085,
+      "volume": 15717700,
+      "value": 17031975500,
+      "freq": 2445
+    },
+    {
+      "kode": "BBYB",
+      "high": 206,
+      "low": 199,
+      "close": 202,
+      "volume": 54580100,
+      "value": 11032592700,
+      "freq": 1882
+    },
+    {
+      "kode": "BCAP",
+      "high": 33,
+      "low": 29,
+      "close": 31,
+      "volume": 48932000,
+      "value": 1514927500,
+      "freq": 10418
+    },
+    {
+      "kode": "BCIC",
+      "high": 135,
+      "low": 129,
+      "close": 131,
+      "volume": 294000,
+      "value": 38986600,
+      "freq": 152
+    },
+    {
+      "kode": "BCIP",
+      "high": 55,
+      "low": 54,
+      "close": 55,
+      "volume": 1355500,
+      "value": 73678600,
+      "freq": 234
+    },
+    {
+      "kode": "BDKR",
+      "high": 210,
+      "low": 180,
+      "close": 210,
+      "volume": 115607200,
+      "value": 22676815900,
+      "freq": 6719
+    },
+    {
+      "kode": "BDMN",
+      "high": 4940,
+      "low": 4700,
+      "close": 4910,
+      "volume": 8339500,
+      "value": 40683755000,
+      "freq": 2402
+    },
+    {
+      "kode": "BEBS",
+      "high": 0,
+      "low": 0,
+      "close": 5,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "BEEF",
+      "high": 436,
+      "low": 422,
+      "close": 426,
+      "volume": 2332500,
+      "value": 997428000,
+      "freq": 465
+    },
+    {
+      "kode": "BEER",
+      "high": 64,
+      "low": 60,
+      "close": 63,
+      "volume": 4603100,
+      "value": 284725400,
+      "freq": 734
+    },
+    {
+      "kode": "BEKS",
+      "high": 40,
+      "low": 29,
+      "close": 36,
+      "volume": 935504600,
+      "value": 33160601500,
+      "freq": 10532
+    },
+    {
+      "kode": "BELI",
+      "high": 266,
+      "low": 248,
+      "close": 266,
+      "volume": 2554900,
+      "value": 658589200,
+      "freq": 396
+    },
+    {
+      "kode": "BELL",
+      "high": 98,
+      "low": 94,
+      "close": 97,
+      "volume": 5933100,
+      "value": 571589300,
+      "freq": 747
+    },
+    {
+      "kode": "BESS",
+      "high": 805,
+      "low": 780,
+      "close": 800,
+      "volume": 34100,
+      "value": 27109500,
+      "freq": 57
+    },
+    {
+      "kode": "BEST",
+      "high": 132,
+      "low": 126,
+      "close": 129,
+      "volume": 53700200,
+      "value": 6875894200,
+      "freq": 2251
+    },
+    {
+      "kode": "BFIN",
+      "high": 930,
+      "low": 920,
+      "close": 925,
+      "volume": 4864900,
+      "value": 4507205500,
+      "freq": 1527
+    },
+    {
+      "kode": "BGTG",
+      "high": 109,
+      "low": 104,
+      "close": 106,
+      "volume": 3202300,
+      "value": 340118200,
+      "freq": 220
+    },
+    {
+      "kode": "BHAT",
+      "high": 0,
+      "low": 0,
+      "close": 1770,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "BHIT",
+      "high": 23,
+      "low": 20,
+      "close": 23,
+      "volume": 54495400,
+      "value": 1185316200,
+      "freq": 626
+    },
+    {
+      "kode": "BIKA",
+      "high": 0,
+      "low": 0,
+      "close": 55,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "BIKE",
+      "high": 0,
+      "low": 0,
+      "close": 1505,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "BIMA",
+      "high": 0,
+      "low": 0,
+      "close": 82,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "BINA",
+      "high": 4030,
+      "low": 3980,
+      "close": 4010,
+      "volume": 184800,
+      "value": 739220000,
+      "freq": 75
+    },
+    {
+      "kode": "BINO",
+      "high": 109,
+      "low": 104,
+      "close": 106,
+      "volume": 738900,
+      "value": 77735700,
+      "freq": 119
+    },
+    {
+      "kode": "BIPI",
+      "high": 135,
+      "low": 126,
+      "close": 132,
+      "volume": 605078300,
+      "value": 79090669300,
+      "freq": 10279
+    },
+    {
+      "kode": "BIPP",
+      "high": 69,
+      "low": 62,
+      "close": 64,
+      "volume": 37383800,
+      "value": 2451764600,
+      "freq": 2641
+    },
+    {
+      "kode": "BIRD",
+      "high": 1580,
+      "low": 1555,
+      "close": 1565,
+      "volume": 630200,
+      "value": 988574500,
+      "freq": 462
+    },
+    {
+      "kode": "BISI",
+      "high": 700,
+      "low": 680,
+      "close": 700,
+      "volume": 296300,
+      "value": 205083500,
+      "freq": 123
+    },
+    {
+      "kode": "BJBR",
+      "high": 765,
+      "low": 755,
+      "close": 760,
+      "volume": 2289600,
+      "value": 1739666500,
+      "freq": 606
+    },
+    {
+      "kode": "BJTM",
+      "high": 515,
+      "low": 510,
+      "close": 515,
+      "volume": 1845500,
+      "value": 948169500,
+      "freq": 561
+    },
+    {
+      "kode": "BKDP",
+      "high": 200,
+      "low": 181,
+      "close": 194,
+      "volume": 23329300,
+      "value": 4515830600,
+      "freq": 1700
+    },
+    {
+      "kode": "BKSL",
+      "high": 59,
+      "low": 57,
+      "close": 59,
+      "volume": 82510700,
+      "value": 4818691700,
+      "freq": 2600
+    },
+    {
+      "kode": "BKSW",
+      "high": 50,
+      "low": 48,
+      "close": 48,
+      "volume": 1205500,
+      "value": 58055500,
+      "freq": 75
+    },
+    {
+      "kode": "BLES",
+      "high": 204,
+      "low": 199,
+      "close": 202,
+      "volume": 11135900,
+      "value": 2243118000,
+      "freq": 724
+    },
+    {
+      "kode": "BLOG",
+      "high": 366,
+      "low": 356,
+      "close": 358,
+      "volume": 114200,
+      "value": 41183400,
+      "freq": 77
+    },
+    {
+      "kode": "BLTA",
+      "high": 40,
+      "low": 36,
+      "close": 39,
+      "volume": 56062400,
+      "value": 2170413800,
+      "freq": 1705
+    },
+    {
+      "kode": "BLTZ",
+      "high": 0,
+      "low": 0,
+      "close": 4500,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "BLUE",
+      "high": 4100,
+      "low": 3530,
+      "close": 3660,
+      "volume": 901200,
+      "value": 3420343000,
+      "freq": 1038
+    },
+    {
+      "kode": "BMAS",
+      "high": 478,
+      "low": 472,
+      "close": 476,
+      "volume": 58800,
+      "value": 27941400,
+      "freq": 29
+    },
+    {
+      "kode": "BMBL",
+      "high": 31,
+      "low": 29,
+      "close": 31,
+      "volume": 4274900,
+      "value": 127604200,
+      "freq": 144
+    },
+    {
+      "kode": "BMHS",
+      "high": 202,
+      "low": 197,
+      "close": 200,
+      "volume": 596000,
+      "value": 118819900,
+      "freq": 92
+    },
+    {
+      "kode": "BMRI",
+      "high": 4150,
+      "low": 4100,
+      "close": 4100,
+      "volume": 90258000,
+      "value": 371889295000,
+      "freq": 23102
+    },
+    {
+      "kode": "BMSR",
+      "high": 328,
+      "low": 310,
+      "close": 318,
+      "volume": 97500,
+      "value": 30534200,
+      "freq": 96
+    },
+    {
+      "kode": "BMTR",
+      "high": 80,
+      "low": 75,
+      "close": 79,
+      "volume": 94450600,
+      "value": 7332490400,
+      "freq": 2120
+    },
+    {
+      "kode": "BNBA",
+      "high": 830,
+      "low": 800,
+      "close": 810,
+      "volume": 197300,
+      "value": 159025500,
+      "freq": 55
+    },
+    {
+      "kode": "BNBR",
+      "high": 78,
+      "low": 73,
+      "close": 76,
+      "volume": 542240800,
+      "value": 40929211000,
+      "freq": 11088
+    },
+    {
+      "kode": "BNGA",
+      "high": 1710,
+      "low": 1690,
+      "close": 1700,
+      "volume": 1502100,
+      "value": 2552386000,
+      "freq": 451
+    },
+    {
+      "kode": "BNII",
+      "high": 190,
+      "low": 187,
+      "close": 189,
+      "volume": 3201100,
+      "value": 604989600,
+      "freq": 123
+    },
+    {
+      "kode": "BNLI",
+      "high": 1950,
+      "low": 1925,
+      "close": 1950,
+      "volume": 8200,
+      "value": 15949000,
+      "freq": 27
+    },
+    {
+      "kode": "BOAT",
+      "high": 126,
+      "low": 121,
+      "close": 125,
+      "volume": 693200,
+      "value": 85492200,
+      "freq": 160
+    },
+    {
+      "kode": "BOBA",
+      "high": 199,
+      "low": 192,
+      "close": 196,
+      "volume": 210800,
+      "value": 41151000,
+      "freq": 99
+    },
+    {
+      "kode": "BOGA",
+      "high": 1675,
+      "low": 1620,
+      "close": 1620,
+      "volume": 7000,
+      "value": 11382000,
+      "freq": 11
+    },
+    {
+      "kode": "BOLA",
+      "high": 179,
+      "low": 169,
+      "close": 169,
+      "volume": 2174600,
+      "value": 375953900,
+      "freq": 313
+    },
+    {
+      "kode": "BOLT",
+      "high": 795,
+      "low": 775,
+      "close": 795,
+      "volume": 22400,
+      "value": 17555000,
+      "freq": 45
+    },
+    {
+      "kode": "BOSS",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "BPFI",
+      "high": 238,
+      "low": 236,
+      "close": 238,
+      "volume": 12800,
+      "value": 3028400,
+      "freq": 13
+    },
+    {
+      "kode": "BPII",
+      "high": 454,
+      "low": 416,
+      "close": 452,
+      "volume": 26700,
+      "value": 11505800,
+      "freq": 38
+    },
+    {
+      "kode": "BPTR",
+      "high": 72,
+      "low": 70,
+      "close": 71,
+      "volume": 1193600,
+      "value": 84921900,
+      "freq": 166
+    },
+    {
+      "kode": "BRAM",
+      "high": 4680,
+      "low": 4610,
+      "close": 4670,
+      "volume": 2700,
+      "value": 12532000,
+      "freq": 8
+    },
+    {
+      "kode": "BREN",
+      "high": 3000,
+      "low": 2900,
+      "close": 2920,
+      "volume": 6346600,
+      "value": 18666966000,
+      "freq": 3380
+    },
+    {
+      "kode": "BRIS",
+      "high": 1420,
+      "low": 1390,
+      "close": 1410,
+      "volume": 29780900,
+      "value": 41905603500,
+      "freq": 8731
+    },
+    {
+      "kode": "BRMS",
+      "high": 615,
+      "low": 595,
+      "close": 605,
+      "volume": 180004500,
+      "value": 108771997500,
+      "freq": 9951
+    },
+    {
+      "kode": "BRNA",
+      "high": 690,
+      "low": 670,
+      "close": 680,
+      "volume": 376400,
+      "value": 253468000,
+      "freq": 144
+    },
+    {
+      "kode": "BRPT",
+      "high": 1505,
+      "low": 1470,
+      "close": 1480,
+      "volume": 38167900,
+      "value": 56855639500,
+      "freq": 7933
+    },
+    {
+      "kode": "BRRC",
+      "high": 56,
+      "low": 50,
+      "close": 54,
+      "volume": 15253300,
+      "value": 809250800,
+      "freq": 1171
+    },
+    {
+      "kode": "BSBK",
+      "high": 45,
+      "low": 41,
+      "close": 44,
+      "volume": 33566100,
+      "value": 1429609700,
+      "freq": 1383
+    },
+    {
+      "kode": "BSDE",
+      "high": 555,
+      "low": 535,
+      "close": 545,
+      "volume": 58529600,
+      "value": 31715389500,
+      "freq": 2820
+    },
+    {
+      "kode": "BSIM",
+      "high": 1025,
+      "low": 925,
+      "close": 990,
+      "volume": 181200,
+      "value": 176054500,
+      "freq": 87
+    },
+    {
+      "kode": "BSML",
+      "high": 555,
+      "low": 545,
+      "close": 550,
+      "volume": 10582100,
+      "value": 5823159000,
+      "freq": 389
+    },
+    {
+      "kode": "BSSR",
+      "high": 5250,
+      "low": 5050,
+      "close": 5150,
+      "volume": 1798000,
+      "value": 9339530000,
+      "freq": 1634
+    },
+    {
+      "kode": "BSWD",
+      "high": 0,
+      "low": 0,
+      "close": 3600,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "BTEK",
+      "high": 14,
+      "low": 11,
+      "close": 14,
+      "volume": 1184865000,
+      "value": 15616532300,
+      "freq": 8884
+    },
+    {
+      "kode": "BTEL",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "BTON",
+      "high": 378,
+      "low": 366,
+      "close": 378,
+      "volume": 7000,
+      "value": 2585800,
+      "freq": 11
+    },
+    {
+      "kode": "BTPN",
+      "high": 2460,
+      "low": 2390,
+      "close": 2460,
+      "volume": 37300,
+      "value": 90967000,
+      "freq": 46
+    },
+    {
+      "kode": "BTPS",
+      "high": 975,
+      "low": 930,
+      "close": 960,
+      "volume": 3625300,
+      "value": 3474434000,
+      "freq": 1294
+    },
+    {
+      "kode": "BUAH",
+      "high": 486,
+      "low": 474,
+      "close": 484,
+      "volume": 393300,
+      "value": 187438200,
+      "freq": 101
+    },
+    {
+      "kode": "BUDI",
+      "high": 224,
+      "low": 220,
+      "close": 220,
+      "volume": 120000,
+      "value": 26477200,
+      "freq": 37
+    },
+    {
+      "kode": "BUKA",
+      "high": 105,
+      "low": 102,
+      "close": 103,
+      "volume": 45503000,
+      "value": 4702545200,
+      "freq": 1200
+    },
+    {
+      "kode": "BUKK",
+      "high": 990,
+      "low": 970,
+      "close": 980,
+      "volume": 15000,
+      "value": 14733500,
+      "freq": 16
+    },
+    {
+      "kode": "BULL",
+      "high": 376,
+      "low": 350,
+      "close": 372,
+      "volume": 518822500,
+      "value": 189637350400,
+      "freq": 19355
+    },
+    {
+      "kode": "BUMI",
+      "high": 187,
+      "low": 179,
+      "close": 184,
+      "volume": 2396377200,
+      "value": 438715896100,
+      "freq": 32845
+    },
+    {
+      "kode": "BUVA",
+      "high": 705,
+      "low": 655,
+      "close": 705,
+      "volume": 174765000,
+      "value": 119053449500,
+      "freq": 17157
+    },
+    {
+      "kode": "BVIC",
+      "high": 89,
+      "low": 86,
+      "close": 89,
+      "volume": 1577800,
+      "value": 139240100,
+      "freq": 91
+    },
+    {
+      "kode": "BWPT",
+      "high": 110,
+      "low": 105,
+      "close": 109,
+      "volume": 55274200,
+      "value": 5986317000,
+      "freq": 2800
+    },
+    {
+      "kode": "BYAN",
+      "high": 13550,
+      "low": 12050,
+      "close": 13450,
+      "volume": 5749600,
+      "value": 74326142500,
+      "freq": 4746
+    },
+    {
+      "kode": "CAKK",
+      "high": 156,
+      "low": 153,
+      "close": 156,
+      "volume": 23100,
+      "value": 3556300,
+      "freq": 24
+    },
+    {
+      "kode": "CAMP",
+      "high": 163,
+      "low": 160,
+      "close": 161,
+      "volume": 501900,
+      "value": 80945000,
+      "freq": 157
+    },
+    {
+      "kode": "CANI",
+      "high": 0,
+      "low": 0,
+      "close": 135,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "CARE",
+      "high": 378,
+      "low": 372,
+      "close": 376,
+      "volume": 89500,
+      "value": 33563600,
+      "freq": 78
+    },
+    {
+      "kode": "CARS",
+      "high": 111,
+      "low": 104,
+      "close": 105,
+      "volume": 8941500,
+      "value": 948962700,
+      "freq": 248
+    },
+    {
+      "kode": "CASA",
+      "high": 1850,
+      "low": 1760,
+      "close": 1775,
+      "volume": 1074100,
+      "value": 1908223000,
+      "freq": 38
+    },
+    {
+      "kode": "CASH",
+      "high": 260,
+      "low": 250,
+      "close": 252,
+      "volume": 418400,
+      "value": 105149800,
+      "freq": 119
+    },
+    {
+      "kode": "CASS",
+      "high": 1875,
+      "low": 1850,
+      "close": 1860,
+      "volume": 15500,
+      "value": 28825500,
+      "freq": 23
+    },
+    {
+      "kode": "CBDK",
+      "high": 3560,
+      "low": 3460,
+      "close": 3530,
+      "volume": 805700,
+      "value": 2830960000,
+      "freq": 705
+    },
+    {
+      "kode": "CBMF",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "CBPE",
+      "high": 510,
+      "low": 490,
+      "close": 496,
+      "volume": 39800,
+      "value": 19717000,
+      "freq": 28
+    },
+    {
+      "kode": "CBRE",
+      "high": 750,
+      "low": 720,
+      "close": 745,
+      "volume": 8251900,
+      "value": 6118788000,
+      "freq": 1246
+    },
+    {
+      "kode": "CBUT",
+      "high": 930,
+      "low": 875,
+      "close": 920,
+      "volume": 45100,
+      "value": 41019500,
+      "freq": 122
+    },
+    {
+      "kode": "CCSI",
+      "high": 448,
+      "low": 414,
+      "close": 416,
+      "volume": 6650000,
+      "value": 2840944800,
+      "freq": 2241
+    },
+    {
+      "kode": "CDIA",
+      "high": 600,
+      "low": 570,
+      "close": 575,
+      "volume": 59279000,
+      "value": 34716311500,
+      "freq": 6392
+    },
+    {
+      "kode": "CEKA",
+      "high": 2200,
+      "low": 2160,
+      "close": 2190,
+      "volume": 32000,
+      "value": 70235000,
+      "freq": 28
+    },
+    {
+      "kode": "CENT",
+      "high": 98,
+      "low": 93,
+      "close": 97,
+      "volume": 8120800,
+      "value": 779527000,
+      "freq": 787
+    },
+    {
+      "kode": "CFIN",
+      "high": 358,
+      "low": 352,
+      "close": 358,
+      "volume": 1036200,
+      "value": 369189000,
+      "freq": 162
+    },
+    {
+      "kode": "CGAS",
+      "high": 151,
+      "low": 146,
+      "close": 150,
+      "volume": 5921200,
+      "value": 875253100,
+      "freq": 459
+    },
+    {
+      "kode": "CHEK",
+      "high": 123,
+      "low": 117,
+      "close": 120,
+      "volume": 818900,
+      "value": 98055000,
+      "freq": 220
+    },
+    {
+      "kode": "CHEM",
+      "high": 60,
+      "low": 56,
+      "close": 58,
+      "volume": 9055600,
+      "value": 524832300,
+      "freq": 763
+    },
+    {
+      "kode": "CHIP",
+      "high": 640,
+      "low": 615,
+      "close": 625,
+      "volume": 88200,
+      "value": 54844000,
+      "freq": 126
+    },
+    {
+      "kode": "CINT",
+      "high": 196,
+      "low": 190,
+      "close": 194,
+      "volume": 810900,
+      "value": 156295000,
+      "freq": 194
+    },
+    {
+      "kode": "CITA",
+      "high": 3490,
+      "low": 3350,
+      "close": 3430,
+      "volume": 85000,
+      "value": 293131000,
+      "freq": 139
+    },
+    {
+      "kode": "CITY",
+      "high": 172,
+      "low": 163,
+      "close": 171,
+      "volume": 740300,
+      "value": 124895700,
+      "freq": 331
+    },
+    {
+      "kode": "CLAY",
+      "high": 2810,
+      "low": 2750,
+      "close": 2810,
+      "volume": 10200,
+      "value": 28556000,
+      "freq": 8
+    },
+    {
+      "kode": "CLEO",
+      "high": 430,
+      "low": 420,
+      "close": 422,
+      "volume": 13315100,
+      "value": 5652557000,
+      "freq": 1259
+    },
+    {
+      "kode": "CLPI",
+      "high": 1595,
+      "low": 1575,
+      "close": 1595,
+      "volume": 125700,
+      "value": 199939000,
+      "freq": 60
+    },
+    {
+      "kode": "CMNP",
+      "high": 1440,
+      "low": 1425,
+      "close": 1430,
+      "volume": 224800,
+      "value": 322562000,
+      "freq": 131
+    },
+    {
+      "kode": "CMNT",
+      "high": 745,
+      "low": 730,
+      "close": 740,
+      "volume": 12975500,
+      "value": 9510326000,
+      "freq": 241
+    },
+    {
+      "kode": "CMPP",
+      "high": 0,
+      "low": 0,
+      "close": 69,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "CMRY",
+      "high": 4480,
+      "low": 4420,
+      "close": 4420,
+      "volume": 509500,
+      "value": 2261001000,
+      "freq": 701
+    },
+    {
+      "kode": "CNKO",
+      "high": 0,
+      "low": 0,
+      "close": 37,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "CNMA",
+      "high": 90,
+      "low": 89,
+      "close": 90,
+      "volume": 9354500,
+      "value": 834271900,
+      "freq": 693
+    },
+    {
+      "kode": "COAL",
+      "high": 0,
+      "low": 0,
+      "close": 31,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "COCO",
+      "high": 137,
+      "low": 129,
+      "close": 133,
+      "volume": 564806600,
+      "value": 74902854400,
+      "freq": 20813
+    },
+    {
+      "kode": "COIN",
+      "high": 745,
+      "low": 725,
+      "close": 730,
+      "volume": 11659200,
+      "value": 8563256000,
+      "freq": 1980
+    },
+    {
+      "kode": "COWL",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "CPIN",
+      "high": 2970,
+      "low": 2900,
+      "close": 2940,
+      "volume": 9709900,
+      "value": 28557492000,
+      "freq": 3685
+    },
+    {
+      "kode": "CPRI",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "CPRO",
+      "high": 43,
+      "low": 40,
+      "close": 41,
+      "volume": 55773800,
+      "value": 2301851700,
+      "freq": 1531
+    },
+    {
+      "kode": "CRAB",
+      "high": 222,
+      "low": 216,
+      "close": 218,
+      "volume": 435300,
+      "value": 95429600,
+      "freq": 83
+    },
+    {
+      "kode": "CRSN",
+      "high": 158,
+      "low": 147,
+      "close": 151,
+      "volume": 2685200,
+      "value": 406227000,
+      "freq": 683
+    },
+    {
+      "kode": "CSAP",
+      "high": 290,
+      "low": 282,
+      "close": 288,
+      "volume": 40200,
+      "value": 11570400,
+      "freq": 32
+    },
+    {
+      "kode": "CSIS",
+      "high": 216,
+      "low": 167,
+      "close": 206,
+      "volume": 35837100,
+      "value": 7468016500,
+      "freq": 5113
+    },
+    {
+      "kode": "CSMI",
+      "high": 515,
+      "low": 434,
+      "close": 515,
+      "volume": 109548500,
+      "value": 53219166500,
+      "freq": 18423
+    },
+    {
+      "kode": "CSRA",
+      "high": 700,
+      "low": 675,
+      "close": 690,
+      "volume": 239800,
+      "value": 165369000,
+      "freq": 111
+    },
+    {
+      "kode": "CTBN",
+      "high": 2900,
+      "low": 2840,
+      "close": 2850,
+      "volume": 4900,
+      "value": 14045000,
+      "freq": 19
+    },
+    {
+      "kode": "CTRA",
+      "high": 550,
+      "low": 535,
+      "close": 540,
+      "volume": 10673000,
+      "value": 5793544000,
+      "freq": 1215
+    },
+    {
+      "kode": "CTTH",
+      "high": 106,
+      "low": 94,
+      "close": 100,
+      "volume": 18532300,
+      "value": 1861037300,
+      "freq": 1872
+    },
+    {
+      "kode": "CUAN",
+      "high": 885,
+      "low": 850,
+      "close": 850,
+      "volume": 291319800,
+      "value": 251502406500,
+      "freq": 18163
+    },
+    {
+      "kode": "CYBR",
+      "high": 494,
+      "low": 488,
+      "close": 488,
+      "volume": 29745100,
+      "value": 14632548000,
+      "freq": 1189
+    },
+    {
+      "kode": "DAAZ",
+      "high": 2190,
+      "low": 2010,
+      "close": 2120,
+      "volume": 1091900,
+      "value": 2298682000,
+      "freq": 1211
+    },
+    {
+      "kode": "DADA",
+      "high": 26,
+      "low": 23,
+      "close": 24,
+      "volume": 177762900,
+      "value": 4293196300,
+      "freq": 6384
+    },
+    {
+      "kode": "DART",
+      "high": 159,
+      "low": 151,
+      "close": 157,
+      "volume": 81100,
+      "value": 12491600,
+      "freq": 107
+    },
+    {
+      "kode": "DATA",
+      "high": 1620,
+      "low": 1570,
+      "close": 1570,
+      "volume": 1687600,
+      "value": 2684883000,
+      "freq": 532
+    },
+    {
+      "kode": "DAYA",
+      "high": 1185,
+      "low": 1080,
+      "close": 1135,
+      "volume": 9600,
+      "value": 10819000,
+      "freq": 35
+    },
+    {
+      "kode": "DCII",
+      "high": 199800,
+      "low": 194600,
+      "close": 199550,
+      "volume": 500,
+      "value": 99330000,
+      "freq": 5
+    },
+    {
+      "kode": "DEAL",
+      "high": 0,
+      "low": 0,
+      "close": 6,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "DEFI",
+      "high": 101,
+      "low": 89,
+      "close": 94,
+      "volume": 65853600,
+      "value": 6318471800,
+      "freq": 9140
+    },
+    {
+      "kode": "DEPO",
+      "high": 240,
+      "low": 230,
+      "close": 236,
+      "volume": 138200,
+      "value": 32679400,
+      "freq": 88
+    },
+    {
+      "kode": "DEWA",
+      "high": 372,
+      "low": 348,
+      "close": 364,
+      "volume": 605407000,
+      "value": 218566745400,
+      "freq": 26302
+    },
+    {
+      "kode": "DEWI",
+      "high": 262,
+      "low": 248,
+      "close": 250,
+      "volume": 23689700,
+      "value": 6050640200,
+      "freq": 1535
+    },
+    {
+      "kode": "DFAM",
+      "high": 72,
+      "low": 67,
+      "close": 70,
+      "volume": 14075500,
+      "value": 986873300,
+      "freq": 1072
+    },
+    {
+      "kode": "DGIK",
+      "high": 141,
+      "low": 137,
+      "close": 139,
+      "volume": 4051100,
+      "value": 563013700,
+      "freq": 451
+    },
+    {
+      "kode": "DGNS",
+      "high": 296,
+      "low": 282,
+      "close": 292,
+      "volume": 344000,
+      "value": 99313800,
+      "freq": 50
+    },
+    {
+      "kode": "DGWG",
+      "high": 334,
+      "low": 324,
+      "close": 332,
+      "volume": 12177600,
+      "value": 4007543800,
+      "freq": 1630
+    },
+    {
+      "kode": "DIGI",
+      "high": 0,
+      "low": 0,
+      "close": 29,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "DILD",
+      "high": 112,
+      "low": 109,
+      "close": 111,
+      "volume": 16017800,
+      "value": 1764719000,
+      "freq": 750
+    },
+    {
+      "kode": "DIVA",
+      "high": 140,
+      "low": 134,
+      "close": 139,
+      "volume": 8113400,
+      "value": 1115883400,
+      "freq": 1184
+    },
+    {
+      "kode": "DKFT",
+      "high": 670,
+      "low": 650,
+      "close": 665,
+      "volume": 3159500,
+      "value": 2087414500,
+      "freq": 568
+    },
+    {
+      "kode": "DKHH",
+      "high": 76,
+      "low": 72,
+      "close": 74,
+      "volume": 19120600,
+      "value": 1410075700,
+      "freq": 1047
+    },
+    {
+      "kode": "DLTA",
+      "high": 1785,
+      "low": 1765,
+      "close": 1765,
+      "volume": 55700,
+      "value": 98486500,
+      "freq": 54
+    },
+    {
+      "kode": "DMAS",
+      "high": 193,
+      "low": 189,
+      "close": 190,
+      "volume": 91456400,
+      "value": 17424064000,
+      "freq": 5547
+    },
+    {
+      "kode": "DMMX",
+      "high": 175,
+      "low": 171,
+      "close": 172,
+      "volume": 874500,
+      "value": 151058400,
+      "freq": 212
+    },
+    {
+      "kode": "DMND",
+      "high": 615,
+      "low": 590,
+      "close": 610,
+      "volume": 29300,
+      "value": 17620000,
+      "freq": 50
+    },
+    {
+      "kode": "DNAR",
+      "high": 127,
+      "low": 123,
+      "close": 126,
+      "volume": 444400,
+      "value": 55691400,
+      "freq": 86
+    },
+    {
+      "kode": "DNET",
+      "high": 9950,
+      "low": 9875,
+      "close": 9950,
+      "volume": 7800,
+      "value": 77502500,
+      "freq": 16
+    },
+    {
+      "kode": "DOID",
+      "high": 224,
+      "low": 216,
+      "close": 220,
+      "volume": 3870200,
+      "value": 851665400,
+      "freq": 580
+    },
+    {
+      "kode": "DOOH",
+      "high": 358,
+      "low": 340,
+      "close": 342,
+      "volume": 85868200,
+      "value": 29906751400,
+      "freq": 7575
+    },
+    {
+      "kode": "DOSS",
+      "high": 169,
+      "low": 157,
+      "close": 163,
+      "volume": 917200,
+      "value": 149405700,
+      "freq": 172
+    },
+    {
+      "kode": "DPNS",
+      "high": 0,
+      "low": 0,
+      "close": 310,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "DPUM",
+      "high": 122,
+      "low": 110,
+      "close": 116,
+      "volume": 55055100,
+      "value": 6368407100,
+      "freq": 6916
+    },
+    {
+      "kode": "DRMA",
+      "high": 950,
+      "low": 925,
+      "close": 935,
+      "volume": 547000,
+      "value": 513747000,
+      "freq": 260
+    },
+    {
+      "kode": "DSFI",
+      "high": 86,
+      "low": 83,
+      "close": 85,
+      "volume": 2462000,
+      "value": 208184100,
+      "freq": 422
+    },
+    {
+      "kode": "DSNG",
+      "high": 1575,
+      "low": 1545,
+      "close": 1545,
+      "volume": 697500,
+      "value": 1086009500,
+      "freq": 448
+    },
+    {
+      "kode": "DSSA",
+      "high": 1185,
+      "low": 1145,
+      "close": 1165,
+      "volume": 234321200,
+      "value": 273291077000,
+      "freq": 16798
+    },
+    {
+      "kode": "DUCK",
+      "high": 0,
+      "low": 0,
+      "close": 176,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "DUTI",
+      "high": 4560,
+      "low": 4560,
+      "close": 4560,
+      "volume": 200,
+      "value": 912000,
+      "freq": 2
+    },
+    {
+      "kode": "DVLA",
+      "high": 1585,
+      "low": 1580,
+      "close": 1585,
+      "volume": 17400,
+      "value": 27514500,
+      "freq": 26
+    },
+    {
+      "kode": "DWGL",
+      "high": 224,
+      "low": 214,
+      "close": 220,
+      "volume": 1683200,
+      "value": 368280000,
+      "freq": 326
+    },
+    {
+      "kode": "DYAN",
+      "high": 87,
+      "low": 83,
+      "close": 85,
+      "volume": 8686700,
+      "value": 736103600,
+      "freq": 820
+    },
+    {
+      "kode": "EAST",
+      "high": 91,
+      "low": 88,
+      "close": 90,
+      "volume": 2007900,
+      "value": 179941000,
+      "freq": 277
+    },
+    {
+      "kode": "ECII",
+      "high": 159,
+      "low": 152,
+      "close": 153,
+      "volume": 723500,
+      "value": 111349200,
+      "freq": 193
+    },
+    {
+      "kode": "EDGE",
+      "high": 0,
+      "low": 0,
+      "close": 4790,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "EKAD",
+      "high": 392,
+      "low": 380,
+      "close": 388,
+      "volume": 1597600,
+      "value": 615619000,
+      "freq": 540
+    },
+    {
+      "kode": "ELIT",
+      "high": 292,
+      "low": 266,
+      "close": 290,
+      "volume": 43874900,
+      "value": 12399995600,
+      "freq": 3932
+    },
+    {
+      "kode": "ELPI",
+      "high": 595,
+      "low": 555,
+      "close": 565,
+      "volume": 824100,
+      "value": 467592500,
+      "freq": 436
+    },
+    {
+      "kode": "ELSA",
+      "high": 655,
+      "low": 630,
+      "close": 645,
+      "volume": 13811600,
+      "value": 8870364000,
+      "freq": 1982
+    },
+    {
+      "kode": "ELTY",
+      "high": 31,
+      "low": 28,
+      "close": 31,
+      "volume": 366193100,
+      "value": 10664821000,
+      "freq": 7527
+    },
+    {
+      "kode": "EMAS",
+      "high": 7825,
+      "low": 7650,
+      "close": 7700,
+      "volume": 7768600,
+      "value": 59879997500,
+      "freq": 3670
+    },
+    {
+      "kode": "EMDE",
+      "high": 71,
+      "low": 65,
+      "close": 68,
+      "volume": 7045400,
+      "value": 484373200,
+      "freq": 690
+    },
+    {
+      "kode": "EMMI",
+      "high": 410,
+      "low": 370,
+      "close": 388,
+      "volume": 5069200,
+      "value": 1982199800,
+      "freq": 1419
+    },
+    {
+      "kode": "EMTK",
+      "high": 410,
+      "low": 396,
+      "close": 410,
+      "volume": 24180200,
+      "value": 9787190200,
+      "freq": 2448
+    },
+    {
+      "kode": "ENAK",
+      "high": 199,
+      "low": 186,
+      "close": 193,
+      "volume": 391300,
+      "value": 74463500,
+      "freq": 471
+    },
+    {
+      "kode": "ENRG",
+      "high": 1090,
+      "low": 1010,
+      "close": 1080,
+      "volume": 119029700,
+      "value": 125606920500,
+      "freq": 10315
+    },
+    {
+      "kode": "ENVY",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ENZO",
+      "high": 68,
+      "low": 61,
+      "close": 64,
+      "volume": 27546400,
+      "value": 1770086300,
+      "freq": 1643
+    },
+    {
+      "kode": "EPAC",
+      "high": 50,
+      "low": 47,
+      "close": 49,
+      "volume": 42098300,
+      "value": 2056433700,
+      "freq": 3748
+    },
+    {
+      "kode": "EPMT",
+      "high": 2660,
+      "low": 2640,
+      "close": 2660,
+      "volume": 29900,
+      "value": 79265000,
+      "freq": 28
+    },
+    {
+      "kode": "ERAA",
+      "high": 640,
+      "low": 610,
+      "close": 625,
+      "volume": 90219400,
+      "value": 56298137000,
+      "freq": 5603
+    },
+    {
+      "kode": "ERAL",
+      "high": 318,
+      "low": 308,
+      "close": 312,
+      "volume": 3663700,
+      "value": 1146579000,
+      "freq": 468
+    },
+    {
+      "kode": "ERTX",
+      "high": 166,
+      "low": 160,
+      "close": 164,
+      "volume": 520600,
+      "value": 84250300,
+      "freq": 101
+    },
+    {
+      "kode": "ESIP",
+      "high": 102,
+      "low": 98,
+      "close": 102,
+      "volume": 8470900,
+      "value": 847884600,
+      "freq": 887
+    },
+    {
+      "kode": "ESSA",
+      "high": 600,
+      "low": 580,
+      "close": 590,
+      "volume": 31055300,
+      "value": 18308903500,
+      "freq": 2814
+    },
+    {
+      "kode": "ESTA",
+      "high": 172,
+      "low": 167,
+      "close": 170,
+      "volume": 1350800,
+      "value": 229728500,
+      "freq": 319
+    },
+    {
+      "kode": "ESTI",
+      "high": 155,
+      "low": 149,
+      "close": 152,
+      "volume": 2982200,
+      "value": 453863000,
+      "freq": 594
+    },
+    {
+      "kode": "ETWA",
+      "high": 0,
+      "low": 0,
+      "close": 70,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "EURO",
+      "high": 1430,
+      "low": 1385,
+      "close": 1390,
+      "volume": 104200,
+      "value": 145897000,
+      "freq": 93
+    },
+    {
+      "kode": "EXCL",
+      "high": 2400,
+      "low": 2320,
+      "close": 2390,
+      "volume": 3064400,
+      "value": 7264096000,
+      "freq": 1283
+    },
+    {
+      "kode": "FAPA",
+      "high": 7375,
+      "low": 7375,
+      "close": 7375,
+      "volume": 1500,
+      "value": 11062500,
+      "freq": 6
+    },
+    {
+      "kode": "FAST",
+      "high": 422,
+      "low": 412,
+      "close": 418,
+      "volume": 6530200,
+      "value": 2727134800,
+      "freq": 1070
+    },
+    {
+      "kode": "FASW",
+      "high": 0,
+      "low": 0,
+      "close": 5275,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "FILM",
+      "high": 620,
+      "low": 595,
+      "close": 610,
+      "volume": 6414400,
+      "value": 3906929500,
+      "freq": 1346
+    },
+    {
+      "kode": "FIMP",
+      "high": 0,
+      "low": 0,
+      "close": 69,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "FIRE",
+      "high": 112,
+      "low": 108,
+      "close": 112,
+      "volume": 5265800,
+      "value": 580441100,
+      "freq": 620
+    },
+    {
+      "kode": "FISH",
+      "high": 605,
+      "low": 580,
+      "close": 590,
+      "volume": 65300,
+      "value": 38462500,
+      "freq": 46
+    },
+    {
+      "kode": "FITT",
+      "high": 412,
+      "low": 390,
+      "close": 408,
+      "volume": 2579000,
+      "value": 1030952000,
+      "freq": 293
+    },
+    {
+      "kode": "FLMC",
+      "high": 162,
+      "low": 143,
+      "close": 150,
+      "volume": 4865100,
+      "value": 748353200,
+      "freq": 558
+    },
+    {
+      "kode": "FMII",
+      "high": 252,
+      "low": 244,
+      "close": 244,
+      "volume": 800,
+      "value": 199600,
+      "freq": 8
+    },
+    {
+      "kode": "FOLK",
+      "high": 202,
+      "low": 178,
+      "close": 189,
+      "volume": 64564800,
+      "value": 12391332000,
+      "freq": 7044
+    },
+    {
+      "kode": "FOOD",
+      "high": 0,
+      "low": 0,
+      "close": 176,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "FORE",
+      "high": 805,
+      "low": 790,
+      "close": 800,
+      "volume": 1343800,
+      "value": 1069640500,
+      "freq": 766
+    },
+    {
+      "kode": "FORU",
+      "high": 133,
+      "low": 120,
+      "close": 124,
+      "volume": 1870544700,
+      "value": 238035565700,
+      "freq": 43544
+    },
+    {
+      "kode": "FPNI",
+      "high": 560,
+      "low": 510,
+      "close": 535,
+      "volume": 7017700,
+      "value": 3768471500,
+      "freq": 1473
+    },
+    {
+      "kode": "FUJI",
+      "high": 308,
+      "low": 294,
+      "close": 300,
+      "volume": 1077800,
+      "value": 323792800,
+      "freq": 255
+    },
+    {
+      "kode": "FUTR",
+      "high": 286,
+      "low": 250,
+      "close": 282,
+      "volume": 55497500,
+      "value": 15294237200,
+      "freq": 3796
+    },
+    {
+      "kode": "FWCT",
+      "high": 82,
+      "low": 77,
+      "close": 80,
+      "volume": 2602500,
+      "value": 206316900,
+      "freq": 308
+    },
+    {
+      "kode": "GAMA",
+      "high": 0,
+      "low": 0,
+      "close": 18,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "GDST",
+      "high": 113,
+      "low": 107,
+      "close": 110,
+      "volume": 4421800,
+      "value": 490184100,
+      "freq": 555
+    },
+    {
+      "kode": "GDYR",
+      "high": 1130,
+      "low": 1125,
+      "close": 1125,
+      "volume": 4000,
+      "value": 4500500,
+      "freq": 11
+    },
+    {
+      "kode": "GEMA",
+      "high": 86,
+      "low": 82,
+      "close": 85,
+      "volume": 1749400,
+      "value": 145393200,
+      "freq": 113
+    },
+    {
+      "kode": "GEMS",
+      "high": 8575,
+      "low": 8425,
+      "close": 8550,
+      "volume": 455000,
+      "value": 3873812500,
+      "freq": 687
+    },
+    {
+      "kode": "GGRM",
+      "high": 17125,
+      "low": 16900,
+      "close": 17100,
+      "volume": 291100,
+      "value": 4958315000,
+      "freq": 871
+    },
+    {
+      "kode": "GGRP",
+      "high": 392,
+      "low": 364,
+      "close": 382,
+      "volume": 5749300,
+      "value": 2182156800,
+      "freq": 838
+    },
+    {
+      "kode": "GHON",
+      "high": 1615,
+      "low": 1600,
+      "close": 1610,
+      "volume": 4400,
+      "value": 7080000,
+      "freq": 22
+    },
+    {
+      "kode": "GIAA",
+      "high": 51,
+      "low": 49,
+      "close": 51,
+      "volume": 19445000,
+      "value": 983387000,
+      "freq": 666
+    },
+    {
+      "kode": "GJTL",
+      "high": 1295,
+      "low": 1265,
+      "close": 1285,
+      "volume": 5310600,
+      "value": 6781299000,
+      "freq": 752
+    },
+    {
+      "kode": "GLOB",
+      "high": 0,
+      "low": 0,
+      "close": 155,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "GLVA",
+      "high": 326,
+      "low": 318,
+      "close": 322,
+      "volume": 38200,
+      "value": 12192600,
+      "freq": 21
+    },
+    {
+      "kode": "GMFI",
+      "high": 54,
+      "low": 51,
+      "close": 53,
+      "volume": 145092600,
+      "value": 7562136000,
+      "freq": 5376
+    },
+    {
+      "kode": "GMTD",
+      "high": 1255,
+      "low": 955,
+      "close": 1170,
+      "volume": 359100,
+      "value": 420856500,
+      "freq": 666
+    },
+    {
+      "kode": "GOLD",
+      "high": 276,
+      "low": 268,
+      "close": 274,
+      "volume": 47400,
+      "value": 12979200,
+      "freq": 31
+    },
+    {
+      "kode": "GOLF",
+      "high": 163,
+      "low": 156,
+      "close": 163,
+      "volume": 2178800,
+      "value": 346770000,
+      "freq": 296
+    },
+    {
+      "kode": "GOLL",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "GOOD",
+      "high": 310,
+      "low": 302,
+      "close": 310,
+      "volume": 62400,
+      "value": 19204800,
+      "freq": 54
+    },
+    {
+      "kode": "GOTO",
+      "high": 32,
+      "low": 30,
+      "close": 31,
+      "volume": 18443953300,
+      "value": 570903540000,
+      "freq": 40113
+    },
+    {
+      "kode": "GOTOM",
+      "high": 0,
+      "low": 0,
+      "close": 68,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "GPRA",
+      "high": 100,
+      "low": 98,
+      "close": 99,
+      "volume": 5561800,
+      "value": 550874500,
+      "freq": 246
+    },
+    {
+      "kode": "GPSO",
+      "high": 224,
+      "low": 216,
+      "close": 220,
+      "volume": 5413600,
+      "value": 1185539800,
+      "freq": 513
+    },
+    {
+      "kode": "GRIA",
+      "high": 163,
+      "low": 155,
+      "close": 159,
+      "volume": 1669000,
+      "value": 265229900,
+      "freq": 328
+    },
+    {
+      "kode": "GRPH",
+      "high": 112,
+      "low": 103,
+      "close": 105,
+      "volume": 20222000,
+      "value": 2187827100,
+      "freq": 3563
+    },
+    {
+      "kode": "GRPM",
+      "high": 141,
+      "low": 126,
+      "close": 141,
+      "volume": 11149700,
+      "value": 1500094500,
+      "freq": 808
+    },
+    {
+      "kode": "GSMF",
+      "high": 100,
+      "low": 90,
+      "close": 96,
+      "volume": 8741300,
+      "value": 838614600,
+      "freq": 1027
+    },
+    {
+      "kode": "GTBO",
+      "high": 191,
+      "low": 191,
+      "close": 191,
+      "volume": 278900,
+      "value": 53269900,
+      "freq": 52
+    },
+    {
+      "kode": "GTRA",
+      "high": 276,
+      "low": 260,
+      "close": 274,
+      "volume": 2227800,
+      "value": 604887600,
+      "freq": 276
+    },
+    {
+      "kode": "GTSI",
+      "high": 139,
+      "low": 130,
+      "close": 135,
+      "volume": 26236900,
+      "value": 3528692900,
+      "freq": 1730
+    },
+    {
+      "kode": "GULA",
+      "high": 805,
+      "low": 785,
+      "close": 805,
+      "volume": 15422500,
+      "value": 12274449000,
+      "freq": 835
+    },
+    {
+      "kode": "GUNA",
+      "high": 228,
+      "low": 220,
+      "close": 222,
+      "volume": 187100,
+      "value": 41589200,
+      "freq": 41
+    },
+    {
+      "kode": "GWSA",
+      "high": 150,
+      "low": 144,
+      "close": 149,
+      "volume": 845500,
+      "value": 123790000,
+      "freq": 179
+    },
+    {
+      "kode": "GZCO",
+      "high": 175,
+      "low": 170,
+      "close": 173,
+      "volume": 5391400,
+      "value": 932745800,
+      "freq": 876
+    },
+    {
+      "kode": "HADE",
+      "high": 28,
+      "low": 24,
+      "close": 27,
+      "volume": 58763000,
+      "value": 1573255300,
+      "freq": 5828
+    },
+    {
+      "kode": "HAIS",
+      "high": 176,
+      "low": 172,
+      "close": 175,
+      "volume": 354900,
+      "value": 61735500,
+      "freq": 173
+    },
+    {
+      "kode": "HAJJ",
+      "high": 111,
+      "low": 108,
+      "close": 111,
+      "volume": 5921600,
+      "value": 647722400,
+      "freq": 930
+    },
+    {
+      "kode": "HALO",
+      "high": 72,
+      "low": 63,
+      "close": 66,
+      "volume": 26076800,
+      "value": 1775858700,
+      "freq": 1693
+    },
+    {
+      "kode": "HATM",
+      "high": 535,
+      "low": 515,
+      "close": 530,
+      "volume": 6215600,
+      "value": 3265102000,
+      "freq": 1377
+    },
+    {
+      "kode": "HBAT",
+      "high": 408,
+      "low": 390,
+      "close": 396,
+      "volume": 5649900,
+      "value": 2235455400,
+      "freq": 220
+    },
+    {
+      "kode": "HDFA",
+      "high": 98,
+      "low": 94,
+      "close": 95,
+      "volume": 162300,
+      "value": 15536700,
+      "freq": 68
+    },
+    {
+      "kode": "HDIT",
+      "high": 42,
+      "low": 37,
+      "close": 39,
+      "volume": 14914300,
+      "value": 588817800,
+      "freq": 1197
+    },
+    {
+      "kode": "HEAL",
+      "high": 620,
+      "low": 605,
+      "close": 610,
+      "volume": 9588100,
+      "value": 5845752500,
+      "freq": 2299
+    },
+    {
+      "kode": "HELI",
+      "high": 310,
+      "low": 278,
+      "close": 296,
+      "volume": 3276700,
+      "value": 964897000,
+      "freq": 652
+    },
+    {
+      "kode": "HERO",
+      "high": 328,
+      "low": 306,
+      "close": 324,
+      "volume": 35900,
+      "value": 11238400,
+      "freq": 37
+    },
+    {
+      "kode": "HEXA",
+      "high": 3560,
+      "low": 3520,
+      "close": 3540,
+      "volume": 374100,
+      "value": 1322172000,
+      "freq": 642
+    },
+    {
+      "kode": "HGII",
+      "high": 140,
+      "low": 138,
+      "close": 139,
+      "volume": 881200,
+      "value": 122490700,
+      "freq": 123
+    },
+    {
+      "kode": "HILL",
+      "high": 0,
+      "low": 0,
+      "close": 16,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "HITS",
+      "high": 0,
+      "low": 0,
+      "close": 116,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "HKMU",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "HMSP",
+      "high": 635,
+      "low": 620,
+      "close": 625,
+      "volume": 10877300,
+      "value": 6792662500,
+      "freq": 2030
+    },
+    {
+      "kode": "HOKI",
+      "high": 45,
+      "low": 43,
+      "close": 44,
+      "volume": 4931700,
+      "value": 218552300,
+      "freq": 545
+    },
+    {
+      "kode": "HOME",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "HOMI",
+      "high": 256,
+      "low": 240,
+      "close": 246,
+      "volume": 1831100,
+      "value": 454145000,
+      "freq": 318
+    },
+    {
+      "kode": "HOPE",
+      "high": 282,
+      "low": 256,
+      "close": 278,
+      "volume": 24199000,
+      "value": 6577907000,
+      "freq": 2255
+    },
+    {
+      "kode": "HOTL",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "HRME",
+      "high": 45,
+      "low": 39,
+      "close": 41,
+      "volume": 12694500,
+      "value": 523852200,
+      "freq": 604
+    },
+    {
+      "kode": "HRTA",
+      "high": 2200,
+      "low": 2160,
+      "close": 2190,
+      "volume": 4677100,
+      "value": 10213985000,
+      "freq": 1326
+    },
+    {
+      "kode": "HRUM",
+      "high": 860,
+      "low": 835,
+      "close": 850,
+      "volume": 4586600,
+      "value": 3894329500,
+      "freq": 1041
+    },
+    {
+      "kode": "HUMI",
+      "high": 129,
+      "low": 123,
+      "close": 126,
+      "volume": 24325700,
+      "value": 3076442300,
+      "freq": 1673
+    },
+    {
+      "kode": "HYGN",
+      "high": 196,
+      "low": 187,
+      "close": 190,
+      "volume": 1969000,
+      "value": 376024000,
+      "freq": 207
+    },
+    {
+      "kode": "IATA",
+      "high": 116,
+      "low": 94,
+      "close": 115,
+      "volume": 1505672100,
+      "value": 164117094700,
+      "freq": 49579
+    },
+    {
+      "kode": "IBFN",
+      "high": 0,
+      "low": 0,
+      "close": 63,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "IBOS",
+      "high": 89,
+      "low": 84,
+      "close": 88,
+      "volume": 3771700,
+      "value": 326528000,
+      "freq": 352
+    },
+    {
+      "kode": "IBST",
+      "high": 0,
+      "low": 0,
+      "close": 8475,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ICBP",
+      "high": 6875,
+      "low": 6750,
+      "close": 6800,
+      "volume": 2531100,
+      "value": 17170255000,
+      "freq": 1702
+    },
+    {
+      "kode": "ICON",
+      "high": 135,
+      "low": 130,
+      "close": 134,
+      "volume": 14156200,
+      "value": 1873536200,
+      "freq": 1509
+    },
+    {
+      "kode": "IDEA",
+      "high": 162,
+      "low": 162,
+      "close": 162,
+      "volume": 4226700,
+      "value": 684725400,
+      "freq": 195
+    },
+    {
+      "kode": "IDPR",
+      "high": 262,
+      "low": 240,
+      "close": 244,
+      "volume": 37200,
+      "value": 9050000,
+      "freq": 45
+    },
+    {
+      "kode": "IFII",
+      "high": 210,
+      "low": 204,
+      "close": 206,
+      "volume": 82600,
+      "value": 17057000,
+      "freq": 73
+    },
+    {
+      "kode": "IFSH",
+      "high": 2060,
+      "low": 1665,
+      "close": 2060,
+      "volume": 1326700,
+      "value": 2641024000,
+      "freq": 1586
+    },
+    {
+      "kode": "IGAR",
+      "high": 480,
+      "low": 468,
+      "close": 468,
+      "volume": 33500,
+      "value": 15808000,
+      "freq": 19
+    },
+    {
+      "kode": "IIKP",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "IKAI",
+      "high": 22,
+      "low": 19,
+      "close": 22,
+      "volume": 144914000,
+      "value": 3013176300,
+      "freq": 2597
+    },
+    {
+      "kode": "IKAN",
+      "high": 82,
+      "low": 78,
+      "close": 82,
+      "volume": 4010900,
+      "value": 323890900,
+      "freq": 531
+    },
+    {
+      "kode": "IKBI",
+      "high": 605,
+      "low": 550,
+      "close": 570,
+      "volume": 387300,
+      "value": 220130500,
+      "freq": 324
+    },
+    {
+      "kode": "IKPM",
+      "high": 182,
+      "low": 171,
+      "close": 174,
+      "volume": 145500,
+      "value": 25299000,
+      "freq": 243
+    },
+    {
+      "kode": "IMAS",
+      "high": 860,
+      "low": 830,
+      "close": 855,
+      "volume": 72200,
+      "value": 61493500,
+      "freq": 66
+    },
+    {
+      "kode": "IMJS",
+      "high": 174,
+      "low": 167,
+      "close": 171,
+      "volume": 1826800,
+      "value": 311756800,
+      "freq": 271
+    },
+    {
+      "kode": "IMPC",
+      "high": 1375,
+      "low": 1345,
+      "close": 1360,
+      "volume": 8809600,
+      "value": 11977967000,
+      "freq": 2314
+    },
+    {
+      "kode": "INAF",
+      "high": 0,
+      "low": 0,
+      "close": 126,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "INAI",
+      "high": 166,
+      "low": 154,
+      "close": 159,
+      "volume": 1006600,
+      "value": 160901500,
+      "freq": 700
+    },
+    {
+      "kode": "INCF",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "INCI",
+      "high": 890,
+      "low": 800,
+      "close": 850,
+      "volume": 553200,
+      "value": 465200000,
+      "freq": 377
+    },
+    {
+      "kode": "INCO",
+      "high": 4320,
+      "low": 4260,
+      "close": 4320,
+      "volume": 9706500,
+      "value": 41694785000,
+      "freq": 4099
+    },
+    {
+      "kode": "INDF",
+      "high": 6925,
+      "low": 6850,
+      "close": 6850,
+      "volume": 1881200,
+      "value": 12933817500,
+      "freq": 1457
+    },
+    {
+      "kode": "INDO",
+      "high": 172,
+      "low": 169,
+      "close": 172,
+      "volume": 18028300,
+      "value": 3069706100,
+      "freq": 893
+    },
+    {
+      "kode": "INDR",
+      "high": 2920,
+      "low": 2830,
+      "close": 2860,
+      "volume": 174200,
+      "value": 500331000,
+      "freq": 75
+    },
+    {
+      "kode": "INDS",
+      "high": 268,
+      "low": 244,
+      "close": 258,
+      "volume": 4677600,
+      "value": 1210087600,
+      "freq": 948
+    },
+    {
+      "kode": "INDX",
+      "high": 0,
+      "low": 0,
+      "close": 60,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "INDY",
+      "high": 2720,
+      "low": 2560,
+      "close": 2710,
+      "volume": 14193300,
+      "value": 37663156000,
+      "freq": 3876
+    },
+    {
+      "kode": "INET",
+      "high": 276,
+      "low": 266,
+      "close": 274,
+      "volume": 283513300,
+      "value": 77100517800,
+      "freq": 14212
+    },
+    {
+      "kode": "INKP",
+      "high": 8475,
+      "low": 8200,
+      "close": 8450,
+      "volume": 2435500,
+      "value": 20427732500,
+      "freq": 1825
+    },
+    {
+      "kode": "INOV",
+      "high": 140,
+      "low": 135,
+      "close": 137,
+      "volume": 657600,
+      "value": 89733100,
+      "freq": 123
+    },
+    {
+      "kode": "INPC",
+      "high": 158,
+      "low": 150,
+      "close": 154,
+      "volume": 7013700,
+      "value": 1074160100,
+      "freq": 638
+    },
+    {
+      "kode": "INPP",
+      "high": 700,
+      "low": 675,
+      "close": 680,
+      "volume": 28700,
+      "value": 19692500,
+      "freq": 30
+    },
+    {
+      "kode": "INPS",
+      "high": 0,
+      "low": 0,
+      "close": 1065,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "INRU",
+      "high": 0,
+      "low": 0,
+      "close": 590,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "INTA",
+      "high": 0,
+      "low": 0,
+      "close": 61,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "INTD",
+      "high": 368,
+      "low": 300,
+      "close": 350,
+      "volume": 1723900,
+      "value": 574209200,
+      "freq": 815
+    },
+    {
+      "kode": "INTP",
+      "high": 5100,
+      "low": 4970,
+      "close": 5075,
+      "volume": 600800,
+      "value": 3015214000,
+      "freq": 861
+    },
+    {
+      "kode": "IOTF",
+      "high": 56,
+      "low": 47,
+      "close": 50,
+      "volume": 70213300,
+      "value": 3656312600,
+      "freq": 4857
+    },
+    {
+      "kode": "IPAC",
+      "high": 0,
+      "low": 0,
+      "close": 189,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "IPCC",
+      "high": 1085,
+      "low": 1055,
+      "close": 1060,
+      "volume": 548200,
+      "value": 585461000,
+      "freq": 402
+    },
+    {
+      "kode": "IPCM",
+      "high": 286,
+      "low": 280,
+      "close": 284,
+      "volume": 471900,
+      "value": 132607600,
+      "freq": 161
+    },
+    {
+      "kode": "IPOL",
+      "high": 115,
+      "low": 111,
+      "close": 115,
+      "volume": 230400,
+      "value": 26146900,
+      "freq": 107
+    },
+    {
+      "kode": "IPPE",
+      "high": 0,
+      "low": 0,
+      "close": 14,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "IPTV",
+      "high": 25,
+      "low": 22,
+      "close": 25,
+      "volume": 18159300,
+      "value": 434966800,
+      "freq": 575
+    },
+    {
+      "kode": "IRRA",
+      "high": 376,
+      "low": 368,
+      "close": 370,
+      "volume": 767000,
+      "value": 284380000,
+      "freq": 201
+    },
+    {
+      "kode": "IRSX",
+      "high": 336,
+      "low": 322,
+      "close": 328,
+      "volume": 53811100,
+      "value": 17692837800,
+      "freq": 5228
+    },
+    {
+      "kode": "ISAP",
+      "high": 23,
+      "low": 21,
+      "close": 22,
+      "volume": 9020800,
+      "value": 200550900,
+      "freq": 466
+    },
+    {
+      "kode": "ISAT",
+      "high": 2250,
+      "low": 2210,
+      "close": 2220,
+      "volume": 18240300,
+      "value": 40565386000,
+      "freq": 6310
+    },
+    {
+      "kode": "ISEA",
+      "high": 83,
+      "low": 76,
+      "close": 80,
+      "volume": 8375700,
+      "value": 666901500,
+      "freq": 9187
+    },
+    {
+      "kode": "ISSP",
+      "high": 420,
+      "low": 400,
+      "close": 418,
+      "volume": 6865700,
+      "value": 2832173000,
+      "freq": 567
+    },
+    {
+      "kode": "ITIC",
+      "high": 202,
+      "low": 198,
+      "close": 199,
+      "volume": 244300,
+      "value": 48721200,
+      "freq": 79
+    },
+    {
+      "kode": "ITMA",
+      "high": 1345,
+      "low": 1305,
+      "close": 1345,
+      "volume": 6000,
+      "value": 7854000,
+      "freq": 20
+    },
+    {
+      "kode": "ITMG",
+      "high": 26100,
+      "low": 25425,
+      "close": 26100,
+      "volume": 1017300,
+      "value": 26333105000,
+      "freq": 2165
+    },
+    {
+      "kode": "JARR",
+      "high": 3610,
+      "low": 3480,
+      "close": 3500,
+      "volume": 9358400,
+      "value": 33151951000,
+      "freq": 4645
+    },
+    {
+      "kode": "JAST",
+      "high": 84,
+      "low": 82,
+      "close": 84,
+      "volume": 2781000,
+      "value": 231602900,
+      "freq": 371
+    },
+    {
+      "kode": "JATI",
+      "high": 113,
+      "low": 109,
+      "close": 111,
+      "volume": 15502100,
+      "value": 1714869300,
+      "freq": 616
+    },
+    {
+      "kode": "JAWA",
+      "high": 156,
+      "low": 150,
+      "close": 153,
+      "volume": 12893200,
+      "value": 1965001100,
+      "freq": 2111
+    },
+    {
+      "kode": "JAYA",
+      "high": 157,
+      "low": 151,
+      "close": 157,
+      "volume": 1488800,
+      "value": 231063400,
+      "freq": 455
+    },
+    {
+      "kode": "JECC",
+      "high": 755,
+      "low": 730,
+      "close": 735,
+      "volume": 20400,
+      "value": 15192500,
+      "freq": 39
+    },
+    {
+      "kode": "JECX",
+      "high": 1490,
+      "low": 1365,
+      "close": 1480,
+      "volume": 2727800,
+      "value": 3936505500,
+      "freq": 1384
+    },
+    {
+      "kode": "JELI",
+      "high": 440,
+      "low": 418,
+      "close": 424,
+      "volume": 4067100,
+      "value": 1734215400,
+      "freq": 1373
+    },
+    {
+      "kode": "JGLE",
+      "high": 53,
+      "low": 48,
+      "close": 51,
+      "volume": 287270600,
+      "value": 14569578000,
+      "freq": 16538
+    },
+    {
+      "kode": "JIHD",
+      "high": 408,
+      "low": 398,
+      "close": 406,
+      "volume": 115900,
+      "value": 46734000,
+      "freq": 87
+    },
+    {
+      "kode": "JKON",
+      "high": 84,
+      "low": 81,
+      "close": 82,
+      "volume": 4389800,
+      "value": 362379900,
+      "freq": 389
+    },
+    {
+      "kode": "JMAS",
+      "high": 0,
+      "low": 0,
+      "close": 228,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "JPFA",
+      "high": 2050,
+      "low": 2000,
+      "close": 2020,
+      "volume": 7980200,
+      "value": 16183702000,
+      "freq": 2183
+    },
+    {
+      "kode": "JRPT",
+      "high": 1165,
+      "low": 1140,
+      "close": 1150,
+      "volume": 970200,
+      "value": 1115772000,
+      "freq": 81
+    },
+    {
+      "kode": "JSKY",
+      "high": 0,
+      "low": 0,
+      "close": 52,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "JSMR",
+      "high": 2660,
+      "low": 2580,
+      "close": 2640,
+      "volume": 3002200,
+      "value": 7892972000,
+      "freq": 1028
+    },
+    {
+      "kode": "JSPT",
+      "high": 1365,
+      "low": 1355,
+      "close": 1360,
+      "volume": 3600,
+      "value": 4900000,
+      "freq": 10
+    },
+    {
+      "kode": "JTPE",
+      "high": 585,
+      "low": 575,
+      "close": 585,
+      "volume": 557000,
+      "value": 322375000,
+      "freq": 85
+    },
+    {
+      "kode": "KAEF",
+      "high": 420,
+      "low": 408,
+      "close": 416,
+      "volume": 596300,
+      "value": 247508400,
+      "freq": 243
+    },
+    {
+      "kode": "KAQI",
+      "high": 84,
+      "low": 81,
+      "close": 83,
+      "volume": 21364300,
+      "value": 1769307700,
+      "freq": 902
+    },
+    {
+      "kode": "KARW",
+      "high": 0,
+      "low": 0,
+      "close": 212,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "KAYU",
+      "high": 0,
+      "low": 0,
+      "close": 18,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "KBAG",
+      "high": 42,
+      "low": 39,
+      "close": 41,
+      "volume": 10038000,
+      "value": 398335800,
+      "freq": 447
+    },
+    {
+      "kode": "KBLI",
+      "high": 370,
+      "low": 348,
+      "close": 362,
+      "volume": 822400,
+      "value": 294264600,
+      "freq": 258
+    },
+    {
+      "kode": "KBLM",
+      "high": 362,
+      "low": 352,
+      "close": 360,
+      "volume": 124400,
+      "value": 44329400,
+      "freq": 73
+    },
+    {
+      "kode": "KBLV",
+      "high": 110,
+      "low": 105,
+      "close": 108,
+      "volume": 4548500,
+      "value": 488734800,
+      "freq": 543
+    },
+    {
+      "kode": "KBRI",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "KDSI",
+      "high": 468,
+      "low": 464,
+      "close": 466,
+      "volume": 14000,
+      "value": 6516400,
+      "freq": 26
+    },
+    {
+      "kode": "KDTN",
+      "high": 660,
+      "low": 540,
+      "close": 655,
+      "volume": 46373600,
+      "value": 28379338000,
+      "freq": 8457
+    },
+    {
+      "kode": "KEEN",
+      "high": 860,
+      "low": 845,
+      "close": 855,
+      "volume": 5021300,
+      "value": 4274674000,
+      "freq": 1436
+    },
+    {
+      "kode": "KEJU",
+      "high": 595,
+      "low": 580,
+      "close": 580,
+      "volume": 198500,
+      "value": 115583000,
+      "freq": 47
+    },
+    {
+      "kode": "KETR",
+      "high": 930,
+      "low": 870,
+      "close": 925,
+      "volume": 47664500,
+      "value": 42844297000,
+      "freq": 6785
+    },
+    {
+      "kode": "KIAS",
+      "high": 0,
+      "low": 0,
+      "close": 21,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "KICI",
+      "high": 294,
+      "low": 270,
+      "close": 288,
+      "volume": 2033400,
+      "value": 573591000,
+      "freq": 539
+    },
+    {
+      "kode": "KIJA",
+      "high": 165,
+      "low": 160,
+      "close": 160,
+      "volume": 255729400,
+      "value": 41370056500,
+      "freq": 10673
+    },
+    {
+      "kode": "KING",
+      "high": 430,
+      "low": 374,
+      "close": 400,
+      "volume": 4486900,
+      "value": 1773685000,
+      "freq": 570
+    },
+    {
+      "kode": "KINO",
+      "high": 1420,
+      "low": 1390,
+      "close": 1415,
+      "volume": 27900,
+      "value": 39029000,
+      "freq": 37
+    },
+    {
+      "kode": "KIOS",
+      "high": 84,
+      "low": 79,
+      "close": 84,
+      "volume": 9691200,
+      "value": 793365200,
+      "freq": 966
+    },
+    {
+      "kode": "KJEN",
+      "high": 152,
+      "low": 146,
+      "close": 151,
+      "volume": 5519100,
+      "value": 823561000,
+      "freq": 856
+    },
+    {
+      "kode": "KKES",
+      "high": 78,
+      "low": 66,
+      "close": 70,
+      "volume": 107799300,
+      "value": 7669868600,
+      "freq": 6292
+    },
+    {
+      "kode": "KKGI",
+      "high": 302,
+      "low": 290,
+      "close": 300,
+      "volume": 2042400,
+      "value": 609175000,
+      "freq": 689
+    },
+    {
+      "kode": "KLAS",
+      "high": 86,
+      "low": 75,
+      "close": 82,
+      "volume": 29662900,
+      "value": 2428277300,
+      "freq": 1831
+    },
+    {
+      "kode": "KLBF",
+      "high": 765,
+      "low": 745,
+      "close": 755,
+      "volume": 44115100,
+      "value": 33360453500,
+      "freq": 3310
+    },
+    {
+      "kode": "KLIN",
+      "high": 121,
+      "low": 111,
+      "close": 116,
+      "volume": 158300,
+      "value": 18021900,
+      "freq": 81
+    },
+    {
+      "kode": "KMDS",
+      "high": 520,
+      "low": 505,
+      "close": 520,
+      "volume": 75200,
+      "value": 38531000,
+      "freq": 43
+    },
+    {
+      "kode": "KMTR",
+      "high": 250,
+      "low": 240,
+      "close": 244,
+      "volume": 163000,
+      "value": 39276800,
+      "freq": 15
+    },
+    {
+      "kode": "KOBX",
+      "high": 174,
+      "low": 169,
+      "close": 171,
+      "volume": 218300,
+      "value": 37188700,
+      "freq": 117
+    },
+    {
+      "kode": "KOCI",
+      "high": 111,
+      "low": 103,
+      "close": 111,
+      "volume": 10704000,
+      "value": 1148786000,
+      "freq": 1120
+    },
+    {
+      "kode": "KOIN",
+      "high": 0,
+      "low": 0,
+      "close": 78,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "KOKA",
+      "high": 157,
+      "low": 152,
+      "close": 156,
+      "volume": 4474400,
+      "value": 690921800,
+      "freq": 583
+    },
+    {
+      "kode": "KONI",
+      "high": 1970,
+      "low": 1855,
+      "close": 1915,
+      "volume": 11700,
+      "value": 22209000,
+      "freq": 56
+    },
+    {
+      "kode": "KOPI",
+      "high": 197,
+      "low": 193,
+      "close": 195,
+      "volume": 483100,
+      "value": 93990800,
+      "freq": 151
+    },
+    {
+      "kode": "KOTA",
+      "high": 158,
+      "low": 150,
+      "close": 151,
+      "volume": 329944600,
+      "value": 50656314600,
+      "freq": 16360
+    },
+    {
+      "kode": "KPIG",
+      "high": 45,
+      "low": 42,
+      "close": 45,
+      "volume": 187393200,
+      "value": 8251935800,
+      "freq": 5424
+    },
+    {
+      "kode": "KRAS",
+      "high": 242,
+      "low": 234,
+      "close": 236,
+      "volume": 3282800,
+      "value": 778768000,
+      "freq": 531
+    },
+    {
+      "kode": "KREN",
+      "high": 19,
+      "low": 15,
+      "close": 18,
+      "volume": 369695700,
+      "value": 6397435900,
+      "freq": 5791
+    },
+    {
+      "kode": "KRYA",
+      "high": 52,
+      "low": 48,
+      "close": 51,
+      "volume": 10874900,
+      "value": 549718500,
+      "freq": 976
+    },
+    {
+      "kode": "KSIX",
+      "high": 420,
+      "low": 390,
+      "close": 408,
+      "volume": 663500,
+      "value": 270443200,
+      "freq": 181
+    },
+    {
+      "kode": "KUAS",
+      "high": 92,
+      "low": 89,
+      "close": 91,
+      "volume": 6452500,
+      "value": 585438500,
+      "freq": 569
+    },
+    {
+      "kode": "LABA",
+      "high": 117,
+      "low": 108,
+      "close": 117,
+      "volume": 12130300,
+      "value": 1364985400,
+      "freq": 969
+    },
+    {
+      "kode": "LABS",
+      "high": 162,
+      "low": 149,
+      "close": 152,
+      "volume": 4796200,
+      "value": 749699700,
+      "freq": 757
+    },
+    {
+      "kode": "LAJU",
+      "high": 60,
+      "low": 57,
+      "close": 58,
+      "volume": 13788400,
+      "value": 808389700,
+      "freq": 1664
+    },
+    {
+      "kode": "LAND",
+      "high": 58,
+      "low": 54,
+      "close": 56,
+      "volume": 11892300,
+      "value": 667637800,
+      "freq": 1623
+    },
+    {
+      "kode": "LAPD",
+      "high": 78,
+      "low": 73,
+      "close": 77,
+      "volume": 51807600,
+      "value": 3927175200,
+      "freq": 2792
+    },
+    {
+      "kode": "LCGP",
+      "high": 0,
+      "low": 0,
+      "close": 114,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "LCKM",
+      "high": 0,
+      "low": 0,
+      "close": 109,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "LEAD",
+      "high": 97,
+      "low": 92,
+      "close": 96,
+      "volume": 11237100,
+      "value": 1060434700,
+      "freq": 687
+    },
+    {
+      "kode": "LFLO",
+      "high": 595,
+      "low": 560,
+      "close": 590,
+      "volume": 5000,
+      "value": 2821500,
+      "freq": 10
+    },
+    {
+      "kode": "LIFE",
+      "high": 10050,
+      "low": 9500,
+      "close": 9750,
+      "volume": 12500,
+      "value": 123502500,
+      "freq": 81
+    },
+    {
+      "kode": "LINK",
+      "high": 1600,
+      "low": 1500,
+      "close": 1515,
+      "volume": 8200,
+      "value": 12580000,
+      "freq": 44
+    },
+    {
+      "kode": "LION",
+      "high": 286,
+      "low": 270,
+      "close": 276,
+      "volume": 136900,
+      "value": 37950200,
+      "freq": 92
+    },
+    {
+      "kode": "LIVE",
+      "high": 168,
+      "low": 161,
+      "close": 167,
+      "volume": 1283000,
+      "value": 213304000,
+      "freq": 184
+    },
+    {
+      "kode": "LMAS",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "LMAX",
+      "high": 108,
+      "low": 99,
+      "close": 100,
+      "volume": 569800,
+      "value": 57600100,
+      "freq": 128
+    },
+    {
+      "kode": "LMPI",
+      "high": 158,
+      "low": 156,
+      "close": 156,
+      "volume": 90000,
+      "value": 14071000,
+      "freq": 34
+    },
+    {
+      "kode": "LMSH",
+      "high": 0,
+      "low": 0,
+      "close": 256,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "LOPI",
+      "high": 57,
+      "low": 54,
+      "close": 56,
+      "volume": 10400400,
+      "value": 572924000,
+      "freq": 445
+    },
+    {
+      "kode": "LPCK",
+      "high": 575,
+      "low": 500,
+      "close": 540,
+      "volume": 921900,
+      "value": 493526500,
+      "freq": 196
+    },
+    {
+      "kode": "LPGI",
+      "high": 645,
+      "low": 640,
+      "close": 645,
+      "volume": 27600,
+      "value": 17693500,
+      "freq": 20
+    },
+    {
+      "kode": "LPIN",
+      "high": 440,
+      "low": 432,
+      "close": 440,
+      "volume": 730200,
+      "value": 320738400,
+      "freq": 146
+    },
+    {
+      "kode": "LPKR",
+      "high": 49,
+      "low": 46,
+      "close": 49,
+      "volume": 106144100,
+      "value": 5070704300,
+      "freq": 1566
+    },
+    {
+      "kode": "LPLI",
+      "high": 208,
+      "low": 206,
+      "close": 206,
+      "volume": 201100,
+      "value": 41716000,
+      "freq": 74
+    },
+    {
+      "kode": "LPPF",
+      "high": 1600,
+      "low": 1585,
+      "close": 1595,
+      "volume": 714900,
+      "value": 1137042000,
+      "freq": 537
+    },
+    {
+      "kode": "LPPS",
+      "high": 64,
+      "low": 60,
+      "close": 62,
+      "volume": 2567700,
+      "value": 157329600,
+      "freq": 358
+    },
+    {
+      "kode": "LRNA",
+      "high": 222,
+      "low": 214,
+      "close": 220,
+      "volume": 65600,
+      "value": 14288400,
+      "freq": 31
+    },
+    {
+      "kode": "LSIP",
+      "high": 1495,
+      "low": 1470,
+      "close": 1490,
+      "volume": 7952800,
+      "value": 11832849000,
+      "freq": 2642
+    },
+    {
+      "kode": "LTLS",
+      "high": 935,
+      "low": 885,
+      "close": 935,
+      "volume": 8800,
+      "value": 8101500,
+      "freq": 32
+    },
+    {
+      "kode": "LUCK",
+      "high": 113,
+      "low": 106,
+      "close": 108,
+      "volume": 3704000,
+      "value": 406714300,
+      "freq": 472
+    },
+    {
+      "kode": "LUCY",
+      "high": 256,
+      "low": 220,
+      "close": 220,
+      "volume": 109835700,
+      "value": 25108361000,
+      "freq": 7576
+    },
+    {
+      "kode": "MABA",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MAGP",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MAHA",
+      "high": 143,
+      "low": 138,
+      "close": 141,
+      "volume": 3815800,
+      "value": 535456900,
+      "freq": 1482
+    },
+    {
+      "kode": "MAIN",
+      "high": 650,
+      "low": 635,
+      "close": 650,
+      "volume": 1223600,
+      "value": 782971500,
+      "freq": 244
+    },
+    {
+      "kode": "MANG",
+      "high": 36,
+      "low": 34,
+      "close": 36,
+      "volume": 5935400,
+      "value": 208361300,
+      "freq": 261
+    },
+    {
+      "kode": "MAPA",
+      "high": 650,
+      "low": 640,
+      "close": 645,
+      "volume": 3086600,
+      "value": 1996689500,
+      "freq": 995
+    },
+    {
+      "kode": "MAPB",
+      "high": 1190,
+      "low": 1190,
+      "close": 1190,
+      "volume": 500,
+      "value": 595000,
+      "freq": 4
+    },
+    {
+      "kode": "MAPI",
+      "high": 1555,
+      "low": 1455,
+      "close": 1550,
+      "volume": 62426200,
+      "value": 96092764500,
+      "freq": 4457
+    },
+    {
+      "kode": "MARI",
+      "high": 0,
+      "low": 0,
+      "close": 23,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MARK",
+      "high": 1210,
+      "low": 1185,
+      "close": 1210,
+      "volume": 10059800,
+      "value": 12090012000,
+      "freq": 953
+    },
+    {
+      "kode": "MASB",
+      "high": 3280,
+      "low": 3120,
+      "close": 3160,
+      "volume": 3600,
+      "value": 11418000,
+      "freq": 13
+    },
+    {
+      "kode": "MAXI",
+      "high": 29,
+      "low": 26,
+      "close": 28,
+      "volume": 42825800,
+      "value": 1189018500,
+      "freq": 1243
+    },
+    {
+      "kode": "MAYA",
+      "high": 200,
+      "low": 196,
+      "close": 199,
+      "volume": 977800,
+      "value": 193975800,
+      "freq": 97
+    },
+    {
+      "kode": "MBAP",
+      "high": 1735,
+      "low": 1625,
+      "close": 1675,
+      "volume": 74800,
+      "value": 125159500,
+      "freq": 125
+    },
+    {
+      "kode": "MBMA",
+      "high": 496,
+      "low": 482,
+      "close": 492,
+      "volume": 69797700,
+      "value": 34136838400,
+      "freq": 5474
+    },
+    {
+      "kode": "MBSS",
+      "high": 4630,
+      "low": 4190,
+      "close": 4400,
+      "volume": 14861400,
+      "value": 65592564000,
+      "freq": 4572
+    },
+    {
+      "kode": "MBTO",
+      "high": 155,
+      "low": 148,
+      "close": 153,
+      "volume": 5477300,
+      "value": 828821700,
+      "freq": 822
+    },
+    {
+      "kode": "MCAS",
+      "high": 234,
+      "low": 228,
+      "close": 232,
+      "volume": 556700,
+      "value": 128986000,
+      "freq": 255
+    },
+    {
+      "kode": "MCOL",
+      "high": 3650,
+      "low": 3510,
+      "close": 3530,
+      "volume": 340300,
+      "value": 1230059000,
+      "freq": 160
+    },
+    {
+      "kode": "MCOR",
+      "high": 67,
+      "low": 66,
+      "close": 66,
+      "volume": 969500,
+      "value": 64095200,
+      "freq": 70
+    },
+    {
+      "kode": "MDIA",
+      "high": 162,
+      "low": 147,
+      "close": 152,
+      "volume": 239150900,
+      "value": 36729146000,
+      "freq": 12311
+    },
+    {
+      "kode": "MDIY",
+      "high": 930,
+      "low": 910,
+      "close": 920,
+      "volume": 203100,
+      "value": 186692000,
+      "freq": 170
+    },
+    {
+      "kode": "MDKA",
+      "high": 2980,
+      "low": 2900,
+      "close": 2970,
+      "volume": 13585700,
+      "value": 40014692000,
+      "freq": 4467
+    },
+    {
+      "kode": "MDKI",
+      "high": 198,
+      "low": 194,
+      "close": 197,
+      "volume": 304200,
+      "value": 59868900,
+      "freq": 43
+    },
+    {
+      "kode": "MDLA",
+      "high": 208,
+      "low": 206,
+      "close": 206,
+      "volume": 479400,
+      "value": 99057400,
+      "freq": 65
+    },
+    {
+      "kode": "MDLN",
+      "high": 47,
+      "low": 40,
+      "close": 41,
+      "volume": 18354200,
+      "value": 776153000,
+      "freq": 409
+    },
+    {
+      "kode": "MDRN",
+      "high": 0,
+      "low": 0,
+      "close": 26,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MEDC",
+      "high": 1445,
+      "low": 1410,
+      "close": 1440,
+      "volume": 26035200,
+      "value": 37310731000,
+      "freq": 3774
+    },
+    {
+      "kode": "MEDS",
+      "high": 88,
+      "low": 76,
+      "close": 80,
+      "volume": 130104900,
+      "value": 10731824000,
+      "freq": 8837
+    },
+    {
+      "kode": "MEGA",
+      "high": 1970,
+      "low": 1910,
+      "close": 1970,
+      "volume": 55800,
+      "value": 108722000,
+      "freq": 87
+    },
+    {
+      "kode": "MEJA",
+      "high": 152,
+      "low": 136,
+      "close": 152,
+      "volume": 195742300,
+      "value": 28915034700,
+      "freq": 6781
+    },
+    {
+      "kode": "MENN",
+      "high": 0,
+      "low": 0,
+      "close": 53,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MERI",
+      "high": 109,
+      "low": 105,
+      "close": 107,
+      "volume": 660100,
+      "value": 70084100,
+      "freq": 178
+    },
+    {
+      "kode": "MERK",
+      "high": 3780,
+      "low": 3650,
+      "close": 3740,
+      "volume": 3200,
+      "value": 11838000,
+      "freq": 10
+    },
+    {
+      "kode": "META",
+      "high": 0,
+      "low": 0,
+      "close": 238,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MFMI",
+      "high": 0,
+      "low": 0,
+      "close": 1300,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MGLV",
+      "high": 14275,
+      "low": 13000,
+      "close": 13925,
+      "volume": 841700,
+      "value": 11456835000,
+      "freq": 1327
+    },
+    {
+      "kode": "MGNA",
+      "high": 224,
+      "low": 196,
+      "close": 212,
+      "volume": 24478000,
+      "value": 5179300400,
+      "freq": 3659
+    },
+    {
+      "kode": "MGRO",
+      "high": 725,
+      "low": 710,
+      "close": 715,
+      "volume": 4582300,
+      "value": 3290191500,
+      "freq": 190
+    },
+    {
+      "kode": "MHKI",
+      "high": 125,
+      "low": 115,
+      "close": 120,
+      "volume": 1780500,
+      "value": 214590000,
+      "freq": 357
+    },
+    {
+      "kode": "MICE",
+      "high": 496,
+      "low": 488,
+      "close": 490,
+      "volume": 30600,
+      "value": 15171600,
+      "freq": 12
+    },
+    {
+      "kode": "MIDI",
+      "high": 258,
+      "low": 252,
+      "close": 256,
+      "volume": 1543400,
+      "value": 394848000,
+      "freq": 642
+    },
+    {
+      "kode": "MIKA",
+      "high": 1745,
+      "low": 1690,
+      "close": 1705,
+      "volume": 485400,
+      "value": 836696500,
+      "freq": 593
+    },
+    {
+      "kode": "MINA",
+      "high": 228,
+      "low": 210,
+      "close": 224,
+      "volume": 46172100,
+      "value": 10211166800,
+      "freq": 3527
+    },
+    {
+      "kode": "MINE",
+      "high": 282,
+      "low": 270,
+      "close": 280,
+      "volume": 316900,
+      "value": 87744000,
+      "freq": 118
+    },
+    {
+      "kode": "MIRA",
+      "high": 27,
+      "low": 23,
+      "close": 26,
+      "volume": 65281000,
+      "value": 1638360200,
+      "freq": 2774
+    },
+    {
+      "kode": "MITI",
+      "high": 404,
+      "low": 360,
+      "close": 370,
+      "volume": 90698400,
+      "value": 34700604600,
+      "freq": 15041
+    },
+    {
+      "kode": "MKAP",
+      "high": 1150,
+      "low": 1135,
+      "close": 1145,
+      "volume": 2554500,
+      "value": 2911351000,
+      "freq": 379
+    },
+    {
+      "kode": "MKNT",
+      "high": 0,
+      "low": 0,
+      "close": 1,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MKPI",
+      "high": 21000,
+      "low": 20825,
+      "close": 20975,
+      "volume": 42000,
+      "value": 880370000,
+      "freq": 116
+    },
+    {
+      "kode": "MKTR",
+      "high": 123,
+      "low": 119,
+      "close": 121,
+      "volume": 275300,
+      "value": 33429500,
+      "freq": 60
+    },
+    {
+      "kode": "MLBI",
+      "high": 6850,
+      "low": 6825,
+      "close": 6850,
+      "volume": 6000,
+      "value": 41025000,
+      "freq": 8
+    },
+    {
+      "kode": "MLIA",
+      "high": 216,
+      "low": 206,
+      "close": 210,
+      "volume": 193600,
+      "value": 40627000,
+      "freq": 129
+    },
+    {
+      "kode": "MLPL",
+      "high": 80,
+      "low": 78,
+      "close": 80,
+      "volume": 6689900,
+      "value": 530043400,
+      "freq": 636
+    },
+    {
+      "kode": "MLPT",
+      "high": 965,
+      "low": 940,
+      "close": 950,
+      "volume": 813800,
+      "value": 775196500,
+      "freq": 470
+    },
+    {
+      "kode": "MMIX",
+      "high": 960,
+      "low": 910,
+      "close": 935,
+      "volume": 30373300,
+      "value": 28070579500,
+      "freq": 4648
+    },
+    {
+      "kode": "MMLP",
+      "high": 300,
+      "low": 292,
+      "close": 298,
+      "volume": 488200,
+      "value": 144646000,
+      "freq": 133
+    },
+    {
+      "kode": "MNCN",
+      "high": 133,
+      "low": 123,
+      "close": 129,
+      "volume": 91704000,
+      "value": 11605177900,
+      "freq": 2630
+    },
+    {
+      "kode": "MOLI",
+      "high": 436,
+      "low": 416,
+      "close": 416,
+      "volume": 7091100,
+      "value": 2999994200,
+      "freq": 1220
+    },
+    {
+      "kode": "MORA",
+      "high": 5250,
+      "low": 4390,
+      "close": 5100,
+      "volume": 502400,
+      "value": 2484617500,
+      "freq": 1095
+    },
+    {
+      "kode": "MPIX",
+      "high": 232,
+      "low": 212,
+      "close": 216,
+      "volume": 20807100,
+      "value": 4589946000,
+      "freq": 3051
+    },
+    {
+      "kode": "MPMX",
+      "high": 1025,
+      "low": 1020,
+      "close": 1025,
+      "volume": 2371400,
+      "value": 2421106500,
+      "freq": 634
+    },
+    {
+      "kode": "MPOW",
+      "high": 107,
+      "low": 102,
+      "close": 105,
+      "volume": 5850500,
+      "value": 609697900,
+      "freq": 849
+    },
+    {
+      "kode": "MPPA",
+      "high": 38,
+      "low": 37,
+      "close": 38,
+      "volume": 6354100,
+      "value": 240921800,
+      "freq": 171
+    },
+    {
+      "kode": "MPRO",
+      "high": 12000,
+      "low": 11575,
+      "close": 12000,
+      "volume": 1100,
+      "value": 12980000,
+      "freq": 11
+    },
+    {
+      "kode": "MPXL",
+      "high": 268,
+      "low": 238,
+      "close": 262,
+      "volume": 23367900,
+      "value": 6020420200,
+      "freq": 2235
+    },
+    {
+      "kode": "MRAT",
+      "high": 414,
+      "low": 398,
+      "close": 400,
+      "volume": 258600,
+      "value": 105279000,
+      "freq": 94
+    },
+    {
+      "kode": "MREI",
+      "high": 0,
+      "low": 0,
+      "close": 920,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MSIE",
+      "high": 124,
+      "low": 118,
+      "close": 121,
+      "volume": 3153300,
+      "value": 380704500,
+      "freq": 410
+    },
+    {
+      "kode": "MSIN",
+      "high": 186,
+      "low": 178,
+      "close": 184,
+      "volume": 23556000,
+      "value": 4305523700,
+      "freq": 7341
+    },
+    {
+      "kode": "MSJA",
+      "high": 870,
+      "low": 840,
+      "close": 840,
+      "volume": 18165600,
+      "value": 15523258500,
+      "freq": 1918
+    },
+    {
+      "kode": "MSKY",
+      "high": 53,
+      "low": 44,
+      "close": 47,
+      "volume": 11948500,
+      "value": 573763400,
+      "freq": 672
+    },
+    {
+      "kode": "MSTI",
+      "high": 1330,
+      "low": 1320,
+      "close": 1325,
+      "volume": 421700,
+      "value": 558580500,
+      "freq": 208
+    },
+    {
+      "kode": "MTDL",
+      "high": 510,
+      "low": 500,
+      "close": 505,
+      "volume": 1592000,
+      "value": 807753500,
+      "freq": 221
+    },
+    {
+      "kode": "MTEL",
+      "high": 458,
+      "low": 442,
+      "close": 458,
+      "volume": 4119300,
+      "value": 1851221600,
+      "freq": 776
+    },
+    {
+      "kode": "MTFN",
+      "high": 0,
+      "low": 0,
+      "close": 13,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MTLA",
+      "high": 710,
+      "low": 685,
+      "close": 695,
+      "volume": 70100,
+      "value": 48887500,
+      "freq": 62
+    },
+    {
+      "kode": "MTMH",
+      "high": 1020,
+      "low": 990,
+      "close": 990,
+      "volume": 47700,
+      "value": 47838000,
+      "freq": 47
+    },
+    {
+      "kode": "MTPS",
+      "high": 0,
+      "low": 0,
+      "close": 81,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MTRA",
+      "high": 0,
+      "low": 0,
+      "close": 244,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MTSM",
+      "high": 0,
+      "low": 0,
+      "close": 500,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "MTWI",
+      "high": 264,
+      "low": 258,
+      "close": 260,
+      "volume": 800,
+      "value": 208000,
+      "freq": 5
+    },
+    {
+      "kode": "MUTU",
+      "high": 142,
+      "low": 132,
+      "close": 134,
+      "volume": 107768500,
+      "value": 14800696400,
+      "freq": 6503
+    },
+    {
+      "kode": "MYOH",
+      "high": 1030,
+      "low": 995,
+      "close": 1000,
+      "volume": 104000,
+      "value": 105690500,
+      "freq": 70
+    },
+    {
+      "kode": "MYOR",
+      "high": 1415,
+      "low": 1380,
+      "close": 1405,
+      "volume": 9607200,
+      "value": 13457933000,
+      "freq": 2864
+    },
+    {
+      "kode": "MYTX",
+      "high": 0,
+      "low": 0,
+      "close": 41,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "NAIK",
+      "high": 84,
+      "low": 78,
+      "close": 84,
+      "volume": 1732400,
+      "value": 141953400,
+      "freq": 359
+    },
+    {
+      "kode": "NANO",
+      "high": 28,
+      "low": 25,
+      "close": 27,
+      "volume": 124363000,
+      "value": 3303409900,
+      "freq": 1575
+    },
+    {
+      "kode": "NASA",
+      "high": 42,
+      "low": 37,
+      "close": 41,
+      "volume": 15848600,
+      "value": 629409200,
+      "freq": 2729
+    },
+    {
+      "kode": "NASI",
+      "high": 180,
+      "low": 174,
+      "close": 176,
+      "volume": 8185600,
+      "value": 1444341100,
+      "freq": 1186
+    },
+    {
+      "kode": "NATO",
+      "high": 1050,
+      "low": 1010,
+      "close": 1025,
+      "volume": 91800,
+      "value": 94380000,
+      "freq": 99
+    },
+    {
+      "kode": "NAYZ",
+      "high": 88,
+      "low": 82,
+      "close": 88,
+      "volume": 140481200,
+      "value": 12219292100,
+      "freq": 2982
+    },
+    {
+      "kode": "NCKL",
+      "high": 870,
+      "low": 845,
+      "close": 870,
+      "volume": 27699200,
+      "value": 23815414000,
+      "freq": 3064
+    },
+    {
+      "kode": "NELY",
+      "high": 193,
+      "low": 191,
+      "close": 193,
+      "volume": 721500,
+      "value": 138586100,
+      "freq": 142
+    },
+    {
+      "kode": "NEST",
+      "high": 865,
+      "low": 800,
+      "close": 845,
+      "volume": 39734100,
+      "value": 33352695500,
+      "freq": 5887
+    },
+    {
+      "kode": "NETV",
+      "high": 38,
+      "low": 34,
+      "close": 37,
+      "volume": 32112000,
+      "value": 1169258500,
+      "freq": 1148
+    },
+    {
+      "kode": "NFCX",
+      "high": 1740,
+      "low": 1740,
+      "close": 1740,
+      "volume": 12700,
+      "value": 22098000,
+      "freq": 10
+    },
+    {
+      "kode": "NICE",
+      "high": 378,
+      "low": 340,
+      "close": 342,
+      "volume": 3182000,
+      "value": 1132980400,
+      "freq": 732
+    },
+    {
+      "kode": "NICK",
+      "high": 0,
+      "low": 0,
+      "close": 2820,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "NICL",
+      "high": 380,
+      "low": 354,
+      "close": 378,
+      "volume": 43401600,
+      "value": 16005654800,
+      "freq": 3109
+    },
+    {
+      "kode": "NIKL",
+      "high": 195,
+      "low": 189,
+      "close": 193,
+      "volume": 1751400,
+      "value": 338624100,
+      "freq": 436
+    },
+    {
+      "kode": "NINE",
+      "high": 83,
+      "low": 77,
+      "close": 82,
+      "volume": 7380100,
+      "value": 591462200,
+      "freq": 475
+    },
+    {
+      "kode": "NIRO",
+      "high": 168,
+      "low": 160,
+      "close": 164,
+      "volume": 87900,
+      "value": 14393200,
+      "freq": 61
+    },
+    {
+      "kode": "NISP",
+      "high": 1250,
+      "low": 1240,
+      "close": 1240,
+      "volume": 1723300,
+      "value": 2139936500,
+      "freq": 208
+    },
+    {
+      "kode": "NOBU",
+      "high": 515,
+      "low": 498,
+      "close": 505,
+      "volume": 2808500,
+      "value": 1411159700,
+      "freq": 313
+    },
+    {
+      "kode": "NPGF",
+      "high": 45,
+      "low": 43,
+      "close": 44,
+      "volume": 9865100,
+      "value": 436454600,
+      "freq": 1000
+    },
+    {
+      "kode": "NRCA",
+      "high": 585,
+      "low": 540,
+      "close": 570,
+      "volume": 7857900,
+      "value": 4469744000,
+      "freq": 1171
+    },
+    {
+      "kode": "NSSS",
+      "high": 775,
+      "low": 740,
+      "close": 755,
+      "volume": 4101600,
+      "value": 3114781500,
+      "freq": 1459
+    },
+    {
+      "kode": "NTBK",
+      "high": 70,
+      "low": 65,
+      "close": 70,
+      "volume": 11634800,
+      "value": 785983700,
+      "freq": 744
+    },
+    {
+      "kode": "NUSA",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "NZIA",
+      "high": 158,
+      "low": 151,
+      "close": 156,
+      "volume": 3126600,
+      "value": 482047900,
+      "freq": 612
+    },
+    {
+      "kode": "OASA",
+      "high": 254,
+      "low": 246,
+      "close": 250,
+      "volume": 6219800,
+      "value": 1561612800,
+      "freq": 588
+    },
+    {
+      "kode": "OBAT",
+      "high": 266,
+      "low": 216,
+      "close": 244,
+      "volume": 1687100,
+      "value": 417425200,
+      "freq": 762
+    },
+    {
+      "kode": "OBMD",
+      "high": 189,
+      "low": 183,
+      "close": 187,
+      "volume": 104400,
+      "value": 19553500,
+      "freq": 66
+    },
+    {
+      "kode": "OCAP",
+      "high": 0,
+      "low": 0,
+      "close": 159,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "OILS",
+      "high": 346,
+      "low": 292,
+      "close": 342,
+      "volume": 17643500,
+      "value": 5690988400,
+      "freq": 3015
+    },
+    {
+      "kode": "OKAS",
+      "high": 106,
+      "low": 101,
+      "close": 106,
+      "volume": 1265900,
+      "value": 131014700,
+      "freq": 271
+    },
+    {
+      "kode": "OLIV",
+      "high": 53,
+      "low": 48,
+      "close": 51,
+      "volume": 6167600,
+      "value": 309201500,
+      "freq": 474
+    },
+    {
+      "kode": "OMED",
+      "high": 214,
+      "low": 208,
+      "close": 214,
+      "volume": 3163000,
+      "value": 667330800,
+      "freq": 424
+    },
+    {
+      "kode": "OMRE",
+      "high": 1050,
+      "low": 965,
+      "close": 975,
+      "volume": 5300,
+      "value": 5243500,
+      "freq": 22
+    },
+    {
+      "kode": "OPMS",
+      "high": 95,
+      "low": 91,
+      "close": 93,
+      "volume": 4710900,
+      "value": 435773500,
+      "freq": 472
+    },
+    {
+      "kode": "PACK",
+      "high": 515,
+      "low": 472,
+      "close": 486,
+      "volume": 432363600,
+      "value": 215356058500,
+      "freq": 24710
+    },
+    {
+      "kode": "PADA",
+      "high": 173,
+      "low": 163,
+      "close": 172,
+      "volume": 14856100,
+      "value": 2518512600,
+      "freq": 1459
+    },
+    {
+      "kode": "PADI",
+      "high": 45,
+      "low": 41,
+      "close": 44,
+      "volume": 204846400,
+      "value": 8756811400,
+      "freq": 8124
+    },
+    {
+      "kode": "PALM",
+      "high": 278,
+      "low": 270,
+      "close": 274,
+      "volume": 149000,
+      "value": 40972000,
+      "freq": 79
+    },
+    {
+      "kode": "PAMG",
+      "high": 49,
+      "low": 47,
+      "close": 49,
+      "volume": 2067000,
+      "value": 99916100,
+      "freq": 213
+    },
+    {
+      "kode": "PANI",
+      "high": 4830,
+      "low": 4660,
+      "close": 4730,
+      "volume": 4106500,
+      "value": 19408084000,
+      "freq": 2983
+    },
+    {
+      "kode": "PANR",
+      "high": 402,
+      "low": 398,
+      "close": 400,
+      "volume": 19700,
+      "value": 7879400,
+      "freq": 30
+    },
+    {
+      "kode": "PANS",
+      "high": 1650,
+      "low": 1640,
+      "close": 1650,
+      "volume": 110700,
+      "value": 182318000,
+      "freq": 62
+    },
+    {
+      "kode": "PART",
+      "high": 135,
+      "low": 123,
+      "close": 123,
+      "volume": 56086400,
+      "value": 7264553000,
+      "freq": 4107
+    },
+    {
+      "kode": "PBID",
+      "high": 530,
+      "low": 520,
+      "close": 525,
+      "volume": 716700,
+      "value": 375061500,
+      "freq": 140
+    },
+    {
+      "kode": "PBRX",
+      "high": 28,
+      "low": 25,
+      "close": 28,
+      "volume": 24416500,
+      "value": 660197400,
+      "freq": 889
+    },
+    {
+      "kode": "PBSA",
+      "high": 790,
+      "low": 745,
+      "close": 790,
+      "volume": 1245600,
+      "value": 963456500,
+      "freq": 434
+    },
+    {
+      "kode": "PCAR",
+      "high": 74,
+      "low": 67,
+      "close": 70,
+      "volume": 42418000,
+      "value": 2966813100,
+      "freq": 2656
+    },
+    {
+      "kode": "PDES",
+      "high": 382,
+      "low": 370,
+      "close": 382,
+      "volume": 77200,
+      "value": 28728800,
+      "freq": 44
+    },
+    {
+      "kode": "PDPP",
+      "high": 336,
+      "low": 318,
+      "close": 328,
+      "volume": 54800,
+      "value": 17882400,
+      "freq": 99
+    },
+    {
+      "kode": "PEGE",
+      "high": 138,
+      "low": 132,
+      "close": 133,
+      "volume": 10726400,
+      "value": 1439635800,
+      "freq": 891
+    },
+    {
+      "kode": "PEHA",
+      "high": 286,
+      "low": 276,
+      "close": 284,
+      "volume": 253000,
+      "value": 71056200,
+      "freq": 78
+    },
+    {
+      "kode": "PEVE",
+      "high": 326,
+      "low": 318,
+      "close": 326,
+      "volume": 891900,
+      "value": 287419200,
+      "freq": 147
+    },
+    {
+      "kode": "PGAS",
+      "high": 1435,
+      "low": 1410,
+      "close": 1420,
+      "volume": 14160100,
+      "value": 20160278000,
+      "freq": 3122
+    },
+    {
+      "kode": "PGEO",
+      "high": 1005,
+      "low": 980,
+      "close": 1000,
+      "volume": 10446600,
+      "value": 10381223500,
+      "freq": 2266
+    },
+    {
+      "kode": "PGJO",
+      "high": 900,
+      "low": 855,
+      "close": 880,
+      "volume": 767800,
+      "value": 667772000,
+      "freq": 305
+    },
+    {
+      "kode": "PGLI",
+      "high": 378,
+      "low": 288,
+      "close": 318,
+      "volume": 5432200,
+      "value": 1785817400,
+      "freq": 1792
+    },
+    {
+      "kode": "PGUN",
+      "high": 9775,
+      "low": 9275,
+      "close": 9300,
+      "volume": 41400,
+      "value": 388617500,
+      "freq": 142
+    },
+    {
+      "kode": "PICO",
+      "high": 166,
+      "low": 157,
+      "close": 160,
+      "volume": 1435000,
+      "value": 231508200,
+      "freq": 320
+    },
+    {
+      "kode": "PIPA",
+      "high": 155,
+      "low": 143,
+      "close": 152,
+      "volume": 67830500,
+      "value": 10142655100,
+      "freq": 4694
+    },
+    {
+      "kode": "PJAA",
+      "high": 456,
+      "low": 446,
+      "close": 454,
+      "volume": 10600,
+      "value": 4768400,
+      "freq": 21
+    },
+    {
+      "kode": "PJHB",
+      "high": 163,
+      "low": 157,
+      "close": 161,
+      "volume": 931800,
+      "value": 149508900,
+      "freq": 430
+    },
+    {
+      "kode": "PKPK",
+      "high": 0,
+      "low": 0,
+      "close": 6800,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "PLAN",
+      "high": 73,
+      "low": 68,
+      "close": 71,
+      "volume": 10481000,
+      "value": 740507600,
+      "freq": 633
+    },
+    {
+      "kode": "PLAS",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "PLIN",
+      "high": 0,
+      "low": 0,
+      "close": 2510,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "PMJS",
+      "high": 141,
+      "low": 137,
+      "close": 138,
+      "volume": 329600,
+      "value": 45751600,
+      "freq": 85
+    },
+    {
+      "kode": "PMMP",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "PMUI",
+      "high": 100,
+      "low": 97,
+      "close": 98,
+      "volume": 1901400,
+      "value": 187306600,
+      "freq": 291
+    },
+    {
+      "kode": "PNBN",
+      "high": 835,
+      "low": 820,
+      "close": 830,
+      "volume": 2930700,
+      "value": 2431998000,
+      "freq": 234
+    },
+    {
+      "kode": "PNBS",
+      "high": 43,
+      "low": 41,
+      "close": 43,
+      "volume": 3374300,
+      "value": 143005600,
+      "freq": 204
+    },
+    {
+      "kode": "PNGO",
+      "high": 3500,
+      "low": 3300,
+      "close": 3490,
+      "volume": 1100,
+      "value": 3722000,
+      "freq": 10
+    },
+    {
+      "kode": "PNIN",
+      "high": 680,
+      "low": 665,
+      "close": 680,
+      "volume": 229600,
+      "value": 154463000,
+      "freq": 111
+    },
+    {
+      "kode": "PNLF",
+      "high": 200,
+      "low": 196,
+      "close": 198,
+      "volume": 12332900,
+      "value": 2439290800,
+      "freq": 772
+    },
+    {
+      "kode": "PNSE",
+      "high": 448,
+      "low": 428,
+      "close": 438,
+      "volume": 2700,
+      "value": 1181200,
+      "freq": 13
+    },
+    {
+      "kode": "POLA",
+      "high": 110,
+      "low": 83,
+      "close": 110,
+      "volume": 415662900,
+      "value": 43050373000,
+      "freq": 16228
+    },
+    {
+      "kode": "POLI",
+      "high": 875,
+      "low": 845,
+      "close": 875,
+      "volume": 16400,
+      "value": 14221000,
+      "freq": 25
+    },
+    {
+      "kode": "POLL",
+      "high": 0,
+      "low": 0,
+      "close": 112,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "POLU",
+      "high": 16500,
+      "low": 14500,
+      "close": 15850,
+      "volume": 34500,
+      "value": 538700000,
+      "freq": 193
+    },
+    {
+      "kode": "POLY",
+      "high": 0,
+      "low": 0,
+      "close": 32,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "POOL",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "PORT",
+      "high": 950,
+      "low": 900,
+      "close": 945,
+      "volume": 10400,
+      "value": 9559000,
+      "freq": 26
+    },
+    {
+      "kode": "POSA",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "POWR",
+      "high": 980,
+      "low": 965,
+      "close": 965,
+      "volume": 1953400,
+      "value": 1895733500,
+      "freq": 663
+    },
+    {
+      "kode": "PPGL",
+      "high": 0,
+      "low": 0,
+      "close": 468,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "PPRE",
+      "high": 93,
+      "low": 90,
+      "close": 93,
+      "volume": 10979900,
+      "value": 1007524200,
+      "freq": 785
+    },
+    {
+      "kode": "PPRI",
+      "high": 196,
+      "low": 166,
+      "close": 171,
+      "volume": 45769300,
+      "value": 8226535900,
+      "freq": 5106
+    },
+    {
+      "kode": "PPRO",
+      "high": 21,
+      "low": 18,
+      "close": 20,
+      "volume": 173019600,
+      "value": 3374557100,
+      "freq": 3108
+    },
+    {
+      "kode": "PRAY",
+      "high": 775,
+      "low": 760,
+      "close": 765,
+      "volume": 13500,
+      "value": 10384000,
+      "freq": 15
+    },
+    {
+      "kode": "PRDA",
+      "high": 2980,
+      "low": 2880,
+      "close": 2980,
+      "volume": 2020500,
+      "value": 5952127000,
+      "freq": 630
+    },
+    {
+      "kode": "PRDL",
+      "high": 199,
+      "low": 179,
+      "close": 180,
+      "volume": 25397300,
+      "value": 4710949800,
+      "freq": 3661
+    },
+    {
+      "kode": "PRIM",
+      "high": 134,
+      "low": 127,
+      "close": 133,
+      "volume": 6526500,
+      "value": 853908300,
+      "freq": 1108
+    },
+    {
+      "kode": "PSAB",
+      "high": 530,
+      "low": 515,
+      "close": 525,
+      "volume": 61793800,
+      "value": 32411057500,
+      "freq": 2032
+    },
+    {
+      "kode": "PSAT",
+      "high": 850,
+      "low": 830,
+      "close": 845,
+      "volume": 33700,
+      "value": 28172500,
+      "freq": 49
+    },
+    {
+      "kode": "PSDN",
+      "high": 125,
+      "low": 120,
+      "close": 124,
+      "volume": 1246300,
+      "value": 152572000,
+      "freq": 203
+    },
+    {
+      "kode": "PSGO",
+      "high": 195,
+      "low": 191,
+      "close": 194,
+      "volume": 183500,
+      "value": 35309900,
+      "freq": 52
+    },
+    {
+      "kode": "PSKT",
+      "high": 242,
+      "low": 234,
+      "close": 236,
+      "volume": 2842600,
+      "value": 672101600,
+      "freq": 387
+    },
+    {
+      "kode": "PSSI",
+      "high": 362,
+      "low": 358,
+      "close": 362,
+      "volume": 291800,
+      "value": 105134200,
+      "freq": 82
+    },
+    {
+      "kode": "PTBA",
+      "high": 3410,
+      "low": 3260,
+      "close": 3400,
+      "volume": 79878000,
+      "value": 268837487000,
+      "freq": 19150
+    },
+    {
+      "kode": "PTDU",
+      "high": 0,
+      "low": 0,
+      "close": 70,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "PTIS",
+      "high": 210,
+      "low": 194,
+      "close": 210,
+      "volume": 1608200,
+      "value": 324906000,
+      "freq": 369
+    },
+    {
+      "kode": "PTMP",
+      "high": 52,
+      "low": 49,
+      "close": 51,
+      "volume": 9669500,
+      "value": 485943800,
+      "freq": 480
+    },
+    {
+      "kode": "PTMR",
+      "high": 0,
+      "low": 0,
+      "close": 374,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "PTPP",
+      "high": 0,
+      "low": 0,
+      "close": 161,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "PTPS",
+      "high": 157,
+      "low": 149,
+      "close": 156,
+      "volume": 1225300,
+      "value": 186786400,
+      "freq": 391
+    },
+    {
+      "kode": "PTPW",
+      "high": 1110,
+      "low": 1100,
+      "close": 1105,
+      "volume": 15200,
+      "value": 16790500,
+      "freq": 23
+    },
+    {
+      "kode": "PTRO",
+      "high": 5250,
+      "low": 5100,
+      "close": 5100,
+      "volume": 30768900,
+      "value": 159005940000,
+      "freq": 8814
+    },
+    {
+      "kode": "PTSN",
+      "high": 392,
+      "low": 380,
+      "close": 382,
+      "volume": 1680100,
+      "value": 644967000,
+      "freq": 409
+    },
+    {
+      "kode": "PTSP",
+      "high": 1145,
+      "low": 1050,
+      "close": 1095,
+      "volume": 35500,
+      "value": 38645000,
+      "freq": 105
+    },
+    {
+      "kode": "PUDP",
+      "high": 268,
+      "low": 258,
+      "close": 260,
+      "volume": 13800,
+      "value": 3643400,
+      "freq": 24
+    },
+    {
+      "kode": "PURA",
+      "high": 38,
+      "low": 36,
+      "close": 37,
+      "volume": 19854500,
+      "value": 733020800,
+      "freq": 663
+    },
+    {
+      "kode": "PURE",
+      "high": 0,
+      "low": 0,
+      "close": 51,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "PURI",
+      "high": 145,
+      "low": 141,
+      "close": 145,
+      "volume": 612700,
+      "value": 87334300,
+      "freq": 227
+    },
+    {
+      "kode": "PWON",
+      "high": 270,
+      "low": 256,
+      "close": 266,
+      "volume": 35164600,
+      "value": 9296553400,
+      "freq": 1905
+    },
+    {
+      "kode": "PYFA",
+      "high": 238,
+      "low": 202,
+      "close": 234,
+      "volume": 43779400,
+      "value": 9783223000,
+      "freq": 3126
+    },
+    {
+      "kode": "PZZA",
+      "high": 190,
+      "low": 173,
+      "close": 181,
+      "volume": 2082600,
+      "value": 382150700,
+      "freq": 546
+    },
+    {
+      "kode": "RAAM",
+      "high": 168,
+      "low": 154,
+      "close": 162,
+      "volume": 1072000,
+      "value": 173308100,
+      "freq": 254
+    },
+    {
+      "kode": "RAFI",
+      "high": 0,
+      "low": 0,
+      "close": 36,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "RAJA",
+      "high": 710,
+      "low": 665,
+      "close": 685,
+      "volume": 83740700,
+      "value": 57631281500,
+      "freq": 7739
+    },
+    {
+      "kode": "RALS",
+      "high": 380,
+      "low": 376,
+      "close": 378,
+      "volume": 876500,
+      "value": 331158400,
+      "freq": 391
+    },
+    {
+      "kode": "RANC",
+      "high": 545,
+      "low": 530,
+      "close": 545,
+      "volume": 2300,
+      "value": 1227500,
+      "freq": 7
+    },
+    {
+      "kode": "RANS",
+      "high": 187,
+      "low": 181,
+      "close": 182,
+      "volume": 31404900,
+      "value": 5751187100,
+      "freq": 2568
+    },
+    {
+      "kode": "RATU",
+      "high": 4280,
+      "low": 4180,
+      "close": 4210,
+      "volume": 3700100,
+      "value": 15665541000,
+      "freq": 2500
+    },
+    {
+      "kode": "RBMS",
+      "high": 47,
+      "low": 44,
+      "close": 45,
+      "volume": 6451300,
+      "value": 292067100,
+      "freq": 458
+    },
+    {
+      "kode": "RCCC",
+      "high": 105,
+      "low": 103,
+      "close": 104,
+      "volume": 676500,
+      "value": 70224500,
+      "freq": 294
+    },
+    {
+      "kode": "RDTX",
+      "high": 13200,
+      "low": 13200,
+      "close": 13200,
+      "volume": 1800,
+      "value": 23760000,
+      "freq": 6
+    },
+    {
+      "kode": "REAL",
+      "high": 46,
+      "low": 42,
+      "close": 43,
+      "volume": 37390500,
+      "value": 1624998900,
+      "freq": 1466
+    },
+    {
+      "kode": "RELF",
+      "high": 39,
+      "low": 35,
+      "close": 39,
+      "volume": 14802000,
+      "value": 563912800,
+      "freq": 412
+    },
+    {
+      "kode": "RELI",
+      "high": 550,
+      "low": 505,
+      "close": 545,
+      "volume": 6700,
+      "value": 3550500,
+      "freq": 25
+    },
+    {
+      "kode": "RGAS",
+      "high": 102,
+      "low": 91,
+      "close": 94,
+      "volume": 44446200,
+      "value": 4241917500,
+      "freq": 4330
+    },
+    {
+      "kode": "RICY",
+      "high": 70,
+      "low": 67,
+      "close": 69,
+      "volume": 1087700,
+      "value": 74367800,
+      "freq": 143
+    },
+    {
+      "kode": "RIGS",
+      "high": 635,
+      "low": 630,
+      "close": 635,
+      "volume": 67200,
+      "value": 42367000,
+      "freq": 25
+    },
+    {
+      "kode": "RIMO",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "RISE",
+      "high": 610,
+      "low": 595,
+      "close": 600,
+      "volume": 1427700,
+      "value": 858742500,
+      "freq": 442
+    },
+    {
+      "kode": "RLCO",
+      "high": 4250,
+      "low": 4130,
+      "close": 4200,
+      "volume": 241100,
+      "value": 1008859000,
+      "freq": 847
+    },
+    {
+      "kode": "RMKE",
+      "high": 352,
+      "low": 330,
+      "close": 348,
+      "volume": 52595300,
+      "value": 18007352600,
+      "freq": 2091
+    },
+    {
+      "kode": "RMKO",
+      "high": 286,
+      "low": 254,
+      "close": 278,
+      "volume": 3742900,
+      "value": 1024725600,
+      "freq": 836
+    },
+    {
+      "kode": "ROCK",
+      "high": 3690,
+      "low": 3150,
+      "close": 3150,
+      "volume": 331300,
+      "value": 1083102000,
+      "freq": 786
+    },
+    {
+      "kode": "RODA",
+      "high": 42,
+      "low": 38,
+      "close": 41,
+      "volume": 26506900,
+      "value": 1069250200,
+      "freq": 1119
+    },
+    {
+      "kode": "RONY",
+      "high": 1530,
+      "low": 1450,
+      "close": 1515,
+      "volume": 10200,
+      "value": 15183500,
+      "freq": 44
+    },
+    {
+      "kode": "ROTI",
+      "high": 575,
+      "low": 570,
+      "close": 570,
+      "volume": 421900,
+      "value": 241058500,
+      "freq": 126
+    },
+    {
+      "kode": "RSCH",
+      "high": 575,
+      "low": 550,
+      "close": 575,
+      "volume": 24586300,
+      "value": 13843898500,
+      "freq": 4002
+    },
+    {
+      "kode": "RSGK",
+      "high": 1235,
+      "low": 1025,
+      "close": 1050,
+      "volume": 154900,
+      "value": 168976000,
+      "freq": 191
+    },
+    {
+      "kode": "RUIS",
+      "high": 198,
+      "low": 194,
+      "close": 195,
+      "volume": 68500,
+      "value": 13448700,
+      "freq": 47
+    },
+    {
+      "kode": "RUNS",
+      "high": 70,
+      "low": 64,
+      "close": 68,
+      "volume": 1237700,
+      "value": 84311500,
+      "freq": 99
+    },
+    {
+      "kode": "SAFE",
+      "high": 815,
+      "low": 725,
+      "close": 725,
+      "volume": 783300,
+      "value": 589485500,
+      "freq": 645
+    },
+    {
+      "kode": "SAGE",
+      "high": 34,
+      "low": 30,
+      "close": 32,
+      "volume": 18579400,
+      "value": 593465900,
+      "freq": 779
+    },
+    {
+      "kode": "SAME",
+      "high": 300,
+      "low": 292,
+      "close": 292,
+      "volume": 245300,
+      "value": 71917800,
+      "freq": 72
+    },
+    {
+      "kode": "SAMF",
+      "high": 362,
+      "low": 330,
+      "close": 342,
+      "volume": 883100,
+      "value": 305984400,
+      "freq": 700
+    },
+    {
+      "kode": "SAPX",
+      "high": 450,
+      "low": 422,
+      "close": 430,
+      "volume": 3564000,
+      "value": 1557245000,
+      "freq": 1523
+    },
+    {
+      "kode": "SATU",
+      "high": 242,
+      "low": 238,
+      "close": 240,
+      "volume": 2792500,
+      "value": 671133200,
+      "freq": 133
+    },
+    {
+      "kode": "SBAT",
+      "high": 0,
+      "low": 0,
+      "close": 1,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SBMA",
+      "high": 110,
+      "low": 108,
+      "close": 108,
+      "volume": 715000,
+      "value": 77554600,
+      "freq": 195
+    },
+    {
+      "kode": "SCCO",
+      "high": 2740,
+      "low": 2570,
+      "close": 2710,
+      "volume": 39800,
+      "value": 104968000,
+      "freq": 79
+    },
+    {
+      "kode": "SCMA",
+      "high": 182,
+      "low": 178,
+      "close": 181,
+      "volume": 35141500,
+      "value": 6331880800,
+      "freq": 1843
+    },
+    {
+      "kode": "SCNP",
+      "high": 168,
+      "low": 160,
+      "close": 166,
+      "volume": 775200,
+      "value": 129065200,
+      "freq": 211
+    },
+    {
+      "kode": "SCPI",
+      "high": 0,
+      "low": 0,
+      "close": 29000,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SDMU",
+      "high": 70,
+      "low": 66,
+      "close": 70,
+      "volume": 14307000,
+      "value": 983898900,
+      "freq": 1112
+    },
+    {
+      "kode": "SDPC",
+      "high": 200,
+      "low": 193,
+      "close": 195,
+      "volume": 665700,
+      "value": 131170200,
+      "freq": 49
+    },
+    {
+      "kode": "SDRA",
+      "high": 206,
+      "low": 202,
+      "close": 206,
+      "volume": 752800,
+      "value": 153193600,
+      "freq": 123
+    },
+    {
+      "kode": "SEMA",
+      "high": 500,
+      "low": 452,
+      "close": 456,
+      "volume": 22361800,
+      "value": 10484707400,
+      "freq": 5237
+    },
+    {
+      "kode": "SFAN",
+      "high": 1990,
+      "low": 1985,
+      "close": 1990,
+      "volume": 49100,
+      "value": 97535000,
+      "freq": 38
+    },
+    {
+      "kode": "SGER",
+      "high": 785,
+      "low": 750,
+      "close": 775,
+      "volume": 84812900,
+      "value": 65194076500,
+      "freq": 28244
+    },
+    {
+      "kode": "SGRO",
+      "high": 4650,
+      "low": 4210,
+      "close": 4400,
+      "volume": 29300,
+      "value": 130197000,
+      "freq": 142
+    },
+    {
+      "kode": "SHID",
+      "high": 680,
+      "low": 655,
+      "close": 665,
+      "volume": 38700,
+      "value": 25984500,
+      "freq": 45
+    },
+    {
+      "kode": "SHIP",
+      "high": 2590,
+      "low": 2500,
+      "close": 2560,
+      "volume": 50200,
+      "value": 127576000,
+      "freq": 103
+    },
+    {
+      "kode": "SICO",
+      "high": 120,
+      "low": 115,
+      "close": 116,
+      "volume": 14963900,
+      "value": 1752438800,
+      "freq": 1533
+    },
+    {
+      "kode": "SIDO",
+      "high": 354,
+      "low": 348,
+      "close": 354,
+      "volume": 13826700,
+      "value": 4873303200,
+      "freq": 1973
+    },
+    {
+      "kode": "SILO",
+      "high": 1945,
+      "low": 1900,
+      "close": 1905,
+      "volume": 1527400,
+      "value": 2942726500,
+      "freq": 712
+    },
+    {
+      "kode": "SIMA",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SIMP",
+      "high": 585,
+      "low": 575,
+      "close": 580,
+      "volume": 5498600,
+      "value": 3195084500,
+      "freq": 801
+    },
+    {
+      "kode": "SINI",
+      "high": 17250,
+      "low": 16375,
+      "close": 16500,
+      "volume": 5121100,
+      "value": 85675865000,
+      "freq": 4950
+    },
+    {
+      "kode": "SIPD",
+      "high": 845,
+      "low": 750,
+      "close": 800,
+      "volume": 35200,
+      "value": 27524000,
+      "freq": 95
+    },
+    {
+      "kode": "SKBM",
+      "high": 500,
+      "low": 490,
+      "close": 494,
+      "volume": 120400,
+      "value": 59768600,
+      "freq": 72
+    },
+    {
+      "kode": "SKLT",
+      "high": 198,
+      "low": 193,
+      "close": 196,
+      "volume": 97100,
+      "value": 18908300,
+      "freq": 259
+    },
+    {
+      "kode": "SKRN",
+      "high": 394,
+      "low": 386,
+      "close": 394,
+      "volume": 56800,
+      "value": 22065400,
+      "freq": 93
+    },
+    {
+      "kode": "SKYB",
+      "high": 0,
+      "low": 0,
+      "close": 51,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SLIS",
+      "high": 80,
+      "low": 73,
+      "close": 77,
+      "volume": 42160400,
+      "value": 3250169800,
+      "freq": 3482
+    },
+    {
+      "kode": "SMAR",
+      "high": 9325,
+      "low": 8500,
+      "close": 8500,
+      "volume": 341000,
+      "value": 3040225000,
+      "freq": 420
+    },
+    {
+      "kode": "SMBR",
+      "high": 154,
+      "low": 147,
+      "close": 152,
+      "volume": 2658700,
+      "value": 400132300,
+      "freq": 447
+    },
+    {
+      "kode": "SMCB",
+      "high": 0,
+      "low": 0,
+      "close": 775,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SMDM",
+      "high": 496,
+      "low": 470,
+      "close": 484,
+      "volume": 17100,
+      "value": 8152000,
+      "freq": 19
+    },
+    {
+      "kode": "SMDR",
+      "high": 434,
+      "low": 394,
+      "close": 428,
+      "volume": 106418600,
+      "value": 44560610800,
+      "freq": 7000
+    },
+    {
+      "kode": "SMGA",
+      "high": 89,
+      "low": 86,
+      "close": 87,
+      "volume": 5796500,
+      "value": 507697200,
+      "freq": 434
+    },
+    {
+      "kode": "SMGR",
+      "high": 1550,
+      "low": 1520,
+      "close": 1540,
+      "volume": 11058800,
+      "value": 16964053500,
+      "freq": 2359
+    },
+    {
+      "kode": "SMIL",
+      "high": 474,
+      "low": 454,
+      "close": 472,
+      "volume": 55735400,
+      "value": 25822339400,
+      "freq": 3316
+    },
+    {
+      "kode": "SMKL",
+      "high": 160,
+      "low": 147,
+      "close": 152,
+      "volume": 823200,
+      "value": 126475500,
+      "freq": 194
+    },
+    {
+      "kode": "SMKM",
+      "high": 101,
+      "low": 91,
+      "close": 95,
+      "volume": 4499900,
+      "value": 421722800,
+      "freq": 285
+    },
+    {
+      "kode": "SMLE",
+      "high": 324,
+      "low": 298,
+      "close": 320,
+      "volume": 89007600,
+      "value": 28083806600,
+      "freq": 145038
+    },
+    {
+      "kode": "SMMA",
+      "high": 19950,
+      "low": 19550,
+      "close": 19950,
+      "volume": 500,
+      "value": 9840000,
+      "freq": 4
+    },
+    {
+      "kode": "SMMT",
+      "high": 3450,
+      "low": 3250,
+      "close": 3300,
+      "volume": 832100,
+      "value": 2783119000,
+      "freq": 710
+    },
+    {
+      "kode": "SMRA",
+      "high": 244,
+      "low": 238,
+      "close": 240,
+      "volume": 24180700,
+      "value": 5824595200,
+      "freq": 1247
+    },
+    {
+      "kode": "SMRU",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SMSM",
+      "high": 1705,
+      "low": 1680,
+      "close": 1695,
+      "volume": 1452500,
+      "value": 2465737500,
+      "freq": 732
+    },
+    {
+      "kode": "SNLK",
+      "high": 242,
+      "low": 230,
+      "close": 242,
+      "volume": 14260000,
+      "value": 3334086200,
+      "freq": 603
+    },
+    {
+      "kode": "SOCI",
+      "high": 635,
+      "low": 615,
+      "close": 620,
+      "volume": 8886800,
+      "value": 5524448500,
+      "freq": 1047
+    },
+    {
+      "kode": "SOFA",
+      "high": 266,
+      "low": 224,
+      "close": 224,
+      "volume": 21874200,
+      "value": 4986212200,
+      "freq": 2116
+    },
+    {
+      "kode": "SOHO",
+      "high": 1425,
+      "low": 1285,
+      "close": 1370,
+      "volume": 181100,
+      "value": 247966500,
+      "freq": 382
+    },
+    {
+      "kode": "SOLA",
+      "high": 78,
+      "low": 75,
+      "close": 77,
+      "volume": 2027700,
+      "value": 155261800,
+      "freq": 311
+    },
+    {
+      "kode": "SONA",
+      "high": 4000,
+      "low": 3180,
+      "close": 3270,
+      "volume": 360700,
+      "value": 1266332000,
+      "freq": 1029
+    },
+    {
+      "kode": "SOSS",
+      "high": 1075,
+      "low": 970,
+      "close": 1000,
+      "volume": 40300,
+      "value": 40205000,
+      "freq": 96
+    },
+    {
+      "kode": "SOTS",
+      "high": 675,
+      "low": 555,
+      "close": 615,
+      "volume": 4518600,
+      "value": 2808924500,
+      "freq": 2154
+    },
+    {
+      "kode": "SOUL",
+      "high": 0,
+      "low": 0,
+      "close": 37,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SPMA",
+      "high": 166,
+      "low": 161,
+      "close": 165,
+      "volume": 228700,
+      "value": 37428100,
+      "freq": 63
+    },
+    {
+      "kode": "SPRE",
+      "high": 92,
+      "low": 89,
+      "close": 91,
+      "volume": 1765500,
+      "value": 158706800,
+      "freq": 270
+    },
+    {
+      "kode": "SPTO",
+      "high": 615,
+      "low": 605,
+      "close": 610,
+      "volume": 895100,
+      "value": 546556500,
+      "freq": 181
+    },
+    {
+      "kode": "SQMI",
+      "high": 101,
+      "low": 96,
+      "close": 97,
+      "volume": 283524800,
+      "value": 27818404600,
+      "freq": 8964
+    },
+    {
+      "kode": "SRAJ",
+      "high": 13000,
+      "low": 12775,
+      "close": 13000,
+      "volume": 1300,
+      "value": 16775000,
+      "freq": 13
+    },
+    {
+      "kode": "SRIL",
+      "high": 0,
+      "low": 0,
+      "close": 146,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SRSN",
+      "high": 150,
+      "low": 139,
+      "close": 140,
+      "volume": 387658900,
+      "value": 55572176500,
+      "freq": 17285
+    },
+    {
+      "kode": "SRTG",
+      "high": 1775,
+      "low": 1740,
+      "close": 1765,
+      "volume": 790200,
+      "value": 1393624500,
+      "freq": 487
+    },
+    {
+      "kode": "SSIA",
+      "high": 1770,
+      "low": 1720,
+      "close": 1760,
+      "volume": 14831600,
+      "value": 25952496000,
+      "freq": 3372
+    },
+    {
+      "kode": "SSMS",
+      "high": 1080,
+      "low": 1055,
+      "close": 1070,
+      "volume": 7946900,
+      "value": 8506907000,
+      "freq": 875
+    },
+    {
+      "kode": "SSTM",
+      "high": 434,
+      "low": 410,
+      "close": 420,
+      "volume": 52900,
+      "value": 22040200,
+      "freq": 105
+    },
+    {
+      "kode": "STAA",
+      "high": 1265,
+      "low": 1245,
+      "close": 1245,
+      "volume": 3027600,
+      "value": 3804590500,
+      "freq": 837
+    },
+    {
+      "kode": "STAR",
+      "high": 430,
+      "low": 392,
+      "close": 414,
+      "volume": 296800,
+      "value": 122044000,
+      "freq": 314
+    },
+    {
+      "kode": "STRK",
+      "high": 63,
+      "low": 60,
+      "close": 60,
+      "volume": 21723800,
+      "value": 1339955600,
+      "freq": 686
+    },
+    {
+      "kode": "STTP",
+      "high": 8900,
+      "low": 8850,
+      "close": 8850,
+      "volume": 3100,
+      "value": 27440000,
+      "freq": 9
+    },
+    {
+      "kode": "SUGI",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SULI",
+      "high": 80,
+      "low": 75,
+      "close": 79,
+      "volume": 2689800,
+      "value": 209795300,
+      "freq": 383
+    },
+    {
+      "kode": "SUNI",
+      "high": 655,
+      "low": 595,
+      "close": 650,
+      "volume": 677600,
+      "value": 418927500,
+      "freq": 181
+    },
+    {
+      "kode": "SUPA",
+      "high": 494,
+      "low": 484,
+      "close": 490,
+      "volume": 10300900,
+      "value": 5035932000,
+      "freq": 907
+    },
+    {
+      "kode": "SUPR",
+      "high": 0,
+      "low": 0,
+      "close": 43850,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SURE",
+      "high": 3000,
+      "low": 2990,
+      "close": 3000,
+      "volume": 7600,
+      "value": 22799000,
+      "freq": 9
+    },
+    {
+      "kode": "SURI",
+      "high": 86,
+      "low": 83,
+      "close": 84,
+      "volume": 1773400,
+      "value": 150294600,
+      "freq": 216
+    },
+    {
+      "kode": "SWAT",
+      "high": 0,
+      "low": 0,
+      "close": 16,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "SWID",
+      "high": 110,
+      "low": 105,
+      "close": 107,
+      "volume": 3277400,
+      "value": 354461400,
+      "freq": 493
+    },
+    {
+      "kode": "TALF",
+      "high": 665,
+      "low": 650,
+      "close": 665,
+      "volume": 28100,
+      "value": 18403000,
+      "freq": 46
+    },
+    {
+      "kode": "TAMA",
+      "high": 208,
+      "low": 198,
+      "close": 198,
+      "volume": 3282800,
+      "value": 672435600,
+      "freq": 215
+    },
+    {
+      "kode": "TAMU",
+      "high": 27,
+      "low": 25,
+      "close": 27,
+      "volume": 43292400,
+      "value": 1120050600,
+      "freq": 1077
+    },
+    {
+      "kode": "TAPG",
+      "high": 2030,
+      "low": 1970,
+      "close": 2020,
+      "volume": 11037800,
+      "value": 22129494500,
+      "freq": 4276
+    },
+    {
+      "kode": "TARA",
+      "high": 39,
+      "low": 35,
+      "close": 37,
+      "volume": 7621600,
+      "value": 280743800,
+      "freq": 540
+    },
+    {
+      "kode": "TAXI",
+      "high": 16,
+      "low": 13,
+      "close": 16,
+      "volume": 241739500,
+      "value": 3518869300,
+      "freq": 2213
+    },
+    {
+      "kode": "TAYS",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TBIG",
+      "high": 1440,
+      "low": 1425,
+      "close": 1430,
+      "volume": 44600,
+      "value": 63853500,
+      "freq": 49
+    },
+    {
+      "kode": "TBLA",
+      "high": 615,
+      "low": 600,
+      "close": 610,
+      "volume": 467500,
+      "value": 284840000,
+      "freq": 213
+    },
+    {
+      "kode": "TBMS",
+      "high": 1215,
+      "low": 1190,
+      "close": 1200,
+      "volume": 21400,
+      "value": 25794500,
+      "freq": 14
+    },
+    {
+      "kode": "TCID",
+      "high": 2520,
+      "low": 2500,
+      "close": 2500,
+      "volume": 2500,
+      "value": 6275000,
+      "freq": 4
+    },
+    {
+      "kode": "TCPI",
+      "high": 1505,
+      "low": 1280,
+      "close": 1285,
+      "volume": 5621600,
+      "value": 7621163500,
+      "freq": 3349
+    },
+    {
+      "kode": "TDPM",
+      "high": 0,
+      "low": 0,
+      "close": 119,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TEBE",
+      "high": 0,
+      "low": 0,
+      "close": 2690,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TECH",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TELE",
+      "high": 0,
+      "low": 0,
+      "close": 9,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TFAS",
+      "high": 182,
+      "low": 175,
+      "close": 182,
+      "volume": 119900,
+      "value": 21678800,
+      "freq": 64
+    },
+    {
+      "kode": "TFCO",
+      "high": 935,
+      "low": 800,
+      "close": 830,
+      "volume": 81800,
+      "value": 69273000,
+      "freq": 188
+    },
+    {
+      "kode": "TGKA",
+      "high": 4880,
+      "low": 4870,
+      "close": 4870,
+      "volume": 400,
+      "value": 1951000,
+      "freq": 3
+    },
+    {
+      "kode": "TGRA",
+      "high": 0,
+      "low": 0,
+      "close": 27,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TGUK",
+      "high": 139,
+      "low": 120,
+      "close": 120,
+      "volume": 14719400,
+      "value": 1998331000,
+      "freq": 787
+    },
+    {
+      "kode": "TIFA",
+      "high": 334,
+      "low": 324,
+      "close": 328,
+      "volume": 177000,
+      "value": 58006400,
+      "freq": 131
+    },
+    {
+      "kode": "TINS",
+      "high": 4690,
+      "low": 4610,
+      "close": 4670,
+      "volume": 24233500,
+      "value": 113024581000,
+      "freq": 6004
+    },
+    {
+      "kode": "TIRA",
+      "high": 318,
+      "low": 286,
+      "close": 296,
+      "volume": 1502200,
+      "value": 438675600,
+      "freq": 257
+    },
+    {
+      "kode": "TIRT",
+      "high": 0,
+      "low": 0,
+      "close": 590,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TKIM",
+      "high": 7450,
+      "low": 7125,
+      "close": 7400,
+      "volume": 1140200,
+      "value": 8340040000,
+      "freq": 901
+    },
+    {
+      "kode": "TLDN",
+      "high": 605,
+      "low": 595,
+      "close": 600,
+      "volume": 1674600,
+      "value": 1002532500,
+      "freq": 633
+    },
+    {
+      "kode": "TLKM",
+      "high": 2290,
+      "low": 2260,
+      "close": 2280,
+      "volume": 162461500,
+      "value": 369614323000,
+      "freq": 32860
+    },
+    {
+      "kode": "TMAS",
+      "high": 133,
+      "low": 126,
+      "close": 131,
+      "volume": 5282200,
+      "value": 689822600,
+      "freq": 633
+    },
+    {
+      "kode": "TMPO",
+      "high": 176,
+      "low": 168,
+      "close": 169,
+      "volume": 16004600,
+      "value": 2736993600,
+      "freq": 2225
+    },
+    {
+      "kode": "TNCA",
+      "high": 182,
+      "low": 172,
+      "close": 179,
+      "volume": 1342400,
+      "value": 238471600,
+      "freq": 429
+    },
+    {
+      "kode": "TOBA",
+      "high": 488,
+      "low": 472,
+      "close": 484,
+      "volume": 5134100,
+      "value": 2467551600,
+      "freq": 1125
+    },
+    {
+      "kode": "TOOL",
+      "high": 57,
+      "low": 54,
+      "close": 57,
+      "volume": 12483000,
+      "value": 698322300,
+      "freq": 805
+    },
+    {
+      "kode": "TOPS",
+      "high": 0,
+      "low": 0,
+      "close": 1,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TOSK",
+      "high": 82,
+      "low": 80,
+      "close": 82,
+      "volume": 14563500,
+      "value": 1179730900,
+      "freq": 507
+    },
+    {
+      "kode": "TOTL",
+      "high": 1540,
+      "low": 1505,
+      "close": 1515,
+      "volume": 2857200,
+      "value": 4322605000,
+      "freq": 737
+    },
+    {
+      "kode": "TOTO",
+      "high": 242,
+      "low": 238,
+      "close": 240,
+      "volume": 148700,
+      "value": 35732000,
+      "freq": 152
+    },
+    {
+      "kode": "TOWR",
+      "high": 428,
+      "low": 406,
+      "close": 428,
+      "volume": 95644400,
+      "value": 39921191200,
+      "freq": 6295
+    },
+    {
+      "kode": "TOYS",
+      "high": 0,
+      "low": 0,
+      "close": 8,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TPIA",
+      "high": 1780,
+      "low": 1725,
+      "close": 1765,
+      "volume": 98585300,
+      "value": 172905706000,
+      "freq": 12596
+    },
+    {
+      "kode": "TPMA",
+      "high": 460,
+      "low": 442,
+      "close": 452,
+      "volume": 906900,
+      "value": 410447200,
+      "freq": 316
+    },
+    {
+      "kode": "TRAM",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TRGU",
+      "high": 165,
+      "low": 158,
+      "close": 162,
+      "volume": 82000,
+      "value": 13236500,
+      "freq": 40
+    },
+    {
+      "kode": "TRIL",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TRIM",
+      "high": 835,
+      "low": 765,
+      "close": 780,
+      "volume": 261200,
+      "value": 205742000,
+      "freq": 104
+    },
+    {
+      "kode": "TRIN",
+      "high": 302,
+      "low": 248,
+      "close": 290,
+      "volume": 65261400,
+      "value": 18417396800,
+      "freq": 8131
+    },
+    {
+      "kode": "TRIO",
+      "high": 0,
+      "low": 0,
+      "close": 426,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TRIS",
+      "high": 171,
+      "low": 169,
+      "close": 171,
+      "volume": 325000,
+      "value": 55276600,
+      "freq": 72
+    },
+    {
+      "kode": "TRJA",
+      "high": 123,
+      "low": 118,
+      "close": 120,
+      "volume": 774500,
+      "value": 92396700,
+      "freq": 262
+    },
+    {
+      "kode": "TRON",
+      "high": 83,
+      "low": 80,
+      "close": 82,
+      "volume": 9036100,
+      "value": 732535400,
+      "freq": 845
+    },
+    {
+      "kode": "TRST",
+      "high": 486,
+      "low": 474,
+      "close": 480,
+      "volume": 21900,
+      "value": 10510800,
+      "freq": 7
+    },
+    {
+      "kode": "TRUE",
+      "high": 62,
+      "low": 46,
+      "close": 62,
+      "volume": 606478800,
+      "value": 35662309700,
+      "freq": 16226
+    },
+    {
+      "kode": "TRUK",
+      "high": 0,
+      "low": 0,
+      "close": 2580,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "TRUS",
+      "high": 464,
+      "low": 456,
+      "close": 456,
+      "volume": 4300,
+      "value": 1966600,
+      "freq": 8
+    },
+    {
+      "kode": "TSPC",
+      "high": 2680,
+      "low": 2610,
+      "close": 2680,
+      "volume": 374000,
+      "value": 984970000,
+      "freq": 122
+    },
+    {
+      "kode": "TUGU",
+      "high": 1565,
+      "low": 1500,
+      "close": 1515,
+      "volume": 1608900,
+      "value": 2460025000,
+      "freq": 662
+    },
+    {
+      "kode": "TYRE",
+      "high": 110,
+      "low": 106,
+      "close": 109,
+      "volume": 329300,
+      "value": 35609100,
+      "freq": 68
+    },
+    {
+      "kode": "UANG",
+      "high": 3700,
+      "low": 3570,
+      "close": 3640,
+      "volume": 149900,
+      "value": 542164000,
+      "freq": 259
+    },
+    {
+      "kode": "UCID",
+      "high": 500,
+      "low": 486,
+      "close": 490,
+      "volume": 297100,
+      "value": 146337800,
+      "freq": 213
+    },
+    {
+      "kode": "UDNG",
+      "high": 428,
+      "low": 390,
+      "close": 420,
+      "volume": 4200900,
+      "value": 1724250600,
+      "freq": 1357
+    },
+    {
+      "kode": "UFOE",
+      "high": 144,
+      "low": 140,
+      "close": 142,
+      "volume": 110200,
+      "value": 15684800,
+      "freq": 75
+    },
+    {
+      "kode": "ULTJ",
+      "high": 2090,
+      "low": 2070,
+      "close": 2070,
+      "volume": 22302600,
+      "value": 46240217000,
+      "freq": 1239
+    },
+    {
+      "kode": "UNIC",
+      "high": 15300,
+      "low": 15000,
+      "close": 15000,
+      "volume": 22900,
+      "value": 344237500,
+      "freq": 41
+    },
+    {
+      "kode": "UNIQ",
+      "high": 143,
+      "low": 133,
+      "close": 138,
+      "volume": 15248600,
+      "value": 2114190800,
+      "freq": 1452
+    },
+    {
+      "kode": "UNIT",
+      "high": 0,
+      "low": 0,
+      "close": 316,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "UNSP",
+      "high": 372,
+      "low": 352,
+      "close": 358,
+      "volume": 8924900,
+      "value": 3223557800,
+      "freq": 1726
+    },
+    {
+      "kode": "UNTD",
+      "high": 78,
+      "low": 74,
+      "close": 76,
+      "volume": 22221600,
+      "value": 1690551900,
+      "freq": 497
+    },
+    {
+      "kode": "UNTR",
+      "high": 26175,
+      "low": 25650,
+      "close": 26000,
+      "volume": 2475000,
+      "value": 64355392500,
+      "freq": 3827
+    },
+    {
+      "kode": "UNVR",
+      "high": 1615,
+      "low": 1580,
+      "close": 1595,
+      "volume": 14740300,
+      "value": 23577125000,
+      "freq": 2840
+    },
+    {
+      "kode": "URBN",
+      "high": 346,
+      "low": 280,
+      "close": 316,
+      "volume": 1459700,
+      "value": 460254400,
+      "freq": 525
+    },
+    {
+      "kode": "UVCR",
+      "high": 290,
+      "low": 266,
+      "close": 284,
+      "volume": 62072900,
+      "value": 17321544200,
+      "freq": 3840
+    },
+    {
+      "kode": "VAST",
+      "high": 107,
+      "low": 102,
+      "close": 107,
+      "volume": 5436200,
+      "value": 568252200,
+      "freq": 367
+    },
+    {
+      "kode": "VERN",
+      "high": 194,
+      "low": 176,
+      "close": 192,
+      "volume": 29135100,
+      "value": 5496285300,
+      "freq": 7281
+    },
+    {
+      "kode": "VICI",
+      "high": 1100,
+      "low": 1015,
+      "close": 1075,
+      "volume": 3320400,
+      "value": 3475118000,
+      "freq": 614
+    },
+    {
+      "kode": "VICO",
+      "high": 154,
+      "low": 151,
+      "close": 152,
+      "volume": 90000,
+      "value": 13690300,
+      "freq": 80
+    },
+    {
+      "kode": "VINS",
+      "high": 142,
+      "low": 140,
+      "close": 140,
+      "volume": 17100,
+      "value": 2395900,
+      "freq": 19
+    },
+    {
+      "kode": "VISI",
+      "high": 1090,
+      "low": 1035,
+      "close": 1060,
+      "volume": 820200,
+      "value": 871764000,
+      "freq": 241
+    },
+    {
+      "kode": "VIVA",
+      "high": 43,
+      "low": 41,
+      "close": 42,
+      "volume": 43959000,
+      "value": 1833938600,
+      "freq": 1069
+    },
+    {
+      "kode": "VKTR",
+      "high": 860,
+      "low": 815,
+      "close": 835,
+      "volume": 95407100,
+      "value": 79845495500,
+      "freq": 10098
+    },
+    {
+      "kode": "VOKS",
+      "high": 284,
+      "low": 262,
+      "close": 262,
+      "volume": 194700,
+      "value": 52038000,
+      "freq": 145
+    },
+    {
+      "kode": "VRNA",
+      "high": 78,
+      "low": 74,
+      "close": 77,
+      "volume": 911400,
+      "value": 68866900,
+      "freq": 113
+    },
+    {
+      "kode": "VTNY",
+      "high": 63,
+      "low": 55,
+      "close": 58,
+      "volume": 35534200,
+      "value": 2114220900,
+      "freq": 1790
+    },
+    {
+      "kode": "WAPO",
+      "high": 400,
+      "low": 300,
+      "close": 326,
+      "volume": 13860900,
+      "value": 4441133600,
+      "freq": 3263
+    },
+    {
+      "kode": "WBSA",
+      "high": 615,
+      "low": 600,
+      "close": 615,
+      "volume": 12334100,
+      "value": 7473664000,
+      "freq": 3513
+    },
+    {
+      "kode": "WEGE",
+      "high": 43,
+      "low": 37,
+      "close": 41,
+      "volume": 22286400,
+      "value": 895861700,
+      "freq": 865
+    },
+    {
+      "kode": "WEHA",
+      "high": 108,
+      "low": 105,
+      "close": 107,
+      "volume": 2201600,
+      "value": 234893100,
+      "freq": 259
+    },
+    {
+      "kode": "WGSH",
+      "high": 110,
+      "low": 102,
+      "close": 107,
+      "volume": 11732200,
+      "value": 1254188100,
+      "freq": 764
+    },
+    {
+      "kode": "WICO",
+      "high": 0,
+      "low": 0,
+      "close": 123,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "WIDI",
+      "high": 29,
+      "low": 28,
+      "close": 28,
+      "volume": 6858400,
+      "value": 193027500,
+      "freq": 316
+    },
+    {
+      "kode": "WIFI",
+      "high": 1480,
+      "low": 1440,
+      "close": 1450,
+      "volume": 20989600,
+      "value": 30594944500,
+      "freq": 4621
+    },
+    {
+      "kode": "WIIM",
+      "high": 1565,
+      "low": 1465,
+      "close": 1565,
+      "volume": 3364300,
+      "value": 5153823500,
+      "freq": 1163
+    },
+    {
+      "kode": "WIKA",
+      "high": 0,
+      "low": 0,
+      "close": 204,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "WINE",
+      "high": 130,
+      "low": 127,
+      "close": 127,
+      "volume": 37200,
+      "value": 4776600,
+      "freq": 27
+    },
+    {
+      "kode": "WINR",
+      "high": 28,
+      "low": 24,
+      "close": 27,
+      "volume": 84984000,
+      "value": 2222710900,
+      "freq": 2261
+    },
+    {
+      "kode": "WINS",
+      "high": 585,
+      "low": 570,
+      "close": 575,
+      "volume": 418000,
+      "value": 241285000,
+      "freq": 231
+    },
+    {
+      "kode": "WIRG",
+      "high": 62,
+      "low": 58,
+      "close": 60,
+      "volume": 48276000,
+      "value": 2899658900,
+      "freq": 1784
+    },
+    {
+      "kode": "WMPP",
+      "high": 28,
+      "low": 26,
+      "close": 28,
+      "volume": 65826500,
+      "value": 1758267300,
+      "freq": 1043
+    },
+    {
+      "kode": "WMUU",
+      "high": 33,
+      "low": 30,
+      "close": 33,
+      "volume": 59740100,
+      "value": 1918556100,
+      "freq": 2163
+    },
+    {
+      "kode": "WOMF",
+      "high": 280,
+      "low": 272,
+      "close": 280,
+      "volume": 43600,
+      "value": 12116800,
+      "freq": 32
+    },
+    {
+      "kode": "WOOD",
+      "high": 188,
+      "low": 180,
+      "close": 186,
+      "volume": 1749300,
+      "value": 324223300,
+      "freq": 264
+    },
+    {
+      "kode": "WOWS",
+      "high": 53,
+      "low": 50,
+      "close": 52,
+      "volume": 4232200,
+      "value": 217445700,
+      "freq": 330
+    },
+    {
+      "kode": "WSBP",
+      "high": 0,
+      "low": 0,
+      "close": 14,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "WSKT",
+      "high": 0,
+      "low": 0,
+      "close": 202,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "WTON",
+      "high": 74,
+      "low": 69,
+      "close": 73,
+      "volume": 4584000,
+      "value": 327091900,
+      "freq": 350
+    },
+    {
+      "kode": "YELO",
+      "high": 82,
+      "low": 80,
+      "close": 82,
+      "volume": 24052200,
+      "value": 1953231800,
+      "freq": 1853
+    },
+    {
+      "kode": "YOII",
+      "high": 75,
+      "low": 73,
+      "close": 75,
+      "volume": 3272000,
+      "value": 241860600,
+      "freq": 210
+    },
+    {
+      "kode": "YPAS",
+      "high": 1215,
+      "low": 1185,
+      "close": 1185,
+      "volume": 84500,
+      "value": 101446500,
+      "freq": 53
+    },
+    {
+      "kode": "YULE",
+      "high": 3670,
+      "low": 3500,
+      "close": 3580,
+      "volume": 26600,
+      "value": 94651000,
+      "freq": 16
+    },
+    {
+      "kode": "YUPI",
+      "high": 1235,
+      "low": 1215,
+      "close": 1220,
+      "volume": 8400,
+      "value": 10347500,
+      "freq": 28
+    },
+    {
+      "kode": "ZATA",
+      "high": 55,
+      "low": 52,
+      "close": 55,
+      "volume": 40706700,
+      "value": 2196161100,
+      "freq": 1995
+    },
+    {
+      "kode": "ZBRA",
+      "high": 0,
+      "low": 0,
+      "close": 50,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ZINC",
+      "high": 0,
+      "low": 0,
+      "close": 30,
+      "volume": 0,
+      "value": 0,
+      "freq": 0
+    },
+    {
+      "kode": "ZONE",
+      "high": 725,
+      "low": 620,
+      "close": 625,
+      "volume": 704400,
+      "value": 476582500,
+      "freq": 665
+    },
+    {
+      "kode": "ZYRX",
+      "high": 130,
+      "low": 126,
+      "close": 128,
+      "volume": 1029800,
+      "value": 131411100,
+      "freq": 148
+    }
+  ]
+}

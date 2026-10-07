@@ -1,0 +1,101 @@
+﻿kode;nama;harga;chg_pct;fair_value;potensi;valuasi;kesehatan;kap_pasar;sisa
+TOBA;TBS Energi Utama Tbk PT;Rp484;2,5%;569,48;Upside 17,7%;Wajar;Lemah;4.021,8 B;18,5648 | 3,9% | 44,30 | -3,0x | 1,3x | 0,6x | 10.041,8 B | 62,1% | 25,7%
+SMDR;Samudera Indonesia Tbk;Rp428;7,5%;409,38;Downside -4,4%;Wajar;Baik Sekali;7.008,8 B;12,0000 | 3,0% | 67,24 | 7,1x | 0,7x | 0,5x | 10.756,5 B | 45,9% | 25,2%
+SCMA;Surya Citra Media Tbk;Rp181;1,1%;226,53;Upside 25,2%;Undervalued;Baik;11.494,4 B;21,0000 | 11,7% | 41,22 | 11,6x | 1,8x | 1,6x | 11.184,6 B | 5,7% | 6,6%
+PSAB;J Resources Asia Pasifik Tbk;Rp525;680,05;Upside 29,5%;Undervalued;Baik Sekali;13.891,5 B;105;25,7% | 45,99 | 4,0x | 1,8x | 2,5x | 11.371,8 B | 7,9% | 7,5%
+PNLF;Panin Financial Tbk;Rp198;1,0%;262,70;Upside 32,7%;Undervalued;Baik;6.337,2 B;0,0% | 31,51 | 3,6x | 0,2x | 0,7x | NA | 31,1% | 32,1%
+NISP;Bank Ocbc Nisp Tbk;Rp1.240;0,4%;1.269;Upside 2,4%;Wajar;Baik;28.452,2 B;45,0000 | 3,6% | 40,06 | 5,5x | 0,6x | 2,3x | NA | 53,2% | 14,9%
+MPMX;Mitra Pinasthika Mustika;Rp1.025;0,5%;1.354;Upside 32,1%;Undervalued;Baik Sekali;4.496,6 B;170 | 16,7% | 51,93 | 8,6x | 0,8x | 0,3x | 257,9 B | 1,1% | 33,7%
+MARK;Mark Dynamics Indonesia Tbk PT;Rp1.210;0,8%;1.266;Upside 4,6%;Wajar;Baik Sekali;4.598 B;90,0000 | 7,5% | 60,44 | 13,7x | 5,2x | 4,5x | 4.561 B | 0,1% | 19,7%
+KIJA;Kawasan Industri Jababeka Tbk;Rp160;1,2%;225,56;Upside 41,0%;Undervalued;Baik;3.327,5 B;2,0349 | 1,3% | 38,95 | -51,6x | 0,6x | 0,7x | 6.528,5 B | 49,1% | 3,4%
+IMJS;Indomobil Multi Jasa Tbk;Rp171;3,0%;215,87;Upside 26,2%;Undervalued;Wajar;1.855,2 B;0,3500 | 0,2% | 43,03 | 9,8x | 0,3x | 0,3x | NA | 93,4% | 8,0%
+GJTL;Gajah Tunggal Tbk;Rp1.285;0,4%;1.491;Upside 16,1%;Wajar;Baik Sekali;4.477,5 B;80,0000 | 6,2% | 49,16 | 2,8x | 0,4x | 0,2x | 8.385,8 B | 56,5% | 33,4%
+ELIT;Data Sinergitama Jaya Tbk PT;Rp290;5,8%;215,75;Downside -25,6%;Overvalued;Baik Sekali;585,8 B;0,0000 | 0,0% | 60,52 | 16,8x | 3,2x | 1,4x | 560,4 B | 5,0% | 26,9%
+DSSA;Dian Swastatika Sentosa Tbk;Rp1.165;1,8%;1.012;Downside -13,1%;Wajar;Wajar;180.262,9 B;0,0% | 59,49 | 32,6x | 4,8x | 3,1x | 195.253,3 B | 14,9% | 25,4%
+DOID;PT BUMA Internasional Grup Tbk;Rp220;2,8%;228,99;Upside 4,1%;Wajar;Lemah;1.618,6 B;0,0000 | 0,0% | 46,43 | -1,0x | 20,9x | 0,1x | 14.527,5 B | 92,2% | 53,6%
+CMNT;Cemindo Gemilang Tbk PT;Rp740;740,21;Upside 0,0%;Wajar;Wajar;12.672,9 B;0,0%;40,12 | -53,1x | 5,6x | 1,3x | 21.491,8 B | 41,2% | 12,6%
+CBDK;Bangun Kosambi Sukses Pt Tbk;Rp3.530;0,9%;4.200;Upside 19,0%;Undervalued;Baik Sekali;19.920 B;5,0000 | 0,1% | 44,12 | 7,9x | 1,9x | 5,7x | 18.890,6 B | 0,9% | 11,0%
+BWPT;Eagle High Plantations Tbk;Rp109;3,8%;139,09;Upside 27,6%;Undervalued;Baik;3.392,3 B;0,0% | 47,17 | 8,5x | 1,1x | 0,5x | 7.401,3 B | 57,6% | 24,3%
+BUVA;Bukit Uluwatu Villa Tbk;Rp705;4,4%;340,79;Downside -51,7%;Mahal;Wajar;17.355 B;0,0% | 50,63 | 638,8x | 7,8x | 43,7x | 16.965,6 B | 2,4% | 29,0%
+BNBR;"Bakrie &amp; Brothers Tbk";Rp76;4,1%;45,36;Downside -40,3%;Overvalued;Lemah;13.179,7 B;0,0% | 24,08 | 62,6x | 3,6x | 2,9x | 29.471,7 B | 55,2%
+BJTM;Bank Pembangunan Timur Tbk;Rp515;1,0%;608,49;Upside 18,2%;Undervalued;Wajar;7.733 B;56,6200 | 11,1% | 41,86 | 4,9x | 0,6x | 1,0x | NA | 48,0%
+ABMM;Abm Investama Tbk;Rp2.680;2,3%;3.196;Upside 19,3%;Undervalued;Baik;7.378,5 B;97,0000 | 3,7% | 44,10 | 5,0x | 0,5x | 0,4x | 9.276,5 B | 68,8% | 9,5%
+CDIA;Chandra Daya Investasi Tbk PT;Rp575;1,7%;728,04;Upside 26,6%;Undervalued;Hemat;2.605;Upside 353,1% | Wajar | 71.731,2 B | 0,0000 | 1,4% | 34,77 | 57,0x | 3,9x | 24,6x | 66.456,5 B | 15,8% | 9,9%
+CUAN;PT Petrindo Jaya Kreasi Tbk;Rp850;1.250;Upside 47,1%;Undervalued;Hemat;3.747;Upside 340,8%;Wajar | 95.539,3 B | 0,0000 | 0,0% | 43,93 | 37,1x | 15,5x | 3,6x | 119.167,5 B | 20,2% | 19,5%
+EMTK;Elang Mahkota Teknologi Tbk;Rp410;3,5%;572,99;Upside 39,8%;Undervalued;Hemat;1.600;Upside 290,2% | Baik Sekali | 25.084,8 B | 10,0000 | 2,5% | 28,22 | 11,1x | 0,7x | 1,2x | 2.165,2 B | 7,5% | 28,6%
+BREN;Barito Renewables Energy PT Tbk;Rp2.920;1,0%;2.711;Downside -7,2%;Wajar;Hemat;9.064;Upside 210,4% | Wajar | 390.636,2 B | 4,0933 | 0,1% | 36,23 | 141,3x | 31,3x | 34,0x | 429.290,8 B | 8,7% | 12,6%
+BBYB;Bank Yudha Bhakti Tbk;Rp202;1,0%;311,65;Upside 54,3%;Hemat;Hemat;562;Upside 178,2% | Baik Sekali | 2.696,8 B | 0,0% | 31,46 | 4,7x | 0,6x | 1,9x | NA | 7,1% | 49,5%
+WIFI;Solusi Sinergi Digital Tbk PT;Rp1.450;0,3%;1.661;Upside 14,5%;Wajar;Hemat;3.686;Upside 154,2% | Baik | 7.697,4 B | 2,0000 | 0,1% | 19,10 | 15,1x | 1,0x | 2,8x | 11.264,4 B | 53,6% | 40,0%
+PANI;Pantai Indah Kapuk Dua Tbk PT;Rp4.730;1,5%;3.757;Downside -20,6%;Overvalued;Hemat;11.675;Upside 146,8% | Baik | 86.036,3 B | 5,0000 | 0,1% | 33,47 | 34,1x | 3,0x | 15,4x | 86.114,3 B | 0,6% | 16,2%
+ARTO;Bank Artos Indonesia Tbk PT;Rp810;5,2%;1.158;Upside 42,9%;Undervalued;Hemat;1.978;Upside 144,2% | Wajar | 11.227,7 B | 0,0% | 34,14 | 31,6x | 1,2x | 4,6x | NA | 24,7% | 27,8%
+PTRO;Petrosea Tbk;Rp5.100;1,0%;3.732;Downside -26,8%;Overvalued;Hemat;12.163;Upside 138,5% | Wajar | 51.438,9 B | 0,0000 | 0,0% | 43,02 | 103,4x | 10,7x | 2,7x | 66.262,6 B | 22,1% | 30,1%
+COIN;Indokripto Koin Semesta Tbk PT;Rp730;1,4%;617,25;Downside -15,4%;Wajar;Hemat;1.720;Upside 135,6% | Wajar | 10.735,3 B | 0,0% | 39,63 | -685,0x | 7,1x | 43,6x | 10.447,9 B | 0,0% | 15,1%
+DEWA;Darma Henwa Tbk;Rp364;5,2%;387;Upside 6,3%;Wajar;Hemat;835,05;Upside 129,4% | Baik | 14.213,7 B | 1,5000 | 0,4% | 37,29 | 3,2x | 1,8x | 2,2x | 17.916,9 B | 28,3% | 25,6%
+RAJA;Rukun Raharja Tbk;Rp685;1,5%;622,32;Downside -9,2%;Wajar;Hemat;1.570;Upside 129,2% | Baik | 14.427,3 B | 13,0000 | 1,9% | 37,82 | 20,6x | 3,6x | 2,9x | 15.051,6 B | 26,2% | 23,9%
+ASSA;Adi Sarana Armada Tbk;Rp585;899,99;Upside 53,8%;Hemat;Hemat;1.335;Upside 128,2%;Baik Sekali | 2.159,3 B | 50,0000 | 8,5% | 43,13 | 5,3x | 1,0x | 0,4x | 6.246,5 B | 57,1% | 26,1%
+HEAL;Medikaloka Hermina PT;Rp610;1,6%;862,33;Upside 41,4%;Undervalued;Hemat;1.338;Upside 119,4% | Wajar | 9.299,9 B | 13,5000 | 2,2% | 41,76 | 23,4x | 1,7x | 1,3x | 13.948,6 B | 24,9% | 52,0%
+INET;Sinergi Inti Andalan Prima Tbk PT;Rp274;3,0%;346,55;Upside 26,5%;Undervalued;Hemat;585;Upside 113,5% | Baik Sekali | 6.130,5 B | 0,04000 | 0,0% | 39,73 | 121,4x | 1,7x | 6,3x | 3.726,3 B | 22,1% | 40,2%
+BSDE;Bumi Serpong Damai Tbk;Rp545;773,38;Upside 41,9%;Undervalued;Hemat;1.077;Upside 97,6%;Wajar | 11.397,8 B | 0,0% | 30,29 | 6,1x | 0,3x | 1,0x | 16.500,3 B | 48,6% | 19,3%
+BULL;Buana Listya Tama Tbk PT;Rp372;5,1%;501,70;Upside 34,9%;Undervalued;Hemat;730;Upside 96,2% | Baik Sekali | 5.763,9 B | 0,0% | 32,63 | 4,0x | 1,2x | 1,5x | 7.084,6 B | 33,6% | 10,7%
+SMRA;Summarecon Agung Tbk;Rp240;255,81;Upside 6,6%;Wajar;Hemat;469,38;Upside 95,6%;Wajar | 3.962,1 B | 5,0000 | 2,1% | 23,82 | 6,7x | 0,3x | 0,5x | 18.015,4 B | 64,1% | 57,8%
+RATU;Raharja Energi Cepu Tbk Pt;Rp4.210;0,7%;4.479;Upside 6,4%;Wajar;Hemat;8.190;Upside 94,5% | Baik | 11.430,4 B | 0,0000 | 0,0% | 50,59 | 28,9x | 11,3x | 12,8x | 11.077,6 B | 19,5% | 31,3%
+BRIS;Bank Syariah Indonesia Tbk PT;Rp1.410;0,3%;1.911;Upside 35,5%;Undervalued;Hemat;2.727;Upside 93,4% | Wajar | 65.042,3 B | 32,8101 | 2,3% | 17,27 | 8,1x | 1,3x | 2,6x | NA | 5,3% | 9,9%
+ESSA;ESSA Industries Indonesia Tbk PT;Rp590;0,9%;769,81;Upside 30,5%;Undervalued;Hemat;1.100;Upside 86,5% | Baik Sekali | 10.163,9 B | 52,0000 | 8,9% | 44,15 | 10,2x | 1,3x | 1,7x | 8.903,3 B | 0,0% | 30,2%
+NCKL;PT Trimegah Bangun Persada Tbk;Rp870;3,0%;1.075;Upside 23,6%;Undervalued;Hemat;1.587;Upside 82,4% | Baik Sekali | 54.799,4 B | 42,6400 | 5,0% | 35,38 | 5,1x | 1,2x | 1,7x | 37.920,1 B | 12,4% | 12,9%
+MYOR;Mayora Indah Tbk;Rp1.405;1,1%;2.262;Upside 61,0%;Hemat;Hemat;2.493;Upside 77,4% | Baik Sekali | 30.947,5 B | 60,0000 | 4,3% | 26,84 | 9,0x | 1,7x | 0,8x | 30.067,8 B | 12,7% | 14,4%
+TKIM;Pabrik Kertas Tjiwi Kimia Tbk;Rp7.400;2,8%;9.581;Upside 29,5%;Undervalued;Hemat;13.000;Upside 75,7% | Baik | 23.037,9 B | 30,0000 | 0,4% | 42,43 | 2,9x | 0,4x | 1,2x | 31.997,2 B | 36,7% | 40,0%
+HRUM;Harum Energy Tbk;Rp850;1,8%;1.335;Upside 57,1%;Hemat;Hemat;1.480;Upside 74,1% | Wajar | 11.176,3 B | 0,0000 | 0,0% | 40,25 | 14,2x | 0,7x | 0,4x | 35.256,7 B | 26,3% | 17,7%
+AMRT;Sumber Alfaria Trijaya Tbk;Rp1.255;0,4%;2.075;Upside 65,4%;Hemat;Hemat;2.160;Upside 72,1% | Baik | 51.570,3 B | 41,5000 | 3,3% | 39,05 | 14,5x | 2,9x | 0,4x | 50.071,1 B | 4,8% | 45,2%
+PWON;Pakuwon Jati Tbk;Rp266;3,9%;395,40;Upside 48,6%;Undervalued;Hemat;457,67;Upside 72,1% | Baik Sekali | 12.810,5 B | 13,0000 | 5,1% | 51,34 | 5,8x | 0,6x | 1,8x | 9.601,9 B | 26,0% | 30,4%
+ELSA;Elnusa Tbk;Rp645;2,4%;852,08;Upside 32,1%;Undervalued;Hemat;1.101;Upside 70,7% | Baik Sekali | 4.707,5 B | 44,2900 | 7,0% | 38,43 | 5,8x | 0,9x | 0,3x | 2.196,6 B | 8,6% | 43,1%
+INCO;Vale Indonesia Tbk;Rp4.320;0,5%;6.037;Upside 39,7%;Undervalued;Hemat;7.345;Upside 70,0% | Wajar | 45.531,9 B | 77,9000 | 1,8% | 36,92 | 16,3x | 0,9x | 2,3x | 42.286,2 B | 0,1% | 16,2%
+BUMI;Bumi Resources Tbk;Rp184;3,4%;188,67;Upside 2,5%;Wajar;Hemat;303,33;Upside 64,9% | Wajar | 68.325,7 B | 0,0% | 43,79 | 32,0x | 2,3x | 2,4x | 84.782,1 B | 12,5% | 49,1%
+BIPI;Astrindo Nusantara Infrasruktur Tbk PT;Rp132;3,9%;137,71;Upside 4,3%;Wajar;Hemat;214,12;Upside 62,2% | Wajar | 8.409,7 B | 0,0% | 36,56 | 30,2x | 1,0x | 2,5x | 11.564,2 B | 44,9% | 57,3%
+SRTG;Saratoga Investama Sedaya;Rp1.765;2,0%;1.936;Upside 9,7%;Wajar;Hemat;2.850;Upside 61,5% | Baik Sekali | 23.915,5 B | 103 | 6,0% | 44,19 | 7,2x | 0,4x | 5,4x | -28.120,4 B | 4,6% | 17,4%
+MIKA;Mitra Keluarga Karyasehat Tbk PT;Rp1.705;0,3%;2.476;Upside 45,2%;Undervalued;Hemat;2.733;Upside 60,3% | Baik Sekali | 23.683,3 B | 43,0000 | 2,5% | 44,76 | 17,2x | 3,3x | 4,3x | 22.189,1 B | 0,0% | 34,0%
+INKP;"Indah Kiat Pulp &amp; Paper Tbk";Rp8.450;3,7%;10.867;Upside 28,6%;Undervalued;Hemat;13.483;Upside 59,6% | Baik | 46.229,8 B | 75,0000 | 0,9% | 42,84 | 3,9x | 0,4x | 0,8x | 69.753,7 B | 66,7% | 41,3%
+ARCI;Archi Indonesia Tbk PT;Rp1.270;1,2%;1.638;Upside 29,0%;Undervalued;Hemat;2.022;Upside 59,2% | Baik Sekali | 32.048,5 B | 0,0000 | 3,2% | 45,41 | 12,1x | 4,3x | 2,9x | 40.029,3 B | 21,7% | 15,9%
+MTDL;Metrodata Electronics Tbk;Rp505;1,0%;706,38;Upside 39,9%;Undervalued;Hemat;800;Upside 58,4% | Baik | 6.199,8 B | 27,0000 | 5,4% | 43,69 | 7,5x | 1,3x | 0,2x | 9.944,7 B | 29,4% | 44,3%
+CTRA;Ciputra Development Tbk;Rp540;832,85;Upside 54,2%;Hemat;Hemat;853,75;Upside 58,1%;Baik | 10.009,3 B | 36,0000 | 6,7% | 32,52 | 4,0x | 0,4x | 0,8x | 10.528,5 B | 38,1% | 46,6%
+AMMN;Amman Mineral Internasional Tbk PT;Rp4.500;6,9%;6.348;Upside 41,1%;Undervalued;Hemat;7.094;Upside 57,6% | Baik | 325.855,9 B | 0,0% | 39,23 | 20,3x | 3,2x | 4,9x | 414.501,4 B | 24,3% | 20,4%
+ADMR;Alamtri Minerals Indonesia Tbk PT;Rp1.510;3,1%;1.752;Upside 16,0%;Wajar;Hemat;2.366;Upside 56,7% | Wajar | 61.732,3 B | 50,6200 | 3,5% | 43,37 | 11,3x | 2,1x | 3,1x | 87.355,9 B | 33,9% | 15,0%
+SMGR;Semen Indonesia Persero Tbk;Rp1.540;1,3%;2.163;Upside 40,4%;Undervalued;Hemat;2.398;Upside 55,7% | Wajar | 10.372,7 B | 28,3300 | 1,9% | 47,24 | 27,1x | 0,2x | 0,3x | 18.843,7 B | 35,9% | 48,7%
+TOWR;Sarana Menara Nusantara Tbk;Rp428;3,4%;657,74;Upside 53,7%;Hemat;Hemat;660,36;Upside 54,3% | Baik | 24.866,7 B | 13,7600 | 3,3% | 49,35 | 6,4x | 0,9x | 1,8x | 68.996,8 B | 64,2% | 23,4%
+MBMA;Merdeka Battery Materials PT;Rp492;2,1%;686,43;Upside 39,5%;Undervalued;Hemat;754,58;Upside 53,4% | Baik | 52.837,2 B | 0,0% | 43,98 | 37,0x | 1,8x | 1,6x | 79.630,4 B | 25,9% | 35,7%
+JPFA;Japfa Comfeed Indonesia Tbk;Rp2.020;0,5%;2.985;Upside 47,8%;Undervalued;Hemat;3.084;Upside 52,7% | Baik Sekali | 23.643,8 B | 140 | 7,0% | 31,60 | 4,5x | 1,2x | 0,3x | 37.950,2 B | 39,4% | 43,2%
+JSMR;Jasa Marga Tbk;Rp2.640;1,5%;3.217;Upside 21,9%;Undervalued;Hemat;3.998;Upside 51,5% | Baik | 19.160,8 B | 156 | 6,0% | 36,15 | 5,2x | 0,5x | 0,7x | 109.967,4 B | 63,3% | 23,7%
+ENRG;Energi Mega Persada Tbk;Rp1.080;4,8%;1.179;Upside 9,1%;Wajar;Hemat;1.630;Upside 50,9% | Wajar | 28.689,7 B | 0,0% | 31,25 | 15,1x | 1,6x | 2,8x | 32.425,5 B | 23,8% | 6,5%
+ACES;Aspirasi Hidup Indonesia Tbk PT;Rp324;0,6%;466,30;Upside 43,9%;Undervalued;Undervalued;485,44;Upside 49,8% | Baik Sekali | 5.547 B | 32,0100 | 9,8% | 28,84 | 7,2x | 0,9x | 0,6x | 4.607,2 B | 14,9% | 40,0%
+KLBF;Kalbe Farma Tbk PT;Rp755;0,7%;1.296;Upside 71,6%;Hemat;Undervalued;1.131;Upside 49,8% | Baik Sekali | 34.162,9 B | 20,0000 | 2,7% | 47,44 | 9,5x | 1,4x | 0,9x | 30.921,9 B | 2,3% | 39,8%
+TLKM;Telkom Indonesia (Persero) Tbk PT;Rp2.280;0,4%;3.194;Upside 40,1%;Undervalued;Undervalued;3.411;Upside 49,6% | Baik | 224.764,5 B | 223 | 9,7% | 26,79 | 12,5x | 1,9x | 1,5x | 258.944,5 B | 25,1% | 47,1%
+BTPS;Bank Tabungan Pensiunan Nasional Syariah PT;Rp960;2,1%;1.426;Upside 48,5%;Undervalued;Undervalued;1.417;Upside 47,6% | Baik | 7.395,6 B | 85,7000 | 9,1% | 40,79 | 6,1x | 0,7x | 1,8x | NA | 4,2% | 30,0%
+LSIP;Perusahaan Perkebunan London Sumatra Indonesia Tbk PT;Rp1.490;0,7%;1.926;Upside 29,3%;Undervalued;Undervalued;2.184;Upside 46,6% | Baik Sekali | 10.161,7 B | 83,0000 | 5,6% | 44,23 | 4,9x | 0,7x | 1,7x | 524,5 B | 0,0% | 40,4%
+MEDC;Medco Energi Internasional Tbk;Rp1.440;2,5%;1.923;Upside 33,5%;Undervalued;Undervalued;2.104;Upside 46,1% | Baik | 35.606,8 B | 60,6979 | 4,3% | 43,27 | 5,6x | 0,8x | 0,7x | 55.819,6 B | 66,3% | 25,0%
+CPIN;Charoen Pokphand Indonesia TBK PT;Rp2.940;1,0%;4.608;Upside 56,7%;Hemat;Undervalued;4.268;Upside 45,2% | Baik Sekali | 48.210,1 B | 180 | 6,2% | 42,97 | 6,5x | 1,4x | 0,6x | 52.250,9 B | 17,0% | 38,9%
+AVIA;Avia Avian PT Tbk;Rp344;0,6%;495,42;Upside 44,0%;Undervalued;Undervalued;496,29;Upside 44,3% | Baik Sekali | 20.331,6 B | 23,0000 | 6,7% | 49,61 | 10,7x | 2,1x | 2,3x | 15.560,9 B | 0,1% | 15,1%
+HRTA;Hartadinata Abadi Tbk PT;Rp2.190;0,5%;2.672;Upside 22,0%;Undervalued;Undervalued;3.144;Upside 43,6% | Baik Sekali | 10.085,5 B | 40,0000 | 1,8% | 50,34 | 7,5x | 2,7x | 0,2x | 13.256 B | 29,3% | 28,4%
+PGEO;PT Pertamina Geothermal Energy;Rp1.000;2,6%;1.047;Upside 4,7%;Wajar;Undervalued;1.430;Upside 43,0% | Baik | 41.899,5 B | 49,4423 | 5,1% | 44,40 | 15,8x | 1,2x | 5,1x | 42.796,3 B | 24,0% | 11,8%
+ANTM;Antam (Persero) Tbk PT;Rp3.250;1,6%;4.722;Upside 45,3%;Undervalued;Undervalued;4.618;Upside 42,1% | Baik Sekali | 78.100 B | 210 | 6,6% | 52,52 | 8,7x | 2,1x | 0,9x | 64.444,5 B | 7,0% | 35,0%
+TPIA;Chandra Asri Petrochemical Tbk;Rp1.765;2,3%;1.889;Upside 7,0%;Wajar;Undervalued;2.490;Upside 41,1% | Wajar | 152.609,8 B | 9,5355 | 0,9% | 37,13 | 74,9x | 2,1x | 0,9x | 202.875 B | 38,2% | 29,4%
+ICBP;Indofood Cbp Sukses Makmur Tbk;Rp6.800;0,4%;10.743;Upside 58,0%;Hemat;Undervalued;9.496;Upside 39,6% | Baik | 79.301 B | 265 | 3,9% | 41,61 | 10,7x | 1,5x | 1,0x | 108.046,9 B | 32,9% | 19,5%
+BBTN;Bank Tabungan Negara Persero;Rp1.085;1,9%;1.448;Upside 33,4%;Undervalued;Undervalued;1.514;Upside 39,5% | Wajar | 15.227,4 B | 0,0000 | 0,0% | 30,37 | 3,6x | 0,4x | 0,9x | NA | 81,6% | 36,2%
+ASII;Astra International Tbk;Rp4.820;1,5%;6.507;Upside 35,0%;Undervalued;Undervalued;6.718;Upside 39,4% | Baik | 192.414,7 B | 390 | 8,2% | 50,93 | 6,4x | 0,8x | 0,6x | 235.418,5 B | 32,1% | 49,0%
+SIDO;Industri Jamu dan Farmasi Sido Muncul Tbk PT;Rp354;0,6%;531;Upside 50,0%;Hemat;Undervalued;488,09;Upside 37,9% | Baik Sekali | 10.420,1 B | 58,0000 | 16,5% | 55,65 | 10,8x | 3,5x | 2,8x | 9.946 B | 0,0% | 20,9%
+MTEL;Dayamitra Telekomunikasi PT;Rp458;3,6%;617,32;Upside 34,8%;Undervalued;Undervalued;630,67;Upside 37,7% | Baik | 37.005,9 B | 25,6457 | 5,8% | 48,94 | 17,0x | 1,1x | 3,8x | 55.397,9 B | 35,4% | 14,0%
+DSNG;Dharma Satya Nusantara Tbk;Rp1.545;1,9%;1.931;Upside 25,0%;Undervalued;Undervalued;2.106;Upside 36,3% | Baik Sekali | 16.376,8 B | 47,0000 | 3,0% | 54,77 | 8,6x | 1,4x | 1,3x | 17.847,1 B | 17,1% | 28,8%
+MAPA;MAP Aktif Adiperkasa Tbk PT;Rp645;0,8%;950,89;Upside 47,4%;Undervalued;Undervalued;874,50;Upside 35,6% | Baik Sekali | 18.385,1 B | 4,0000 | 0,6% | 46,38 | 9,6x | 1,9x | 0,9x | 19.893,1 B | 12,0% | 30,7%
+BRMS;Bumi Resources Minerals Tbk;Rp605;0,8%;566,28;Downside -6,4%;Wajar;Undervalued;816;Upside 34,9% | Wajar | 85.779,3 B | 0,0% | 42,90 | 119,9x | 3,8x | 21,4x | 81.025,8 B | 6,0% | 17,5%
+BBCA;Bank Central Asia Tbk;Rp6.100;1,2%;7.533;Upside 23,5%;Undervalued;Undervalued;8.198;Upside 34,4% | Wajar | 749.334,7 B | 381 | 6,2% | 46,56 | 13,1x | 2,8x | 6,9x | NA | 6,4% | 39,6%
+HMSP;Hanjaya Mandala Sampoerna Tbk PT;Rp625;0,8%;842,30;Upside 34,8%;Undervalued;Undervalued;835;Upside 33,6% | Baik | 72.698,8 B | 56,3000 | 9,1% | 26,82 | 8,4x | 2,8x | 1,5x | 66.417,7 B | 0,5% | 7,6%
+MDKA;Merdeka Copper Gold TBK PT;Rp2.970;1,7%;4.311;Upside 45,1%;Undervalued;Undervalued;3.945;Upside 32,8% | Baik | 72.518,2 B | 12,2852 | 0,4% | 52,96 | 73,4x | 4,6x | 1,7x | 145.768 B | 29,8% | 50,7%
+EXCL;XL Axiata Tbk PT;Rp2.390;3,0%;3.008;Upside 25,9%;Undervalued;Undervalued;3.171;Upside 32,7% | Wajar | 43.497,7 B | 159 | 6,9% | 28,91 | -10,7x | 1,6x | 0,9x | 102.313 B | 57,6% | 33,2%
+UNVR;Unilever Indonesia Tbk;Rp1.595;1,3%;2.155;Upside 35,1%;Undervalued;Undervalued;2.088;Upside 30,9% | Baik | 60.580,1 B | 201 | 12,8% | 27,09 | 16,3x | 20,2x | 1,8x | 59.770,4 B | 0,9% | 14,6%
+ISAT;Indosat Tbk;Rp2.220;3.187;Upside 43,5%;Undervalued;Undervalued;2.877;Upside 29,6%;Baik Sekali | 71.596,8 B | 111 | 5,0% | 31,19 | 9,6x | 1,9x | 1,2x | 125.921,8 B | 48,5% | 26,0%
+BRPT;Barito Pacific Tbk;Rp1.480;0,3%;1.624;Upside 9,7%;Wajar;Undervalued;1.914;Upside 29,3% | Wajar | 138.693,4 B | 1,6300 | 0,1% | 35,21 | 55,2x | 3,2x | 0,8x | 276.651,3 B | 42,3% | 28,2%
+BBNI;Bank Negara Indonesia Tbk;Rp3.460;4.281;Upside 23,7%;Undervalued;Undervalued;4.424;Upside 27,9%;Wajar | 128.509,9 B | 349 | 10,1% | 41,50 | 6,2x | 0,8x | 2,5x | NA | 47,6% | 39,0%
+INTP;Indocement Tunggal Prakarsa;Rp5.075;1,0%;7.840;Upside 54,5%;Hemat;Undervalued;6.464;Upside 27,4% | Baik | 16.664,9 B | 468 | 9,3% | 44,05 | 7,1x | 0,8x | 0,9x | 14.621,3 B | 13,9% | 42,8%
+BMRI;Bank Mandiri Persero Tbk PT;Rp4.100;4.968;Upside 21,2%;Undervalued;Undervalued;5.206;Upside 27,0%;Baik | 382.666,7 B | 543 | 13,2% | 46,54 | 6,1x | 1,3x | 2,7x | NA | 47,4% | 40,4%
+BNGA;Bank Cimb Niaga Tbk;Rp1.700;0,6%;1.789;Upside 5,2%;Wajar;Undervalued;2.122;Upside 24,8% | Baik | 42.741,2 B | 162 | 9,6% | 42,70 | 6,3x | 0,8x | 2,4x | NA | 46,2% | 0,3%
+INDF;Indofood Sukses Makmur Tbk PT;Rp6.850;9.583;Upside 39,9%;Undervalued;Undervalued;8.531;Upside 24,5%;Baik Sekali | 60.145,9 B | 290 | 4,2% | 40,72 | 6,3x | 0,8x | 0,5x | 114.200,4 B | 42,4% | 49,7%
+BBRI;Bank Rakyat Indonesia Persero;Rp3.110;0,3%;4.018;Upside 29,2%;Undervalued;Undervalued;3.782;Upside 21,6% | Wajar | 468.627,8 B | 346 | 11,1% | 43,52 | 7,8x | 1,5x | 3,3x | NA | 41,7% | 46,0%
+SSIA;Surya Semesta Internusa Tbk;Rp1.760;1,4%;1.475;Downside -16,2%;Wajar;Undervalued;2.122;Upside 20,5% | Baik | 8.281,2 B | 5,0000 | 0,3% | 52,38 | 40,3x | 1,4x | 1,5x | 12.011,8 B | 18,4% | 58,6% | 1 | 2 | Baris | 100 | 10 | 30 | 50 | 100
