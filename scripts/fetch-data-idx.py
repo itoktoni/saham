@@ -96,6 +96,7 @@ CSV_HEADER = [
     # hist_laba dan div_yield terisi juga lewat --laporan.
     "piotroski", "rs_rating", "altman_z", "interest_cov", "current_ratio",
     "quick_ratio", "roic", "roce", "ev_ebitda", "peg", "div_yield", "hist_laba",
+    "ev_cfo", "ev_fcf", "cfo3", "sloan", "cash_badge",
 ]
 
 # Pemetaan sektor IDX-IC -> daftar sektor di dalam screener.
@@ -1904,6 +1905,27 @@ def gabung_laporan(rec, lap_tahun):
         if selisih > 0.15:
             catatan.append("EPS x saham tidak sinkron dengan laba IDX (selisih %.0f%%)"
                            % (selisih * 100))
+
+    # Kualitas kas Thowilz dari angka IDX yang asli (lebih otoritatif dari Yahoo)
+    hist_cf = [(x["tahun"], x.get("laba"), x.get("arus_kas_operasi"))
+               for x in lap_tahun if x.get("laba") is not None and x.get("arus_kas_operasi") is not None]
+    if len(hist_cf) >= 3:
+        aset_ttm = kini.get("aset") or 0
+        q = compute_cash_quality(hist_cf, aset_ttm, rec.get("sektor") or "")
+        rec["cfo3"] = q["cfo3"]
+        rec["sloan"] = q["sloan"]
+        rec["cash_badge"] = q["badge"]
+        if q["badge"] == "Kill":
+            catatan.append("kas: %s" % q["alasan"])
+    # hitung ulang EV/CFO dengan CFO IDX bila EV Yahoo ada
+    try:
+        mcap_now = float(rec.get("harga") or 0) * float(rec.get("saham") or 0)
+    except (TypeError, ValueError):
+        mcap_now = 0
+    ev_now = compute_ev(mcap_now, rec.get("utang") or 0, rec.get("kas") or 0)
+    cfo_now = kini.get("arus_kas_operasi")
+    if ev_now is not None and cfo_now is not None and cfo_now > 0:
+        rec["ev_cfo"] = round(ev_now / float(cfo_now), 2)
 
     # Catatan mutu dari laporan itu sendiri
     if kini.get("opini") and "Unqualified" not in str(kini["opini"]):

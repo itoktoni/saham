@@ -55,6 +55,19 @@ def test_build_record_ev():
     assert rec["cash_badge"] in ("Lolos", "Watchlist", "Kill", "-")
 
 
+def test_gabung_laporan_cash():
+    rec = {"harga": 1000, "ekuitas": 1, "laba": 0, "eps": 0, "kuartal": 4, "fcf": 0, "kas": 0, "utang": 0, "der": 0, "saham": 10, "sektor": "Energi", "cyclical": 0, "ev_cfo": None, "ev_fcf": None, "cfo3": 0, "sloan": None, "cash_badge": "-", "_catatan": []}
+    lap = [
+        {"tahun": 2024, "laba": 120e9, "arus_kas_operasi": 150e9, "aset": 1000e9, "ekuitas": 500e9, "liabilitas": 500e9, "kas": 50e9, "pendapatan": 1e12, "eps": 100, "pembulatan": "Satuan", "skala": 1.0},
+        {"tahun": 2023, "laba": 110e9, "arus_kas_operasi": 130e9, "aset": 900e9, "ekuitas": 450e9, "liabilitas": 450e9, "kas": 40e9, "pendapatan": 9e11, "eps": 90, "pembulatan": "Satuan", "skala": 1.0},
+        {"tahun": 2022, "laba": 100e9, "arus_kas_operasi": 120e9, "aset": 800e9, "ekuitas": 400e9, "liabilitas": 400e9, "kas": 30e9, "pendapatan": 8e11, "eps": 80, "pembulatan": "Satuan", "skala": 1.0},
+    ]
+    out, _ = m_idx.gabung_laporan(rec, lap)
+    assert out["cfo3"] == 1, out
+    assert out["cash_badge"] == "Lolos", out
+    assert "ev_cfo" in out and "ev_fcf" in out
+
+
 if __name__ == "__main__":
     test_compute_ev()
     test_cfo3_lolos()
@@ -62,4 +75,5 @@ if __name__ == "__main__":
     test_bank_tidak_dikill()
     test_data_kurang()
     test_build_record_ev()
-    print("cash-quality OK: 6 passed")
+    test_gabung_laporan_cash()
+    print("cash-quality OK: 7 passed")
