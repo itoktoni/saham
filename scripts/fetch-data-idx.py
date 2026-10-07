@@ -77,7 +77,7 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 
 YAHOO_MODULES = ",".join([
     "price", "summaryDetail", "defaultKeyStatistics", "financialData",
-    "incomeStatementHistoryQuarterly", "assetProfile",
+    "incomeStatementHistoryQuarterly", "incomeStatementHistory", "assetProfile",
 ])
 
 IDX_PROFILE_URL = ("https://www.idx.co.id/primary/ListedCompany/"
@@ -272,6 +272,18 @@ def compute_cash_quality(hist, total_assets, sektor):
         why = "CFO tidak > laba 3thn" if cfo3 == 0 else ("akrual waspada (bank)" if is_bank else "akrual waspada")
         return {"cfo3": cfo3, "sloan": round(sloan, 4) if sloan is not None else None, "badge": "Watchlist", "alasan": why}
     return {"cfo3": cfo3, "sloan": round(sloan, 4) if sloan is not None else None, "badge": "Lolos", "alasan": "CFO selaras laba"}
+
+
+def compute_margin_quality(margins):
+    """margins: fraksi laba kotor per tahun, urut bebas. Stabil bila >=3 thn,
+    semua >0, dan rentang <=8pp (proksi pricing power Thowilz)."""
+    ms = [float(x) for x in (margins or []) if x is not None]
+    if not ms:
+        return {"gross_margin": None, "margin_stabil": 0}
+    stabil = 0
+    if len(ms) >= 3 and min(ms) > 0 and (max(ms) - min(ms)) <= 0.08:
+        stabil = 1
+    return {"gross_margin": round(ms[-1] * 100.0, 1), "margin_stabil": stabil}
 
 
 # ----------------------------------------------------------------------------
@@ -539,6 +551,15 @@ def build_record(kode, prof, fund, ch, args):
     fd = ((fund or {}).get("financialData") or {})
     iq = (((fund or {}).get("incomeStatementHistoryQuarterly") or {})
           .get("incomeStatementHistory") or [])
+    ih = (((fund or {}).get("incomeStatementHistory") or {})
+          .get("incomeStatementHistory") or [])
+    margins = []
+    for y in sorted(ih, key=lambda z: num((z.get("endDate") or {}).get("raw"), 0)):
+        rev = num(y.get("totalRevenue"), None)
+        gp = num(y.get("grossProfit"), None)
+        if rev is not None and rev > 0 and gp is not None:
+            margins.append(gp / rev)
+    mq = compute_margin_quality(margins[-4:])
 
     harga = num(m.get("regularMarketPrice")) or num(sd.get("previousClose"))
     if harga <= 0 and ch and ch["close"]:
@@ -676,6 +697,8 @@ def build_record(kode, prof, fund, ch, args):
         "cfo3": 0,
         "sloan": None,
         "cash_badge": "-",
+        "gross_margin": mq["gross_margin"],
+        "margin_stabil": mq["margin_stabil"],
     }
 
 

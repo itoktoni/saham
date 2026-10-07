@@ -68,6 +68,22 @@ def test_gabung_laporan_cash():
     assert "ev_cfo" in out and "ev_fcf" in out
 
 
+def test_margin_stabil():
+    out = m_idx.compute_margin_quality([0.44, 0.45, 0.46, 0.45])
+    assert out["margin_stabil"] == 1, out
+    assert out["gross_margin"] == 45.0, out
+
+
+def test_margin_longor():
+    out = m_idx.compute_margin_quality([0.45, 0.30, 0.15])
+    assert out["margin_stabil"] == 0, out
+
+
+def test_margin_kurang():
+    out = m_idx.compute_margin_quality([0.45, 0.46])
+    assert out["margin_stabil"] == 0 and out["gross_margin"] == 46.0, out
+
+
 if __name__ == "__main__":
     test_compute_ev()
     test_cfo3_lolos()
@@ -76,4 +92,7 @@ if __name__ == "__main__":
     test_data_kurang()
     test_build_record_ev()
     test_gabung_laporan_cash()
-    print("cash-quality OK: 7 passed")
+    test_margin_stabil()
+    test_margin_longor()
+    test_margin_kurang()
+    print("cash-quality OK: 10 passed")
