@@ -760,6 +760,17 @@ def build_record(kode, prof, fund, ch, args):
         n = min(30, len(ch["close"]), len(ch["volume"]))
         bars_30 = [[int(round(ch["close"][-n + i])), int(ch["volume"][-n + i] or 0)]
                    for i in range(n)]
+    # Stage C: 120 bar OHLCV terakhir untuk indikator technical (EMA/MACD/RSI/divergen).
+    bars_120 = []
+    if ch and ch.get("close") and ch.get("volume"):
+        m = min(120, len(ch["close"]), len(ch["volume"]),
+                len(ch.get("high") or []), len(ch.get("low") or []))
+        if m > 0:
+            bars_120 = [[int(round(ch["close"][-m + i])),
+                         int(round((ch.get("high") or [0])[-m + i] or ch["close"][-m + i])),
+                         int(round((ch.get("low") or [0])[-m + i] or ch["close"][-m + i])),
+                         int(ch["volume"][-m + i] or 0)]
+                        for i in range(m)]
     sw = hitung_swing(ch)
     volatil = sw.pop("volatil")
     beta = num(ks.get("beta"))
@@ -842,6 +853,7 @@ def build_record(kode, prof, fund, ch, args):
         "s_springlow": sw["s_springlow"],
         "s_resistance": sw["s_resistance"],
         "bars_30": bars_30,
+        "bars_120": bars_120,
         # Screener mengharapkan persen (mis. 2.5 berarti 2,5%). Yahoo kadang
         # memberi pecahan (0.025), jadi nilai di bawah 1 dianggap pecahan.
         "div_yield": round(div_yield * 100.0, 2) if 0 < div_yield < 1 else round(div_yield, 2),

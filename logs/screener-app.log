@@ -1707,3 +1707,478 @@
 [2026-10-08 09:34:56] emiten [18/20] AHAP ok
 [2026-10-08 09:34:56] emiten [19/20] MCAS ok
 [2026-10-08 09:34:57] emiten [20/20] ARKO ok
+[2026-10-08 14:20:33] ksei Periode terbaru : 20260930
+[2026-10-08 14:20:33] ksei Periode sebelumnya: 20260831
+[2026-10-08 14:20:33] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 14:20:34] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 14:20:48] emiten [1/40] FORU ok
+[2026-10-08 14:20:48] emiten [2/40] BBCA ok
+[2026-10-08 14:20:49] emiten [3/40] CUAN ok
+[2026-10-08 14:20:50] emiten [4/40] BMRI ok
+[2026-10-08 14:20:51] emiten [5/40] INCO ok
+[2026-10-08 14:20:52] emiten [6/40] BBRI ok
+[2026-10-08 14:20:55] emiten [7/40] PACK ok
+[2026-10-08 14:21:05] emiten [8/40] JARR ok
+[2026-10-08 14:21:07] emiten [9/40] SQMI ok
+[2026-10-08 14:21:08] emiten [10/40] MBSS ok
+[2026-10-08 14:21:11] emiten [11/40] BIPI ok
+[2026-10-08 14:21:12] emiten [12/40] MMIX ok
+[2026-10-08 14:21:15] emiten [13/40] BBNI ok
+[2026-10-08 14:21:22] emiten [14/40] WIFI ok
+[2026-10-08 14:21:26] emiten [15/40] LUCY ok
+[2026-10-08 14:21:53] emiten [16/40] AMRT ok
+[2026-10-08 14:21:54] emiten [17/40] ASMI ok
+[2026-10-08 14:21:55] emiten [18/40] DIVA ok
+[2026-10-08 14:21:57] emiten [19/40] BFIN ok
+[2026-10-08 14:21:57] emiten [20/40] EMAS ok
+[2026-10-08 14:21:58] emiten [21/40] RAJA ok
+[2026-10-08 14:21:59] emiten [22/40] MDKA ok
+[2026-10-08 14:22:00] emiten [23/40] COCO ok
+[2026-10-08 14:22:01] emiten [24/40] BREN ok
+[2026-10-08 14:22:01] emiten [25/40] IDEA ok
+[2026-10-08 14:22:02] emiten [26/40] KREN ok
+[2026-10-08 14:22:03] emiten [27/40] INDF ok
+[2026-10-08 14:22:04] emiten [28/40] KLBF ok
+[2026-10-08 14:22:05] emiten [29/40] MEJA ok
+[2026-10-08 14:22:05] emiten [30/40] MBMA ok
+[2026-10-08 14:22:06] emiten [31/40] CPIN ok
+[2026-10-08 14:22:07] emiten [32/40] ASPI ok
+[2026-10-08 14:22:08] emiten [33/40] TOWR ok
+[2026-10-08 14:22:09] emiten [34/40] COIN ok
+[2026-10-08 14:22:13] emiten [35/40] RATU ok
+[2026-10-08 14:22:15] emiten [36/40] BNBR ok
+[2026-10-08 14:22:24] emiten [37/40] SGER ok
+[2026-10-08 14:22:25] emiten [38/40] NEST ok
+[2026-10-08 14:22:26] emiten [39/40] PPRI ok
+[2026-10-08 14:22:27] emiten [40/40] DMAS ok
+[2026-10-08 14:22:33] emiten [1/20] FILM ok
+[2026-10-08 14:22:34] emiten [2/20] AKKU ok
+[2026-10-08 14:22:35] emiten [3/20] JECX ok
+[2026-10-08 14:22:36] emiten [4/20] ESSA ok
+[2026-10-08 14:22:36] emiten [5/20] CYBR ok
+[2026-10-08 14:22:37] emiten [6/20] PURA ok
+[2026-10-08 14:22:38] emiten [7/20] GULA ok
+[2026-10-08 14:22:39] emiten [8/20] SMLE ok
+[2026-10-08 14:22:40] emiten [9/20] BLTA ok
+[2026-10-08 14:22:40] emiten [10/20] KKES ok
+[2026-10-08 14:22:41] emiten [11/20] SMGR ok
+[2026-10-08 14:22:42] emiten [12/20] NCKL ok
+[2026-10-08 14:22:43] emiten [13/20] CDIA ok
+[2026-10-08 14:22:43] emiten [14/20] VICI ok
+[2026-10-08 14:22:44] emiten [15/20] INKP ok
+[2026-10-08 14:22:45] emiten [16/20] SSIA ok
+[2026-10-08 14:22:46] emiten [17/20] ICBP ok
+[2026-10-08 14:22:47] emiten [18/20] BDMN ok
+[2026-10-08 14:22:48] emiten [19/20] ITMG ok
+[2026-10-08 14:22:49] emiten [20/20] GGRM ok
+[2026-10-08 18:14:56] ==================================================
+[2026-10-08 18:14:56] Aplikasi Screener dimulai
+[2026-10-08 18:14:58] Melayani di http://127.0.0.1:8765/
+[2026-10-08 18:14:58] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-08 18:16:28] ksei Periode terbaru : 20260930
+[2026-10-08 18:16:28] ksei Periode sebelumnya: 20260831
+[2026-10-08 18:16:28] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 18:16:29] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 18:16:35] emiten [1/40] FORU ok
+[2026-10-08 18:16:36] emiten [2/40] BBCA ok
+[2026-10-08 18:16:37] emiten [3/40] BMRI ok
+[2026-10-08 18:16:38] emiten [4/40] BBRI ok
+[2026-10-08 18:16:39] emiten [5/40] CUAN ok
+[2026-10-08 18:16:39] emiten [6/40] BBNI ok
+[2026-10-08 18:16:40] emiten [7/40] PACK ok
+[2026-10-08 18:16:41] emiten [8/40] SQMI ok
+[2026-10-08 18:16:46] emiten [9/40] EMAS ok
+[2026-10-08 18:16:47] emiten [10/40] WIFI ok
+[2026-10-08 18:16:48] emiten [11/40] BIPI ok
+[2026-10-08 18:16:49] emiten [12/40] PURA ok
+[2026-10-08 18:16:50] emiten [13/40] COCO ok
+[2026-10-08 18:16:51] emiten [14/40] LUCY ok
+[2026-10-08 18:16:51] emiten [15/40] UVCR ok
+[2026-10-08 18:16:52] emiten [16/40] AALI ok
+[2026-10-08 18:16:53] emiten [17/40] KREN ok
+[2026-10-08 18:16:54] emiten [18/40] COIN ok
+[2026-10-08 18:16:55] emiten [19/40] ADMR ok
+[2026-10-08 18:16:56] emiten [20/40] SGER ok
+[2026-10-08 18:16:56] emiten [21/40] NEST ok
+[2026-10-08 18:16:57] emiten [22/40] BNBR ok
+[2026-10-08 18:16:58] emiten [23/40] CDIA ok
+[2026-10-08 18:16:59] emiten [24/40] MEJA ok
+[2026-10-08 18:17:00] emiten [25/40] PGAS ok
+[2026-10-08 18:17:01] emiten [26/40] FILM ok
+[2026-10-08 18:17:01] emiten [27/40] JPFA ok
+[2026-10-08 18:17:02] emiten [28/40] ASPI ok
+[2026-10-08 18:17:03] emiten [29/40] PPRI ok
+[2026-10-08 18:17:04] emiten [30/40] AKKU ok
+[2026-10-08 18:17:05] emiten [31/40] HRTA ok
+[2026-10-08 18:17:05] emiten [32/40] GULA ok
+[2026-10-08 18:17:06] emiten [33/40] KIJA ok
+[2026-10-08 18:17:07] emiten [34/40] BDMN ok
+[2026-10-08 18:17:08] emiten [35/40] KKES ok
+[2026-10-08 18:17:08] emiten [1/1] BRMS ok
+[2026-10-08 18:17:09] emiten [36/40] CYBR ok
+[2026-10-08 18:17:09] emiten [37/40] MARK ok
+[2026-10-08 18:17:10] emiten [38/40] EXCL ok
+[2026-10-08 18:17:11] emiten [39/40] ARCI ok
+[2026-10-08 18:17:12] emiten [40/40] ARKO ok
+[2026-10-08 18:17:14] scope stock gagal: SahamScope gagal total (BRMS: HTTP Error 429: Too Many Requests)
+[2026-10-08 18:17:16] fund BRMS ok
+[2026-10-08 18:17:17] emiten [1/20] IMPC ok
+[2026-10-08 18:17:18] emiten [2/20] AKRA ok
+[2026-10-08 18:17:18] emiten [3/20] BTEK ok
+[2026-10-08 18:17:19] emiten [4/20] SMMT ok
+[2026-10-08 18:17:20] emiten [5/20] EMTK ok
+[2026-10-08 18:17:21] emiten [6/20] RSCH ok
+[2026-10-08 18:17:21] emiten [7/20] IRSX ok
+[2026-10-08 18:17:22] emiten [8/20] SMDR ok
+[2026-10-08 18:17:23] emiten [9/20] BIKE ok
+[2026-10-08 18:17:24] emiten [10/20] ASGR ok
+[2026-10-08 18:17:25] emiten [11/20] BSDE ok
+[2026-10-08 18:17:26] emiten [12/20] MSJA ok
+[2026-10-08 18:17:26] emiten [13/20] PANI ok
+[2026-10-08 18:17:27] emiten [14/20] TRUE ok
+[2026-10-08 18:17:28] emiten [15/20] OILS ok
+[2026-10-08 18:17:29] emiten [16/20] IKAI ok
+[2026-10-08 18:17:30] emiten [17/20] LSIP ok
+[2026-10-08 18:17:30] emiten [18/20] TAPG ok
+[2026-10-08 18:17:31] emiten [19/20] SOCI ok
+[2026-10-08 18:17:32] emiten [20/20] HOPE ok
+[2026-10-08 18:53:57] ==================================================
+[2026-10-08 18:53:57] Aplikasi Screener dimulai
+[2026-10-08 18:53:59] Melayani di http://127.0.0.1:8765/
+[2026-10-08 18:53:59] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-08 18:54:19] ksei Periode terbaru : 20260930
+[2026-10-08 18:54:19] ksei Periode sebelumnya: 20260831
+[2026-10-08 18:54:19] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 18:54:20] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 18:54:28] emiten [1/40] FORU ok
+[2026-10-08 18:54:28] emiten [2/40] BBCA ok
+[2026-10-08 18:54:29] emiten [3/40] BMRI ok
+[2026-10-08 18:54:30] emiten [4/40] BBRI ok
+[2026-10-08 18:54:31] emiten [5/40] CUAN ok
+[2026-10-08 18:54:32] emiten [6/40] BBNI ok
+[2026-10-08 18:54:32] emiten [7/40] PACK ok
+[2026-10-08 18:54:33] emiten [8/40] SQMI ok
+[2026-10-08 18:54:34] emiten [9/40] EMAS ok
+[2026-10-08 18:54:35] emiten [10/40] WIFI ok
+[2026-10-08 18:54:35] emiten [11/40] BIPI ok
+[2026-10-08 18:54:36] emiten [12/40] PURA ok
+[2026-10-08 18:54:37] emiten [13/40] COCO ok
+[2026-10-08 18:54:38] emiten [14/40] LUCY ok
+[2026-10-08 18:54:39] emiten [15/40] KREN ok
+[2026-10-08 18:54:39] emiten [16/40] COIN ok
+[2026-10-08 18:54:40] emiten [17/40] ADMR ok
+[2026-10-08 18:54:41] emiten [18/40] SGER ok
+[2026-10-08 18:54:42] emiten [19/40] NEST ok
+[2026-10-08 18:54:43] emiten [20/40] BNBR ok
+[2026-10-08 18:54:44] emiten [21/40] CDIA ok
+[2026-10-08 18:54:44] emiten [22/40] MEJA ok
+[2026-10-08 18:54:45] emiten [23/40] FILM ok
+[2026-10-08 18:54:46] emiten [24/40] ASPI ok
+[2026-10-08 18:54:47] emiten [25/40] PPRI ok
+[2026-10-08 18:54:48] emiten [26/40] AKKU ok
+[2026-10-08 18:54:49] emiten [27/40] GULA ok
+[2026-10-08 18:54:49] emiten [28/40] BDMN ok
+[2026-10-08 18:54:50] emiten [29/40] KKES ok
+[2026-10-08 18:54:51] emiten [30/40] CYBR ok
+[2026-10-08 18:54:52] emiten [31/40] ARKO ok
+[2026-10-08 18:54:53] emiten [32/40] BTEK ok
+[2026-10-08 18:54:53] emiten [33/40] BSDE ok
+[2026-10-08 18:54:54] emiten [34/40] PANI ok
+[2026-10-08 18:54:55] emiten [35/40] TRUE ok
+[2026-10-08 18:54:56] emiten [36/40] IKAI ok
+[2026-10-08 18:54:57] emiten [37/40] KIOS ok
+[2026-10-08 18:54:57] emiten [38/40] EPAC ok
+[2026-10-08 18:54:58] emiten [39/40] SEMA ok
+[2026-10-08 18:54:59] emiten [40/40] TRIN ok
+[2026-10-08 18:55:04] emiten [1/20] RANS ok
+[2026-10-08 18:55:05] emiten [2/20] PICO ok
+[2026-10-08 18:55:06] emiten [3/20] GEMS ok
+[2026-10-08 18:55:06] emiten [4/20] CMNT ok
+[2026-10-08 18:55:07] emiten [5/20] BUKA ok
+[2026-10-08 18:55:08] emiten [6/20] SSMS ok
+[2026-10-08 18:55:09] emiten [7/20] JGLE ok
+[2026-10-08 18:55:09] emiten [8/20] PGEO ok
+[2026-10-08 18:55:10] emiten [9/20] RMKE ok
+[2026-10-08 18:55:11] emiten [10/20] MITI ok
+[2026-10-08 18:55:12] emiten [11/20] PPRO ok
+[2026-10-08 18:55:13] emiten [12/20] BDKR ok
+[2026-10-08 18:55:13] emiten [13/20] AUTO ok
+[2026-10-08 18:55:14] emiten [14/20] KDTN ok
+[2026-10-08 18:55:15] emiten [15/20] ELTY ok
+[2026-10-08 18:55:16] emiten [16/20] TCPI ok
+[2026-10-08 18:55:17] emiten [17/20] FUTR ok
+[2026-10-08 18:55:17] emiten [18/20] UNVR ok
+[2026-10-08 18:55:18] emiten [19/20] BBTN ok
+[2026-10-08 18:55:19] emiten [20/20] DADA ok
+[2026-10-08 19:37:11] ==================================================
+[2026-10-08 19:37:11] Aplikasi Screener dimulai
+[2026-10-08 19:37:13] Melayani di http://127.0.0.1:8765/
+[2026-10-08 19:37:13] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-08 19:37:41] ksei Periode terbaru : 20260930
+[2026-10-08 19:37:41] ksei Periode sebelumnya: 20260831
+[2026-10-08 19:37:41] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 19:37:42] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 19:37:50] emiten [1/40] FORU ok
+[2026-10-08 19:37:50] emiten [2/40] BBCA ok
+[2026-10-08 19:37:51] emiten [3/40] BMRI ok
+[2026-10-08 19:37:52] emiten [4/40] BBRI ok
+[2026-10-08 19:37:53] emiten [5/40] CUAN ok
+[2026-10-08 19:37:53] emiten [6/40] BBNI ok
+[2026-10-08 19:37:54] emiten [7/40] PACK ok
+[2026-10-08 19:37:55] emiten [8/40] SQMI ok
+[2026-10-08 19:37:56] emiten [9/40] EMAS ok
+[2026-10-08 19:37:57] emiten [10/40] WIFI ok
+[2026-10-08 19:37:57] emiten [11/40] BIPI ok
+[2026-10-08 19:37:58] emiten [12/40] PURA ok
+[2026-10-08 19:37:59] emiten [13/40] COCO ok
+[2026-10-08 19:38:00] emiten [14/40] LUCY ok
+[2026-10-08 19:38:01] emiten [15/40] KREN ok
+[2026-10-08 19:38:01] emiten [16/40] COIN ok
+[2026-10-08 19:38:02] emiten [17/40] ADMR ok
+[2026-10-08 19:38:03] emiten [18/40] SGER ok
+[2026-10-08 19:38:04] emiten [19/40] NEST ok
+[2026-10-08 19:38:04] emiten [20/40] BNBR ok
+[2026-10-08 19:38:05] emiten [21/40] CDIA ok
+[2026-10-08 19:38:08] emiten [22/40] MEJA ok
+[2026-10-08 19:38:09] emiten [23/40] FILM ok
+[2026-10-08 19:38:09] emiten [24/40] ASPI ok
+[2026-10-08 19:38:10] emiten [25/40] PPRI ok
+[2026-10-08 19:38:11] emiten [26/40] AKKU ok
+[2026-10-08 19:38:12] emiten [27/40] GULA ok
+[2026-10-08 19:38:13] emiten [28/40] BDMN ok
+[2026-10-08 19:38:13] emiten [29/40] KKES ok
+[2026-10-08 19:38:14] emiten [30/40] CYBR ok
+[2026-10-08 19:38:15] emiten [31/40] ARKO ok
+[2026-10-08 19:38:16] emiten [32/40] BTEK ok
+[2026-10-08 19:38:17] emiten [33/40] BSDE ok
+[2026-10-08 19:38:17] emiten [34/40] PANI ok
+[2026-10-08 19:38:18] emiten [35/40] TRUE ok
+[2026-10-08 19:38:19] emiten [36/40] IKAI ok
+[2026-10-08 19:38:20] emiten [37/40] KIOS ok
+[2026-10-08 19:38:21] emiten [38/40] TRIN ok
+[2026-10-08 19:38:22] emiten [39/40] PICO ok
+[2026-10-08 19:38:23] emiten [40/40] SSMS ok
+[2026-10-08 19:38:27] emiten [1/20] FUTR ok
+[2026-10-08 19:38:28] emiten [2/20] BBTN ok
+[2026-10-08 19:38:29] emiten [3/20] REAL ok
+[2026-10-08 19:38:30] emiten [4/20] MCAS ok
+[2026-10-08 19:38:30] emiten [5/20] NICL ok
+[2026-10-08 19:38:31] emiten [6/20] PART ok
+[2026-10-08 19:38:32] emiten [7/20] ASSA ok
+[2026-10-08 19:38:33] emiten [8/20] AIMS ok
+[2026-10-08 19:38:34] emiten [9/20] DEWI ok
+[2026-10-08 19:38:34] emiten [10/20] AHAP ok
+[2026-10-08 19:38:35] emiten [11/20] INDO ok
+[2026-10-08 19:38:36] emiten [12/20] AYAM ok
+[2026-10-08 19:38:38] emiten [13/20] PCAR ok
+[2026-10-08 19:38:39] emiten [14/20] ALKA ok
+[2026-10-08 19:38:40] emiten [15/20] UNSP ok
+[2026-10-08 19:38:40] emiten [16/20] HELI ok
+[2026-10-08 19:38:41] emiten [17/20] MGLV ok
+[2026-10-08 19:38:42] emiten [18/20] TAXI ok
+[2026-10-08 19:38:43] emiten [19/20] HATM ok
+[2026-10-08 19:38:43] emiten [20/20] NISP ok
+[2026-10-08 19:55:24] ==================================================
+[2026-10-08 19:55:24] Aplikasi Screener dimulai
+[2026-10-08 19:55:26] Melayani di http://127.0.0.1:8765/
+[2026-10-08 19:55:26] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-08 19:55:46] ksei Periode terbaru : 20260930
+[2026-10-08 19:55:46] ksei Periode sebelumnya: 20260831
+[2026-10-08 19:55:46] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 19:55:46] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 19:55:52] emiten [1/40] FORU ok
+[2026-10-08 19:55:53] emiten [2/40] BBCA ok
+[2026-10-08 19:55:54] emiten [3/40] BMRI ok
+[2026-10-08 19:55:55] emiten [4/40] BBRI ok
+[2026-10-08 19:55:56] emiten [5/40] CUAN ok
+[2026-10-08 19:55:57] emiten [6/40] BBNI ok
+[2026-10-08 19:55:58] emiten [7/40] PACK ok
+[2026-10-08 19:55:58] emiten [8/40] SQMI ok
+[2026-10-08 19:55:59] emiten [9/40] EMAS ok
+[2026-10-08 19:56:00] emiten [10/40] WIFI ok
+[2026-10-08 19:56:01] emiten [11/40] BIPI ok
+[2026-10-08 19:56:02] emiten [12/40] PURA ok
+[2026-10-08 19:56:02] emiten [13/40] COCO ok
+[2026-10-08 19:56:03] emiten [14/40] LUCY ok
+[2026-10-08 19:56:04] emiten [15/40] KREN ok
+[2026-10-08 19:56:05] emiten [16/40] COIN ok
+[2026-10-08 19:56:06] emiten [17/40] ADMR ok
+[2026-10-08 19:56:07] emiten [18/40] SGER ok
+[2026-10-08 19:56:08] emiten [19/40] NEST ok
+[2026-10-08 19:56:09] emiten [20/40] BNBR ok
+[2026-10-08 19:56:10] emiten [21/40] CDIA ok
+[2026-10-08 19:56:10] emiten [22/40] MEJA ok
+[2026-10-08 19:56:11] emiten [23/40] FILM ok
+[2026-10-08 19:56:12] emiten [24/40] ASPI ok
+[2026-10-08 19:56:13] emiten [25/40] PPRI ok
+[2026-10-08 19:56:14] emiten [26/40] AKKU ok
+[2026-10-08 19:56:14] emiten [27/40] GULA ok
+[2026-10-08 19:56:15] emiten [28/40] BDMN ok
+[2026-10-08 19:56:16] emiten [29/40] KKES ok
+[2026-10-08 19:56:17] emiten [30/40] CYBR ok
+[2026-10-08 19:56:18] emiten [31/40] ARKO ok
+[2026-10-08 19:56:19] emiten [32/40] BTEK ok
+[2026-10-08 19:56:19] emiten [33/40] BSDE ok
+[2026-10-08 19:56:20] emiten [34/40] PANI ok
+[2026-10-08 19:56:21] emiten [35/40] TRUE ok
+[2026-10-08 19:56:22] emiten [36/40] IKAI ok
+[2026-10-08 19:56:22] emiten [37/40] KIOS ok
+[2026-10-08 19:56:23] emiten [38/40] TRIN ok
+[2026-10-08 19:56:24] emiten [39/40] PICO ok
+[2026-10-08 19:56:25] emiten [40/40] SSMS ok
+[2026-10-08 19:56:30] emiten [1/20] FUTR ok
+[2026-10-08 19:56:30] emiten [2/20] BBTN ok
+[2026-10-08 19:56:31] emiten [3/20] REAL ok
+[2026-10-08 19:56:32] emiten [4/20] MCAS ok
+[2026-10-08 19:56:33] emiten [5/20] AHAP ok
+[2026-10-08 19:56:37] emiten [6/20] AYAM ok
+[2026-10-08 19:56:37] emiten [7/20] PCAR ok
+[2026-10-08 19:56:38] emiten [8/20] MGLV ok
+[2026-10-08 19:56:39] emiten [9/20] TAXI ok
+[2026-10-08 19:56:41] emiten [10/20] NISP ok
+[2026-10-08 19:56:42] emiten [11/20] BBKP ok
+[2026-10-08 19:56:42] emiten [12/20] CLEO ok
+[2026-10-08 19:56:43] emiten [13/20] MINA ok
+[2026-10-08 19:56:44] emiten [14/20] MAIN ok
+[2026-10-08 19:56:45] emiten [15/20] TAMU ok
+[2026-10-08 19:56:46] emiten [16/20] BEKS ok
+[2026-10-08 19:56:47] emiten [17/20] BLUE ok
+[2026-10-08 19:56:47] emiten [18/20] MAPA ok
+[2026-10-08 19:56:48] emiten [19/20] KPIG ok
+[2026-10-08 19:56:49] emiten [20/20] SAFE ok
+[2026-10-08 20:33:12] ==================================================
+[2026-10-08 20:33:12] Aplikasi Screener dimulai
+[2026-10-08 20:33:14] Melayani di http://127.0.0.1:8765/
+[2026-10-08 20:33:14] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-08 20:35:39] ksei Periode terbaru : 20260930
+[2026-10-08 20:35:39] ksei Periode sebelumnya: 20260831
+[2026-10-08 20:35:39] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 20:35:39] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 20:35:46] emiten [1/40] FORU ok
+[2026-10-08 20:35:47] emiten [2/40] BBCA ok
+[2026-10-08 20:35:48] emiten [3/40] BMRI ok
+[2026-10-08 20:35:49] emiten [4/40] BBRI ok
+[2026-10-08 20:35:49] emiten [5/40] CUAN ok
+[2026-10-08 20:35:50] emiten [6/40] BBNI ok
+[2026-10-08 20:35:52] emiten [7/40] PACK ok
+[2026-10-08 20:35:52] emiten [8/40] SQMI ok
+[2026-10-08 20:35:53] emiten [9/40] EMAS ok
+[2026-10-08 20:35:54] emiten [10/40] WIFI ok
+[2026-10-08 20:35:55] emiten [11/40] BIPI ok
+[2026-10-08 20:35:55] emiten [12/40] PURA ok
+[2026-10-08 20:35:56] emiten [13/40] COCO ok
+[2026-10-08 20:35:57] emiten [14/40] LUCY ok
+[2026-10-08 20:35:57] emiten [15/40] KREN ok
+[2026-10-08 20:35:58] emiten [16/40] COIN ok
+[2026-10-08 20:35:59] emiten [17/40] ADMR ok
+[2026-10-08 20:36:00] emiten [18/40] SGER ok
+[2026-10-08 20:36:01] emiten [19/40] NEST ok
+[2026-10-08 20:36:02] emiten [20/40] BNBR ok
+[2026-10-08 20:36:03] emiten [21/40] CDIA ok
+[2026-10-08 20:36:04] emiten [22/40] MEJA ok
+[2026-10-08 20:36:05] emiten [23/40] FILM ok
+[2026-10-08 20:36:05] emiten [24/40] ASPI ok
+[2026-10-08 20:36:06] emiten [25/40] PPRI ok
+[2026-10-08 20:36:07] emiten [26/40] AKKU ok
+[2026-10-08 20:36:08] emiten [27/40] GULA ok
+[2026-10-08 20:36:09] emiten [28/40] BDMN ok
+[2026-10-08 20:36:10] emiten [29/40] KKES ok
+[2026-10-08 20:36:11] emiten [30/40] CYBR ok
+[2026-10-08 20:36:12] emiten [31/40] ARKO ok
+[2026-10-08 20:36:13] emiten [32/40] BTEK ok
+[2026-10-08 20:36:18] emiten [33/40] BSDE ok
+[2026-10-08 20:36:19] emiten [34/40] PANI ok
+[2026-10-08 20:36:20] emiten [35/40] TRUE ok
+[2026-10-08 20:36:21] emiten [36/40] IKAI ok
+[2026-10-08 20:36:21] emiten [37/40] KIOS ok
+[2026-10-08 20:36:22] emiten [38/40] TRIN ok
+[2026-10-08 20:36:23] emiten [39/40] PICO ok
+[2026-10-08 20:36:24] emiten [40/40] SSMS ok
+[2026-10-08 20:36:29] emiten [1/20] FUTR ok
+[2026-10-08 20:36:30] emiten [2/20] BBTN ok
+[2026-10-08 20:36:30] emiten [3/20] REAL ok
+[2026-10-08 20:36:31] emiten [4/20] MCAS ok
+[2026-10-08 20:36:32] emiten [5/20] AHAP ok
+[2026-10-08 20:36:33] emiten [6/20] AYAM ok
+[2026-10-08 20:36:33] emiten [7/20] PCAR ok
+[2026-10-08 20:36:34] emiten [8/20] MGLV ok
+[2026-10-08 20:36:35] emiten [9/20] TAXI ok
+[2026-10-08 20:36:36] emiten [10/20] NISP ok
+[2026-10-08 20:36:36] emiten [11/20] BBKP ok
+[2026-10-08 20:36:37] emiten [12/20] TAMU ok
+[2026-10-08 20:36:38] emiten [13/20] BEKS ok
+[2026-10-08 20:36:39] emiten [14/20] CBRE ok
+[2026-10-08 20:36:40] emiten [15/20] INTP ok
+[2026-10-08 20:36:40] emiten [16/20] ARII ok
+[2026-10-08 20:36:41] emiten [17/20] ARTO ok
+[2026-10-08 20:36:42] emiten [18/20] TOTL ok
+[2026-10-08 20:36:44] emiten [19/20] BBYB ok
+[2026-10-08 20:36:45] emiten [20/20] MYOR ok
+[2026-10-08 20:44:31] ==================================================
+[2026-10-08 20:44:31] Aplikasi Screener dimulai
+[2026-10-08 20:44:33] Melayani di http://127.0.0.1:8765/
+[2026-10-08 20:44:33] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-08 20:44:51] ksei Periode terbaru : 20260930
+[2026-10-08 20:44:51] ksei Periode sebelumnya: 20260831
+[2026-10-08 20:44:51] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 20:44:51] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 20:44:58] emiten [1/40] FORU ok
+[2026-10-08 20:44:59] emiten [2/40] BBCA ok
+[2026-10-08 20:45:00] emiten [3/40] BMRI ok
+[2026-10-08 20:45:00] emiten [4/40] BBRI ok
+[2026-10-08 20:45:01] emiten [5/40] CUAN ok
+[2026-10-08 20:45:02] emiten [6/40] BBNI ok
+[2026-10-08 20:45:03] emiten [7/40] PACK ok
+[2026-10-08 20:45:03] emiten [8/40] SQMI ok
+[2026-10-08 20:45:04] emiten [9/40] EMAS ok
+[2026-10-08 20:45:05] emiten [10/40] WIFI ok
+[2026-10-08 20:45:06] emiten [11/40] BIPI ok
+[2026-10-08 20:45:07] emiten [12/40] PURA ok
+[2026-10-08 20:45:07] emiten [13/40] COCO ok
+[2026-10-08 20:45:08] emiten [14/40] LUCY ok
+[2026-10-08 20:45:09] emiten [15/40] KREN ok
+[2026-10-08 20:45:09] emiten [16/40] COIN ok
+[2026-10-08 20:45:11] emiten [17/40] ADMR ok
+[2026-10-08 20:45:11] emiten [18/40] SGER ok
+[2026-10-08 20:45:12] emiten [19/40] NEST ok
+[2026-10-08 20:45:13] emiten [20/40] BNBR ok
+[2026-10-08 20:45:14] emiten [21/40] CDIA ok
+[2026-10-08 20:45:15] emiten [22/40] MEJA ok
+[2026-10-08 20:45:15] emiten [23/40] FILM ok
+[2026-10-08 20:45:16] emiten [24/40] ASPI ok
+[2026-10-08 20:45:17] emiten [25/40] PPRI ok
+[2026-10-08 20:45:18] emiten [26/40] AKKU ok
+[2026-10-08 20:45:19] emiten [27/40] GULA ok
+[2026-10-08 20:45:19] emiten [28/40] BDMN ok
+[2026-10-08 20:45:20] emiten [29/40] KKES ok
+[2026-10-08 20:45:21] emiten [30/40] CYBR ok
+[2026-10-08 20:45:22] emiten [31/40] ARKO ok
+[2026-10-08 20:45:22] emiten [32/40] BTEK ok
+[2026-10-08 20:45:23] emiten [33/40] BSDE ok
+[2026-10-08 20:45:24] emiten [34/40] PANI ok
+[2026-10-08 20:45:24] emiten [35/40] TRUE ok
+[2026-10-08 20:45:25] emiten [36/40] IKAI ok
+[2026-10-08 20:45:26] emiten [37/40] KIOS ok
+[2026-10-08 20:45:27] emiten [38/40] TRIN ok
+[2026-10-08 20:45:27] emiten [39/40] PICO ok
+[2026-10-08 20:45:28] emiten [40/40] SSMS ok
+[2026-10-08 20:45:33] emiten [1/20] FUTR ok
+[2026-10-08 20:45:34] emiten [2/20] BBTN ok
+[2026-10-08 20:45:35] emiten [3/20] REAL ok
+[2026-10-08 20:45:35] emiten [4/20] MCAS ok
+[2026-10-08 20:45:36] emiten [5/20] AHAP ok
+[2026-10-08 20:45:37] emiten [6/20] AYAM ok
+[2026-10-08 20:45:38] emiten [7/20] PCAR ok
+[2026-10-08 20:45:39] emiten [8/20] MGLV ok
+[2026-10-08 20:45:39] emiten [9/20] TAXI ok
+[2026-10-08 20:45:40] emiten [10/20] NISP ok
+[2026-10-08 20:45:41] emiten [11/20] BBKP ok
+[2026-10-08 20:45:42] emiten [12/20] TAMU ok
+[2026-10-08 20:45:42] emiten [13/20] BEKS ok
+[2026-10-08 20:45:43] emiten [14/20] CBRE ok
+[2026-10-08 20:45:44] emiten [15/20] ARTO ok
+[2026-10-08 20:45:45] emiten [16/20] SMRA ok
+[2026-10-08 20:45:46] emiten [17/20] HMSP ok
+[2026-10-08 20:45:46] emiten [18/20] SCMA ok
+[2026-10-08 20:45:47] emiten [19/20] GMFI ok
+[2026-10-08 20:45:48] emiten [20/20] LPKR ok

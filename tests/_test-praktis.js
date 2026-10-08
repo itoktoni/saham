@@ -117,7 +117,9 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("dropdown metode ada di toolbar", html.includes('id="metode"') && html.includes("Barang Kering"));
   cek("render memakai matchMetode", html.includes("S.metode") && html.includes("matchMetode"));
   cek("pilihan metode dipersist", html.includes("sp_metode"));
-  cek("kolom Likuid ada", html.includes('t: "Likuid"'));
+  cek("tabel ringkas: 10 kolom inti ada", ["kode", "nama", "harga", "fase", "fs", "mos", "fv", "maxbuy", "skor", "aksi"].every(function (k) { return html.includes('k: "' + k + '"'); }));
+  cek("tabel tanpa scroll: fixed layout + .tw visible", html.includes("#tbl{table-layout:fixed") && html.includes(".tw{overflow:visible"));
+  cek("tabel ringkas: kolom detail pindah ke drawer/ekspor", !html.includes('t: "Freq"') && !html.includes('t: "Combo"') && !html.includes('t: "Likuid"') && html.includes('"combo"'));
   cek("blok akumulasi drawer ada", html.includes("Akumulasi 30 hari") && html.includes("barAkumulasi") && html.includes("Siapa yang serap"));
   cek("ambang likuid 5M", html.includes("5000000000"));
   cek("kolom FV ada", html.includes('t: "FV"'));
@@ -125,7 +127,7 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("state scope ada", html.includes("scope: {}"));
   cek("endpoint scope dipakai", html.includes("/api/scope"));
   cek("badge Scope di makro", html.includes("Scope:</span>"));
-  cek("kolom Combo ada", html.includes('t: "Combo"'));
+  cek("kombo tetap di drawer + ekspor", html.includes("Kombo smart-money") && html.includes("SP.combo"));
   cek("blok kombo drawer ada", html.includes("Kombo smart-money") && html.includes("SP.combo"));
   cek("helper combo ada", html.includes("comboLvl"));
   cek("dropdown Tema ada", html.includes('id="tema"'));
@@ -371,7 +373,7 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("industri: decode entitas HTML", SP.industriLabel("MERK", fm, "") === "Farmasi & Riset Kesehatan");
   cek("industri: fallback sektor", SP.industriLabel("XX", {}, "Keuangan") === "Keuangan");
   cek("industri: kosong aman", SP.industriLabel("XX", {}, "") === "—");
-  cek('kolom Industri ada', html.includes('t: "Industri"'));
+  cek("industri tetap di drawer + ekspor", html.indexOf('"industri"') >= 0 && html.indexOf("indLab") >= 0);
 }
 
 // 21) suspen heuristik
@@ -422,7 +424,7 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
 
 // 24) petunjuk mode pasar (scan tanpa data kas)
 {
-  cek("scan: banner mode pasar ada", html.indexOf("tanpa data kas") >= 0 && html.indexOf("laporan segar") >= 0);
+  cek("scan: banner mode pasar ada", html.indexOf("mode pasar: nilai FS/MOS") >= 0 && html.indexOf("laporan segar") >= 0);
 }
 
 // 25) banner ciut default + lengkapi kas top-40
@@ -443,7 +445,7 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
 
 // 27) auto + rekomendasi
 {
-  cek("reko: marker ada", html.indexOf('id="rekoTw"') >= 0 && html.indexOf("Rekomendasi Thowilz") >= 0 && html.indexOf("AUTO_LENGKAPI") >= 0 && html.indexOf("lengkapiOtomatis") >= 0);
+  cek("reko: marker ada", html.indexOf('id="rekoTw"') >= 0 && html.indexOf("<b>Rekomendasi:</b>") >= 0 && html.indexOf("AUTO_LENGKAPI") >= 0 && html.indexOf("lengkapiOtomatis") >= 0);
 }
 
 // 28) filter KLAS
@@ -458,7 +460,7 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
 
 // 30) RK Rivan Kurniawan
 {
-  cek("rk: helper + kolom + drawer", SP.twTrap("Jebakan").indexOf("a-hindar") >= 0 && SP.twTrap("-") === "—" && html.indexOf('"rk"') >= 0 && html.indexOf("Anti Jebakan") >= 0 && html.indexOf("pbv_wajar") >= 0);
+  cek("rk: helper + drawer + ekspor", SP.twTrap("Jebakan").indexOf("a-hindar") >= 0 && SP.twTrap("-") === "—" && html.indexOf("trap_badge") >= 0 && html.indexOf("Anti Jebakan") >= 0 && html.indexOf("pbv_wajar") >= 0);
 }
 
 // 31) input manual pembanding
@@ -479,6 +481,174 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
 // 33) centang persisten
 {
   cek("pick: storage + restore", html.indexOf("sp_picked") >= 0 && html.indexOf("sp_banding") >= 0 && html.indexOf("muatPicked") >= 0 && html.indexOf("simpanBanding") >= 0);
+}
+
+// 34) guard laba semu & verifikasi (kasus BUKA: TTM untung, kas bakar)
+{
+  const bukaTV = { kode: "BUKA", harga: "103", eps: "19.7384", pbv: "0.3784", roe: "7.79", der: "0.004", cagr: "0",
+    s_springlow: "100", s_resistance: "118" };
+  const vb = SP.valuasi(bukaTV, {});
+  cek("buka: FV tetap 212 / MOS 51% (artefak TTM)", Math.round(vb.intrinsic) === 212 && vb.mos > 50,
+    "FV=" + Math.round(vb.intrinsic) + " MOS=" + vb.mos.toFixed(1));
+  cek("buka: ditandai unverified", vb.unverified === true);
+  cek("buka: walau murah+support tak bisa Beli -> Pantau",
+    SP.aksi("Akumulasi", 85, vb, 0.3, null, { ruang52: 40 }) === "Pantau");
+  const ptbaOK = { kode: "PTBA", harga: "2600", eps: "503.8", ekuitas: "22000", saham: "10",
+    laba: "4950", cagr: "9.4", der: "0.5", s_springlow: "2000", s_resistance: "3500" };
+  const vp = SP.valuasi(ptbaOK, {});
+  cek("sehat terverifikasi: bukan unverified/labaSemu", vp.unverified !== true && vp.labaSemu !== true);
+  cek("sehat: Akumulasi support tetap Beli", SP.aksi("Akumulasi", 80, vp, 0.3, null, { ruang52: 15 }) === "Beli");
+  const kill = Object.assign({}, ptbaOK, { cash_badge: "Kill" });
+  const vk = SP.valuasi(kill, {});
+  cek("kill: targetMOS 65 + tak bisa Beli", vk.targetMos === 65 &&
+    SP.aksi("Akumulasi", 95, vk, 0.2, null, { ruang52: 40 }) === "Hindari");
+  const rugi = { kode: "RUGI", harga: "100", eps: "-5", ekuitas: "5000", saham: "100", laba: "-500", cagr: "0", der: "0.3" };
+  const vr = SP.valuasi(rugi, {});
+  cek("rugi EPS negatif -> Hindari", SP.aksi("Akumulasi", 95, vr, 0.2, null, {}) === "Hindari");
+  const bakar = Object.assign({}, ptbaOK);
+  const vfk = SP.valuasi(bakar, { nilai: { bvps: 2200, roe: 22.5 }, kas: { ocf: [-1000], fcf: [500] } });
+  cek("OCF negatif walau MOS>=target -> Pantau", vfk.bakarKas === true &&
+    SP.aksi("Akumulasi", 90, vfk, 0.3, null, { ruang52: 40 }) === "Pantau");
+}
+
+// 35) Stage A fundSkor (Rivan + Thowilz + Hendriko + dok sistem)
+{
+  const ctxE = { unggulan: ["Energi"] };
+  const good = { kode: "PTBA", harga: "2600", eps: "503.8", ekuitas: "22000", saham: "10", laba: "4950",
+    cagr: "9.4", der: "0.5", eps_trend: "up", dividen: "1", sektor: "Energi",
+    s_springlow: "2000", s_resistance: "3500" };
+  const fg = SP.fundSkor(good, { nilai: { bvps: 2200, roe: 22.5 }, tren: { eps: "naik", roe: "naik" },
+    kas: { ocf: [5000], fcf: [3000], dividen: [-1000] } }, ctxE);
+  cek("fs: sehat total>=75 tier A KANDIDAT", fg.total >= 75 && fg.tier === "A" && fg.status.indexOf("KANDIDAT") === 0,
+    JSON.stringify({ total: fg.total, tier: fg.tier }));
+  cek("fs: pilar lengkap 30/30/10/10/20", Math.round(fg.p.valuasi + fg.p.kualitas + fg.p.momentum + fg.p.makro + fg.p.trap) === Math.round(fg.total));
+  const bukaTV = { kode: "BUKA", harga: "103", eps: "19.7384", pbv: "0.3784", roe: "7.79",
+    der: "0.004", cagr: "0", sektor: "Retail Trade", s_springlow: "100", s_resistance: "118" };
+  const fb = SP.fundSkor(bukaTV, {}, ctxE);
+  cek("fs: BUKA unverified bukan A", fb.tier !== "A" && fb.status.indexOf("BUANG") >= 0,
+    JSON.stringify({ total: fb.total, tier: fb.tier, status: fb.status }));
+  const kill = Object.assign({}, good, { cash_badge: "Kill" });
+  const fk = SP.fundSkor(kill, {}, ctxE);
+  cek("fs: Kill -> C BUANG", fk.tier === "C" && fk.status.indexOf("BUANG") === 0, fk.status);
+  const kosong = SP.fundSkor({}, {}, {});
+  cek("fs: kosong aman (finite, tier C)", isFinite(kosong.total) && kosong.tier === "C" && kosong.catatan.length > 0);
+  cek("fs: helper kolom + drawer + ekspor", html.includes('t: "FS"') && html.includes("Screening Fundamental") && html.includes("fskor"));
+}
+
+// 36) sub-nama industri + kompetitor
+{
+  const dd = [
+    { kode: "A", sektor: "Bank" }, { kode: "B", sektor: "Bank" },
+    { kode: "C", sektor: "Bank" }, { kode: "D", sektor: "Energi" }
+  ];
+  const fm = { A: { klasifikasi: { industri: ["Bank"] }, sejenis: ["Z"] } };
+  const se = SP.seindustri("A", dd, fm);
+  cek("seindustri: industri Bank + sejenis didahulukan", se.industri === "Bank" && se.peers[0] === "Z" && se.peers.indexOf("B") >= 0 && se.peers.indexOf("D") < 0, JSON.stringify(se));
+  cek("seindustri: tanpa fund pakai sektor", SP.seindustri("B", dd, {}).industri === "Bank");
+  cek("seindustri: tak dikenal aman", SP.seindustri("Q", [], {}).peers.length === 0);
+  cek("nama tampil industri di tabel", html.includes("seindustri(") && html.includes("font-size:11px"));
+}
+
+// 37) Stage B rescan bandarmology (akumulasi vs ramai + speed)
+{
+  const d5 = new Date(Date.now() - 5 * 864e5).toISOString().slice(0, 10);
+  const scopeKuat = { acc: { top_buyers: [{ broker: "OD" }], series: { OD: [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1]] } },
+    insider: [{ action_type: "buy", date: d5 }] };
+  const xAkum = { kode: "A", fase: "Akumulasi", pos: 0.3,
+    r: { s_vol_ratio: "0.7", s_sideways: "1", nilai_harian: "9000000000", ret20: "2" },
+    k: { dksei_asing_1m: 1.5, dksei_institusi_1m: 0.5 } };
+  const sbA = SP.stageB(xAkum, scopeKuat);
+  cek("stageB: akumulasi kuat SIAP akum>=70", sbA.speed === "SIAP" && sbA.akum >= 70 && sbA.ramai === false,
+    JSON.stringify({ akum: sbA.akum, speed: sbA.speed }));
+  const xRamai = { kode: "R", fase: "Markup", pos: 0.7,
+    r: { s_vol_ratio: "2.0", s_sideways: "0", nilai_harian: "9000000000", ret20: "18" },
+    k: { dksei_asing_1m: -0.5, dksei_institusi_1m: 0 } };
+  const sbR = SP.stageB(xRamai, null);
+  cek("stageB: ramai tanpa bandar jangan chase", sbR.ramai === true && sbR.speed === "JALAN" && sbR.label.indexOf("RAMAI") >= 0,
+    JSON.stringify({ akum: sbR.akum, speed: sbR.speed }));
+  cek("stageB: distribusi KELUAR", SP.stageB({ fase: "Distribusi", pos: 0.9, r: {}, k: {} }, null).speed === "KELUAR");
+  cek("stageB: spring SIAP", SP.stageB({ fase: "Spring", pos: 0.2, r: {}, k: {} }, null).speed === "SIAP");
+  const sbT = SP.stageB({ kode: "T", fase: "Netral", pos: 0.5,
+    r: { s_vol_ratio: "0.6", s_sideways: "0", nilai_harian: "1000000", ret20: "0" }, k: {} }, null);
+  cek("stageB: netral tidur TUNGGU akum rendah", sbT.speed === "TUNGGU" && sbT.akum < 30, JSON.stringify(sbT));
+  const rowB = { kode: "STB", harga: "1000", eps: "100", ekuitas: "50000", saham: "1000", laba: "10000",
+    cagr: "10", der: "0.3", s_springlow: "900", s_resistance: "1100", s_vol_ratio: "0.7",
+    s_sideways: "1", s_spring: "0", s_closeabove: "1", nilai_harian: "9000000000" };
+  const bB = SP.build([rowB], {}, {}, {})[0];
+  cek("stageB: build menempel sb", !!(bB.sb && isFinite(bB.sb.akum) && bB.sb.speed), JSON.stringify(bB.sb));
+  cek("stageB: drawer + ekspor", html.includes("Stage B") && html.includes("sbVerdict") && html.includes('"stageb"'));
+}
+
+// 38) Stage C teknikal (entry/exit + divergen)
+{
+  function barsTrend(n, awal, step, amp) {
+    var b = [];
+    for (var i = 0; i < n; i++) {
+      var c = awal + i * step + Math.round(Math.sin(i / 3) * amp);
+      b.push([c, c + 5, c - 5, 1000 + (i % 5) * 100]);
+    }
+    return b;
+  }
+  const up = barsTrend(70, 1000, 8, 6);
+  const tkU = SP.teknikal(up, {});
+  cek("tk: uptrend ok", tkU.ok === true && tkU.trend === "UP" && tkU.ema20 < up[69][0] && tkU.rsi > 50,
+    JSON.stringify({ trend: tkU.trend, rsi: tkU.rsi, setup: tkU.setup }));
+  cek("tk: SL<TP matematis", tkU.entry > 0 && tkU.sl < tkU.entry && tkU.tp1 > tkU.entry && tkU.tp2 >= tkU.tp1 && isFinite(tkU.rr),
+    JSON.stringify({ entry: tkU.entry, sl: tkU.sl, tp1: tkU.tp1, tp2: tkU.tp2, rr: tkU.rr }));
+  const down = barsTrend(70, 2000, -8, 6);
+  const tkD = SP.teknikal(down, {});
+  cek("tk: downtrend TUNGGU", tkD.ok === true && tkD.trend === "DOWN" && tkD.setup === "TUNGGU", tkD.trend + "/" + tkD.setup);
+  const dbl = [];
+  for (var i = 0; i < 60; i++) {
+    var c;
+    if (i < 20) c = 100;
+    else {
+      var j = i - 20;
+      if (j < 10) c = 100 - j * 2.2;
+      else if (j < 15) c = 78 + (j - 10) * 2.2;
+      else if (j < 30) c = 89 - (j - 15) * 0.8;
+      else c = 77 + (j - 30) * 1.0;
+    }
+    dbl.push([Math.round(c), Math.round(c) + 2, Math.round(c) - 2, 1000]);
+  }
+  const tkV = SP.teknikal(dbl, {});
+  cek("tk: bullish divergence terdeteksi", tkV.ok === true && tkV.divBull === true && tkV.divBear === false,
+    JSON.stringify({ divBull: tkV.divBull, rsi: tkV.rsi }));
+  cek("tk: bar kurang -> minta watchlist", SP.teknikal(barsTrend(20, 100, 1, 1), {}).ok === false);
+  const tkF = SP.teknikal(up, { fv: up[69][0] + 10 });
+  cek("tk: TP2 dijepit FV", tkF.tp2 <= up[69][0] + 10 && tkF.note !== "", String(tkF.tp2));
+  cek("tk: SWING_F bawa bars_120", SP.SWING_F.indexOf("bars_120") >= 0);
+  const rowC = { kode: "TKC", harga: "1500", eps: "100", ekuitas: "50000", saham: "1000", laba: "10000",
+    cagr: "10", der: "0.3", s_springlow: "900", s_resistance: "1600", bars_120: up };
+  const bC = SP.build([rowC], {}, {}, {})[0];
+  cek("tk: build menempel tk.ok", !!(bC.tk && bC.tk.ok), JSON.stringify(bC.tk && { setup: bC.tk.setup, rr: bC.tk.rr }));
+  cek("tk: tanpa bar -> tk null", SP.build([{ kode: "N", harga: "100" }], {}, {}, {})[0].tk === null);
+  cek("tk: drawer Stage C ada", html.includes("Stage C") && html.includes("Divergen"));
+}
+
+// 39) rekomendasi gabungan (bukan Thowilz saja)
+{
+  const rk = [
+    { kode: "BAGUS", fs: { total: 80, tier: "A" }, val: { intrinsic: 4000, mos: 40, targetMos: 30 }, aksi: "Beli",
+      sb: { speed: "SIAP" }, tk: { ok: true, setup: "PULLBACK" }, _aksiD: "Beli" },
+    { kode: "Jelek", fs: { total: 20, tier: "C" }, val: { intrinsic: 100, mos: -50, targetMos: 30 }, aksi: "Hindari",
+      sb: { speed: "KELUAR" }, tk: { ok: false }, _aksiD: "Hindari" },
+    { kode: "Tengah", fs: { total: 65, tier: "B" }, val: { intrinsic: 2000, mos: 20, targetMos: 30 }, aksi: "Pantau",
+      sb: { speed: "TUNGGU" }, tk: { ok: false }, _aksiD: "Pantau" }
+  ];
+  const rr = SP.rekomendasi(rk);
+  cek("reko: BAGUS teratas, Jelek terbawah", rr[0].kode === "BAGUS" && rr[2].kode === "Jelek" && rr[0].total > rr[1].total,
+    JSON.stringify(rr.map(function (t) { return t.kode + "=" + t.total; })));
+  cek("reko: why memuat semua pilar", rr[0].why.indexOf("FS 80A") >= 0 && rr[0].why.indexOf("MOS 40%") >= 0 &&
+    rr[0].why.indexOf("Beli") >= 0 && rr[0].why.indexOf("SIAP") >= 0 && rr[0].why.indexOf("PULLBACK") >= 0, rr[0].why);
+  const rkKill = [{ kode: "K", fs: { total: 90, tier: "A" }, val: { intrinsic: 5000, mos: 80, targetMos: 65, labaSemuKill: true },
+    aksi: "Hindari", _aksiD: "Hindari", sb: {}, tk: {} }];
+  cek("reko: laba semu dibatasi", SP.rekomendasi(rkKill)[0].total <= 10, String(SP.rekomendasi(rkKill)[0].total));
+  cek("reko: kosong aman", Array.isArray(SP.rekomendasi([])) && SP.rekomendasi([]).length === 0);
+  cek("reko: label tanpa Thowilz", html.includes("<b>Rekomendasi:</b>") && !html.includes("Rekomendasi Thowilz"));
+  cek("reko: tombol watchlist ada", html.includes('data-watch="') && html.includes("data-watchall") && html.includes("masukWatchlist"));
+  cek("reko: jejak antar-run ada", html.includes("sp_reko") && html.includes("★baru") && html.includes("keluar:"));
+  cek("reko: jam data tampil", html.includes("S.dibuat"));
 }
 
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");

@@ -798,8 +798,8 @@ function valuate(s, F, opts) {
   out.epsDisc = F.epsAnn > 0 ? F.bvps + acc : NaN;
   out.epsDiscPvEps = acc;
 
-  /* --- F3: Equity Growth Model --- */
-  out.equityGrowth = F.bvps > 0 ? F.bvps * Math.pow(1 + roe, 5) : NaN;
+  /* --- F3: Equity Growth Model (butuh ROE positif; rugi => tak valid) --- */
+  out.equityGrowth = (F.bvps > 0 && F.roe > 0) ? F.bvps * Math.pow(1 + roe, 5) : NaN;
 
   /* --- F4: ROE–PBV Matrix --- */
   out.roePbv = F.bvps > 0 ? F.bvps * (F.roe / 10) : NaN;
