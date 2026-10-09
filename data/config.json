@@ -1,19 +1,19 @@
 {
   "daftar_saham": [
-    "BBCA",
-    "BBRI",
-    "BMRI",
-    "BBNI",
-    "TLKM",
-    "ASII",
-    "ANTM",
-    "ADRO",
     "ICBP",
     "PTBA",
     "CPIN",
-    "ACES",
-    "AMRT",
-    "MAPA"
+    "MAPA",
+    "DMAS",
+    "ERAA",
+    "LSIP",
+    "CLPI",
+    "KLBF",
+    "KIJA",
+    "ISAT",
+    "KETR",
+    "ENRG",
+    "TLKM"
   ],
   "bulan_ksei": 24
 }

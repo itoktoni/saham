@@ -2182,3 +2182,1401 @@
 [2026-10-08 20:45:46] emiten [18/20] SCMA ok
 [2026-10-08 20:45:47] emiten [19/20] GMFI ok
 [2026-10-08 20:45:48] emiten [20/20] LPKR ok
+[2026-10-08 20:50:20] ==================================================
+[2026-10-08 20:50:20] Aplikasi Screener dimulai
+[2026-10-08 20:50:22] Melayani di http://127.0.0.1:8765/
+[2026-10-08 20:50:22] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-08 20:51:01] ==================================================
+[2026-10-08 20:51:01] Aplikasi Screener dimulai
+[2026-10-08 20:51:03] Melayani di http://127.0.0.1:8765/
+[2026-10-08 20:51:03] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-08 20:52:41] ksei Periode terbaru : 20260930
+[2026-10-08 20:52:41] ksei Periode sebelumnya: 20260831
+[2026-10-08 20:52:41] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 20:52:41] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 20:52:49] emiten [1/40] FORU ok
+[2026-10-08 20:52:49] emiten [2/40] BBCA ok
+[2026-10-08 20:52:50] emiten [3/40] BMRI ok
+[2026-10-08 20:52:51] emiten [4/40] BBRI ok
+[2026-10-08 20:52:52] emiten [5/40] CUAN ok
+[2026-10-08 20:52:53] emiten [6/40] BBNI ok
+[2026-10-08 20:52:53] emiten [7/40] PACK ok
+[2026-10-08 20:52:54] emiten [8/40] SQMI ok
+[2026-10-08 20:52:55] emiten [9/40] EMAS ok
+[2026-10-08 20:52:55] emiten [10/40] WIFI ok
+[2026-10-08 20:52:56] emiten [11/40] BIPI ok
+[2026-10-08 20:52:57] emiten [12/40] PURA ok
+[2026-10-08 20:52:58] emiten [13/40] COCO ok
+[2026-10-08 20:52:59] emiten [14/40] LUCY ok
+[2026-10-08 20:52:59] konfigurasi disimpan: 18 emiten, 24 bulan KSEI
+[2026-10-08 20:52:59] Daftar pantau: 18 emiten (BBCA, BBRI, BMRI, BBNI, TLKM, ASII, ANTM, ADRO...)
+[2026-10-08 20:52:59] Mengunduh kepemilikan KSEI...
+[2026-10-08 20:52:59] emiten [15/40] KREN ok
+[2026-10-08 20:53:00] emiten [16/40] COIN ok
+[2026-10-08 20:53:01] emiten [17/40] ADMR ok
+[2026-10-08 20:53:02] emiten [18/40] SGER ok
+[2026-10-08 20:53:03] emiten [19/40] NEST ok
+[2026-10-08 20:53:03] emiten [20/40] BNBR ok
+[2026-10-08 20:53:04] emiten [21/40] CDIA ok
+[2026-10-08 20:53:05] emiten [22/40] MEJA ok
+[2026-10-08 20:53:06] emiten [23/40] FILM ok
+[2026-10-08 20:53:06] emiten [24/40] ASPI ok
+[2026-10-08 20:53:07] emiten [25/40] PPRI ok
+[2026-10-08 20:53:09] emiten [26/40] AKKU ok
+[2026-10-08 20:53:10] emiten [27/40] GULA ok
+[2026-10-08 20:53:11] emiten [28/40] BDMN ok
+[2026-10-08 20:53:12] emiten [29/40] KKES ok
+[2026-10-08 20:53:12] emiten [30/40] CYBR ok
+[2026-10-08 20:53:13] ksei Periode terbaru : 20260930
+[2026-10-08 20:53:13] ksei Periode sebelumnya: 20260831
+[2026-10-08 20:53:13] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 20:53:13] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 20:53:13] Mengunduh harga & fundamental (18 emiten)...
+[2026-10-08 20:53:13] emiten [31/40] ARKO ok
+[2026-10-08 20:53:14] emiten [32/40] BTEK ok
+[2026-10-08 20:53:15] emiten [33/40] BSDE ok
+[2026-10-08 20:53:16] emiten [34/40] PANI ok
+[2026-10-08 20:53:16] emiten [35/40] TRUE ok
+[2026-10-08 20:53:17] emiten [36/40] IKAI ok
+[2026-10-08 20:53:18] emiten [1/18] BBCA ok
+[2026-10-08 20:53:18] emiten [37/40] KIOS ok
+[2026-10-08 20:53:19] emiten [38/40] TRIN ok
+[2026-10-08 20:53:19] emiten [2/18] BBRI ok
+[2026-10-08 20:53:19] emiten [39/40] PICO ok
+[2026-10-08 20:53:19] emiten [3/18] BMRI ok
+[2026-10-08 20:53:20] emiten [40/40] SSMS ok
+[2026-10-08 20:53:20] emiten [4/18] BBNI ok
+[2026-10-08 20:53:21] emiten [5/18] TLKM ok
+[2026-10-08 20:53:22] emiten [6/18] ASII ok
+[2026-10-08 20:53:23] emiten [7/18] ANTM ok
+[2026-10-08 20:53:24] emiten [8/18] ADRO ok
+[2026-10-08 20:53:24] emiten [9/18] ICBP ok
+[2026-10-08 20:53:25] emiten [1/20] FUTR ok
+[2026-10-08 20:53:25] emiten [10/18] PTBA ok
+[2026-10-08 20:53:26] emiten [2/20] BBTN ok
+[2026-10-08 20:53:26] emiten [11/18] CPIN ok
+[2026-10-08 20:53:27] emiten [3/20] REAL ok
+[2026-10-08 20:53:27] emiten [12/18] ACES ok
+[2026-10-08 20:53:27] emiten [4/20] MCAS ok
+[2026-10-08 20:53:28] emiten [13/18] AMRT ok
+[2026-10-08 20:53:28] emiten [5/20] AHAP ok
+[2026-10-08 20:53:29] emiten [14/18] MAPA ok
+[2026-10-08 20:53:29] emiten [6/20] AYAM ok
+[2026-10-08 20:53:29] emiten [15/18] DMAS ok
+[2026-10-08 20:53:30] emiten [7/20] PCAR ok
+[2026-10-08 20:53:30] emiten [16/18] ERAA ok
+[2026-10-08 20:53:31] emiten [8/20] MGLV ok
+[2026-10-08 20:53:31] emiten [17/18] LSIP ok
+[2026-10-08 20:53:31] emiten [9/20] TAXI ok
+[2026-10-08 20:53:32] emiten [18/18] CLPI ok
+[2026-10-08 20:53:32] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-08 20:53:32] [cache] memakai scope yang tersimpan (2 menit lalu)
+[2026-10-08 20:53:32] Menambah avg broker IndoPremier (SQLite)...
+[2026-10-08 20:53:32] emiten [10/20] NISP ok
+[2026-10-08 20:53:33] emiten [11/20] BBKP ok
+[2026-10-08 20:53:34] emiten [12/20] TAMU ok
+[2026-10-08 20:53:35] emiten [13/20] BEKS ok
+[2026-10-08 20:53:36] emiten [14/20] CBRE ok
+[2026-10-08 20:53:36] emiten [15/20] ARTO ok
+[2026-10-08 20:53:37] emiten [16/20] LPKR ok
+[2026-10-08 20:53:38] emiten [17/20] PTSN ok
+[2026-10-08 20:53:39] emiten [18/20] MSIN ok
+[2026-10-08 20:53:40] emiten [19/20] WBSA ok
+[2026-10-08 20:53:41] emiten [20/20] VERN ok
+[2026-10-08 20:54:22] Avg broker IndoPremier: 18 emiten.
+[2026-10-08 20:54:22] Selesai. 18 emiten siap.
+[2026-10-08 20:54:22] Memuat peta tema...
+[2026-10-08 20:54:22] Memuat fundamental gabungan...
+[2026-10-08 21:57:21] konfigurasi disimpan: 9 emiten, 24 bulan KSEI
+[2026-10-08 21:58:53] konfigurasi disimpan: 13 emiten, 24 bulan KSEI
+[2026-10-08 21:58:57] Daftar pantau: 13 emiten (ICBP, PTBA, CPIN, MAPA, DMAS, ERAA, LSIP, CLPI...)
+[2026-10-08 21:58:57] Mengunduh kepemilikan KSEI...
+[2026-10-08 21:59:10] ksei Periode terbaru : 20260930
+[2026-10-08 21:59:10] ksei Periode sebelumnya: 20260831
+[2026-10-08 21:59:10] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 21:59:11] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 21:59:11] Mengunduh harga & fundamental (13 emiten)...
+[2026-10-08 21:59:16] emiten [1/13] ICBP ok
+[2026-10-08 21:59:17] emiten [2/13] PTBA ok
+[2026-10-08 21:59:18] emiten [3/13] CPIN ok
+[2026-10-08 21:59:19] emiten [4/13] MAPA ok
+[2026-10-08 21:59:19] emiten [5/13] DMAS ok
+[2026-10-08 21:59:20] emiten [6/13] ERAA ok
+[2026-10-08 21:59:21] emiten [7/13] LSIP ok
+[2026-10-08 21:59:22] emiten [8/13] CLPI ok
+[2026-10-08 21:59:22] emiten [9/13] KLBF ok
+[2026-10-08 21:59:23] emiten [10/13] KIJA ok
+[2026-10-08 21:59:24] emiten [11/13] ISAT ok
+[2026-10-08 21:59:25] emiten [12/13] KETR ok
+[2026-10-08 21:59:26] emiten [13/13] ENRG ok
+[2026-10-08 21:59:26] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-08 22:00:22] scope gagal: SahamScope gagal total (ICBP: HTTP Error 429: Too Many Requests; PTBA: HTTP Error 429: Too Many Requests; CPIN: HTTP Error 429: Too Many Requests; MAPA: HTTP Error 429: Too Many Reques)
+[2026-10-08 22:00:22] SahamScope gagal — memakai cache lama bila ada.
+[2026-10-08 22:00:22] Menambah avg broker IndoPremier (SQLite)...
+[2026-10-08 22:00:35] Avg broker IndoPremier: 13 emiten.
+[2026-10-08 22:00:35] Selesai. 13 emiten siap.
+[2026-10-08 22:00:35] Memuat peta tema...
+[2026-10-08 22:00:35] Memuat fundamental gabungan...
+[2026-10-08 22:36:35] konfigurasi disimpan: 14 emiten, 24 bulan KSEI
+[2026-10-08 22:37:42] Daftar pantau: 14 emiten (ICBP, PTBA, CPIN, MAPA, DMAS, ERAA, LSIP, CLPI...)
+[2026-10-08 22:37:42] Mengunduh kepemilikan KSEI...
+[2026-10-08 22:37:55] ksei Periode terbaru : 20260930
+[2026-10-08 22:37:55] ksei Periode sebelumnya: 20260831
+[2026-10-08 22:37:55] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-08 22:37:56] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-08 22:37:56] Mengunduh harga & fundamental (14 emiten)...
+[2026-10-08 22:37:56] [cache] memakai emiten yang tersimpan (39 menit lalu)
+[2026-10-08 22:37:56] Mengunduh broker & insider (SahamScope, watchlist)...
+[2026-10-08 22:38:56] scope gagal: SahamScope gagal total (ICBP: HTTP Error 429: Too Many Requests; PTBA: HTTP Error 429: Too Many Requests; CPIN: HTTP Error 429: Too Many Requests; MAPA: HTTP Error 429: Too Many Reques)
+[2026-10-08 22:38:56] SahamScope gagal — memakai cache lama bila ada.
+[2026-10-08 22:38:56] Menambah avg broker IndoPremier (SQLite)...
+[2026-10-08 22:38:56] Avg broker IndoPremier: 14 emiten.
+[2026-10-08 22:38:56] Selesai. 13 emiten siap.
+[2026-10-08 22:38:56] Memuat peta tema...
+[2026-10-08 22:38:56] Memuat fundamental gabungan...
+[2026-10-09 07:43:18] ==================================================
+[2026-10-09 07:43:18] Aplikasi Screener dimulai
+[2026-10-09 07:43:20] Melayani di http://127.0.0.1:8765/
+[2026-10-09 07:43:20] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 07:43:40] ksei Periode terbaru : 20260930
+[2026-10-09 07:43:40] ksei Periode sebelumnya: 20260831
+[2026-10-09 07:43:40] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 07:43:40] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 07:43:48] emiten [1/40] FORU ok
+[2026-10-09 07:43:49] emiten [2/40] BBCA ok
+[2026-10-09 07:43:51] emiten [3/40] BMRI ok
+[2026-10-09 07:43:52] emiten [4/40] BBRI ok
+[2026-10-09 07:43:53] emiten [5/40] CUAN ok
+[2026-10-09 07:43:54] emiten [6/40] BBNI ok
+[2026-10-09 07:43:55] emiten [7/40] PACK ok
+[2026-10-09 07:43:56] emiten [8/40] SQMI ok
+[2026-10-09 07:43:57] emiten [9/40] EMAS ok
+[2026-10-09 07:43:58] emiten [10/40] WIFI ok
+[2026-10-09 07:43:59] emiten [11/40] BIPI ok
+[2026-10-09 07:44:00] emiten [12/40] PURA ok
+[2026-10-09 07:44:01] emiten [13/40] COCO ok
+[2026-10-09 07:44:01] emiten [14/40] LUCY ok
+[2026-10-09 07:44:02] emiten [15/40] KREN ok
+[2026-10-09 07:44:03] emiten [16/40] COIN ok
+[2026-10-09 07:44:04] emiten [17/40] ADMR ok
+[2026-10-09 07:44:05] emiten [18/40] SGER ok
+[2026-10-09 07:44:05] emiten [19/40] NEST ok
+[2026-10-09 07:44:06] emiten [20/40] BNBR ok
+[2026-10-09 07:44:07] emiten [21/40] CDIA ok
+[2026-10-09 07:44:08] emiten [22/40] MEJA ok
+[2026-10-09 07:44:08] emiten [23/40] FILM ok
+[2026-10-09 07:44:09] emiten [24/40] ASPI ok
+[2026-10-09 07:44:11] emiten [25/40] PPRI ok
+[2026-10-09 07:44:12] emiten [26/40] AKKU ok
+[2026-10-09 07:44:13] emiten [27/40] GULA ok
+[2026-10-09 07:44:14] emiten [28/40] BDMN ok
+[2026-10-09 07:44:15] emiten [29/40] KKES ok
+[2026-10-09 07:44:16] emiten [30/40] CYBR ok
+[2026-10-09 07:44:17] emiten [31/40] ARKO ok
+[2026-10-09 07:44:18] emiten [32/40] BTEK ok
+[2026-10-09 07:44:19] emiten [33/40] BSDE ok
+[2026-10-09 07:44:20] emiten [34/40] PANI ok
+[2026-10-09 07:44:20] emiten [35/40] TRUE ok
+[2026-10-09 07:44:21] emiten [36/40] IKAI ok
+[2026-10-09 07:44:22] emiten [37/40] KIOS ok
+[2026-10-09 07:44:23] emiten [38/40] TRIN ok
+[2026-10-09 07:44:24] emiten [39/40] PICO ok
+[2026-10-09 07:44:25] emiten [40/40] SSMS ok
+[2026-10-09 07:44:31] emiten [1/20] FUTR ok
+[2026-10-09 07:44:32] emiten [2/20] BBTN ok
+[2026-10-09 07:44:33] emiten [3/20] REAL ok
+[2026-10-09 07:44:34] emiten [4/20] MCAS ok
+[2026-10-09 07:44:35] emiten [5/20] AHAP ok
+[2026-10-09 07:44:36] emiten [6/20] AYAM ok
+[2026-10-09 07:44:37] emiten [7/20] PCAR ok
+[2026-10-09 07:44:38] emiten [8/20] MGLV ok
+[2026-10-09 07:44:39] emiten [9/20] TAXI ok
+[2026-10-09 07:44:40] emiten [10/20] NISP ok
+[2026-10-09 07:44:41] emiten [11/20] BBKP ok
+[2026-10-09 07:44:42] emiten [12/20] TAMU ok
+[2026-10-09 07:44:43] emiten [13/20] BEKS ok
+[2026-10-09 07:44:43] emiten [14/20] CBRE ok
+[2026-10-09 07:44:44] emiten [15/20] ARTO ok
+[2026-10-09 07:44:45] emiten [16/20] LPKR ok
+[2026-10-09 07:44:46] emiten [17/20] VERN ok
+[2026-10-09 07:44:47] emiten [18/20] PIPA ok
+[2026-10-09 07:44:48] emiten [19/20] TKIM ok
+[2026-10-09 07:44:50] emiten [20/20] DSNG ok
+[2026-10-09 08:05:14] ksei [cache] memakai ksei yang tersimpan (22 menit lalu)
+[2026-10-09 08:05:14] tv [cache] memakai tv yang tersimpan (22 menit lalu)
+[2026-10-09 08:05:20] emiten [1/40] FORU ok
+[2026-10-09 08:05:21] emiten [2/40] BBCA ok
+[2026-10-09 08:05:22] emiten [3/40] BMRI ok
+[2026-10-09 08:05:23] emiten [4/40] BBRI ok
+[2026-10-09 08:05:24] emiten [5/40] CUAN ok
+[2026-10-09 08:05:25] emiten [6/40] BBNI ok
+[2026-10-09 08:05:27] emiten [7/40] PACK ok
+[2026-10-09 08:05:28] emiten [8/40] SQMI ok
+[2026-10-09 08:05:29] emiten [9/40] EMAS ok
+[2026-10-09 08:05:30] emiten [10/40] WIFI ok
+[2026-10-09 08:05:31] emiten [11/40] BIPI ok
+[2026-10-09 08:05:32] emiten [12/40] PURA ok
+[2026-10-09 08:05:32] emiten [13/40] COCO ok
+[2026-10-09 08:05:33] emiten [14/40] LUCY ok
+[2026-10-09 08:05:35] emiten [15/40] KREN ok
+[2026-10-09 08:05:36] emiten [16/40] COIN ok
+[2026-10-09 08:05:37] emiten [17/40] ADMR ok
+[2026-10-09 08:05:38] emiten [18/40] SGER ok
+[2026-10-09 08:05:39] emiten [19/40] NEST ok
+[2026-10-09 08:05:41] emiten [20/40] BNBR ok
+[2026-10-09 08:05:42] emiten [21/40] CDIA ok
+[2026-10-09 08:05:43] emiten [22/40] MEJA ok
+[2026-10-09 08:05:44] emiten [23/40] FILM ok
+[2026-10-09 08:05:45] emiten [24/40] ASPI ok
+[2026-10-09 08:05:46] emiten [25/40] PPRI ok
+[2026-10-09 08:05:46] emiten [26/40] AKKU ok
+[2026-10-09 08:05:47] emiten [27/40] GULA ok
+[2026-10-09 08:05:48] emiten [28/40] BDMN ok
+[2026-10-09 08:05:49] emiten [29/40] KKES ok
+[2026-10-09 08:05:50] emiten [30/40] CYBR ok
+[2026-10-09 08:05:50] emiten [31/40] ARKO ok
+[2026-10-09 08:05:51] emiten [32/40] BTEK ok
+[2026-10-09 08:05:52] emiten [33/40] BSDE ok
+[2026-10-09 08:05:53] emiten [34/40] PANI ok
+[2026-10-09 08:05:54] emiten [35/40] TRUE ok
+[2026-10-09 08:05:54] emiten [36/40] IKAI ok
+[2026-10-09 08:05:55] emiten [37/40] KIOS ok
+[2026-10-09 08:05:56] emiten [38/40] TRIN ok
+[2026-10-09 08:05:58] emiten [39/40] PICO ok
+[2026-10-09 08:05:59] emiten [40/40] SSMS ok
+[2026-10-09 08:06:04] emiten [1/20] FUTR ok
+[2026-10-09 08:06:05] emiten [2/20] BBTN ok
+[2026-10-09 08:06:06] emiten [3/20] REAL ok
+[2026-10-09 08:06:07] emiten [4/20] MCAS ok
+[2026-10-09 08:06:08] emiten [5/20] AHAP ok
+[2026-10-09 08:06:08] emiten [6/20] AYAM ok
+[2026-10-09 08:06:09] emiten [7/20] PCAR ok
+[2026-10-09 08:06:10] emiten [8/20] MGLV ok
+[2026-10-09 08:06:11] emiten [9/20] TAXI ok
+[2026-10-09 08:06:12] emiten [10/20] NISP ok
+[2026-10-09 08:06:12] emiten [11/20] BBKP ok
+[2026-10-09 08:06:13] emiten [12/20] TAMU ok
+[2026-10-09 08:06:14] emiten [13/20] BEKS ok
+[2026-10-09 08:06:15] emiten [14/20] CBRE ok
+[2026-10-09 08:06:16] emiten [15/20] ARTO ok
+[2026-10-09 08:06:16] emiten [16/20] LPKR ok
+[2026-10-09 08:06:17] emiten [17/20] VERN ok
+[2026-10-09 08:06:18] emiten [18/20] PIPA ok
+[2026-10-09 08:06:19] emiten [19/20] TKIM ok
+[2026-10-09 08:06:20] emiten [20/20] BACH ok
+[2026-10-09 14:08:40] ksei Periode terbaru : 20260930
+[2026-10-09 14:08:40] ksei Periode sebelumnya: 20260831
+[2026-10-09 14:08:40] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 14:08:41] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 14:08:48] emiten [1/40] BBCA ok
+[2026-10-09 14:08:49] emiten [2/40] FORU ok
+[2026-10-09 14:08:50] emiten [3/40] BBRI ok
+[2026-10-09 14:08:50] emiten [4/40] CUAN ok
+[2026-10-09 14:08:51] emiten [5/40] BMRI ok
+[2026-10-09 14:08:52] emiten [6/40] PACK ok
+[2026-10-09 14:08:53] emiten [7/40] EMAS ok
+[2026-10-09 14:08:54] emiten [8/40] NAYZ ok
+[2026-10-09 14:08:55] emiten [9/40] AHAP ok
+[2026-10-09 14:08:56] emiten [10/40] COCO ok
+[2026-10-09 14:08:57] emiten [11/40] LUCY ok
+[2026-10-09 14:08:58] emiten [12/40] SQMI ok
+[2026-10-09 14:08:58] emiten [13/40] ASPI ok
+[2026-10-09 14:08:59] emiten [14/40] WIFI ok
+[2026-10-09 14:09:00] emiten [15/40] BEKS ok
+[2026-10-09 14:09:01] emiten [16/40] BBNI ok
+[2026-10-09 14:09:01] emiten [17/40] ADMR ok
+[2026-10-09 14:09:02] emiten [18/40] PCAR ok
+[2026-10-09 14:09:03] emiten [19/40] CYBR ok
+[2026-10-09 14:09:03] emiten [20/40] MEJA ok
+[2026-10-09 14:09:04] emiten [21/40] BDMN ok
+[2026-10-09 14:09:05] emiten [22/40] ESTI ok
+[2026-10-09 14:09:05] emiten [23/40] BNBR ok
+[2026-10-09 14:09:06] emiten [24/40] GULA ok
+[2026-10-09 14:09:07] emiten [25/40] SGER ok
+[2026-10-09 14:09:07] emiten [26/40] BIPI ok
+[2026-10-09 14:09:08] emiten [27/40] TRUE ok
+[2026-10-09 14:09:09] emiten [28/40] ASPR ok
+[2026-10-09 14:09:10] emiten [29/40] MCAS ok
+[2026-10-09 14:09:11] emiten [30/40] SSMS ok
+[2026-10-09 14:09:11] emiten [31/40] BSDE ok
+[2026-10-09 14:09:12] emiten [32/40] BTEK ok
+[2026-10-09 14:09:13] emiten [33/40] NEST ok
+[2026-10-09 14:09:14] emiten [34/40] ARKO ok
+[2026-10-09 14:09:14] emiten [35/40] BSML ok
+[2026-10-09 14:09:15] emiten [36/40] FILM ok
+[2026-10-09 14:09:16] emiten [37/40] KREN ok
+[2026-10-09 14:09:17] emiten [38/40] MAHA ok
+[2026-10-09 14:09:18] emiten [39/40] CDIA ok
+[2026-10-09 14:09:18] emiten [40/40] IKAI ok
+[2026-10-09 14:09:24] emiten [1/20] ARTO ok
+[2026-10-09 14:09:25] emiten [2/20] FUTR ok
+[2026-10-09 14:09:25] emiten [3/20] NASA ok
+[2026-10-09 14:09:26] emiten [4/20] PURA ok
+[2026-10-09 14:09:27] emiten [5/20] TRIN ok
+[2026-10-09 14:09:28] emiten [6/20] COIN ok
+[2026-10-09 14:09:29] emiten [7/20] MGLV ok
+[2026-10-09 14:09:30] emiten [8/20] AKKU ok
+[2026-10-09 14:09:30] emiten [9/20] KKES ok
+[2026-10-09 14:09:31] emiten [10/20] BELL ok
+[2026-10-09 14:09:32] emiten [11/20] UDNG ok
+[2026-10-09 14:09:33] emiten [12/20] SUPA ok
+[2026-10-09 14:09:34] emiten [13/20] JSMR ok
+[2026-10-09 14:09:35] emiten [14/20] AREA ok
+[2026-10-09 14:09:35] emiten [15/20] GPSO ok
+[2026-10-09 14:09:36] emiten [16/20] FWCT ok
+[2026-10-09 14:09:37] emiten [17/20] PANI ok
+[2026-10-09 14:09:38] emiten [18/20] HAJJ ok
+[2026-10-09 14:09:39] emiten [19/20] DGWG ok
+[2026-10-09 14:09:39] emiten [20/20] PPRI ok
+[2026-10-09 14:43:32] ksei [cache] memakai ksei yang tersimpan (35 menit lalu)
+[2026-10-09 14:43:32] tv [cache] memakai tv yang tersimpan (35 menit lalu)
+[2026-10-09 14:43:38] emiten [1/40] BBCA ok
+[2026-10-09 14:43:39] emiten [2/40] FORU ok
+[2026-10-09 14:43:40] emiten [3/40] BBRI ok
+[2026-10-09 14:43:41] emiten [4/40] CUAN ok
+[2026-10-09 14:43:42] emiten [5/40] BMRI ok
+[2026-10-09 14:43:42] emiten [6/40] PACK ok
+[2026-10-09 14:43:43] emiten [7/40] EMAS ok
+[2026-10-09 14:43:44] emiten [8/40] AHAP ok
+[2026-10-09 14:43:45] emiten [9/40] COCO ok
+[2026-10-09 14:43:45] emiten [10/40] LUCY ok
+[2026-10-09 14:43:46] emiten [11/40] SQMI ok
+[2026-10-09 14:43:47] emiten [12/40] ASPI ok
+[2026-10-09 14:43:48] emiten [13/40] WIFI ok
+[2026-10-09 14:43:48] ksei [cache] memakai ksei yang tersimpan (35 menit lalu)
+[2026-10-09 14:43:48] tv [cache] memakai tv yang tersimpan (35 menit lalu)
+[2026-10-09 14:43:48] emiten [14/40] BEKS ok
+[2026-10-09 14:43:49] emiten [15/40] BBNI ok
+[2026-10-09 14:43:50] emiten [16/40] ADMR ok
+[2026-10-09 14:43:51] emiten [17/40] PCAR ok
+[2026-10-09 14:43:51] emiten [18/40] CYBR ok
+[2026-10-09 14:43:52] emiten [19/40] MEJA ok
+[2026-10-09 14:43:53] emiten [20/40] BDMN ok
+[2026-10-09 14:43:54] emiten [21/40] BNBR ok
+[2026-10-09 14:43:54] emiten [22/40] GULA ok
+[2026-10-09 14:43:55] emiten [23/40] SGER ok
+[2026-10-09 14:43:56] emiten [24/40] BIPI ok
+[2026-10-09 14:43:56] emiten [25/40] TRUE ok
+[2026-10-09 14:43:57] emiten [26/40] MCAS ok
+[2026-10-09 14:43:58] emiten [27/40] SSMS ok
+[2026-10-09 14:43:59] emiten [28/40] BSDE ok
+[2026-10-09 14:43:59] emiten [29/40] BTEK ok
+[2026-10-09 14:44:00] emiten [30/40] NEST ok
+[2026-10-09 14:44:01] emiten [31/40] ARKO ok
+[2026-10-09 14:44:02] emiten [32/40] FILM ok
+[2026-10-09 14:44:02] emiten [33/40] KREN ok
+[2026-10-09 14:44:03] emiten [34/40] CDIA ok
+[2026-10-09 14:44:04] emiten [35/40] IKAI ok
+[2026-10-09 14:44:05] emiten [36/40] ARTO ok
+[2026-10-09 14:44:05] emiten [37/40] FUTR ok
+[2026-10-09 14:44:06] emiten [38/40] NASA ok
+[2026-10-09 14:44:07] emiten [39/40] PURA ok
+[2026-10-09 14:44:08] emiten [40/40] TRIN ok
+[2026-10-09 14:44:13] emiten [1/20] COIN ok
+[2026-10-09 14:44:13] emiten [1/40] BBCA ok
+[2026-10-09 14:44:13] emiten [2/40] FORU ok
+[2026-10-09 14:44:13] emiten [2/20] MGLV ok
+[2026-10-09 14:44:14] emiten [3/20] AKKU ok
+[2026-10-09 14:44:14] emiten [3/40] BBRI ok
+[2026-10-09 14:44:15] emiten [4/20] KKES ok
+[2026-10-09 14:44:15] emiten [4/40] CUAN ok
+[2026-10-09 14:44:16] emiten [5/20] SUPA ok
+[2026-10-09 14:44:16] emiten [5/40] BMRI ok
+[2026-10-09 14:44:17] emiten [6/40] PACK ok
+[2026-10-09 14:44:17] emiten [6/20] GPSO ok
+[2026-10-09 14:44:17] emiten [7/40] EMAS ok
+[2026-10-09 14:44:17] emiten [7/20] PANI ok
+[2026-10-09 14:44:18] emiten [8/40] AHAP ok
+[2026-10-09 14:44:18] emiten [8/20] HAJJ ok
+[2026-10-09 14:44:20] emiten [9/20] PPRI ok
+[2026-10-09 14:44:20] emiten [9/40] COCO ok
+[2026-10-09 14:44:20] emiten [10/20] DAAZ ok
+[2026-10-09 14:44:20] emiten [10/40] LUCY ok
+[2026-10-09 14:44:21] emiten [11/40] SQMI ok
+[2026-10-09 14:44:21] emiten [11/20] HEAL ok
+[2026-10-09 14:44:22] emiten [12/40] ASPI ok
+[2026-10-09 14:44:22] emiten [12/20] WIDI ok
+[2026-10-09 14:44:23] emiten [13/20] BWPT ok
+[2026-10-09 14:44:23] emiten [13/40] WIFI ok
+[2026-10-09 14:44:24] emiten [14/40] BEKS ok
+[2026-10-09 14:44:24] emiten [14/20] DOID ok
+[2026-10-09 14:44:24] emiten [15/20] AYAM ok
+[2026-10-09 14:44:24] emiten [15/40] BBNI ok
+[2026-10-09 14:44:25] emiten [16/20] REAL ok
+[2026-10-09 14:44:25] emiten [16/40] ADMR ok
+[2026-10-09 14:44:26] emiten [17/40] PCAR ok
+[2026-10-09 14:44:26] emiten [17/20] ACES ok
+[2026-10-09 14:44:27] emiten [18/40] CYBR ok
+[2026-10-09 14:44:27] emiten [18/20] TKIM ok
+[2026-10-09 14:44:27] emiten [19/40] MEJA ok
+[2026-10-09 14:44:28] emiten [19/20] HRUM ok
+[2026-10-09 14:44:28] emiten [20/40] BDMN ok
+[2026-10-09 14:44:28] emiten [20/20] STAA ok
+[2026-10-09 14:44:29] emiten [21/40] BNBR ok
+[2026-10-09 14:44:30] emiten [22/40] GULA ok
+[2026-10-09 14:44:31] emiten [23/40] SGER ok
+[2026-10-09 14:44:31] emiten [24/40] BIPI ok
+[2026-10-09 14:44:32] emiten [25/40] TRUE ok
+[2026-10-09 14:44:33] emiten [26/40] MCAS ok
+[2026-10-09 14:44:33] emiten [27/40] SSMS ok
+[2026-10-09 14:44:34] emiten [28/40] BSDE ok
+[2026-10-09 14:44:35] emiten [29/40] BTEK ok
+[2026-10-09 14:44:36] emiten [30/40] NEST ok
+[2026-10-09 14:44:37] emiten [31/40] ARKO ok
+[2026-10-09 14:44:37] emiten [32/40] FILM ok
+[2026-10-09 14:44:38] emiten [33/40] KREN ok
+[2026-10-09 14:44:39] emiten [34/40] CDIA ok
+[2026-10-09 14:44:40] emiten [35/40] IKAI ok
+[2026-10-09 14:44:41] emiten [36/40] ARTO ok
+[2026-10-09 14:44:43] emiten [37/40] FUTR ok
+[2026-10-09 14:44:44] emiten [38/40] NASA ok
+[2026-10-09 14:44:45] emiten [39/40] PURA ok
+[2026-10-09 14:44:46] emiten [40/40] TRIN ok
+[2026-10-09 14:44:53] emiten [1/20] COIN ok
+[2026-10-09 14:44:54] emiten [2/20] MGLV ok
+[2026-10-09 14:44:55] emiten [3/20] AKKU ok
+[2026-10-09 14:44:55] emiten [4/20] KKES ok
+[2026-10-09 14:44:58] emiten [5/20] SUPA ok
+[2026-10-09 14:44:58] emiten [6/20] GPSO ok
+[2026-10-09 14:44:59] emiten [7/20] PANI ok
+[2026-10-09 14:45:00] emiten [8/20] HAJJ ok
+[2026-10-09 14:45:01] emiten [9/20] PPRI ok
+[2026-10-09 14:45:01] emiten [10/20] DAAZ ok
+[2026-10-09 14:45:02] emiten [11/20] HEAL ok
+[2026-10-09 14:45:04] emiten [12/20] WIDI ok
+[2026-10-09 14:45:05] emiten [13/20] BWPT ok
+[2026-10-09 14:45:06] emiten [14/20] DOID ok
+[2026-10-09 14:45:07] emiten [15/20] AYAM ok
+[2026-10-09 14:45:08] emiten [16/20] REAL ok
+[2026-10-09 14:45:08] emiten [17/20] ACES ok
+[2026-10-09 14:45:09] emiten [18/20] TKIM ok
+[2026-10-09 14:45:10] emiten [19/20] HRUM ok
+[2026-10-09 14:45:11] emiten [20/20] STAA ok
+[2026-10-09 14:49:59] ksei [cache] memakai ksei yang tersimpan (41 menit lalu)
+[2026-10-09 14:49:59] tv [cache] memakai tv yang tersimpan (41 menit lalu)
+[2026-10-09 14:50:05] emiten [1/40] BBCA ok
+[2026-10-09 14:50:06] emiten [2/40] FORU ok
+[2026-10-09 14:50:07] emiten [3/40] BBRI ok
+[2026-10-09 14:50:08] emiten [4/40] CUAN ok
+[2026-10-09 14:50:08] emiten [5/40] BMRI ok
+[2026-10-09 14:50:09] emiten [6/40] PACK ok
+[2026-10-09 14:50:10] emiten [7/40] EMAS ok
+[2026-10-09 14:50:11] emiten [8/40] AHAP ok
+[2026-10-09 14:50:11] emiten [9/40] COCO ok
+[2026-10-09 14:50:12] emiten [10/40] LUCY ok
+[2026-10-09 14:50:13] emiten [11/40] SQMI ok
+[2026-10-09 14:50:14] emiten [12/40] ASPI ok
+[2026-10-09 14:50:15] emiten [13/40] WIFI ok
+[2026-10-09 14:50:15] emiten [14/40] BEKS ok
+[2026-10-09 14:50:16] emiten [15/40] BBNI ok
+[2026-10-09 14:50:17] emiten [16/40] ADMR ok
+[2026-10-09 14:50:18] emiten [17/40] PCAR ok
+[2026-10-09 14:50:18] emiten [18/40] CYBR ok
+[2026-10-09 14:50:19] emiten [19/40] MEJA ok
+[2026-10-09 14:50:20] emiten [20/40] BDMN ok
+[2026-10-09 14:50:21] emiten [21/40] BNBR ok
+[2026-10-09 14:50:22] emiten [22/40] GULA ok
+[2026-10-09 14:50:23] emiten [23/40] SGER ok
+[2026-10-09 14:50:24] emiten [24/40] BIPI ok
+[2026-10-09 14:50:25] emiten [25/40] TRUE ok
+[2026-10-09 14:50:26] emiten [26/40] MCAS ok
+[2026-10-09 14:50:26] emiten [27/40] SSMS ok
+[2026-10-09 14:50:27] emiten [28/40] BSDE ok
+[2026-10-09 14:50:28] emiten [29/40] BTEK ok
+[2026-10-09 14:50:29] emiten [30/40] NEST ok
+[2026-10-09 14:50:30] emiten [31/40] ARKO ok
+[2026-10-09 14:50:33] emiten [32/40] FILM ok
+[2026-10-09 14:50:33] emiten [33/40] KREN ok
+[2026-10-09 14:50:34] emiten [34/40] CDIA ok
+[2026-10-09 14:50:35] emiten [35/40] IKAI ok
+[2026-10-09 14:50:36] emiten [36/40] ARTO ok
+[2026-10-09 14:50:37] emiten [37/40] FUTR ok
+[2026-10-09 14:50:37] emiten [38/40] NASA ok
+[2026-10-09 14:50:38] emiten [39/40] PURA ok
+[2026-10-09 14:50:39] emiten [40/40] TRIN ok
+[2026-10-09 14:50:44] emiten [1/20] COIN ok
+[2026-10-09 14:50:45] emiten [2/20] MGLV ok
+[2026-10-09 14:50:46] emiten [3/20] AKKU ok
+[2026-10-09 14:50:46] emiten [4/20] KKES ok
+[2026-10-09 14:50:47] emiten [5/20] SUPA ok
+[2026-10-09 14:50:48] emiten [6/20] GPSO ok
+[2026-10-09 14:50:48] emiten [7/20] PANI ok
+[2026-10-09 14:50:49] emiten [8/20] HAJJ ok
+[2026-10-09 14:50:50] emiten [9/20] PPRI ok
+[2026-10-09 14:50:51] emiten [10/20] DAAZ ok
+[2026-10-09 14:50:52] emiten [11/20] AYAM ok
+[2026-10-09 14:50:53] emiten [12/20] REAL ok
+[2026-10-09 14:50:53] emiten [13/20] TKIM ok
+[2026-10-09 14:50:55] emiten [14/20] KEEN ok
+[2026-10-09 14:50:56] emiten [15/20] ELSA ok
+[2026-10-09 14:50:57] emiten [16/20] SICO ok
+[2026-10-09 14:50:58] emiten [17/20] BSSR ok
+[2026-10-09 14:50:59] emiten [18/20] JAWA ok
+[2026-10-09 14:51:00] emiten [19/20] ELIT ok
+[2026-10-09 14:51:00] emiten [20/20] MUTU ok
+[2026-10-09 14:52:01] ==================================================
+[2026-10-09 14:52:01] Aplikasi Screener dimulai
+[2026-10-09 14:52:03] Melayani di http://127.0.0.1:8765/
+[2026-10-09 14:52:03] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 14:52:11] berita CNBC-Market: 15 berita
+[2026-10-09 14:52:12] berita BBCA: 9 berita, sentimen 50
+[2026-10-09 14:52:14] berita TLKM: 9 berita, sentimen 56
+[2026-10-09 14:56:50] ksei Periode terbaru : 20260930
+[2026-10-09 14:56:50] ksei Periode sebelumnya: 20260831
+[2026-10-09 14:56:50] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 14:56:50] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 14:56:52] berita [cache] memakai berita yang tersimpan (5 menit lalu)
+[2026-10-09 14:57:04] emiten [1/40] BBCA ok
+[2026-10-09 14:57:06] emiten [2/40] BBRI ok
+[2026-10-09 14:57:07] emiten [3/40] FORU ok
+[2026-10-09 14:57:09] emiten [4/40] CUAN ok
+[2026-10-09 14:57:11] emiten [5/40] BMRI ok
+[2026-10-09 14:57:12] emiten [6/40] PACK ok
+[2026-10-09 14:57:13] emiten [7/40] EMAS ok
+[2026-10-09 14:57:15] emiten [8/40] AHAP ok
+[2026-10-09 14:57:20] emiten [9/40] COCO ok
+[2026-10-09 14:57:23] emiten [10/40] LUCY ok
+[2026-10-09 14:57:24] emiten [11/40] SQMI ok
+[2026-10-09 14:57:24] emiten [12/40] PCAR ok
+[2026-10-09 14:57:25] emiten [13/40] BBNI ok
+[2026-10-09 14:57:28] emiten [14/40] WIFI ok
+[2026-10-09 14:57:28] emiten [15/40] ASPI ok
+[2026-10-09 14:57:29] emiten [16/40] ADMR ok
+[2026-10-09 14:57:30] emiten [17/40] BEKS ok
+[2026-10-09 14:57:31] emiten [18/40] MEJA ok
+[2026-10-09 14:57:32] emiten [19/40] BNBR ok
+[2026-10-09 14:57:32] emiten [20/40] SGER ok
+[2026-10-09 14:57:37] emiten [21/40] BDMN ok
+[2026-10-09 14:57:37] emiten [22/40] CYBR ok
+[2026-10-09 14:57:38] emiten [23/40] BSDE ok
+[2026-10-09 14:57:39] emiten [24/40] GULA ok
+[2026-10-09 14:57:40] emiten [25/40] BIPI ok
+[2026-10-09 14:57:41] emiten [26/40] TRUE ok
+[2026-10-09 14:57:42] emiten [27/40] STRK ok
+[2026-10-09 14:57:43] emiten [28/40] NEST ok
+[2026-10-09 14:57:43] emiten [29/40] SSMS ok
+[2026-10-09 14:57:44] emiten [30/40] ARKO ok
+[2026-10-09 14:57:45] emiten [31/40] MCAS ok
+[2026-10-09 14:57:46] emiten [32/40] TRIN ok
+[2026-10-09 14:57:46] emiten [33/40] BTEK ok
+[2026-10-09 14:57:49] emiten [34/40] PURA ok
+[2026-10-09 14:57:51] emiten [35/40] COIN ok
+[2026-10-09 14:57:54] emiten [36/40] KKES ok
+[2026-10-09 14:57:54] emiten [37/40] NASA ok
+[2026-10-09 14:57:55] emiten [38/40] CDIA ok
+[2026-10-09 14:57:56] emiten [39/40] FILM ok
+[2026-10-09 14:57:56] emiten [40/40] KREN ok
+[2026-10-09 14:58:04] emiten [1/20] AKKU ok
+[2026-10-09 14:58:05] emiten [2/20] MGLV ok
+[2026-10-09 14:58:06] emiten [3/20] ARTO ok
+[2026-10-09 14:58:07] emiten [4/20] FUTR ok
+[2026-10-09 14:58:08] emiten [5/20] IKAI ok
+[2026-10-09 14:58:09] emiten [6/20] DAAZ ok
+[2026-10-09 14:58:10] emiten [7/20] PANI ok
+[2026-10-09 14:58:12] emiten [8/20] BBTN ok
+[2026-10-09 14:58:13] emiten [9/20] BKSL ok
+[2026-10-09 14:58:13] emiten [10/20] CBRE ok
+[2026-10-09 14:58:14] emiten [11/20] SUPA ok
+[2026-10-09 14:58:15] emiten [12/20] AYAM ok
+[2026-10-09 14:58:16] emiten [13/20] CTRA ok
+[2026-10-09 14:58:16] emiten [14/20] DKHH ok
+[2026-10-09 14:58:17] emiten [15/20] PRDA ok
+[2026-10-09 14:58:18] emiten [16/20] HAJJ ok
+[2026-10-09 14:58:19] emiten [17/20] TKIM ok
+[2026-10-09 14:58:20] emiten [18/20] PPRI ok
+[2026-10-09 14:58:20] emiten [19/20] GPSO ok
+[2026-10-09 14:58:21] emiten [20/20] PWON ok
+[2026-10-09 14:59:34] ksei [cache] memakai ksei yang tersimpan (3 menit lalu)
+[2026-10-09 14:59:34] tv [cache] memakai tv yang tersimpan (3 menit lalu)
+[2026-10-09 14:59:34] berita [cache] memakai berita yang tersimpan (7 menit lalu)
+[2026-10-09 14:59:39] emiten [1/40] BBCA ok
+[2026-10-09 14:59:40] ksei [cache] memakai ksei yang tersimpan (3 menit lalu)
+[2026-10-09 14:59:40] tv [cache] memakai tv yang tersimpan (3 menit lalu)
+[2026-10-09 14:59:40] berita [cache] memakai berita yang tersimpan (7 menit lalu)
+[2026-10-09 14:59:40] emiten [2/40] BBRI ok
+[2026-10-09 14:59:41] emiten [3/40] FORU ok
+[2026-10-09 14:59:42] emiten [4/40] CUAN ok
+[2026-10-09 14:59:42] emiten [5/40] BMRI ok
+[2026-10-09 14:59:43] emiten [6/40] PACK ok
+[2026-10-09 14:59:44] emiten [7/40] EMAS ok
+[2026-10-09 14:59:45] emiten [8/40] AHAP ok
+[2026-10-09 14:59:46] emiten [9/40] COCO ok
+[2026-10-09 14:59:46] emiten [10/40] LUCY ok
+[2026-10-09 14:59:47] emiten [11/40] SQMI ok
+[2026-10-09 14:59:48] emiten [12/40] PCAR ok
+[2026-10-09 14:59:49] emiten [13/40] BBNI ok
+[2026-10-09 14:59:50] emiten [14/40] WIFI ok
+[2026-10-09 14:59:50] emiten [15/40] ASPI ok
+[2026-10-09 14:59:51] emiten [16/40] ADMR ok
+[2026-10-09 14:59:52] emiten [17/40] BEKS ok
+[2026-10-09 14:59:53] emiten [18/40] MEJA ok
+[2026-10-09 14:59:53] emiten [19/40] BNBR ok
+[2026-10-09 14:59:54] emiten [20/40] SGER ok
+[2026-10-09 14:59:55] emiten [21/40] BDMN ok
+[2026-10-09 14:59:56] emiten [22/40] CYBR ok
+[2026-10-09 14:59:57] emiten [23/40] BSDE ok
+[2026-10-09 14:59:57] emiten [24/40] GULA ok
+[2026-10-09 14:59:58] emiten [25/40] BIPI ok
+[2026-10-09 14:59:59] emiten [26/40] TRUE ok
+[2026-10-09 15:00:00] emiten [27/40] STRK ok
+[2026-10-09 15:00:00] emiten [28/40] NEST ok
+[2026-10-09 15:00:01] emiten [29/40] SSMS ok
+[2026-10-09 15:00:02] emiten [30/40] ARKO ok
+[2026-10-09 15:00:03] emiten [31/40] MCAS ok
+[2026-10-09 15:00:03] emiten [32/40] TRIN ok
+[2026-10-09 15:00:06] emiten [33/40] BTEK ok
+[2026-10-09 15:00:07] emiten [34/40] PURA ok
+[2026-10-09 15:00:08] emiten [35/40] COIN ok
+[2026-10-09 15:00:08] emiten [1/40] BBCA ok
+[2026-10-09 15:00:10] emiten [36/40] KKES ok
+[2026-10-09 15:00:10] emiten [2/40] BBRI ok
+[2026-10-09 15:00:11] emiten [37/40] NASA ok
+[2026-10-09 15:00:11] emiten [3/40] FORU ok
+[2026-10-09 15:00:12] emiten [38/40] CDIA ok
+[2026-10-09 15:00:12] emiten [4/40] CUAN ok
+[2026-10-09 15:00:13] emiten [39/40] FILM ok
+[2026-10-09 15:00:13] emiten [5/40] BMRI ok
+[2026-10-09 15:00:13] emiten [40/40] KREN ok
+[2026-10-09 15:00:13] emiten [6/40] PACK ok
+[2026-10-09 15:00:14] emiten [7/40] EMAS ok
+[2026-10-09 15:00:15] emiten [8/40] AHAP ok
+[2026-10-09 15:00:16] emiten [9/40] COCO ok
+[2026-10-09 15:00:17] emiten [10/40] LUCY ok
+[2026-10-09 15:00:17] emiten [11/40] SQMI ok
+[2026-10-09 15:00:18] emiten [1/20] AKKU ok
+[2026-10-09 15:00:18] emiten [12/40] PCAR ok
+[2026-10-09 15:00:19] emiten [2/20] MGLV ok
+[2026-10-09 15:00:19] emiten [13/40] BBNI ok
+[2026-10-09 15:00:19] emiten [3/20] ARTO ok
+[2026-10-09 15:00:20] emiten [14/40] WIFI ok
+[2026-10-09 15:00:20] emiten [4/20] FUTR ok
+[2026-10-09 15:00:21] emiten [15/40] ASPI ok
+[2026-10-09 15:00:21] emiten [5/20] IKAI ok
+[2026-10-09 15:00:21] emiten [16/40] ADMR ok
+[2026-10-09 15:00:22] emiten [6/20] DAAZ ok
+[2026-10-09 15:00:22] emiten [17/40] BEKS ok
+[2026-10-09 15:00:22] emiten [7/20] PANI ok
+[2026-10-09 15:00:23] emiten [18/40] MEJA ok
+[2026-10-09 15:00:23] emiten [8/20] BBTN ok
+[2026-10-09 15:00:24] emiten [19/40] BNBR ok
+[2026-10-09 15:00:24] emiten [9/20] CBRE ok
+[2026-10-09 15:00:25] emiten [20/40] SGER ok
+[2026-10-09 15:00:25] emiten [10/20] SUPA ok
+[2026-10-09 15:00:26] emiten [11/20] AYAM ok
+[2026-10-09 15:00:26] emiten [21/40] BDMN ok
+[2026-10-09 15:00:26] emiten [12/20] HAJJ ok
+[2026-10-09 15:00:27] emiten [22/40] CYBR ok
+[2026-10-09 15:00:27] emiten [23/40] BSDE ok
+[2026-10-09 15:00:27] emiten [13/20] TKIM ok
+[2026-10-09 15:00:28] emiten [24/40] GULA ok
+[2026-10-09 15:00:28] emiten [14/20] PPRI ok
+[2026-10-09 15:00:29] emiten [25/40] BIPI ok
+[2026-10-09 15:00:29] emiten [15/20] GPSO ok
+[2026-10-09 15:00:30] emiten [16/20] SLIS ok
+[2026-10-09 15:00:30] emiten [26/40] TRUE ok
+[2026-10-09 15:00:33] emiten [17/20] REAL ok
+[2026-10-09 15:00:34] emiten [27/40] STRK ok
+[2026-10-09 15:00:34] emiten [18/20] BEER ok
+[2026-10-09 15:00:35] emiten [28/40] NEST ok
+[2026-10-09 15:00:35] emiten [19/20] MNCN ok
+[2026-10-09 15:00:36] emiten [29/40] SSMS ok
+[2026-10-09 15:00:36] emiten [20/20] CBDK ok
+[2026-10-09 15:00:36] emiten [30/40] ARKO ok
+[2026-10-09 15:00:39] emiten [31/40] MCAS ok
+[2026-10-09 15:00:40] emiten [32/40] TRIN ok
+[2026-10-09 15:00:41] emiten [33/40] BTEK ok
+[2026-10-09 15:00:41] emiten [34/40] PURA ok
+[2026-10-09 15:00:42] emiten [35/40] COIN ok
+[2026-10-09 15:00:45] emiten [36/40] KKES ok
+[2026-10-09 15:00:45] emiten [37/40] NASA ok
+[2026-10-09 15:00:46] emiten [38/40] CDIA ok
+[2026-10-09 15:00:47] emiten [39/40] FILM ok
+[2026-10-09 15:00:47] emiten [40/40] KREN ok
+[2026-10-09 15:00:54] emiten [1/20] AKKU ok
+[2026-10-09 15:00:55] emiten [2/20] MGLV ok
+[2026-10-09 15:00:55] emiten [3/20] ARTO ok
+[2026-10-09 15:00:56] emiten [4/20] FUTR ok
+[2026-10-09 15:00:59] emiten [5/20] IKAI ok
+[2026-10-09 15:01:00] emiten [6/20] DAAZ ok
+[2026-10-09 15:01:00] emiten [7/20] PANI ok
+[2026-10-09 15:01:01] emiten [8/20] BBTN ok
+[2026-10-09 15:01:02] emiten [9/20] CBRE ok
+[2026-10-09 15:01:03] emiten [10/20] SUPA ok
+[2026-10-09 15:01:04] emiten [11/20] AYAM ok
+[2026-10-09 15:01:07] emiten [12/20] HAJJ ok
+[2026-10-09 15:01:08] emiten [13/20] TKIM ok
+[2026-10-09 15:01:08] emiten [14/20] PPRI ok
+[2026-10-09 15:01:09] emiten [15/20] GPSO ok
+[2026-10-09 15:01:10] emiten [16/20] SLIS ok
+[2026-10-09 15:01:11] emiten [17/20] REAL ok
+[2026-10-09 15:01:11] emiten [18/20] BEER ok
+[2026-10-09 15:01:12] emiten [19/20] MNCN ok
+[2026-10-09 15:01:13] emiten [20/20] CBDK ok
+[2026-10-09 15:01:24] ksei [cache] memakai ksei yang tersimpan (5 menit lalu)
+[2026-10-09 15:01:24] tv [cache] memakai tv yang tersimpan (5 menit lalu)
+[2026-10-09 15:01:24] berita [cache] memakai berita yang tersimpan (9 menit lalu)
+[2026-10-09 15:01:30] emiten [1/40] BBCA ok
+[2026-10-09 15:01:31] emiten [2/40] BBRI ok
+[2026-10-09 15:01:31] emiten [3/40] FORU ok
+[2026-10-09 15:01:32] emiten [4/40] CUAN ok
+[2026-10-09 15:01:33] emiten [5/40] BMRI ok
+[2026-10-09 15:01:34] emiten [6/40] PACK ok
+[2026-10-09 15:01:35] emiten [7/40] EMAS ok
+[2026-10-09 15:01:36] emiten [8/40] AHAP ok
+[2026-10-09 15:01:37] emiten [9/40] COCO ok
+[2026-10-09 15:01:37] emiten [10/40] LUCY ok
+[2026-10-09 15:01:38] emiten [11/40] SQMI ok
+[2026-10-09 15:01:39] emiten [12/40] PCAR ok
+[2026-10-09 15:01:40] emiten [13/40] BBNI ok
+[2026-10-09 15:01:41] emiten [14/40] WIFI ok
+[2026-10-09 15:01:42] emiten [15/40] ASPI ok
+[2026-10-09 15:01:42] emiten [16/40] ADMR ok
+[2026-10-09 15:01:43] emiten [17/40] BEKS ok
+[2026-10-09 15:01:47] emiten [18/40] MEJA ok
+[2026-10-09 15:01:48] emiten [19/40] BNBR ok
+[2026-10-09 15:01:49] emiten [20/40] SGER ok
+[2026-10-09 15:01:50] emiten [21/40] BDMN ok
+[2026-10-09 15:01:51] emiten [22/40] CYBR ok
+[2026-10-09 15:01:51] emiten [23/40] BSDE ok
+[2026-10-09 15:01:52] emiten [24/40] GULA ok
+[2026-10-09 15:01:53] emiten [25/40] BIPI ok
+[2026-10-09 15:01:54] emiten [26/40] TRUE ok
+[2026-10-09 15:01:55] emiten [27/40] STRK ok
+[2026-10-09 15:01:55] emiten [28/40] NEST ok
+[2026-10-09 15:01:56] emiten [29/40] SSMS ok
+[2026-10-09 15:01:57] emiten [30/40] ARKO ok
+[2026-10-09 15:01:58] emiten [31/40] MCAS ok
+[2026-10-09 15:01:59] emiten [32/40] TRIN ok
+[2026-10-09 15:01:59] emiten [33/40] BTEK ok
+[2026-10-09 15:02:00] emiten [34/40] PURA ok
+[2026-10-09 15:02:01] emiten [35/40] COIN ok
+[2026-10-09 15:02:02] emiten [36/40] KKES ok
+[2026-10-09 15:02:02] emiten [37/40] NASA ok
+[2026-10-09 15:02:03] emiten [38/40] CDIA ok
+[2026-10-09 15:02:04] emiten [39/40] FILM ok
+[2026-10-09 15:02:05] emiten [40/40] KREN ok
+[2026-10-09 15:02:13] emiten [1/20] AKKU ok
+[2026-10-09 15:02:13] emiten [2/20] MGLV ok
+[2026-10-09 15:02:14] emiten [3/20] ARTO ok
+[2026-10-09 15:02:15] emiten [4/20] FUTR ok
+[2026-10-09 15:02:16] emiten [5/20] IKAI ok
+[2026-10-09 15:02:19] emiten [6/20] DAAZ ok
+[2026-10-09 15:02:20] emiten [7/20] PANI ok
+[2026-10-09 15:02:20] emiten [8/20] BBTN ok
+[2026-10-09 15:02:24] emiten [9/20] CBRE ok
+[2026-10-09 15:02:25] emiten [10/20] SUPA ok
+[2026-10-09 15:02:26] emiten [11/20] AYAM ok
+[2026-10-09 15:02:31] emiten [12/20] HAJJ ok
+[2026-10-09 15:02:31] emiten [13/20] TKIM ok
+[2026-10-09 15:02:32] emiten [14/20] PPRI ok
+[2026-10-09 15:02:33] emiten [15/20] GPSO ok
+[2026-10-09 15:02:34] emiten [16/20] SLIS ok
+[2026-10-09 15:02:35] emiten [17/20] REAL ok
+[2026-10-09 15:02:35] emiten [18/20] BEER ok
+[2026-10-09 15:02:36] emiten [19/20] BMTR ok
+[2026-10-09 15:02:38] emiten [20/20] RISE ok
+[2026-10-09 15:04:34] ==================================================
+[2026-10-09 15:04:34] Aplikasi Screener dimulai
+[2026-10-09 15:04:36] Melayani di http://127.0.0.1:8765/
+[2026-10-09 15:04:36] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 15:04:43] berita CNBC-Market: 15 berita
+[2026-10-09 15:04:44] berita BBCA: 9 berita, sentimen 50
+[2026-10-09 15:06:14] ksei Periode terbaru : 20260930
+[2026-10-09 15:06:14] ksei Periode sebelumnya: 20260831
+[2026-10-09 15:06:14] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 15:06:15] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 15:06:16] berita CNBC-Market: 15 berita
+[2026-10-09 15:06:17] berita GOTO: 10 berita, sentimen 55
+[2026-10-09 15:06:18] berita BBCA: 9 berita, sentimen 50
+[2026-10-09 15:06:19] berita TLKM: 9 berita, sentimen 56
+[2026-10-09 15:06:20] berita BUMI: 10 berita, sentimen 51
+[2026-10-09 15:06:22] berita BBRI: 10 berita, sentimen 59
+[2026-10-09 15:06:23] berita FORU: 10 berita, sentimen 54
+[2026-10-09 15:06:24] berita SINI: 10 berita, sentimen 50
+[2026-10-09 15:06:25] berita AMMN: 10 berita, sentimen 55
+[2026-10-09 15:06:27] berita PTRO: 10 berita, sentimen 51
+[2026-10-09 15:06:28] berita CUAN: 10 berita, sentimen 60
+[2026-10-09 15:06:29] berita TEBE: 10 berita, sentimen 52
+[2026-10-09 15:06:30] berita BMRI: 10 berita, sentimen 56
+[2026-10-09 15:06:31] berita DEWA: 10 berita, sentimen 55
+[2026-10-09 15:06:33] berita ENRG: 10 berita, sentimen 51
+[2026-10-09 15:06:34] berita TINS: 10 berita, sentimen 56
+[2026-10-09 15:06:35] berita DSSA: 10 berita, sentimen 48
+[2026-10-09 15:06:37] berita PACK: 10 berita, sentimen 51
+[2026-10-09 15:06:38] berita ANTM: 10 berita, sentimen 51
+[2026-10-09 15:06:39] berita EMAS: 10 berita, sentimen 50
+[2026-10-09 15:06:40] berita ASII: 10 berita, sentimen 56
+[2026-10-09 15:06:41] berita IATA: 10 berita, sentimen 49
+[2026-10-09 15:06:43] berita TPIA: 10 berita, sentimen 58
+[2026-10-09 15:06:44] berita PTBA: 9 berita, sentimen 54
+[2026-10-09 15:06:45] berita CSMI: 10 berita, sentimen 52
+[2026-10-09 15:06:47] berita INCO: 10 berita, sentimen 52
+[2026-10-09 15:06:54] emiten [1/40] BBCA ok
+[2026-10-09 15:06:54] emiten [2/40] BBRI ok
+[2026-10-09 15:06:55] emiten [3/40] FORU ok
+[2026-10-09 15:06:56] emiten [4/40] CUAN ok
+[2026-10-09 15:06:57] emiten [5/40] BMRI ok
+[2026-10-09 15:07:00] emiten [6/40] PACK ok
+[2026-10-09 15:07:01] emiten [7/40] EMAS ok
+[2026-10-09 15:07:02] emiten [8/40] AHAP ok
+[2026-10-09 15:07:03] emiten [9/40] COCO ok
+[2026-10-09 15:07:03] emiten [10/40] LUCY ok
+[2026-10-09 15:07:04] emiten [11/40] SQMI ok
+[2026-10-09 15:07:05] emiten [12/40] BBNI ok
+[2026-10-09 15:07:06] emiten [13/40] PCAR ok
+[2026-10-09 15:07:07] emiten [14/40] WIFI ok
+[2026-10-09 15:07:07] emiten [15/40] ADMR ok
+[2026-10-09 15:07:08] emiten [16/40] BEKS ok
+[2026-10-09 15:07:09] emiten [17/40] ASPI ok
+[2026-10-09 15:07:10] emiten [18/40] MEJA ok
+[2026-10-09 15:07:11] emiten [19/40] BNBR ok
+[2026-10-09 15:07:12] emiten [20/40] SGER ok
+[2026-10-09 15:07:12] emiten [21/40] BDMN ok
+[2026-10-09 15:07:13] emiten [22/40] CYBR ok
+[2026-10-09 15:07:14] emiten [23/40] BIPI ok
+[2026-10-09 15:07:15] emiten [24/40] BSDE ok
+[2026-10-09 15:07:16] emiten [25/40] STRK ok
+[2026-10-09 15:07:16] emiten [26/40] GULA ok
+[2026-10-09 15:07:17] emiten [27/40] TRUE ok
+[2026-10-09 15:07:18] emiten [28/40] NEST ok
+[2026-10-09 15:07:19] emiten [29/40] SSMS ok
+[2026-10-09 15:07:20] emiten [30/40] BTEK ok
+[2026-10-09 15:07:20] emiten [31/40] TRIN ok
+[2026-10-09 15:07:21] emiten [32/40] ARKO ok
+[2026-10-09 15:07:22] emiten [33/40] MCAS ok
+[2026-10-09 15:07:23] emiten [34/40] PURA ok
+[2026-10-09 15:07:23] emiten [35/40] KKES ok
+[2026-10-09 15:07:24] emiten [36/40] COIN ok
+[2026-10-09 15:07:25] emiten [37/40] CDIA ok
+[2026-10-09 15:07:26] emiten [38/40] NASA ok
+[2026-10-09 15:07:27] emiten [39/40] FILM ok
+[2026-10-09 15:07:27] emiten [40/40] OMED ok
+[2026-10-09 15:07:32] emiten [1/20] KREN ok
+[2026-10-09 15:07:33] emiten [2/20] AKKU ok
+[2026-10-09 15:07:34] emiten [3/20] MGLV ok
+[2026-10-09 15:07:35] emiten [4/20] ARTO ok
+[2026-10-09 15:07:35] emiten [5/20] FUTR ok
+[2026-10-09 15:07:36] emiten [6/20] IKAI ok
+[2026-10-09 15:07:37] emiten [7/20] DAAZ ok
+[2026-10-09 15:07:38] emiten [8/20] BBTN ok
+[2026-10-09 15:07:38] emiten [9/20] PANI ok
+[2026-10-09 15:07:39] emiten [10/20] CBRE ok
+[2026-10-09 15:07:40] emiten [11/20] SUPA ok
+[2026-10-09 15:07:41] emiten [12/20] AYAM ok
+[2026-10-09 15:07:41] emiten [13/20] TKIM ok
+[2026-10-09 15:07:42] emiten [14/20] HAJJ ok
+[2026-10-09 15:07:43] emiten [15/20] PPRI ok
+[2026-10-09 15:07:44] emiten [16/20] SLIS ok
+[2026-10-09 15:07:44] emiten [17/20] BEER ok
+[2026-10-09 15:07:45] emiten [18/20] GPSO ok
+[2026-10-09 15:07:46] emiten [19/20] REAL ok
+[2026-10-09 15:07:47] emiten [20/20] MGRO ok
+[2026-10-09 15:13:46] ksei [cache] memakai ksei yang tersimpan (8 menit lalu)
+[2026-10-09 15:13:46] tv [cache] memakai tv yang tersimpan (8 menit lalu)
+[2026-10-09 15:13:47] berita CNBC-Market: 15 berita
+[2026-10-09 15:13:48] berita GOTO: 10 berita, sentimen 55
+[2026-10-09 15:13:49] berita BBCA: 9 berita, sentimen 50
+[2026-10-09 15:13:51] berita TLKM: 9 berita, sentimen 56
+[2026-10-09 15:13:52] berita BUMI: 9 berita, sentimen 49
+[2026-10-09 15:13:53] berita BBRI: 10 berita, sentimen 59
+[2026-10-09 15:13:54] berita FORU: 10 berita, sentimen 54
+[2026-10-09 15:13:56] berita SINI: 10 berita, sentimen 50
+[2026-10-09 15:13:57] berita AMMN: 10 berita, sentimen 55
+[2026-10-09 15:13:58] berita PTRO: 10 berita, sentimen 51
+[2026-10-09 15:13:59] berita CUAN: 10 berita, sentimen 60
+[2026-10-09 15:14:00] berita TEBE: 10 berita, sentimen 52
+[2026-10-09 15:14:02] berita BMRI: 10 berita, sentimen 56
+[2026-10-09 15:14:03] berita DEWA: 10 berita, sentimen 56
+[2026-10-09 15:14:07] berita ENRG: 10 berita, sentimen 51
+[2026-10-09 15:14:08] berita TINS: 10 berita, sentimen 56
+[2026-10-09 15:14:09] berita DSSA: 10 berita, sentimen 48
+[2026-10-09 15:14:10] berita PACK: 10 berita, sentimen 51
+[2026-10-09 15:14:11] berita ANTM: 10 berita, sentimen 51
+[2026-10-09 15:14:13] berita EMAS: 10 berita, sentimen 50
+[2026-10-09 15:14:14] berita ASII: 10 berita, sentimen 56
+[2026-10-09 15:14:16] berita IATA: 10 berita, sentimen 49
+[2026-10-09 15:14:17] berita TPIA: 10 berita, sentimen 58
+[2026-10-09 15:14:18] berita PTBA: 9 berita, sentimen 54
+[2026-10-09 15:14:20] berita CSMI: 10 berita, sentimen 52
+[2026-10-09 15:14:21] berita INCO: 10 berita, sentimen 52
+[2026-10-09 15:27:18] ==================================================
+[2026-10-09 15:27:18] Aplikasi Screener dimulai
+[2026-10-09 15:27:20] Melayani di http://127.0.0.1:8765/
+[2026-10-09 15:27:20] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 15:27:53] ksei Periode terbaru : 20260930
+[2026-10-09 15:27:53] ksei Periode sebelumnya: 20260831
+[2026-10-09 15:27:53] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 15:27:54] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 15:27:55] berita CNBC-Market: 15 berita
+[2026-10-09 15:27:57] berita GOTO: 33 berita segar, sentimen 75 (Positif), buzz Ramai
+[2026-10-09 15:27:58] berita BBCA: 19 berita segar, sentimen 70 (Positif), buzz Ramai
+[2026-10-09 15:27:59] berita TLKM: 7 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 15:28:00] berita BUMI: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:28:02] berita BBRI: 19 berita segar, sentimen 85 (Positif), buzz Ramai
+[2026-10-09 15:28:04] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 15:28:09] berita FORU: 8 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 15:28:24] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 15:28:25] berita AMMN: 12 berita segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 15:28:27] berita PTRO: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:28:28] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 15:28:29] berita BMRI: 5 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 15:28:39] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 15:28:40] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 15:28:41] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:28:42] berita DSSA: 11 berita segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 15:28:43] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:28:45] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 15:28:46] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 15:28:48] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:28:49] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:28:50] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:28:52] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 15:28:53] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 15:28:54] berita BRMS: 8 berita segar, sentimen 58 (Netral), buzz Normal
+[2026-10-09 15:29:05] emiten [1/40] GOTO ok
+[2026-10-09 15:29:06] emiten [2/40] BBCA ok
+[2026-10-09 15:29:07] emiten [3/40] TLKM ok
+[2026-10-09 15:29:08] emiten [4/40] BUMI ok
+[2026-10-09 15:29:08] emiten [5/40] BBRI ok
+[2026-10-09 15:29:09] emiten [6/40] SINI ok
+[2026-10-09 15:29:10] emiten [7/40] FORU ok
+[2026-10-09 15:29:11] emiten [8/40] CUAN ok
+[2026-10-09 15:29:12] emiten [9/40] AMMN ok
+[2026-10-09 15:29:12] emiten [10/40] PTRO ok
+[2026-10-09 15:29:13] emiten [11/40] TEBE ok
+[2026-10-09 15:29:14] emiten [12/40] BMRI ok
+[2026-10-09 15:29:15] emiten [13/40] DEWA ok
+[2026-10-09 15:29:16] emiten [14/40] ENRG ok
+[2026-10-09 15:29:17] emiten [15/40] TINS ok
+[2026-10-09 15:29:18] emiten [16/40] DSSA ok
+[2026-10-09 15:29:19] emiten [17/40] PACK ok
+[2026-10-09 15:29:19] emiten [18/40] ANTM ok
+[2026-10-09 15:29:20] emiten [19/40] ASII ok
+[2026-10-09 15:29:21] emiten [20/40] EMAS ok
+[2026-10-09 15:29:22] emiten [21/40] IATA ok
+[2026-10-09 15:29:22] emiten [22/40] TPIA ok
+[2026-10-09 15:29:23] emiten [23/40] PTBA ok
+[2026-10-09 15:29:24] emiten [24/40] INCO ok
+[2026-10-09 15:29:25] emiten [25/40] BRMS ok
+[2026-10-09 15:29:25] emiten [26/40] CSMI ok
+[2026-10-09 15:29:26] emiten [27/40] NAYZ ok
+[2026-10-09 15:29:27] emiten [28/40] DOOH ok
+[2026-10-09 15:29:29] emiten [29/40] JARR ok
+[2026-10-09 15:29:30] emiten [30/40] ISAT ok
+[2026-10-09 15:29:31] emiten [31/40] AHAP ok
+[2026-10-09 15:29:32] emiten [32/40] TOWR ok
+[2026-10-09 15:29:33] emiten [33/40] ADRO ok
+[2026-10-09 15:29:34] emiten [34/40] KOTA ok
+[2026-10-09 15:29:35] emiten [35/40] AADI ok
+[2026-10-09 15:29:36] emiten [36/40] ITMG ok
+[2026-10-09 15:29:37] emiten [37/40] BUVA ok
+[2026-10-09 15:29:38] emiten [38/40] SEMA ok
+[2026-10-09 15:29:39] emiten [39/40] MMIX ok
+[2026-10-09 15:29:40] emiten [40/40] COCO ok
+[2026-10-09 15:29:40] ERROR /api/lengkapi: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2026-10-09 15:31:43] ==================================================
+[2026-10-09 15:31:43] Aplikasi Screener dimulai
+[2026-10-09 15:31:46] Melayani di http://127.0.0.1:8765/
+[2026-10-09 15:31:46] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 15:32:19] ksei Periode terbaru : 20260930
+[2026-10-09 15:32:19] ksei Periode sebelumnya: 20260831
+[2026-10-09 15:32:19] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 15:32:19] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 15:32:22] berita CNBC-Market: 15 berita
+[2026-10-09 15:32:24] berita BBCA: 19 berita segar, sentimen 70 (Positif), buzz Ramai
+[2026-10-09 15:32:25] berita GOTO: 33 berita segar, sentimen 75 (Positif), buzz Ramai
+[2026-10-09 15:32:28] berita TLKM: 7 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 15:32:29] berita BUMI: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:32:31] berita BBRI: 14 berita segar, sentimen 75 (Positif), buzz Ramai
+[2026-10-09 15:32:33] berita FORU: 8 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 15:32:34] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 15:32:37] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 15:32:41] berita AMMN: 12 berita segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 15:32:42] berita PTRO: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:32:43] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 15:32:45] berita BMRI: 5 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 15:32:46] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 15:32:48] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 15:32:49] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:32:50] ksei [cache] memakai ksei yang tersimpan (1 menit lalu)
+[2026-10-09 15:32:50] tv [cache] memakai tv yang tersimpan (0 menit lalu)
+[2026-10-09 15:32:50] berita DSSA: 11 berita segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 15:32:50] berita CNBC-Market: 15 berita
+[2026-10-09 15:32:52] berita BBCA: 19 berita segar, sentimen 70 (Positif), buzz Ramai
+[2026-10-09 15:32:52] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:32:52] berita GOTO: 33 berita segar, sentimen 75 (Positif), buzz Ramai
+[2026-10-09 15:32:53] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 15:32:53] berita TLKM: 7 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 15:32:54] berita BUMI: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:32:55] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 15:32:55] berita BBRI: 14 berita segar, sentimen 75 (Positif), buzz Ramai
+[2026-10-09 15:32:56] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:32:56] berita FORU: 8 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 15:32:57] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 15:32:57] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:32:58] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 15:32:59] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 15:32:59] berita AMMN: 12 berita segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 15:33:01] berita PTRO: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:33:01] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:33:02] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 15:33:03] berita BRMS: 8 berita segar, sentimen 58 (Netral), buzz Normal
+[2026-10-09 15:33:03] berita BMRI: 5 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 15:33:04] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 15:33:04] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 15:33:05] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 15:33:06] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:33:07] berita DSSA: 11 berita segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 15:33:08] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:33:09] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 15:33:10] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 15:33:11] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:33:12] emiten [1/40] BBCA ok
+[2026-10-09 15:33:12] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:33:13] emiten [2/40] BBRI ok
+[2026-10-09 15:33:14] emiten [3/40] FORU ok
+[2026-10-09 15:33:14] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 15:33:15] emiten [4/40] CUAN ok
+[2026-10-09 15:33:15] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:33:15] emiten [5/40] BMRI ok
+[2026-10-09 15:33:16] berita BRMS: 8 berita segar, sentimen 58 (Netral), buzz Normal
+[2026-10-09 15:33:16] emiten [6/40] PACK ok
+[2026-10-09 15:33:17] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 15:33:18] emiten [7/40] EMAS ok
+[2026-10-09 15:33:20] emiten [8/40] AHAP ok
+[2026-10-09 15:33:21] berita CNBC-Market: 15 berita
+[2026-10-09 15:33:22] emiten [9/40] COCO ok
+[2026-10-09 15:33:25] berita CSMI: 6 berita segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 15:33:27] emiten [10/40] SQMI ok
+[2026-10-09 15:33:33] berita CNBC-Market: 15 berita
+[2026-10-09 15:33:33] emiten [11/40] LUCY ok
+[2026-10-09 15:33:35] berita NAYZ: 7 berita segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 15:33:36] emiten [12/40] PCAR ok
+[2026-10-09 15:33:37] emiten [1/40] BBCA ok
+[2026-10-09 15:33:39] emiten [13/40] BBNI ok
+[2026-10-09 15:33:39] berita CNBC-Market: 15 berita
+[2026-10-09 15:33:39] emiten [2/40] GOTO ok
+[2026-10-09 15:33:40] emiten [14/40] WIFI ok
+[2026-10-09 15:33:40] emiten [3/40] TLKM ok
+[2026-10-09 15:33:41] berita DOOH: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 15:33:41] emiten [15/40] ADMR ok
+[2026-10-09 15:33:42] emiten [4/40] BUMI ok
+[2026-10-09 15:33:42] emiten [16/40] STRK ok
+[2026-10-09 15:33:43] emiten [5/40] BBRI ok
+[2026-10-09 15:33:43] emiten [17/40] BNBR ok
+[2026-10-09 15:33:44] berita CNBC-Market: 15 berita
+[2026-10-09 15:33:44] emiten [6/40] FORU ok
+[2026-10-09 15:33:45] emiten [18/40] MEJA ok
+[2026-10-09 15:33:45] emiten [7/40] SINI ok
+[2026-10-09 15:33:46] emiten [19/40] BEKS ok
+[2026-10-09 15:33:46] berita JARR: 21 berita segar, sentimen 7 (Negatif), buzz Ramai
+[2026-10-09 15:33:47] emiten [8/40] CUAN ok
+[2026-10-09 15:33:47] emiten [20/40] SGER ok
+[2026-10-09 15:33:48] emiten [9/40] AMMN ok
+[2026-10-09 15:33:49] emiten [21/40] ASPI ok
+[2026-10-09 15:33:50] emiten [10/40] PTRO ok
+[2026-10-09 15:33:50] berita CNBC-Market: 15 berita
+[2026-10-09 15:33:54] emiten [22/40] BDMN ok
+[2026-10-09 15:33:55] emiten [11/40] TEBE ok
+[2026-10-09 15:33:55] berita ISAT: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:33:55] emiten [23/40] BIPI ok
+[2026-10-09 15:33:57] emiten [24/40] CYBR ok
+[2026-10-09 15:33:57] emiten [12/40] BMRI ok
+[2026-10-09 15:34:02] berita CNBC-Market: 15 berita
+[2026-10-09 15:34:02] emiten [13/40] DEWA ok
+[2026-10-09 15:34:03] emiten [25/40] BSDE ok
+[2026-10-09 15:34:05] berita AHAP: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 15:34:05] emiten [14/40] ENRG ok
+[2026-10-09 15:34:06] emiten [26/40] TRUE ok
+[2026-10-09 15:34:07] emiten [15/40] TINS ok
+[2026-10-09 15:34:07] emiten [27/40] GULA ok
+[2026-10-09 15:34:08] emiten [16/40] DSSA ok
+[2026-10-09 15:34:09] emiten [28/40] NEST ok
+[2026-10-09 15:34:09] berita CNBC-Market: 15 berita
+[2026-10-09 15:34:09] emiten [17/40] PACK ok
+[2026-10-09 15:34:10] emiten [29/40] GPRA ok
+[2026-10-09 15:34:11] berita TOWR: 1 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 15:34:11] emiten [18/40] ASII ok
+[2026-10-09 15:34:12] emiten [30/40] ARKO ok
+[2026-10-09 15:34:12] emiten [19/40] ANTM ok
+[2026-10-09 15:34:13] emiten [31/40] BTEK ok
+[2026-10-09 15:34:13] emiten [20/40] EMAS ok
+[2026-10-09 15:34:14] berita CNBC-Market: 15 berita
+[2026-10-09 15:34:14] emiten [32/40] TRIN ok
+[2026-10-09 15:34:15] emiten [21/40] IATA ok
+[2026-10-09 15:34:15] emiten [33/40] SSMS ok
+[2026-10-09 15:34:16] berita ARCI: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 15:34:16] emiten [22/40] PTBA ok
+[2026-10-09 15:34:16] emiten [34/40] MCAS ok
+[2026-10-09 15:34:16] emiten [23/40] TPIA ok
+[2026-10-09 15:34:17] emiten [35/40] KKES ok
+[2026-10-09 15:34:17] emiten [24/40] BRMS ok
+[2026-10-09 15:34:18] emiten [36/40] PURA ok
+[2026-10-09 15:34:18] emiten [25/40] INCO ok
+[2026-10-09 15:34:19] emiten [37/40] COIN ok
+[2026-10-09 15:34:19] berita CNBC-Market: 15 berita
+[2026-10-09 15:34:19] emiten [26/40] CSMI ok
+[2026-10-09 15:34:20] emiten [38/40] FILM ok
+[2026-10-09 15:34:20] emiten [27/40] NAYZ ok
+[2026-10-09 15:34:20] berita KOTA: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:34:20] emiten [39/40] CDIA ok
+[2026-10-09 15:34:21] emiten [28/40] DOOH ok
+[2026-10-09 15:34:21] emiten [40/40] NASA ok
+[2026-10-09 15:34:21] emiten [29/40] JARR ok
+[2026-10-09 15:34:22] emiten [30/40] ISAT ok
+[2026-10-09 15:34:24] emiten [31/40] AHAP ok
+[2026-10-09 15:34:24] berita CNBC-Market: 15 berita
+[2026-10-09 15:34:31] emiten [32/40] TOWR ok
+[2026-10-09 15:34:37] berita ADRO: 7 berita segar, sentimen 58 (Netral), buzz Normal
+[2026-10-09 15:34:41] emiten [33/40] ARCI ok
+[2026-10-09 15:34:45] berita CNBC-Market: 15 berita
+[2026-10-09 15:34:45] emiten [1/20] MGLV ok
+[2026-10-09 15:34:45] emiten [34/40] KOTA ok
+[2026-10-09 15:34:49] berita AADI: 12 berita segar, sentimen 88 (Positif), buzz Ramai
+[2026-10-09 15:34:49] emiten [2/20] KREN ok
+[2026-10-09 15:34:49] emiten [35/40] ADRO ok
+[2026-10-09 15:34:50] emiten [36/40] AADI ok
+[2026-10-09 15:34:50] emiten [3/20] AKKU ok
+[2026-10-09 15:34:51] emiten [4/20] IKAI ok
+[2026-10-09 15:34:51] emiten [37/40] BUVA ok
+[2026-10-09 15:34:53] emiten [5/20] FUTR ok
+[2026-10-09 15:34:53] emiten [38/40] ITMG ok
+[2026-10-09 15:34:53] berita CNBC-Market: 15 berita
+[2026-10-09 15:34:54] emiten [6/20] ARTO ok
+[2026-10-09 15:34:54] emiten [39/40] SEMA ok
+[2026-10-09 15:34:54] berita BUVA: 6 berita segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 15:34:54] emiten [40/40] MMIX ok
+[2026-10-09 15:34:54] emiten [7/20] BBTN ok
+[2026-10-09 15:34:55] emiten [8/20] DAAZ ok
+[2026-10-09 15:34:56] emiten [9/20] PANI ok
+[2026-10-09 15:34:57] emiten [10/20] CBRE ok
+[2026-10-09 15:34:58] berita CNBC-Market: 15 berita
+[2026-10-09 15:34:58] emiten [11/20] SUPA ok
+[2026-10-09 15:34:59] emiten [12/20] HAJJ ok
+[2026-10-09 15:34:59] berita ITMG: 3 berita segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 15:35:00] emiten [13/20] AYAM ok
+[2026-10-09 15:35:00] emiten [1/20] COCO ok
+[2026-10-09 15:35:01] emiten [14/20] TKIM ok
+[2026-10-09 15:35:01] emiten [2/20] PSAB ok
+[2026-10-09 15:35:01] emiten [15/20] BEER ok
+[2026-10-09 15:35:02] emiten [3/20] KLBF ok
+[2026-10-09 15:35:02] berita CNBC-Market: 15 berita
+[2026-10-09 15:35:02] emiten [16/20] SLIS ok
+[2026-10-09 15:35:03] emiten [4/20] BRPT ok
+[2026-10-09 15:35:06] berita SEMA: 2 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:35:06] emiten [17/20] REAL ok
+[2026-10-09 15:35:07] emiten [5/20] MBSS ok
+[2026-10-09 15:35:07] emiten [18/20] PBSA ok
+[2026-10-09 15:35:07] ERROR /api/berita: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2026-10-09 15:35:07] emiten [6/20] POLA ok
+[2026-10-09 15:35:08] emiten [19/20] VERN ok
+[2026-10-09 15:35:08] emiten [7/20] SMLE ok
+[2026-10-09 15:35:09] emiten [20/20] PPRI ok
+[2026-10-09 15:35:10] emiten [8/20] ASLI ok
+[2026-10-09 15:35:14] emiten [9/20] KETR ok
+[2026-10-09 15:35:15] emiten [10/20] INET ok
+[2026-10-09 15:35:16] emiten [11/20] INDY ok
+[2026-10-09 15:35:18] emiten [12/20] RAJA ok
+[2026-10-09 15:35:21] emiten [13/20] BYAN ok
+[2026-10-09 15:35:24] emiten [14/20] SQMI ok
+[2026-10-09 15:35:25] emiten [15/20] LUCY ok
+[2026-10-09 15:35:26] emiten [16/20] PCAR ok
+[2026-10-09 15:35:27] emiten [17/20] BULL ok
+[2026-10-09 15:35:28] emiten [18/20] HRTA ok
+[2026-10-09 15:35:29] emiten [19/20] BBNI ok
+[2026-10-09 15:35:29] emiten [20/20] MDKA ok
+[2026-10-09 15:35:29] ERROR /api/lengkapi: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2026-10-09 15:36:20] ==================================================
+[2026-10-09 15:36:20] Aplikasi Screener dimulai
+[2026-10-09 15:36:22] Melayani di http://127.0.0.1:8765/
+[2026-10-09 15:36:22] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 15:36:25] berita CNBC-Market: 15 berita
+[2026-10-09 15:36:26] berita BBRI: 14 berita segar, sentimen 75 (Positif), buzz Ramai
+[2026-10-09 15:47:01] ksei Periode terbaru : 20260930
+[2026-10-09 15:47:01] ksei Periode sebelumnya: 20260831
+[2026-10-09 15:47:01] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 15:47:02] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 15:47:07] ksei [cache] memakai ksei yang tersimpan (0 menit lalu)
+[2026-10-09 15:47:15] berita CNBC-Market: 15 berita
+[2026-10-09 15:47:15] berita CNBC-Market: 15 berita
+[2026-10-09 15:47:16] berita BBCA: 19 berita segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 15:47:16] berita BBCA: 19 berita segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 15:47:18] berita GOTO: 33 berita segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 15:47:18] berita GOTO: 33 berita segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 15:47:24] berita BBRI: 14 berita segar, sentimen 75 (Positif), buzz Ramai
+[2026-10-09 15:47:24] berita BBRI: 14 berita segar, sentimen 75 (Positif), buzz Ramai
+[2026-10-09 15:47:25] berita TLKM: 7 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 15:47:25] berita TLKM: 7 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 15:47:27] berita BUMI: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:47:27] berita BUMI: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:47:28] berita FORU: 8 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 15:47:28] berita FORU: 8 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 15:47:29] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 15:47:29] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 15:47:31] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 15:47:31] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 15:47:32] berita AMMN: 12 berita segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 15:47:33] berita AMMN: 12 berita segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 15:47:34] berita PTRO: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:47:34] berita PTRO: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:47:36] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 15:47:36] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 15:47:37] berita BMRI: 5 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 15:47:37] berita BMRI: 5 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 15:47:39] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 15:47:39] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 15:47:41] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:47:41] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:47:44] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 15:47:44] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 15:47:46] berita DSSA: 11 berita segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 15:47:46] berita DSSA: 11 berita segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 15:47:47] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:47:47] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:47:49] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 15:47:49] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 15:47:50] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 15:47:50] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 15:47:52] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:47:52] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:47:53] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:47:53] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:47:54] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 15:47:54] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 15:48:01] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:48:01] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:48:02] berita BRMS: 8 berita segar, sentimen 58 (Netral), buzz Normal
+[2026-10-09 15:48:02] berita BRMS: 8 berita segar, sentimen 58 (Netral), buzz Normal
+[2026-10-09 15:48:04] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 15:48:04] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 15:48:04] ERROR /api/scan: [WinError 10053] An established connection was aborted by the software in your host machine
+[2026-10-09 15:48:10] emiten [1/40] BBCA ok
+[2026-10-09 15:48:11] emiten [2/40] BBRI ok
+[2026-10-09 15:48:12] emiten [3/40] FORU ok
+[2026-10-09 15:48:13] emiten [4/40] CUAN ok
+[2026-10-09 15:48:13] emiten [5/40] BMRI ok
+[2026-10-09 15:48:14] emiten [6/40] PACK ok
+[2026-10-09 15:48:15] emiten [7/40] EMAS ok
+[2026-10-09 15:48:16] emiten [8/40] AHAP ok
+[2026-10-09 15:48:16] emiten [9/40] COCO ok
+[2026-10-09 15:48:17] emiten [10/40] BBNI ok
+[2026-10-09 15:48:18] emiten [11/40] PCAR ok
+[2026-10-09 15:48:19] emiten [12/40] SQMI ok
+[2026-10-09 15:48:20] emiten [13/40] LUCY ok
+[2026-10-09 15:48:21] emiten [14/40] STRK ok
+[2026-10-09 15:48:21] emiten [15/40] MEJA ok
+[2026-10-09 15:48:22] emiten [16/40] WIFI ok
+[2026-10-09 15:48:23] emiten [17/40] ADMR ok
+[2026-10-09 15:48:24] emiten [18/40] BNBR ok
+[2026-10-09 15:48:25] emiten [19/40] BEKS ok
+[2026-10-09 15:48:26] emiten [20/40] SGER ok
+[2026-10-09 15:48:26] emiten [21/40] ASPI ok
+[2026-10-09 15:48:27] emiten [22/40] BIPI ok
+[2026-10-09 15:48:28] emiten [23/40] BDMN ok
+[2026-10-09 15:48:29] emiten [24/40] CYBR ok
+[2026-10-09 15:48:30] emiten [25/40] BSDE ok
+[2026-10-09 15:48:30] emiten [26/40] TRUE ok
+[2026-10-09 15:48:31] emiten [27/40] GULA ok
+[2026-10-09 15:48:32] emiten [28/40] NEST ok
+[2026-10-09 15:48:33] emiten [29/40] ARKO ok
+[2026-10-09 15:48:33] emiten [30/40] BTEK ok
+[2026-10-09 15:48:34] emiten [31/40] TRIN ok
+[2026-10-09 15:48:35] emiten [32/40] SSMS ok
+[2026-10-09 15:48:36] emiten [33/40] PURA ok
+[2026-10-09 15:48:37] emiten [34/40] KKES ok
+[2026-10-09 15:48:38] emiten [35/40] MCAS ok
+[2026-10-09 15:48:38] emiten [36/40] CDIA ok
+[2026-10-09 15:48:39] emiten [37/40] COIN ok
+[2026-10-09 15:48:40] emiten [38/40] FILM ok
+[2026-10-09 15:48:41] emiten [39/40] MGLV ok
+[2026-10-09 15:48:42] emiten [40/40] NASA ok
+[2026-10-09 15:49:32] emiten [1/20] BBTN ok
+[2026-10-09 15:49:37] emiten [2/20] AKKU ok
+[2026-10-09 15:49:38] emiten [3/20] KREN ok
+[2026-10-09 15:49:48] emiten [4/20] ARTO ok
+[2026-10-09 15:49:49] emiten [5/20] IKAI ok
+[2026-10-09 15:49:50] emiten [6/20] FUTR ok
+[2026-10-09 15:49:51] emiten [7/20] PANI ok
+[2026-10-09 15:49:52] emiten [8/20] DAAZ ok
+[2026-10-09 15:49:53] emiten [9/20] VERN ok
+[2026-10-09 15:49:54] emiten [10/20] CBRE ok
+[2026-10-09 15:49:56] emiten [11/20] HAJJ ok
+[2026-10-09 15:49:57] emiten [12/20] SUPA ok
+[2026-10-09 15:49:58] emiten [13/20] BEER ok
+[2026-10-09 15:49:59] emiten [14/20] AYAM ok
+[2026-10-09 15:50:00] emiten [15/20] LEAD ok
+[2026-10-09 15:50:01] emiten [16/20] TKIM ok
+[2026-10-09 15:50:01] emiten [17/20] REAL ok
+[2026-10-09 15:50:02] emiten [18/20] SLIS ok
+[2026-10-09 15:50:03] emiten [19/20] PPRI ok
+[2026-10-09 15:50:04] emiten [20/20] GPSO ok
+[2026-10-09 15:57:51] berita CNBC-Market: 15 berita
+[2026-10-09 15:57:52] berita CSMI: 6 berita segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 15:57:55] berita CNBC-Market: 15 berita
+[2026-10-09 15:57:56] berita DOOH: 9 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 15:57:59] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:00] berita TOWR: 1 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 15:58:02] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:03] berita JARR: 21 berita segar, sentimen 7 (Negatif), buzz Ramai
+[2026-10-09 15:58:06] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:07] berita NAYZ: 7 berita segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 15:58:09] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:11] berita ISAT: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:58:13] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:14] berita ARCI: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 15:58:17] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:18] berita KOTA: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:58:21] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:22] berita AHAP: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 15:58:25] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:26] berita ADRO: 7 berita segar, sentimen 58 (Netral), buzz Normal
+[2026-10-09 15:58:29] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:30] berita AADI: 12 berita segar, sentimen 88 (Positif), buzz Ramai
+[2026-10-09 15:58:33] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:34] berita BUVA: 6 berita segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 15:58:37] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:38] berita ITMG: 3 berita segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 15:58:41] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:42] berita SEMA: 2 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:58:45] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:46] berita MMIX: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 15:58:49] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:50] berita KLBF: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 15:58:52] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:53] berita COCO: 2 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:58:56] berita CNBC-Market: 15 berita
+[2026-10-09 15:58:57] berita PSAB: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:59:00] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:01] berita MBSS: 4 berita segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 15:59:03] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:04] berita BRPT: 6 berita segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 15:59:07] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:08] berita ASLI: 6 berita segar, sentimen 7 (Negatif), buzz Normal
+[2026-10-09 15:59:11] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:12] berita INDY: 4 berita segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 15:59:15] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:16] berita KETR: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 15:59:18] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:20] berita POLA: 9 berita segar, sentimen 38 (Negatif), buzz Normal
+[2026-10-09 15:59:22] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:23] berita SMLE: 7 berita segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 15:59:26] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:27] berita INET: 4 berita segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 15:59:30] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:31] berita RAJA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:59:33] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:34] berita HRTA: 3 berita segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 15:59:37] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:38] berita BBNI: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 15:59:41] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:42] berita BYAN: 58 berita segar, sentimen 90 (Positif), buzz Ramai
+[2026-10-09 15:59:45] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:46] berita PCAR: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 15:59:49] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:50] berita SQMI: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:59:53] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:54] berita BULL: 2 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 15:59:57] berita CNBC-Market: 15 berita
+[2026-10-09 15:59:58] berita LUCY: 2 berita segar, sentimen 25 (Negatif), buzz Sepi
+[2026-10-09 16:00:01] berita CNBC-Market: 15 berita
+[2026-10-09 16:00:03] berita JECX: 2 berita segar, sentimen 50 (Netral), buzz Sepi

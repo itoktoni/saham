@@ -163,6 +163,7 @@ tbody tr.dipantau td{background:var(--accent2)}
     <button class="btn pri" id="btnDownload">Download Data</button>
     <button class="btn" id="btnScanPasar">Scan Seluruh Pasar</button>
     <button class="btn" id="btnLengkapi" title="Ambil data kas Yahoo (EV/CFO, badge, klasifikasi, skor) untuk 40 saham paling likuid yang masih kosong">Lengkapi Kas Top-40</button>
+    <button class="btn" id="btnBerita" title="Ambil berita + sentimen 1 per 1 untuk saham likuid (tidak sepi) yang belum ada Story, maks 60 per klik — klik lagi untuk lanjut/klik saat jalan untuk henti">Ambil Berita 1-1</button>
     <button class="btn" id="btnImpor">Impor Berkas</button>
     <button class="btn" id="btnContoh">Muat Contoh</button>
     <button class="btn" id="btnEkspor">Ekspor CSV</button>
@@ -727,11 +728,29 @@ var SP = (function () {
     return '<span title="' + b.label + (b.flag ? " · " + b.flag : "") + '">' + kode + ' <i style="display:inline-block;width:8px;height:8px;border-radius:99px;background:' + b.warna + '"></i></span>';
   }
 
-  // ---------- label industri (klasifikasi sesaham + fallback sektor) ----------
+  // ---------- koreksi sektor/industri per emiten (taksonomi umum salah menaruh sawit) ----------
+  // Menang atas semua sumber (TV/Yahoo/IDX). Tambahkan kode di sini bila ada yang salah.
+  var AGRI_FIX = {
+    AALI: "Perkebunan & Sawit", LSIP: "Perkebunan & Sawit", TAPG: "Perkebunan & Sawit",
+    DSNG: "Perkebunan & Sawit", SIMP: "Perkebunan & Sawit", SSMS: "Perkebunan & Sawit",
+    BWPT: "Perkebunan & Sawit", GZCO: "Perkebunan & Sawit", NSSS: "Perkebunan & Sawit",
+    TLDN: "Perkebunan & Sawit", STAA: "Perkebunan & Sawit", ANJT: "Perkebunan & Sawit",
+    PALM: "Perkebunan & Sawit", SMAR: "Perkebunan & Sawit", JAWA: "Perkebunan & Sawit",
+    PGUN: "Perkebunan & Sawit", WAPO: "Perkebunan & Sawit", MGRO: "Perkebunan & Sawit",
+    ANDI: "Perkebunan & Sawit",
+    HOKI: "Agribisnis Pangan", GULA: "Agribisnis Pangan", BISI: "Agribisnis Pangan"
+  };
+  function sektorFix(kode) {
+    var ind = AGRI_FIX[String(kode || "").toUpperCase()];
+    return ind ? { sektor: "Barang Baku", industri: ind } : null;
+  }
+  // ---------- label industri (koreksi emiten > klasifikasi sesaham > fallback sektor) ----------
   function decodeEnt(s) {
     return String(s == null ? "" : s).replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
   }
   function industriLabel(kode, fundMap, sektorFallback) {
+    var fx = sektorFix(kode);
+    if (fx) return fx.industri;
     fundMap = fundMap || {};
     var f = fundMap[kode] || {};
     var kl = f.klasifikasi || {};
@@ -1282,14 +1301,19 @@ var SP = (function () {
       var sbS = sb.speed === "SIAP" ? 100 : (sb.speed === "JALAN" ? 50 : (sb.speed === "KELUAR" ? 0 : 40));
       var tk = x.tk || {};
       var tkS = !tk.ok ? 40 : (tk.setup === "BREAKOUT" || tk.setup === "PULLBACK" || tk.setup === "SPRING" ? 100 : (tk.setup === "JAUH" ? 0 : 40));
-      var total = 0.35 * fsT + 0.25 * mosS + 0.2 * aksiS + 0.12 * sbS + 0.08 * tkS;
+      // Story = komponen utama (25%), sejajar FS. Tanpa berita = 0 (aturan main).
+      var storyN = (x._story != null && isFinite(x._story)) ? x._story : 0;
+      var total = 0.25 * fsT + 0.20 * mosS + 0.15 * aksiS + 0.10 * sbS + 0.05 * tkS + 0.25 * storyN;
       if (x.val && x.val.labaSemuKill) total = Math.min(total, 10);
+      if (x._gorengan) total = Math.min(total, 45);
       var why = [];
       if (x.fs) why.push("FS " + Math.round(x.fs.total) + x.fs.tier);
       if (x.val && x.val.intrinsic > 0) why.push("MOS " + Math.round(x.val.mos) + "%");
       why.push(aksi);
       if (sb.speed) why.push(sb.speed);
       if (tk.ok) why.push(tk.setup);
+      if (x._story != null) why.push(x._storyWhy || ("Story" + Math.round(x._story)));
+      if (x._gorengan) why.push("SPEKULATIF");
       return { kode: x.kode, total: Math.round(total * 10) / 10, aksi: aksi, why: why.join(" · ") };
     });
     out.sort(function (a, b) { return b.total - a.total || (a.kode < b.kode ? -1 : 1); });
@@ -1303,6 +1327,8 @@ var SP = (function () {
     return rows.map(function (r) {
       var kode = String(r.kode || "").trim().toUpperCase();
       var k = ksei[kode] || {};
+      var fx0 = sektorFix(kode);
+      if (fx0 && r) r.sektor = fx0.sektor;
       var val = valuasi(r, fundMap[kode]);
       var entry = scopeMap[kode] || null;
       var fase = detectFase(r, k, entry);
@@ -1368,7 +1394,7 @@ var SP = (function () {
 
   return {
     toNum: toNum, parseCSV: parseCSV, ingestKsei: ingestKsei, nf: nf, pct: pct, fmtBig: fmtBig,
-    posRange: posRange, detectFase: detectFase, streakBeli: streakBeli, stageB: stageB, teknikal: teknikal, rekomendasi: rekomendasi, dominanJual: dominanJual,
+    posRange: posRange, detectFase: detectFase, streakBeli: streakBeli, stageB: stageB, teknikal: teknikal, rekomendasi: rekomendasi, sektorFix: sektorFix, dominanJual: dominanJual,
     posRange: posRange, detectFase: detectFase, valuasi: valuasi, fundSkor: fundSkor,
     skor: skor, aksi: aksi, build: build, TF: TF, tfCfg: tfCfg, skorTF: skorTF, aksiTF: aksiTF, sisaTF: sisaTF,
     METODE: METODE, matchMetode: matchMetode, agregatSektor: agregatSektor, narasiSektor: narasiSektor, barAkumulasi: barAkumulasi, combo: combo, exitLevel: exitLevel,     smartMoney: smartMoney, bounty: bounty, suspen: suspen, suspenKet: suspenKet, pesaing: pesaing, brokerInfo: brokerInfo, brTag: brTag, gabung: gabung, industriLabel: industriLabel, seindustri: seindustri,
@@ -1383,7 +1409,7 @@ var SP = (function () {
    Antarmuka
    ===================================================================== */
 (function () {
-  var S = { data: [], ksei: {}, scope: {}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], filterKlas: [], tampilSepi: false, q: "", metode: "Semua" };
+  var S = { data: [], ksei: {}, scope: {}, berita: {emiten:{},umum:[]}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], filterKlas: [], tampilSepi: false, q: "", metode: "Semua" };
   var FASE_ORDER = ["Semua", "Akumulasi", "Spring", "Markup", "Distribusi", "Netral"];
   var AKSI_ORDER = ["Semua", "Beli", "Pantau", "Hindari"];
   var KLAS_ORDER = ["Semua", "Bangkit", "Kaya Kas", "Tumbuh Cepat", "Siklus", "Raksasa Stabil"];
@@ -1495,9 +1521,60 @@ var SP = (function () {
     { k: "fv", t: "FV", n: true, get: function (d) { return d.val.intrinsic; } },
     { k: "maxbuy", t: "MaxBuy", n: true, get: function (d) { return d.val.maxBuy; } },
     { k: "skor", t: "Skor", n: true, get: function (d) { return d._scD != null ? d._scD : d.skor; } },
+    { k: "story", t: "Story", n: true, get: function (d) { var b = beritaOf(d.kode); return b.n ? b.sentimen : -1; } },
     { k: "aksi", t: "Aksi", n: false, get: function (d) { var a = (d._aksiD != null ? d._aksiD : d.aksi); return AKSI_RANK[a] || 0; } },
   ];
 
+  function gabungBerita(nb) {
+    // Gabung (tak pernah timpa) — backend tanpa-cache hanya mengembalikan kode yang diminta.
+    S.berita = S.berita || { emiten: {}, umum: [] };
+    var em = ((nb || {}).emiten) || {};
+    Object.keys(em).forEach(function (k) { S.berita.emiten[k] = em[k]; });
+    if (((nb || {}).umum || []).length) S.berita.umum = nb.umum;
+    if (nb && nb.diambil) S.berita.diambil = nb.diambil;
+  }
+  function beritaOf(kode) {
+    var m = ((S.berita || {}).emiten || {})[String(kode || "").toUpperCase()];
+    return m || { n: 0, sentimen: 50, label: "Netral", buzz: "Sepi", top: [] };
+  }
+  function isGorengan(x) {
+    try {
+      var r20 = SP.toNum(x.r.ret20);
+      var fsT = (x.fs && isFinite(x.fs.total)) ? x.fs.total : 99;
+      var b = beritaOf(x.kode);
+      var ramai = (b.buzz === "Ramai") || (SP.toNum(x.r.s_vol_ratio) >= 2);
+      return (r20 >= 15 && (fsT < 60 || (x.val && x.val.labaSemuKill))) || (ramai && fsT < 60 && r20 >= 8);
+    } catch (e) { return false; }
+  }
+  // Matriks Story (komponen UTAMA rekomendasi, bobot 25%).
+  // Nilai 0-100 dari buzz (banyaknya berita segar ≤7 hari) x sentimen (nada berita).
+  // Buzz: Ramai ≥10 · Normal 3-9 · Sepi 1-2 · 0 berita = tanpa story.
+  // Tanpa berita (n=0) = 0 — saham ber-story selalu mengungguli yang sepi.
+  //   Ramai+Positif 100 · Normal+Positif 80 · Sepi+Positif 60
+  //   Ramai+Netral 60 · Normal+Netral 50 · Sepi+Netral 40
+  //   Ramai+Negatif 20 · Normal+Negatif 30 · Sepi+Negatif 35
+  function storyNilai(x) {
+    var b = beritaOf(x.kode);
+    if (!b.n) return { nilai: 0, why: "Story0(tanpa berita)" };
+    var pos = b.sentimen >= 60, neg = b.sentimen < 40;
+    var m = pos ? { "Ramai": 100, "Normal": 80, "Sepi": 60 }
+      : neg ? { "Ramai": 20, "Normal": 30, "Sepi": 35 }
+      : { "Ramai": 60, "Normal": 50, "Sepi": 40 };
+    var nilai = m[b.buzz] != null ? m[b.buzz] : 0;
+    return { nilai: nilai, why: "Story" + nilai + "(" + b.buzz + "/" + b.label + ")" };
+  }
+  function storyBadge(x) {
+    var b = beritaOf(x.kode);
+    if (!b.n) return '<span class="mut" title="Belum ada berita segar ≤7 hari — klik Ambil Berita 1-1">—</span>';
+    var cls = b.label === "Positif" ? "a-beli" : (b.label === "Negatif" ? "a-hindar" : "a-pantau");
+    var g = isGorengan(x) ? " 🔥" : "";
+    var tip = b.n + " berita segar ≤7 hari · sentimen " + b.sentimen + "/100 (" + b.label + ") · buzz " + b.buzz + (isGorengan(x) ? " · NAIK TANPA FUNDAMENTAL" : "");
+    return "<span class=\"aksi " + cls + "\" title=\"" + tip + "\">" + b.buzz + " " + b.sentimen + g + "</span>";
+  }
+  function ringkasLokal(x) {
+    var b = beritaOf(x.kode);
+    return x.kode + " " + (x._aksiD || x.aksi) + " — FS " + (x.fs ? Math.round(x.fs.total) + x.fs.tier : "-") + ", MOS " + Math.round(x.val.mos) + "%, fase " + x.fase + ", sentimen " + b.label + " (" + b.n + " berita)" + (isGorengan(x) ? ". WASPADA: naik tanpa fundamental, jangan chase" : ".");
+  }
   function faseBadge(f) {
     var cls = { "Akumulasi": "b-akum", "Spring": "b-spring", "Markup": "b-markup", "Distribusi": "b-dist", "Netral": "b-netral" }[f] || "b-netral";
     return '<span class="badge ' + cls + '">' + f + "</span>";
@@ -1542,6 +1619,14 @@ var SP = (function () {
       x._scD = SP.skorTF(x.r, x.k, x.fase, x.val, tf, x._streak);
       x._hold = SP.sisaTF(x.umurSejak || hariIni(), hariIni(), tf);
       x._aksiD = SP.aksiTF(x.fase, x._scD, x.val, x.pos, x.asing_pnl != null ? -x.asing_pnl : null, tf, { lewatHold: x._hold.lewat, isLockH0: !!x.lockH0, ruang52: x.ruang52 });
+      var _b = beritaOf(x.kode);
+      x._sent = _b.sentimen;
+      x._buzz = _b.buzz;
+      x._gorengan = isGorengan(x);
+      var _st = storyNilai(x);
+      x._story = _st.nilai;
+      x._storyWhy = _st.why;
+      if (x._gorengan && x._aksiD === "Beli") x._aksiD = "Pantau";
     });
     // Multi-filter: fase (OR di dalam grup) + aksi (OR di dalam grup), AND antar grup
     if (S.filterFase.length) d = d.filter(function (x) { return S.filterFase.indexOf(x.fase) >= 0; });
@@ -1623,15 +1708,22 @@ var SP = (function () {
         '<td class="n">' + fvTxt + "</td>" +
         '<td class="n">' + mbTxt + "</td>" +
         '<td class="n">' + scD + "</td>" +
+        "<td>" + storyBadge(x) + "</td>" +
         "<td>" + aksiBadge(x._aksiD != null ? x._aksiD : x.aksi) + "</td>" +
         "</tr>";
     }).join("");
     $("tbl").tBodies[0].innerHTML = body || '<tr><td colspan="' + (COLS.length + (S.mode === "pasar" ? 1 : 0)) + '" class="mut" style="text-align:center;padding:26px">Tidak ada saham cocok dengan filter.</td></tr>';
     renderReko();
+    var _stAda = 0;
+    S.data.forEach(function (x) { if (beritaOf(x.kode).n) _stAda++; });
     $("cnt").innerHTML = d.length + " dari " + S.data.length + " saham" +
       (S.dibuat ? " · data " + String(S.dibuat).slice(5, 16).replace("T", " ") : "") +
+      (S.mode === "watchlist" ? ' · <span class="mut" title="Harga Yahoo tutup terakhir">harga Yahoo</span>' : ' · <span class="mut" title="Harga TradingView scanner, bisa beda 1 tick vs Yahoo">harga TV</span>') +
+      (S.berita && S.berita.diambil ? " · berita " + String(S.berita.diambil).slice(5, 16).replace("T", " ") : "") +
+      (S.data.length ? ' · <span class="' + (_stAda ? "mut" : "neg") + '" title="Saham dengan berita segar ≤7 hari">Story ' + _stAda + "/" + S.data.length + (_stAda ? "" : " — klik “Ambil Berita 1-1”") + "</span>" : "") +
       (sembunyiSepi && !S.tampilSepi ? ' · <span class="mut">' + sembunyiSepi + " disembunyikan: sepi (<Rp500jt/hari) — centang “Tampilkan yang sepi”</span>" : "") +
-      (S.mode === "pasar" ? ' · <span class="mut">mode pasar: nilai FS/MOS dari angka TTM — klik baris saham untuk laporan segar + analisis lengkap, atau pakai Download Data</span>' : "");
+      (S.mode === "pasar" ? ' · <span class="mut">mode pasar: nilai FS/MOS dari angka TTM — klik baris saham untuk laporan segar + analisis lengkap, atau pakai Download Data</span>' : "") +
+      ' · <span class="mut">' + BUILD_V + "</span>";
     $("empty").hidden = S.data.length > 0;
     $("tw").hidden = S.data.length === 0;
     renderCek();
@@ -2037,11 +2129,24 @@ var SP = (function () {
       kontrakBox(x, harga, tp, sl) +
       "</div>";
 
+    var bt = beritaOf(x.kode);
+    var newsHtml = ((bt.top || []).map(function (n) {
+      var lk = String(n.link || "#").replace(/"/g, "");
+      var jd = String(n.judul || "").replace(/</g, "");
+      var sk = n.skor > 0 ? "<span class=\"pos\">+" + n.skor + "</span>" : (n.skor < 0 ? "<span class=\"neg\">" + n.skor + "</span>" : "<span class=\"mut\">0</span>");
+      return "<div class=\"kv\"><span class=\"k\"><a href=\"" + lk + "\" target=\"_blank\" rel=\"noopener\">" + jd + "</a><br><span class=\"mut\">" + String(n.sumber || "") + " " + String(n.tgl || "").slice(0, 16) + "</span></span><span class=\"v\">" + sk + "</span></div>";
+    }).join("")) || "<div class=\"mut\">Belum ada berita terkait — klik Download Data dulu.</div>";
+    var gorengWarn = isGorengan(x) ? "<div class=\"warn\">Naik tanpa fundamental — harga naik cepat (ret20 " + nf(SP.toNum(x.r.ret20), 1) + "%) tapi FS " + (x.fs ? Math.round(x.fs.total) + x.fs.tier : "lemah") + ". Jangan chase; spekulasi/sentimen, bukan investasi. Maksimal Pantau.</div>" : "";
+    var sCerita = "<div class=\"step\"><h3>2c · Story, Berita &amp; Sentimen</h3>" +
+      rowx("Buzz", bt.n ? bt.buzz + " (" + bt.n + " berita segar ≤7 hari)" : "— (belum ada berita segar)", "Ramai = ≥10 berita segar — waspada pom-pom ritel bila fundamental lemah.") +
+      rowx("Sentimen", bt.n ? bt.sentimen + "/100 (" + bt.label + ")" : "— (belum ada berita)", "Leksikon Indonesia: naik/laba/dividen (+) vs turun/rugi/suspend (-).") +
+      gorengWarn + newsHtml +
+      "<div class=\"note\">Ringkasan: " + ringkasLokal(x) + "</div></div>";
     var s5 = '<div class="step"><h3>5 · Catatan &amp; Sumber</h3>' +
       row("Kualitas data", (r.sumber || "—")) +
       '<div class="warn">Bukan sinyal beli/jual. Fase dihitung dari harga/volume (Yahoo) + kepemilikan bulanan (KSEI). Verifikasi sebelum bertransaksi.</div></div>';
 
-    $("dwBody").innerHTML = s0 + s1 + s2 + s2b + s2d + s3 + s4 + s5;
+    $("dwBody").innerHTML = s0 + s1 + s2 + s2b + s2d + sCerita + s3 + s4 + s5;
     var modal = $("dwModal");
     function hitLot() {
       var m = SP.toNum(modal.value);
@@ -2524,6 +2629,15 @@ var SP = (function () {
     S.data = SP.build(S._csvRows || [], S.ksei, S.fund.emiten || {}, S.scope.emiten || {});
     var ctxA = { unggulan: sektorUnggulan() };
     S.data.forEach(function (x) { x.fs = SP.fundSkor(x.r, (S.fund.emiten || {})[x.kode], ctxA); });
+    S.data.forEach(function (x) {
+      var _b = beritaOf(x.kode);
+      x._sent = _b.sentimen;
+      x._buzz = _b.buzz;
+      x._gorengan = isGorengan(x);
+      var _st = storyNilai(x);
+      x._story = _st.nilai;
+      x._storyWhy = _st.why;
+    });
     updateUmur();
     renderTema();
     render();
@@ -2548,7 +2662,7 @@ var SP = (function () {
       "<tr><td>Netral</td><td>Belum jelas</td><td>tunggu konfirmasi</td></tr></tbody></table>" +
       "<p><b>Aksi:</b> <b>Beli</b> hanya saat <i>akumulasi</i>, <i>spring</i>, atau <b>markup AWAL</b> (harga masih di bawah ~55% rentang), dengan <b>skor ≥ 70</b>; pada akumulasi/spring juga ditahan bila asing sudah untung ≥ 10% (risiko distribusi). <b>Markup lanjut</b> (harga sudah tinggi di rentang) = <b>Pantau</b> — jangan chase; tunggu pullback. <b>Distribusi</b> = <b>Hindari</b>.</p>" +
       "<h3>3 · Skor 0–100</h3>" +
-      "<p>15% Nilai (MOS dicap di 50%, di-decay mengikuti drawdown dari high 52mg, digabung 60/40 dengan sudut rata2 beli asing) · 30% Kualitas (ROE/DER/tren laba) · 15% Timing (fase bandar) · 10% Aliran (Δ kepemilikan) · 30% Momrev (koreksi kenaikan 1 bulan terakhir — runner yang sudah terlalu jauh dinaikkan skornya).</p>" +
+      "<p>15% Nilai (MOS dicap di 50%, di-decay mengikuti drawdown dari high 52mg, digabung 60/40 dengan sudut rata2 beli asing) · 30% Kualitas (ROE/DER/tren laba) · 15% Timing (fase bandar) · 10% Aliran (Δ kepemilikan) · 30% Momrev (koreksi kenaikan 1 bulan terakhir — runner yang sudah terlalu jauh dinaikkan skornya). <b>Rekomendasi</b> = 25% FS + 20% MOS + 15% aksi + 10% StageB + 5% technical + <b>25% Story</b> (matriks di bawah — tanpa berita = 0); saham <b>naik tanpa fundamental (gorengan)</b> dicap maks 45 + aksi Beli diturunkan ke Pantau.</p>" +
       "<p><b>Hasil backtest (80 kandidat top, 2 tahun, hold-out):</b> dengan ambang ini, sinyal <b>Beli</b> hanya ~12% baris dan hijau " + SP.KALIBRASI.hijau3 + " pada 3 bulan ke depan vs " + SP.KALIBRASI.base3 + " tanpa skor (" + SP.KALIBRASI.lift3 + "); pada horizon 1 bulan kenaikan <i>tidak</i> bisa dijanjikan — skor membaik dari −1,9pp (rumus lama) menjadi " + SP.KALIBRASI.lift1 + " atas acak. Empat dari lima sinyal lama justru merah.</p>" +
       "<p><b>Horizon &amp; kontrak:</b> skor, aksi, dan masa kontrak memakai horizon <b>3 bulan (60 hari bursa)</b>. Kolom <b>Umur Fase</b> = sejak fase itu pertama terpantau di aplikasi ini; kolom <b>Kontrak</b> = catatan posisi Beli dengan masa 60 hari bursa (chip <code>H+n</code>, merah <code>KDL</code> bila lewat). Pilih <i>Rencana keluar ≤1 bulan</i> di drawer untuk melihat peringatan batas horizon.</p>" +
       "<h3>4 · Rata-rata asing &amp; upside</h3>" +
@@ -2557,9 +2671,21 @@ var SP = (function () {
       "<p><b>C0</b> = tidak ada bukti · <b>C1</b> = 1 bukti · <b>C2</b> = 2 bukti · <b>C3</b> = 3 bukti. Tiga bukti: (1) <b>Streak</b> — broker top net-buy ≥3 dari 5 hari terakhir; (2) <b>Insider</b> — direksi/komisaris beli ≤60 hari terakhir; (3) <b>Fase</b> — Spring/Akumulasi. Tanda <b>?</b> = datanya belum lengkap (bukan bukti negatif); <b>—</b> = butuh Download Data. <b>Breaker</b> (fase Distribusi atau insider jual) membatasi maks C1. Kombo hanya info pendamping — <b>tidak mengubah skor/aksi</b>.</p>" +
       "<h3>6 · Direktori broker</h3>" +
       "<p>Setiap kode broker berdot warna: <b>biru</b> Asing · <b>hijau</b> Smart money · <b>abu</b> Abu-abu · <b>cokelat</b> Ritel · <b>abu muda</b> Zombie · <b>kuning</b> kombo ritel rawan · <b>hijau muda</b> scalper · <b>oranye/biru/ungu</b> afiliasi (PP/Sinarmas/Salim/Bakrie). Arahkan kursor untuk nama sekuritas. Aturan ukuran: <b>net ≥Rp1M di broker ritel = besar, bukan ritel perorangan</b>; Rp100jt–1M = campuran. Daftar di <code>data/broker-direktori.json</code> boleh kamu edit.</p>" +
+      "<h3>6b · Matriks Story (komponen utama, bobot 25%)</h3>" +
+      "<p>Story hanya memakai <b>berita segar ≤7 hari</b> yang menyebut kode saham di judul. <b>Buzz</b> = jumlahnya: <b>Ramai ≥10</b> · <b>Normal 3–9</b> · <b>Sepi 1–2</b> · <b>0 = tanpa story</b>. Sentimen = perbandingan judul positif vs negatif (skala 0–100).</p>" +
+      "<table><thead><tr><th>Buzz \\ Sentimen</th><th>Positif (≥60)</th><th>Netral (40–59)</th><th>Negatif (&lt;40)</th></tr></thead><tbody>" +
+      "<tr><td>Ramai (≥10 berita)</td><td>100</td><td>60</td><td>20</td></tr>" +
+      "<tr><td>Normal (3–9)</td><td>80</td><td>50</td><td>30</td></tr>" +
+      "<tr><td>Sepi (1–2)</td><td>60</td><td>40</td><td>35</td></tr>" +
+      "<tr><td>Tanpa berita segar (0)</td><td colspan=\"3\">0</td></tr></tbody></table>" +
+      "<p>Story sejajar FS (masing-masing 25%) — bukan bonus. Saham tanpa berita segar otomatis kehilangan 25 poin, jadi saham ber-story positif selalu mengungguli yang sepi. Berita negatif yang ramai = nilai terendah (20). Cap gorengan (maks 45) dan cap laba-semu (maks 10) tetap berlaku — Story tidak bisa mengangkat gorengan ke papan atas.</p>" +
       "<h3>7 · Keterbatasan</h3>" +
-      "<p>Kepemilikan KSEI bersifat <b>bulanan</b> (bukan harian), sehingga rata2 asing adalah perkiraan. Data harga/volume harian dari Yahoo/TradingView. <b>Umur fase</b> hanya sejak pertama terpantau di aplikasi ini (penyimpanan lokal peramban) — bukan awal fase sebenarnya, apalagi untuk scan pasar penuh tanpa riwayat. Ini alat bantu keputusan, bukan nasihat investasi.</p>";
+      "<p>Kepemilikan KSEI bersifat <b>bulanan</b> (bukan harian), sehingga rata2 asing adalah perkiraan. Data harga/volume harian dari Yahoo/TradingView. <b>Harga watchlist (Yahoo) vs pasar (TradingView) bisa beda 1 tick</b> — cek jam data di penghitung baris. <b>Berita/sentimen</b> dari RSS Google News + CNBC (gratis, <b>tanpa cache — selalu segar</b>), hanya <b>berita ≤7 hari</b> yang menyebut kode di judul; sentimen leksikon Indonesia, buzz Ramai + fundamental lemah = tanda pom-pom. Tanpa AI — seluruh skor dihitung lokal rule-based. <b>Umur fase</b> hanya sejak pertama terpantau di aplikasi ini (penyimpanan lokal peramban) — bukan awal fase sebenarnya, apalagi untuk scan pasar penuh tanpa riwayat. Ini alat bantu keputusan, bukan nasihat investasi.</p>";
   }
+
+  // Penanda versi Jr. — kalau angka di penghitung baris tidak sama dengan ini,
+  // berarti tab browser masih memuat JavaScript lama: tekan Ctrl+F5.
+  var BUILD_V = "v2026-10-09E · Reko FS25/MOS20/Aksi15/SB10/TK5/Story25 · buzz segar7hr";
 
   // ---------- event ----------
   var APP = (location.protocol === "http:" || location.protocol === "https:");
@@ -2575,10 +2701,11 @@ var SP = (function () {
       S.tema = j.tema || {};
       S.dirBroker = j.direktori || {};
       S.fund = j.fund || {};
+      gabungBerita(j.berita);
       S.mode = "watchlist"; muatPicked();
       S.dibuat = j.dibuat || "";
       rebuild();
-      toast("Data dimuat: " + (j.jumlah || S.data.length) + " emiten · KSEI " + ((j.ksei && j.ksei.periode) || "-"));
+      toast("Data dimuat: " + (j.jumlah || S.data.length) + " emiten · KSEI " + ((j.ksei && j.ksei.periode) || "-") + " · berita " + Object.keys(((j.berita || {}).emiten) || {}).length + " emiten");
     }).catch(function (e) {
       toast("Gagal: " + (e && e.message ? e.message : e));
     }).then(function () { b.disabled = false; b.textContent = asli; });
@@ -2591,6 +2718,7 @@ var SP = (function () {
       if (!j || !j.ok) throw new Error((j && j.error) || "gagal memindai");
       S._csvRows = j.saham || [];
       SP.ingestKsei(j.ksei || {}, S.ksei);
+      gabungBerita(j.berita);
       S.mode = "pasar"; muatPicked();
       S.dibuat = j.dibuat || "";
       return fetch("/api/harian").then(function (r) { return r.json(); }).then(function (h) {
@@ -2608,7 +2736,7 @@ var SP = (function () {
         rebuild();
         renderReko();
         if (S.mode === "pasar") {
-          toast("Seluruh pasar dimuat: " + (j.jumlah || S.data.length) + " saham" + (dariCache ? " (" + dariCache + " dari cache kas)" : "") + " · melengkapi kas otomatis…");
+          toast("Seluruh pasar dimuat: " + (j.jumlah || S.data.length) + " saham" + (dariCache ? " (" + dariCache + " dari cache kas)" : "") + " · Story " + Object.keys(((j.berita || {}).emiten) || {}).length + " emiten — klik Ambil Berita 1-1 untuk sisanya · melengkapi kas otomatis…");
           lengkapiOtomatis(SP.AUTO_LENGKAPI, "Otomatis").then(function (dd) {
             rebuild(); renderReko();
             toast("Kas terisi: " + dd + " emiten (cache 30 hari).");
@@ -2709,6 +2837,37 @@ var SP = (function () {
     }).catch(function (e) {
       toast("Gagal: " + (e && e.message ? e.message : e));
     });
+  };
+  $("btnBerita").onclick = function () {
+    if (!APP) { toast("Buka aplikasi dulu: klik dua kali 'Jalankan Screener'"); return; }
+    // Klik saat jalan = hentikan setelah kode ini selesai.
+    if (S._jalanBerita) { S._jalanBerita = false; toast("Berhenti setelah kode ini."); return; }
+    if (!(S._csvRows || []).length) { toast("Unduh data / scan pasar dulu."); return; }
+    // Semua saham tidak sepi (likuid ≥Rp500jt/hari) yang belum punya Story,
+    // paling likuid dulu, maks 60 per klik — klik lagi = lanjut batch berikutnya.
+    var rows = (S._csvRows || []).filter(function (r) { return SP.toNum(r.nilai_harian) >= 500000000; })
+      .sort(function (a, b2) { return SP.toNum(b2.nilai_harian) - SP.toNum(a.nilai_harian); }).slice(0, 60);
+    if (!rows.length) { toast("Tidak ada saham likuid (≥Rp500jt/hari)."); return; }
+    var punya = ((S.berita || {}).emiten || {});
+    var kurang = rows.map(function (r) { return String(r.kode || "").toUpperCase(); }).filter(function (k) { return k && !punya[k]; });
+    if (!kurang.length) { toast("Saham likuid sudah ada beritanya."); return; }
+    var b = this, asli = b.textContent, i = 0, ok = 0;
+    S._jalanBerita = true;
+    function satu() {
+      if (!S._jalanBerita || i >= kurang.length) {
+        S._jalanBerita = false; b.textContent = asli;
+        rebuild(); renderReko();
+        toast("Story: " + ok + "/" + kurang.length + " berhasil" + (i < kurang.length ? " · dihentikan" : "") + ".");
+        return;
+      }
+      var k = kurang[i];
+      b.textContent = "Berita " + (i + 1) + "/" + kurang.length + " " + k + "… (klik=henti)";
+      fetch("/api/berita?kodes=" + encodeURIComponent(k)).then(function (r) { return r.json(); }).then(function (j) {
+        if (j && j.ok && j.berita) { gabungBerita(j.berita); ok++; rebuild(); }
+        i++; satu();
+      }).catch(function () { i++; satu(); });
+    }
+    satu();
   };
   $("btnImpor").onclick = function () { $("fileIn").click(); };
   $("btnTambah").onclick = function () {

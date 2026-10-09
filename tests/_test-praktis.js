@@ -651,5 +651,23 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("reko: jam data tampil", html.includes("S.dibuat"));
 }
 
+// 40) koreksi sektor sawit (LSIP dkk bukan Konsumer Primer)
+{
+  const fx = SP.sektorFix("lsip");
+  cek("sektorFix: LSIP sawit", !!fx && fx.sektor === "Barang Baku" && fx.industri === "Perkebunan & Sawit", JSON.stringify(fx));
+  cek("sektorFix: tak dikenal null", SP.sektorFix("BBCA") === null);
+  cek("industriLabel: koreksi menang atas fund", SP.industriLabel("LSIP", { LSIP: { klasifikasi: { industri: ["Konsumer"] } } }, "X") === "Perkebunan & Sawit");
+  const dd = [
+    { kode: "LSIP", sektor: "Process Industries" }, { kode: "AALI", sektor: "Process Industries" },
+    { kode: "TAPG", sektor: "Konsumer Primer" }, { kode: "BBCA", sektor: "Keuangan" }
+  ];
+  const se = SP.seindustri("LSIP", dd, {});
+  cek("seindustri: kompetitor LSIP sesama sawit", se.industri === "Perkebunan & Sawit" && se.peers.indexOf("AALI") >= 0 &&
+    se.peers.indexOf("TAPG") >= 0 && se.peers.indexOf("BBCA") < 0, JSON.stringify(se));
+  const bL = SP.build([{ kode: "LSIP", harga: "1460", eps: "10", ekuitas: "1000", saham: "100", laba: "100",
+    cagr: "0", der: "0.2", sektor: "Process Industries", s_springlow: "1400", s_resistance: "1600" }], {}, {}, {})[0];
+  cek("build: sektor LSIP dikoreksi", bL.sektor === "Barang Baku" && bL.r.sektor === "Barang Baku", bL.sektor);
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);

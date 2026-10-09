@@ -105,6 +105,7 @@ def load_mod(nama, berkas):
 _fd = None      # fetch-data-idx (Yahoo + IDX)
 _ksei = None    # fetch-ksei
 _scope = None   # fetch-sahamscope
+_berita = None  # fetch-berita (RSS + sentimen)
 
 
 def modul():
@@ -114,6 +115,21 @@ def modul():
     if _ksei is None:
         _ksei = load_mod("fetch_ksei", "fetch-ksei.py")
     return _fd, _ksei
+
+
+def ambil_berita(kodes, delay=0.5):
+    # TANPA cache baca: tiap aksi user selalu fetch segar dari jaringan.
+    # (Arsip file berita.json tetap ditulis modul, tapi tidak pernah dibaca.)
+    global _berita
+    if _berita is None:
+        _berita = load_mod("fetch_berita", "fetch-berita.py")
+    try:
+        return _berita.ambil_berita(
+            kodes, log_fn=lambda m: tulis_log("berita " + m.strip() if m else ""),
+            delay=delay)
+    except Exception as e:  # noqa: BLE001
+        tulis_log("berita gagal: %s" % e)
+        return {"emiten": {}, "umum": [], "gagal": [str(e)[:120]]}
 
 
 CACHE_SCOPE = 1 * 3600   # 1 jam
@@ -437,6 +453,8 @@ def muat_semua():
         tulis_log("brokersum gagal: %s" % e)
 
     say("Selesai. %d emiten siap." % len(saham))
+    say("Mengunduh berita + sentimen segar (RSS, tanpa cache)...")
+    berita = ambil_berita(kodes)
     say("Memuat peta tema...")
     tema = muat_tema()
     say("Memuat fundamental gabungan...")
@@ -448,6 +466,7 @@ def muat_semua():
         "ksei": ksei,
         "saham": saham,
         "scope": scope or {},
+        "berita": berita or {"emiten": {}, "umum": []},
         "tema": tema,
         "fund": fund,
         "direktori": _baca_json("broker-direktori.json"),
@@ -502,8 +521,13 @@ class Handler(BaseHTTPRequestHandler):
                                     log_fn=lambda m: tulis_log("tv " + m))
                 if not saham:
                     return self._json({"ok": False, "error": "Gagal mengambil data TradingView."}, 502)
+                # Berita 25 emiten terlikuid, selalu segar (tanpa cache).
+                lik = sorted(saham, key=lambda r: -(r.get("nilai_harian") or 0))[:25]
+                top = [r.get("kode") for r in lik if r.get("kode")]
+                berita = ambil_berita(top)
                 return self._json({
                     "ok": True, "jumlah": len(saham), "ksei": ksei or {}, "saham": saham,
+                    "berita": berita or {"emiten": {}, "umum": []},
                     "dibuat": datetime.now().astimezone().isoformat(timespec="seconds"),
                 })
             if jalur == "/api/lengkapi":
@@ -551,6 +575,17 @@ class Handler(BaseHTTPRequestHandler):
                 if not fu or not fu.get("emiten"):
                     return self._json({"ok": False, "error": "belum ada data fundamental gabungan."}, 404)
                 return self._json({"ok": True, "fund": fu})
+            if jalur == "/api/berita":
+                q = parse_qs(u.query)
+                kirim = bersih_kode((q.get("kodes", [""])[0] or "").split(","))[:40]
+                if not kirim:
+                    kirim = daftar_baca()[:25]
+                # TANPA cache: selalu fetch segar kode yang diminta.
+                b = ambil_berita(kirim, delay=1.0)
+                if not (b.get("emiten") or {}):
+                    return self._json({"ok": False, "error": "gagal mengambil berita%s." % (
+                        " (%s)" % "; ".join((b.get("gagal") or [])[:2]) if b.get("gagal") else "")}, 502)
+                return self._json({"ok": True, "berita": b})
             if jalur == "/api/stock":
                 q = parse_qs(u.query)
                 kk = bersih_kode([q.get("kode", [""])[0]])
@@ -624,6 +659,7 @@ class Handler(BaseHTTPRequestHandler):
                     "ok": True, "dibuat": datetime.now().astimezone().isoformat(timespec="seconds"),
                     "saham": recs[0], "k": kmap.get(kode, {}), "scopeEntry": scopeEntry,
                     "fundEntry": fundEntry, "wajar": wajar,
+                    "berita": (ambil_berita([kode]).get("emiten") or {}).get(kode, {}),
                 })
             if jalur == "/api/direktori":
                 dd = _baca_json("broker-direktori.json")
