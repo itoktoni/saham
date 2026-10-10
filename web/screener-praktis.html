@@ -2413,7 +2413,7 @@ var SP = (function () {
       return "<div class=\"kv\"><span class=\"k\"><a href=\"" + lk + "\" target=\"_blank\" rel=\"noopener\">" + jd + "</a><br><span class=\"mut\">" + String(n.sumber || "") + " " + String(n.tgl || "").slice(0, 16) + "</span></span><span class=\"v\">" + sk + "</span></div>";
     }).join("")) || "<div class=\"mut\">Belum ada berita terkait — klik Download Data dulu.</div>";
     var gorengWarn = isGorengan(x) ? "<div class=\"warn\">Naik tanpa fundamental — harga naik cepat (ret20 " + nf(SP.toNum(x.r.ret20), 1) + "%) tapi FS " + (x.fs ? Math.round(x.fs.total) + x.fs.tier : "lemah") + ". Jangan chase; spekulasi/sentimen, bukan investasi. Maksimal Pantau.</div>" : "";
-    var sCerita = "<div class=\"step\"><h3>2c · Story, Berita &amp; Sentimen</h3>" +
+    var sCerita = "<div class=\"step\"><h3>2e · Story, Berita &amp; Sentimen</h3>" +
       rowx("Nilai Story", storyNilai(x).nilai + " / 100 (bobot 25% rekomendasi)",
         "Matriks buzz × sentimen (bantuan 6b). Tanpa berita sama sekali = 0; berita lama tetap dipakai.") +
       rowx("Buzz", bt.n ? bt.buzz + " (" + bt.n + " berita" +
