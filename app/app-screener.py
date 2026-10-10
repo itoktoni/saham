@@ -370,7 +370,7 @@ def muat_fund(kodes):
 def muat_labarugi():
     try:
         return _baca_json("labarugi.json").get("emiten") or {}
-    except (OSError, AttributeError):
+    except (OSError, AttributeError, ValueError):
         return {}
 
 
@@ -466,9 +466,11 @@ def ambil_emiten(kodes):
         except Exception as e:  # noqa: BLE001
             log("%s: error %s" % (kode, str(e)[:120]))
     try:
+        gabung = muat_labarugi()
+        gabung.update(labarugi)
         with open("labarugi.json", "w", encoding="utf-8") as fh:
             json.dump({"diambil": datetime.now().astimezone().isoformat(timespec="seconds"),
-                       "emiten": labarugi}, fh, ensure_ascii=False)
+                       "emiten": gabung}, fh, ensure_ascii=False)
     except OSError:
         pass
     return recs
