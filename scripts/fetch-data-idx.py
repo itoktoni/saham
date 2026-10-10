@@ -879,6 +879,36 @@ def build_record(kode, prof, fund, ch, args):
     }
 
 
+def _lr_label(e, awalan):
+    fmt = ((e.get("endDate") or {}).get("fmt") if isinstance(e.get("endDate"), dict) else e.get("endDate"))
+    if isinstance(fmt, str) and len(fmt) >= 4:
+        return fmt[:10]
+    return awalan
+
+
+def _lr_deret(rows, batas, awalan):
+    rows = [r for r in (rows or []) if isinstance(r, dict)]
+    rows = sorted(rows, key=lambda z: num((z.get("endDate") or {}).get("raw"), 0))
+    out = []
+    for r in rows:
+        rev = r.get("totalRevenue")
+        ni = r.get("netIncome")
+        rev = num(rev, None) if rev is not None else None
+        ni = num(ni, None) if ni is not None else None
+        if rev is None and ni is None:
+            continue
+        out.append({"t": _lr_label(r, awalan), "rev": rev, "ni": ni})
+    return out[-batas:]
+
+
+def labarugi_series(fund):
+    """Deret revenue + net income dari payload Yahoo. Rupiah penuh, None bila tak ada."""
+    fund = fund or {}
+    iq = ((fund.get("incomeStatementHistoryQuarterly") or {}).get("incomeStatementHistory") or [])
+    ih = ((fund.get("incomeStatementHistory") or {}).get("incomeStatementHistory") or [])
+    return {"q": _lr_deret(iq, 4, "Q?"), "y": _lr_deret(ih, 5, "20??")}
+
+
 # ----------------------------------------------------------------------------
 # Regime pasar (Langkah 1: Regime Makro)
 #
