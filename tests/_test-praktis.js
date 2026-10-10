@@ -669,5 +669,113 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("build: sektor LSIP dikoreksi", bL.sektor === "Barang Baku" && bL.r.sektor === "Barang Baku", bL.sektor);
 }
 
+// 41) premi naratif: Story mengangkat FV beserta seluruh turunannya
+{
+  cek("premi: positif penuh = maks", SP.premiNaratif(100, "Positif") === SP.PREMI_STORY_MAX, String(SP.premiNaratif(100, "Positif")));
+  cek("premi: netral proporsional", SP.premiNaratif(50, "Netral") === SP.PREMI_STORY_MAX / 2, String(SP.premiNaratif(50, "Netral")));
+  cek("premi: tanpa berita = 0", SP.premiNaratif(0, "Netral") === 0);
+  cek("premi: buzz tinggi tapi negatif = 0", SP.premiNaratif(100, "Negatif") === 0);
+
+  const dasar = { kode: "P", harga: "80", eps: "10", ekuitas: "1000", saham: "100", laba: "100", cagr: "5", der: "0.2" };
+  const vTanpa = SP.valuasi(dasar);
+  const vDengan = SP.valuasi(Object.assign({}, dasar, { _premiStory: 10 }));
+  cek("premi: FV naik persis sesuai persen", Math.abs(vDengan.intrinsic / vTanpa.intrinsic - 1.1) < 1e-9,
+    vTanpa.intrinsic + " -> " + vDengan.intrinsic);
+  cek("premi: FV dasar disimpan", Math.abs(vDengan.intrinsicDasar - vTanpa.intrinsic) < 1e-9, String(vDengan.intrinsicDasar));
+  cek("premi: MOS ikut naik", vDengan.mos > vTanpa.mos, vTanpa.mos + " -> " + vDengan.mos);
+  cek("premi: MaxBuy ikut naik", vDengan.maxBuy > vTanpa.maxBuy, vTanpa.maxBuy + " -> " + vDengan.maxBuy);
+  cek("premi: default tanpa premi = FV murni", vTanpa.premiStory === 0 && vTanpa.intrinsic === vTanpa.intrinsicDasar);
+  cek("premi: batas atas ditekan", SP.valuasi(Object.assign({}, dasar, { _premiStory: 99 })).premiStory === SP.PREMI_STORY_MAX);
+}
+
+// 42) Makro komoditas: komoditas global yang NAIK menambah skor sektor terkait
+{
+  const mkItems = [
+    { kode: "GC=F", nama: "Emas", sektor: "Logam mulia", kata: ["gold", "emas"], chg: 2.5, chg5: 3.1 },
+    { kode: "HG=F", nama: "Tembaga", sektor: "Logam dasar & smelter", kata: ["non-energy minerals", "smelter"], chg: 1.4, chg5: 2.2 },
+    { kode: "KC=F", nama: "Kopi", sektor: "Perkebunan", kata: ["kopi"], chg: 0.8, chg5: 1.2 },
+    { kode: "CL=F", nama: "Minyak", sektor: "Energi", kata: ["oil", "energi"], chg: -1.2, chg5: -4 },
+    { kode: "^JKSE", nama: "IHSG", sektor: "Pasar (konteks)", kata: [], chg: 1.5, chg5: 2 }
+  ];
+  cek("makro: naik >=2% = maks", SP.makroSkor("gold", mkItems).bonus === SP.MAKRO_MAKS,
+    JSON.stringify(SP.makroSkor("gold", mkItems)));
+  cek("makro: naik 1,4% = +4", SP.makroSkor("non-energy minerals", mkItems).bonus === 4,
+    String(SP.makroSkor("non-energy minerals", mkItems).bonus));
+  cek("makro: tema Gold cocok", SP.makroSkor("gold bijih emas", mkItems).bonus === SP.MAKRO_MAKS);
+  cek("makro: naik 0,8% = +2", SP.makroSkor("perkebunan kopi", mkItems).bonus === 2,
+    String(SP.makroSkor("perkebunan kopi", mkItems).bonus));
+  cek("makro: yang turun = 0", SP.makroSkor("energy minerals oil", mkItems).bonus === 0);
+  cek("makro: konteks tanpa kata = 0", SP.makroSkor("finance", mkItems).bonus === 0);
+  cek("makro: tak ada yang cocok = 0", SP.makroSkor("bank keuangan", mkItems).bonus === 0);
+  cek("makro: ambil tertinggi, bukan jumlah", SP.makroSkor("emas kopi", mkItems).bonus === SP.MAKRO_MAKS);
+  cek("makro: why diawali nama komoditas", SP.makroSkor("perkebunan kopi", mkItems).why.indexOf("Kopi") === 0,
+    SP.makroSkor("perkebunan kopi", mkItems).why);
+  cek("makro: tanpa data = 0", SP.makroSkor("emas", null).bonus === 0 && SP.makroSkor("emas", []).bonus === 0);
+
+  const dasarMk = function (mk) {
+    return { kode: "MK", fs: { total: 60, tier: "B" },
+      val: { intrinsic: 1000, mos: 20, targetMos: 30 },
+      aksi: "Pantau", _aksiD: "Pantau", sb: {}, tk: {}, _story: 0, _makro: mk };
+  };
+  const rkMk = SP.rekomendasi([dasarMk({ bonus: SP.MAKRO_MAKS, why: "Emas +" + SP.nf(2.5, 1) + "%" })]);
+  const rkNo = SP.rekomendasi([dasarMk({ bonus: 0, why: "" })]);
+  cek("makro: bonus 2/4/6 → 10/20/30 poin",
+    SP.makroPoin(0) === 0 && SP.makroPoin(2) === 10 && SP.makroPoin(4) === 20 && SP.makroPoin(6) === 30,
+    [SP.makroPoin(0), SP.makroPoin(2), SP.makroPoin(4), SP.makroPoin(6)].join("/"));
+  cek("makro: +30 masuk skor reko (pilar 30%)",
+    Math.abs(rkMk[0].total - rkNo[0].total - SP.MAKRO_BOBOT * 100) < 1e-9,
+    rkNo[0].total + " -> " + rkMk[0].total);
+  cek("makro: why memuat Makro+30",
+    rkMk[0].why.indexOf("Makro+" + SP.makroPoin(SP.MAKRO_MAKS) + " (Emas +" + SP.nf(2.5, 1) + "%)") >= 0, rkMk[0].why);
+  cek("makro: tanpa bonus tanpa jejak", rkNo[0].why.indexOf("Makro+") < 0, rkNo[0].why);
+
+  // bobot: Makro harus porsi penambahan TERBESAR, dan jumlah seluruh bobot = 100
+  const dasarBobot = function (over) {
+    return Object.assign({ kode: "BW", fs: { total: 0, tier: "D" },
+      val: { intrinsic: 1000, mos: 0, targetMos: 30 },
+      aksi: "Hindari", _aksiD: "Hindari", sb: {}, tk: {},
+      _story: 0, _makro: { bonus: 0, why: "" } }, over || {});
+  };
+  const nol = SP.rekomendasi([dasarBobot()])[0].total;
+  const dStory = SP.rekomendasi([dasarBobot({ _story: 100 })])[0].total - nol;
+  const dFs = SP.rekomendasi([dasarBobot({ fs: { total: 100, tier: "A" } })])[0].total - nol;
+  const dMakro = SP.rekomendasi([dasarBobot({ _makro: { bonus: SP.MAKRO_MAKS, why: "x" } })])[0].total - nol;
+  cek("reko: Makro(30) > Story(25) > FS(18)",
+    Math.abs(dMakro - 30) < 1e-9 && Math.abs(dStory - 25) < 1e-9 && Math.abs(dFs - 18) < 1e-9,
+    "Makro " + dMakro + " / Story " + dStory + " / FS " + dFs);
+  const rkMax = SP.rekomendasi([dasarBobot({
+    fs: { total: 100, tier: "A" }, val: { intrinsic: 1000, mos: 30, targetMos: 30 },
+    aksi: "Beli", _aksiD: "Beli", sb: { speed: "SIAP" }, tk: { ok: true, setup: "BREAKOUT" },
+    _story: 100, _makro: { bonus: SP.MAKRO_MAKS, why: "x" } })]);
+  cek("reko: seluruh bobot berjumlah 100", Math.abs(rkMax[0].total - 100) < 1e-9, String(rkMax[0].total));
+  // tampilan: strip Makro, bantuan 6c, kolom ekspor, penanda versi
+  cek("makro: panel + bantuan 6c ada",
+    html.includes('id="macro"') && html.includes("6c · Narasi Makro") && html.includes("Strip <b>Komoditas</b>"),
+    "panel/bantuan makro hilang");
+  cek("makro: bantuan pakai bobot 30% + poin baru",
+    html.includes("pilar TERBESAR") && html.includes("+30 poin") && html.includes("30% Makro"),
+    "bantuan 3/6c belum diperbarui");
+  cek("makro: komoditas baru (NIKL/LIT/DBC) tercantum",
+    html.includes("<code>NIKL</code>") && html.includes("<code>LIT</code>") &&
+    html.includes("<code>DBC</code>") && html.includes("Indeks komoditas"),
+    "komoditas baru tidak ada di bantuan");
+  cek("makro: kolom ekspor CSV", html.includes('"combo", "makro", "story", "buzz", "sentimen"]'),
+    "kolom makro/story tidak ada di header CSV");
+  cek("makro: strip chip berkelompok",
+    html.includes("mk-grid") && html.includes("mk-grup") && html.includes("mk-chip") &&
+    html.includes("mk-judul") && html.includes("mk-nar") && html.includes("GRUP_MAKRO"),
+    "strip komoditas belum berbentuk chip berkelompok");
+  cek("makro: penanda versi J", html.includes("v2026-10-09J"), "BUILD_V belum J");
+  // Story: umur lama tidak membuang nilai (jendela bertingkat 7h -> riwayat)
+  cek("story: bantuan jendela berita ada",
+    html.includes("7 hari → 30 hari → 90 hari → 1 tahun → riwayat"),
+    "bantuan 6b belum menjelaskan jendela");
+  cek("story: kolom tampil nilai + buzz",
+    html.includes("angka besar = nilai Story 0–100"), "penjelasan kolom Story hilang");
+  cek("story: batch berita + otomatis pasca scan",
+    html.includes("function batchBerita(") && html.includes("ngisi otomatis 60 saham"),
+    "batchBerita / pemicu otomatis tidak ada");
+}
+
 console.log(gagal ? ("\n" + gagal + " uji GAGAL") : "\nSemua uji lulus");
 process.exit(gagal ? 1 : 0);

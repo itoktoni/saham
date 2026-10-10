@@ -27,7 +27,7 @@ import time
 import webbrowser
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse, parse_qs, quote
 import urllib.request
 
 # Modul standard-library yang dipakai oleh skrip data (fetch-data-idx.py /
@@ -35,6 +35,7 @@ import urllib.request
 # ikut mengemasnya ke dalam .exe (kalau tidak -> "No module named 'xml'").
 import argparse               # noqa: F401
 import collections            # noqa: F401
+import concurrent.futures     # noqa: F401
 import http.cookiejar         # noqa: F401
 import io                     # noqa: F401
 import math                   # noqa: F401
@@ -130,6 +131,141 @@ def ambil_berita(kodes, delay=0.5):
     except Exception as e:  # noqa: BLE001
         tulis_log("berita gagal: %s" % e)
         return {"emiten": {}, "umum": [], "gagal": [str(e)[:120]]}
+
+
+# ---------- Makro komoditas (Yahoo chart API, gratis) ----------
+# Dipakai panel "Makro" di atas tabel + bonus skor rekomendasi di frontend.
+# Ini kuotasi harga pasar, bukan berita: cache 5 menit supaya scan tidak
+# menembak Yahoo berulang-ulang.
+CACHE_MAKRO = 5 * 60
+_cache_makro = {"t": 0.0, "v": None}
+
+# (kode Yahoo, nama tampil, sektor terkait, kata kunci pencocok saham)
+# Kata dicocokkan ke "sektor TradingView + tema + label industri" milik tiap
+# saham (huruf kecil). Daftar kosong = konteks saja, TIDAK menambah skor.
+MAKRO_SYM = [
+    ("GC=F", "Emas", "Logam mulia",
+     ["gold", "emas", "logam mulia"]),
+    ("SI=F", "Perak", "Logam mulia",
+     ["gold", "emas", "perak", "logam mulia"]),
+    ("HG=F", "Tembaga", "Logam dasar & smelter",
+     ["tembaga", "copper", "smelter", "logam", "non-energy minerals"]),
+    ("ALI=F", "Aluminium", "Logam dasar & smelter",
+     ["aluminium", "aluminum", "smelter", "logam"]),
+    ("ZN=F", "Seng", "Logam dasar & smelter",
+     ["seng", "zinc", "smelter", "logam", "non-energy minerals"]),
+    ("PL=F", "Platinum", "Logam mulia",
+     ["platinum", "platina"]),
+    ("CL=F", "Minyak", "Energi & migas",
+     ["oil", "minyak", "energi", "energy minerals", "migas", "oil & coal"]),
+    ("NG=F", "Gas alam", "Energi & gas",
+     ["gas", "energi", "energy minerals", "oil & coal"]),
+    ("COAL", "Batu bara", "Batu bara & energi",
+     ["batu bara", "coal", "energy minerals", "oil & coal"]),
+    ("URA", "Uranium", "Uranium & nuklir",
+     ["uranium", "nuklir", "nuclear"]),
+    ("SLX", "Baja", "Baja & logam",
+     ["baja", "steel", "besi"]),
+    ("NIKL", "Nikel", "Nikel & baterai",
+     ["nikel", "nickel", "baterai", "battery"]),
+    ("LIT", "Litium & baterai", "Baterai & EV",
+     ["litium", "lithium", "baterai", "battery"]),
+    ("CPO=F", "Sawit (CPO)", "Sawit & perkebunan",
+     ["sawit", "kelapa sawit", "kebun", "perkebunan", "palm", "cpo"]),
+    ("KC=F", "Kopi", "Perkebunan",
+     ["kopi", "coffee", "perkebunan"]),
+    ("CC=F", "Kakao", "Perkebunan",
+     ["kakao", "cacao", "perkebunan"]),
+    ("SB=F", "Gula", "Perkebunan & gula",
+     ["gula", "sugar", "perkebunan"]),
+    ("^JKSE", "IHSG", "Pasar (konteks)", []),
+    ("IDR=X", "Rupiah (USD/IDR)", "Mata uang (konteks)", []),
+    ("DX-Y.NYB", "Dolar AS", "Mata uang (konteks)", []),
+    ("DBC", "Indeks komoditas", "Komoditas global (konteks)", []),
+]
+
+
+def _parse_makro(js):
+    """Baca 1 respon Yahoo chart API -> (harga, chg% 1 hari, chg% 5 hari)."""
+    res = ((js or {}).get("chart") or {}).get("result") or []
+    if not res:
+        return None
+    quote0 = ((res[0].get("indicators") or {}).get("quote") or [{}])[0]
+    closes = [c for c in (quote0.get("close") or []) if c is not None]
+    if not closes:
+        return None
+    meta = res[0].get("meta") or {}
+    harga = meta.get("regularMarketPrice") or closes[-1]
+    chg = (closes[-1] - closes[-2]) / closes[-2] * 100.0 if len(closes) > 1 else 0.0
+    ref5 = closes[-6] if len(closes) >= 6 else closes[0]
+    chg5 = (closes[-1] - ref5) / ref5 * 100.0 if ref5 else 0.0
+    return float(harga), chg, chg5
+
+
+def narasi_makro(items):
+    """Tiga baris rapi: NAIK (terkuat dulu), TURUN (terkuat dulu), catatan bonus.
+    Desimal koma gaya Indonesia; sektor tidak ditulis ulang (sudah ada di strip chip)."""
+    naik = sorted([i for i in items if i.get("kata") and (i.get("chg") or 0) > 0.3],
+                  key=lambda i: -(i.get("chg") or 0))
+    turun = sorted([i for i in items if i.get("kata") and (i.get("chg") or 0) < -0.3],
+                   key=lambda i: (i.get("chg") or 0))
+    if not naik and not turun:
+        return "Komoditas datar — tanpa bonus makro untuk saham mana pun."
+
+    def satu(i):
+        c = i.get("chg") or 0
+        return "%s %s%s%%" % (i["nama"], "+" if c > 0 else "-",
+                              ("%.1f" % abs(c)).replace(".", ","))
+
+    baris = []
+    if naik:
+        baris.append("NAIK %d: %s" % (len(naik), " · ".join(satu(i) for i in naik)))
+    if turun:
+        baris.append("TURUN %d: %s" % (len(turun), " · ".join(satu(i) for i in turun)))
+    baris.append("→ saham sektor terkait dapat bonus Makro bila menguat."
+                 if naik else "→ tidak ada komoditas yang menguat — tanpa bonus makro.")
+    return "\n".join(baris)
+
+
+def ambil_makro(force=False):
+    """Semua komoditas sekaligus (paralel). Return dict {ok, items, narasi, diambil}."""
+    now = time.time()
+    if not force and _cache_makro["v"] and now - _cache_makro["t"] < CACHE_MAKRO:
+        return _cache_makro["v"]
+
+    def satu(item):
+        kode = item[0]
+        url = ("https://query1.finance.yahoo.com/v8/finance/chart/%s"
+               "?range=6d&interval=1d" % quote(kode))
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=12) as fh:
+            hasil = _parse_makro(json.load(fh))
+        if not hasil:
+            return None
+        harga, chg, chg5 = hasil
+        return {"kode": kode, "nama": item[1], "sektor": item[2], "kata": item[3],
+                "harga": round(harga, 4), "chg": round(chg, 2), "chg5": round(chg5, 2)}
+
+    hasil = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
+        proses = {ex.submit(satu, it): it for it in MAKRO_SYM}
+        for fu in concurrent.futures.as_completed(proses):
+            it = proses[fu]
+            try:
+                res = fu.result()
+            except Exception as e:  # noqa: BLE001
+                tulis_log("makro %s gagal: %s" % (it[0], str(e)[:80]))
+                continue
+            if res:
+                hasil.append(res)
+    urut = {it[0]: i for i, it in enumerate(MAKRO_SYM)}
+    hasil.sort(key=lambda d: urut.get(d["kode"], 99))
+    data = {"ok": bool(hasil), "items": hasil, "narasi": narasi_makro(hasil),
+            "diambil": datetime.now().astimezone().isoformat(timespec="seconds")}
+    if hasil:
+        _cache_makro["t"] = now
+        _cache_makro["v"] = data
+    return data
 
 
 CACHE_SCOPE = 1 * 3600   # 1 jam
@@ -510,9 +646,13 @@ class Handler(BaseHTTPRequestHandler):
             if jalur == "/api/config":
                 return self._json({"ok": True, "config": {
                     "daftar_saham": daftar_baca(), "bulan_ksei": bulan_ksei()}})
+            if jalur == "/api/makro":
+                return self._json(ambil_makro(), 200)
             if jalur == "/api/download":
                 q = parse_qs(u.query)
                 hasil, _ = muat_semua()
+                if hasil.get("ok"):
+                    hasil["makro"] = ambil_makro()
                 return self._json(hasil, 200 if hasil.get("ok") else 502)
             if jalur == "/api/scan":
                 ksei = cache_ambil("ksei", CACHE_KSEI, ambil_ksei,
@@ -528,6 +668,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json({
                     "ok": True, "jumlah": len(saham), "ksei": ksei or {}, "saham": saham,
                     "berita": berita or {"emiten": {}, "umum": []},
+                    "makro": ambil_makro(),
                     "dibuat": datetime.now().astimezone().isoformat(timespec="seconds"),
                 })
             if jalur == "/api/lengkapi":

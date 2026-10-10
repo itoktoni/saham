@@ -3580,3 +3580,1573 @@
 [2026-10-09 15:59:58] berita LUCY: 2 berita segar, sentimen 25 (Negatif), buzz Sepi
 [2026-10-09 16:00:01] berita CNBC-Market: 15 berita
 [2026-10-09 16:00:03] berita JECX: 2 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 16:06:28] ksei [cache] memakai ksei yang tersimpan (19 menit lalu)
+[2026-10-09 16:06:28] tv [cache] memakai tv yang tersimpan (19 menit lalu)
+[2026-10-09 16:06:28] berita CNBC-Market: 15 berita
+[2026-10-09 16:06:29] berita BBCA: 19 berita segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 16:06:31] berita GOTO: 33 berita segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 16:06:32] berita BBRI: 14 berita segar, sentimen 75 (Positif), buzz Ramai
+[2026-10-09 16:06:33] berita TLKM: 7 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 16:06:34] berita BUMI: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 16:06:35] berita FORU: 8 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 16:06:37] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 16:06:38] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 16:06:39] berita AMMN: 12 berita segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 16:06:40] berita PTRO: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 16:06:41] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 16:06:43] berita BMRI: 5 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 16:06:44] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 16:06:45] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 16:06:46] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 16:06:48] berita DSSA: 11 berita segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 16:06:49] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 16:06:50] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 16:06:51] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 16:06:52] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 16:06:54] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 16:06:55] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 16:06:56] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 16:06:57] berita BRMS: 8 berita segar, sentimen 58 (Netral), buzz Normal
+[2026-10-09 16:06:59] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 16:07:06] emiten [1/40] BBCA ok
+[2026-10-09 16:07:07] emiten [2/40] BBRI ok
+[2026-10-09 16:07:07] emiten [3/40] FORU ok
+[2026-10-09 16:07:08] emiten [4/40] CUAN ok
+[2026-10-09 16:07:09] emiten [5/40] BMRI ok
+[2026-10-09 16:07:10] emiten [6/40] PACK ok
+[2026-10-09 16:07:11] emiten [7/40] EMAS ok
+[2026-10-09 16:07:12] emiten [8/40] AHAP ok
+[2026-10-09 16:07:12] emiten [9/40] COCO ok
+[2026-10-09 16:07:13] emiten [10/40] BBNI ok
+[2026-10-09 16:07:14] emiten [11/40] PCAR ok
+[2026-10-09 16:07:15] emiten [12/40] SQMI ok
+[2026-10-09 16:07:16] emiten [13/40] LUCY ok
+[2026-10-09 16:07:16] emiten [14/40] STRK ok
+[2026-10-09 16:07:17] emiten [15/40] MEJA ok
+[2026-10-09 16:07:18] emiten [16/40] WIFI ok
+[2026-10-09 16:07:19] emiten [17/40] ADMR ok
+[2026-10-09 16:07:20] emiten [18/40] BNBR ok
+[2026-10-09 16:07:20] emiten [19/40] BEKS ok
+[2026-10-09 16:07:21] emiten [20/40] SGER ok
+[2026-10-09 16:07:22] emiten [21/40] ASPI ok
+[2026-10-09 16:07:23] emiten [22/40] BIPI ok
+[2026-10-09 16:07:24] emiten [23/40] BDMN ok
+[2026-10-09 16:07:24] emiten [24/40] CYBR ok
+[2026-10-09 16:07:25] emiten [25/40] BSDE ok
+[2026-10-09 16:07:26] emiten [26/40] TRUE ok
+[2026-10-09 16:07:27] emiten [27/40] GULA ok
+[2026-10-09 16:07:28] emiten [28/40] NEST ok
+[2026-10-09 16:07:28] emiten [29/40] ARKO ok
+[2026-10-09 16:07:29] emiten [30/40] BTEK ok
+[2026-10-09 16:07:30] emiten [31/40] TRIN ok
+[2026-10-09 16:07:31] emiten [32/40] SSMS ok
+[2026-10-09 16:07:31] emiten [33/40] PURA ok
+[2026-10-09 16:07:32] emiten [34/40] KKES ok
+[2026-10-09 16:07:33] emiten [35/40] MCAS ok
+[2026-10-09 16:07:34] emiten [36/40] CDIA ok
+[2026-10-09 16:07:35] emiten [37/40] COIN ok
+[2026-10-09 16:07:36] emiten [38/40] FILM ok
+[2026-10-09 16:07:36] emiten [39/40] MGLV ok
+[2026-10-09 16:07:37] emiten [40/40] NASA ok
+[2026-10-09 16:07:42] emiten [1/20] BBTN ok
+[2026-10-09 16:07:42] emiten [2/20] AKKU ok
+[2026-10-09 16:07:43] emiten [3/20] KREN ok
+[2026-10-09 16:07:44] emiten [4/20] ARTO ok
+[2026-10-09 16:07:45] emiten [5/20] IKAI ok
+[2026-10-09 16:07:46] emiten [6/20] FUTR ok
+[2026-10-09 16:07:46] emiten [7/20] PANI ok
+[2026-10-09 16:07:47] emiten [8/20] DAAZ ok
+[2026-10-09 16:07:48] emiten [9/20] VERN ok
+[2026-10-09 16:07:49] emiten [10/20] CBRE ok
+[2026-10-09 16:07:49] emiten [11/20] HAJJ ok
+[2026-10-09 16:07:50] emiten [12/20] SUPA ok
+[2026-10-09 16:07:51] emiten [13/20] BEER ok
+[2026-10-09 16:07:52] emiten [14/20] AYAM ok
+[2026-10-09 16:07:52] emiten [15/20] TKIM ok
+[2026-10-09 16:07:53] emiten [16/20] REAL ok
+[2026-10-09 16:07:54] emiten [17/20] SLIS ok
+[2026-10-09 16:07:55] emiten [18/20] PPRI ok
+[2026-10-09 16:07:56] emiten [19/20] GPSO ok
+[2026-10-09 16:07:57] emiten [20/20] SIDO ok
+[2026-10-09 16:19:29] ksei [cache] memakai ksei yang tersimpan (32 menit lalu)
+[2026-10-09 16:19:29] tv [cache] memakai tv yang tersimpan (32 menit lalu)
+[2026-10-09 16:19:29] berita CNBC-Market: 15 berita
+[2026-10-09 16:19:31] berita BBCA: 19 berita segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 16:19:32] berita GOTO: 33 berita segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 16:19:33] berita BBRI: 14 berita segar, sentimen 75 (Positif), buzz Ramai
+[2026-10-09 16:19:34] berita TLKM: 7 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 16:19:35] berita BUMI: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 16:19:41] berita FORU: 9 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 16:19:43] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 16:19:47] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 16:19:48] berita AMMN: 12 berita segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 16:19:49] berita PTRO: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 16:19:50] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 16:20:48] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 16:20:59] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 16:21:03] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 16:21:05] berita DSSA: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 16:21:06] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 16:21:08] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 16:21:09] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 16:21:10] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 16:21:11] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 16:21:13] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 16:21:14] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 16:21:19] berita BRMS: 8 berita segar, sentimen 58 (Netral), buzz Normal
+[2026-10-09 16:21:22] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 16:21:35] berita CNBC-Market: 15 berita
+[2026-10-09 16:22:02] emiten [1/40] BBCA ok
+[2026-10-09 16:22:02] emiten [2/40] GOTO ok
+[2026-10-09 16:22:09] emiten [3/40] BBRI ok
+[2026-10-09 16:22:10] emiten [4/40] TLKM ok
+[2026-10-09 16:22:11] emiten [5/40] BUMI ok
+[2026-10-09 16:22:11] berita CNBC-Market: 15 berita
+[2026-10-09 16:22:11] emiten [6/40] FORU ok
+[2026-10-09 16:22:12] berita DOOH: 9 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 16:22:12] emiten [7/40] SINI ok
+[2026-10-09 16:22:13] emiten [8/40] CUAN ok
+[2026-10-09 16:22:14] emiten [9/40] AMMN ok
+[2026-10-09 16:22:15] emiten [10/40] PTRO ok
+[2026-10-09 16:22:15] berita CNBC-Market: 15 berita
+[2026-10-09 16:22:16] emiten [11/40] TEBE ok
+[2026-10-09 16:22:17] berita TOWR: 1 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 16:22:17] emiten [12/40] BMRI ok
+[2026-10-09 16:22:21] emiten [13/40] DEWA ok
+[2026-10-09 16:22:21] berita CNBC-Market: 15 berita
+[2026-10-09 16:22:22] emiten [14/40] TINS ok
+[2026-10-09 16:22:22] berita JARR: 21 berita segar, sentimen 7 (Negatif), buzz Ramai
+[2026-10-09 16:22:22] emiten [15/40] ENRG ok
+[2026-10-09 16:22:23] emiten [16/40] DSSA ok
+[2026-10-09 16:22:24] emiten [17/40] PACK ok
+[2026-10-09 16:22:25] emiten [18/40] ASII ok
+[2026-10-09 16:22:25] berita CNBC-Market: 15 berita
+[2026-10-09 16:22:26] emiten [19/40] ANTM ok
+[2026-10-09 16:22:26] berita NAYZ: 7 berita segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 16:22:27] emiten [20/40] EMAS ok
+[2026-10-09 16:22:27] emiten [21/40] IATA ok
+[2026-10-09 16:22:28] emiten [22/40] PTBA ok
+[2026-10-09 16:22:29] emiten [23/40] TPIA ok
+[2026-10-09 16:22:30] berita CNBC-Market: 15 berita
+[2026-10-09 16:22:30] emiten [24/40] BRMS ok
+[2026-10-09 16:22:31] emiten [25/40] INCO ok
+[2026-10-09 16:22:31] berita ISAT: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 16:22:32] emiten [26/40] CSMI ok
+[2026-10-09 16:22:33] emiten [27/40] DOOH ok
+[2026-10-09 16:22:34] emiten [28/40] TOWR ok
+[2026-10-09 16:22:34] berita CNBC-Market: 15 berita
+[2026-10-09 16:22:35] emiten [29/40] JARR ok
+[2026-10-09 16:22:35] emiten [30/40] NAYZ ok
+[2026-10-09 16:22:36] berita ARCI: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 16:22:36] emiten [31/40] ISAT ok
+[2026-10-09 16:22:38] emiten [32/40] ARCI ok
+[2026-10-09 16:22:49] emiten [33/40] KOTA ok
+[2026-10-09 16:22:49] berita CNBC-Market: 15 berita
+[2026-10-09 16:22:50] emiten [34/40] AHAP ok
+[2026-10-09 16:22:51] berita KOTA: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 16:22:58] berita CNBC-Market: 15 berita
+[2026-10-09 16:23:00] berita AHAP: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 16:23:02] emiten [35/40] ADRO ok
+[2026-10-09 16:23:03] berita CNBC-Market: 15 berita
+[2026-10-09 16:23:03] emiten [36/40] AADI ok
+[2026-10-09 16:23:04] emiten [37/40] BUVA ok
+[2026-10-09 16:23:04] berita ADRO: 7 berita segar, sentimen 58 (Netral), buzz Normal
+[2026-10-09 16:23:05] emiten [38/40] ITMG ok
+[2026-10-09 16:23:12] emiten [39/40] SEMA ok
+[2026-10-09 16:23:13] berita CNBC-Market: 15 berita
+[2026-10-09 16:23:13] emiten [40/40] MMIX ok
+[2026-10-09 16:23:13] ERROR /api/lengkapi: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2026-10-09 16:23:14] berita AADI: 12 berita segar, sentimen 88 (Positif), buzz Ramai
+[2026-10-09 16:23:15] ERROR /api/berita: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2026-10-09 16:58:49] ==================================================
+[2026-10-09 16:58:49] Aplikasi Screener dimulai
+[2026-10-09 16:58:51] Melayani di http://127.0.0.1:8765/
+[2026-10-09 16:58:51] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 17:00:15] ksei Periode terbaru : 20260930
+[2026-10-09 17:00:15] ksei Periode sebelumnya: 20260831
+[2026-10-09 17:00:15] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 17:00:15] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 17:00:19] berita CNBC-Market: 15 berita
+[2026-10-09 17:00:21] berita BBCA: 20 berita segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 17:00:22] berita BBRI: 15 berita segar, sentimen 79 (Positif), buzz Ramai
+[2026-10-09 17:00:24] berita GOTO: 33 berita segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 17:00:25] berita TLKM: 8 berita segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:00:27] berita BUMI: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:00:29] berita FORU: 8 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 17:00:30] berita AMMN: 12 berita segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 17:00:33] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 17:00:35] berita BMRI: 5 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:00:38] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 17:00:41] berita PTRO: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:00:42] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 17:00:47] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:00:51] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:00:52] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 17:00:54] berita DSSA: 11 berita segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 17:00:56] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:00:58] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 17:01:05] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:01:32] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 17:01:33] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 17:01:35] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:01:36] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:01:38] berita BRMS: 6 berita segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:01:39] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 17:06:16] ==================================================
+[2026-10-09 17:06:16] Aplikasi Screener dimulai
+[2026-10-09 17:06:18] Melayani di http://127.0.0.1:8765/
+[2026-10-09 17:06:18] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 17:06:51] ==================================================
+[2026-10-09 17:06:51] Aplikasi Screener dimulai
+[2026-10-09 17:06:53] Melayani di http://127.0.0.1:8765/
+[2026-10-09 17:06:54] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 17:07:13] ksei Periode terbaru : 20260930
+[2026-10-09 17:07:13] ksei Periode sebelumnya: 20260831
+[2026-10-09 17:07:13] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 17:07:14] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 17:07:15] berita CNBC-Market: 15 berita
+[2026-10-09 17:07:17] berita BBCA: 20 berita segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 17:07:18] berita BBRI: 15 berita segar, sentimen 79 (Positif), buzz Ramai
+[2026-10-09 17:07:19] berita GOTO: 32 berita segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 17:07:22] berita TLKM: 8 berita segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:07:23] berita BUMI: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:07:24] berita FORU: 8 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 17:07:26] berita AMMN: 13 berita segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 17:07:27] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 17:07:28] berita BMRI: 5 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:07:29] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 17:07:31] berita PTRO: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:07:32] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 17:07:34] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:07:35] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:07:36] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 17:07:38] berita DSSA: 11 berita segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 17:07:39] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:07:41] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 17:07:42] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:07:43] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 17:07:45] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 17:07:46] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:07:48] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:07:49] berita BRMS: 6 berita segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:07:51] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 17:29:23] ==================================================
+[2026-10-09 17:29:23] Aplikasi Screener dimulai
+[2026-10-09 17:29:25] Melayani di http://127.0.0.1:8765/
+[2026-10-09 17:29:25] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 17:30:42] ksei Periode terbaru : 20260930
+[2026-10-09 17:30:42] ksei Periode sebelumnya: 20260831
+[2026-10-09 17:30:42] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 17:30:43] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 17:30:45] berita CNBC-Market: 15 berita
+[2026-10-09 17:30:45] ksei [cache] memakai ksei yang tersimpan (0 menit lalu)
+[2026-10-09 17:30:45] tv [cache] memakai tv yang tersimpan (0 menit lalu)
+[2026-10-09 17:30:46] berita CNBC-Market: 15 berita
+[2026-10-09 17:30:46] berita BBCA: 18 berita segar, sentimen 56 (Netral), buzz Ramai
+[2026-10-09 17:30:47] berita BBCA: 18 berita segar, sentimen 56 (Netral), buzz Ramai
+[2026-10-09 17:30:47] berita BBRI: 15 berita segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 17:30:47] berita BBRI: 15 berita segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 17:30:49] berita GOTO: 32 berita segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 17:30:49] berita GOTO: 32 berita segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 17:30:50] berita TLKM: 9 berita segar, sentimen 79 (Positif), buzz Normal
+[2026-10-09 17:30:50] berita TLKM: 9 berita segar, sentimen 79 (Positif), buzz Normal
+[2026-10-09 17:30:52] berita BUMI: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:30:52] berita BUMI: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:30:53] berita FORU: 8 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 17:30:53] berita FORU: 8 berita segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 17:30:54] berita AMMN: 13 berita segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 17:30:54] berita AMMN: 13 berita segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 17:30:55] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 17:30:55] berita SINI: 0 berita segar (6 berita segar tanpa sebutan kode)
+[2026-10-09 17:30:58] berita BMRI: 5 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:30:58] berita BMRI: 5 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:30:59] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 17:30:59] berita CUAN: 9 berita segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 17:31:00] berita PTRO: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:31:00] berita PTRO: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:31:01] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 17:31:01] berita ENRG: 11 berita segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 17:31:03] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:31:03] berita TEBE: 2 berita segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:31:04] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:31:04] berita DEWA: 4 berita segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:31:05] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 17:31:05] berita PACK: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 17:31:06] berita DSSA: 10 berita segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 17:31:06] berita DSSA: 10 berita segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 17:31:08] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:31:08] berita TINS: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:31:09] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 17:31:09] berita ASII: 9 berita segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 17:31:10] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:31:10] berita ANTM: 3 berita segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:31:11] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 17:31:11] berita PTBA: 8 berita segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 17:31:13] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 17:31:13] berita EMAS: 0 berita segar (0 berita segar tanpa sebutan kode)
+[2026-10-09 17:31:14] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:31:14] berita IATA: 1 berita segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:31:15] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:31:15] berita TPIA: 0 berita segar (1 berita segar tanpa sebutan kode)
+[2026-10-09 17:31:16] berita BRMS: 6 berita segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:31:16] berita BRMS: 6 berita segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:31:18] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 17:31:18] berita INCO: 6 berita segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 17:31:25] emiten [1/40] BBCA ok
+[2026-10-09 17:31:26] emiten [2/40] BBRI ok
+[2026-10-09 17:31:27] emiten [3/40] FORU ok
+[2026-10-09 17:31:28] emiten [4/40] BMRI ok
+[2026-10-09 17:31:28] emiten [5/40] CUAN ok
+[2026-10-09 17:31:29] emiten [6/40] PACK ok
+[2026-10-09 17:31:30] emiten [7/40] EMAS ok
+[2026-10-09 17:31:31] emiten [8/40] BBNI ok
+[2026-10-09 17:31:32] emiten [9/40] AHAP ok
+[2026-10-09 17:31:33] emiten [10/40] COCO ok
+[2026-10-09 17:31:33] emiten [11/40] MEJA ok
+[2026-10-09 17:31:34] emiten [12/40] PCAR ok
+[2026-10-09 17:31:35] emiten [13/40] SQMI ok
+[2026-10-09 17:31:36] emiten [14/40] LUCY ok
+[2026-10-09 17:31:37] emiten [15/40] WIFI ok
+[2026-10-09 17:31:37] emiten [16/40] STRK ok
+[2026-10-09 17:31:38] emiten [17/40] SGER ok
+[2026-10-09 17:31:40] emiten [18/40] ADMR ok
+[2026-10-09 17:31:41] emiten [19/40] BNBR ok
+[2026-10-09 17:31:41] emiten [20/40] BEKS ok
+[2026-10-09 17:31:42] emiten [21/40] ASPI ok
+[2026-10-09 17:31:43] emiten [22/40] BIPI ok
+[2026-10-09 17:31:44] emiten [23/40] BDMN ok
+[2026-10-09 17:31:44] emiten [24/40] CYBR ok
+[2026-10-09 17:31:45] emiten [25/40] BSDE ok
+[2026-10-09 17:31:46] emiten [26/40] NEST ok
+[2026-10-09 17:31:47] emiten [27/40] TRUE ok
+[2026-10-09 17:31:48] emiten [28/40] ARKO ok
+[2026-10-09 17:31:49] emiten [29/40] GULA ok
+[2026-10-09 17:31:49] emiten [30/40] TRIN ok
+[2026-10-09 17:31:50] emiten [31/40] BTEK ok
+[2026-10-09 17:31:51] emiten [32/40] SSMS ok
+[2026-10-09 17:31:52] emiten [33/40] BBTN ok
+[2026-10-09 17:31:53] emiten [34/40] KKES ok
+[2026-10-09 17:31:53] emiten [35/40] CDIA ok
+[2026-10-09 17:31:54] emiten [36/40] PURA ok
+[2026-10-09 17:31:55] emiten [37/40] COIN ok
+[2026-10-09 17:31:56] emiten [38/40] MCAS ok
+[2026-10-09 17:31:57] emiten [39/40] FILM ok
+[2026-10-09 17:31:58] emiten [40/40] MGLV ok
+[2026-10-09 17:32:02] emiten [1/20] AKKU ok
+[2026-10-09 17:32:03] emiten [2/20] NASA ok
+[2026-10-09 17:32:04] emiten [3/20] VERN ok
+[2026-10-09 17:32:05] emiten [4/20] ARTO ok
+[2026-10-09 17:32:06] emiten [5/20] KREN ok
+[2026-10-09 17:32:06] emiten [6/20] FUTR ok
+[2026-10-09 17:32:07] emiten [7/20] IKAI ok
+[2026-10-09 17:32:08] emiten [8/20] PANI ok
+[2026-10-09 17:32:09] emiten [9/20] DAAZ ok
+[2026-10-09 17:32:10] emiten [10/20] CBRE ok
+[2026-10-09 17:32:11] emiten [11/20] TKIM ok
+[2026-10-09 17:32:11] emiten [12/20] SUPA ok
+[2026-10-09 17:32:12] emiten [13/20] HAJJ ok
+[2026-10-09 17:32:13] emiten [14/20] BEER ok
+[2026-10-09 17:32:14] emiten [15/20] AYAM ok
+[2026-10-09 17:32:14] emiten [16/20] PPRI ok
+[2026-10-09 17:32:15] emiten [17/20] MEDS ok
+[2026-10-09 17:32:16] emiten [18/20] REAL ok
+[2026-10-09 17:32:17] emiten [19/20] SLIS ok
+[2026-10-09 17:32:18] emiten [20/20] BRRC ok
+[2026-10-09 17:46:56] ==================================================
+[2026-10-09 17:46:56] Aplikasi Screener dimulai
+[2026-10-09 17:46:58] Melayani di http://127.0.0.1:8765/
+[2026-10-09 17:46:58] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 17:47:18] ksei Periode terbaru : 20260930
+[2026-10-09 17:47:18] ksei Periode sebelumnya: 20260831
+[2026-10-09 17:47:18] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 17:47:18] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 17:47:19] berita CNBC-Market: 15 berita
+[2026-10-09 17:47:20] berita BBCA: 19 berita (7 hari), 19 segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 17:47:22] berita BBRI: 15 berita (7 hari), 15 segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 17:47:23] berita GOTO: 31 berita (7 hari), 31 segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 17:47:24] berita TLKM: 9 berita (7 hari), 9 segar, sentimen 79 (Positif), buzz Normal
+[2026-10-09 17:47:25] berita BUMI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:47:27] berita FORU: 8 berita (7 hari), 8 segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 17:47:28] berita AMMN: 12 berita (7 hari), 12 segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 17:47:29] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 17:47:30] berita BMRI: 5 berita (7 hari), 5 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:47:32] berita CUAN: 9 berita (7 hari), 9 segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 17:47:33] berita PTRO: 6 berita (30 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:47:34] berita ENRG: 11 berita (7 hari), 11 segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 17:47:35] berita TEBE: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:47:36] berita DEWA: 4 berita (7 hari), 4 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:47:38] berita PACK: 11 berita (30 hari), 0 segar, sentimen 10 (Negatif), buzz Ramai
+[2026-10-09 17:47:39] berita DSSA: 10 berita (7 hari), 10 segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 17:47:40] berita TINS: 5 berita (30 hari), 0 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:47:41] berita ASII: 9 berita (7 hari), 9 segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 17:47:42] berita ANTM: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:47:44] berita PTBA: 8 berita (7 hari), 8 segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 17:47:45] berita EMAS: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:47:46] berita IATA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:47:47] berita TPIA: 6 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:47:48] berita BRMS: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:47:50] berita INCO: 6 berita (7 hari), 6 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 17:47:52] berita CNBC-Market: 15 berita
+[2026-10-09 17:47:53] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 17:47:56] berita CNBC-Market: 15 berita
+[2026-10-09 17:47:57] emiten [1/40] BBCA ok
+[2026-10-09 17:47:57] berita TOWR: 11 berita (30 hari), 0 segar, sentimen 95 (Positif), buzz Ramai
+[2026-10-09 17:47:58] emiten [2/40] BBRI ok
+[2026-10-09 17:47:59] emiten [3/40] GOTO ok
+[2026-10-09 17:47:59] emiten [4/40] TLKM ok
+[2026-10-09 17:48:00] emiten [5/40] BUMI ok
+[2026-10-09 17:48:01] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:01] emiten [6/40] FORU ok
+[2026-10-09 17:48:02] berita BBNI: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:48:02] emiten [7/40] AMMN ok
+[2026-10-09 17:48:03] emiten [8/40] SINI ok
+[2026-10-09 17:48:04] emiten [9/40] BMRI ok
+[2026-10-09 17:48:04] emiten [10/40] CUAN ok
+[2026-10-09 17:48:05] emiten [11/40] PTRO ok
+[2026-10-09 17:48:05] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:06] emiten [12/40] ENRG ok
+[2026-10-09 17:48:06] berita DOOH: 9 berita (7 hari), 9 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 17:48:07] emiten [13/40] TEBE ok
+[2026-10-09 17:48:08] emiten [14/40] DEWA ok
+[2026-10-09 17:48:09] emiten [15/40] PACK ok
+[2026-10-09 17:48:09] emiten [16/40] DSSA ok
+[2026-10-09 17:48:10] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:10] emiten [17/40] TINS ok
+[2026-10-09 17:48:11] berita CSMI: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:48:11] emiten [18/40] ASII ok
+[2026-10-09 17:48:12] emiten [19/40] ANTM ok
+[2026-10-09 17:48:13] emiten [20/40] PTBA ok
+[2026-10-09 17:48:14] emiten [21/40] EMAS ok
+[2026-10-09 17:48:14] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:15] emiten [22/40] IATA ok
+[2026-10-09 17:48:15] berita ARCI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:48:16] emiten [23/40] TPIA ok
+[2026-10-09 17:48:16] emiten [24/40] BRMS ok
+[2026-10-09 17:48:17] emiten [25/40] INCO ok
+[2026-10-09 17:48:18] emiten [26/40] TOWR ok
+[2026-10-09 17:48:18] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:19] emiten [27/40] BBNI ok
+[2026-10-09 17:48:20] berita ISAT: 6 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:48:20] emiten [28/40] DOOH ok
+[2026-10-09 17:48:20] emiten [29/40] CSMI ok
+[2026-10-09 17:48:21] emiten [30/40] ARCI ok
+[2026-10-09 17:48:22] emiten [31/40] ISAT ok
+[2026-10-09 17:48:23] emiten [32/40] JARR ok
+[2026-10-09 17:48:23] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:24] emiten [33/40] ADRO ok
+[2026-10-09 17:48:24] berita JARR: 21 berita (7 hari), 21 segar, sentimen 7 (Negatif), buzz Ramai
+[2026-10-09 17:48:25] emiten [34/40] KOTA ok
+[2026-10-09 17:48:25] emiten [35/40] NAYZ ok
+[2026-10-09 17:48:26] emiten [36/40] AADI ok
+[2026-10-09 17:48:27] emiten [37/40] AHAP ok
+[2026-10-09 17:48:27] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:28] emiten [38/40] COCO ok
+[2026-10-09 17:48:28] berita ADRO: 8 berita (7 hari), 8 segar, sentimen 64 (Positif), buzz Normal
+[2026-10-09 17:48:29] emiten [39/40] KLBF ok
+[2026-10-09 17:48:30] emiten [40/40] ITMG ok
+[2026-10-09 17:48:31] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:33] berita KOTA: 1 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:48:36] emiten [1/20] BUVA ok
+[2026-10-09 17:48:36] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:37] emiten [2/20] MBSS ok
+[2026-10-09 17:48:37] berita NAYZ: 7 berita (7 hari), 7 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:48:37] emiten [3/20] BRPT ok
+[2026-10-09 17:48:38] emiten [4/20] SEMA ok
+[2026-10-09 17:48:39] emiten [5/20] MMIX ok
+[2026-10-09 17:48:40] emiten [6/20] PSAB ok
+[2026-10-09 17:48:40] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:41] emiten [7/20] INET ok
+[2026-10-09 17:48:41] emiten [8/20] ASLI ok
+[2026-10-09 17:48:41] berita AADI: 12 berita (7 hari), 12 segar, sentimen 88 (Positif), buzz Ramai
+[2026-10-09 17:48:42] emiten [9/20] INDY ok
+[2026-10-09 17:48:43] emiten [10/20] MEJA ok
+[2026-10-09 17:48:44] emiten [11/20] HRTA ok
+[2026-10-09 17:48:45] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:45] emiten [12/20] KETR ok
+[2026-10-09 17:48:46] emiten [13/20] RAJA ok
+[2026-10-09 17:48:46] berita AHAP: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:48:47] emiten [14/20] SMIL ok
+[2026-10-09 17:48:47] emiten [15/20] SMLE ok
+[2026-10-09 17:48:49] emiten [16/20] PGAS ok
+[2026-10-09 17:48:49] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:49] emiten [17/20] MDKA ok
+[2026-10-09 17:48:50] emiten [18/20] POLA ok
+[2026-10-09 17:48:50] berita COCO: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:48:51] emiten [19/20] BYAN ok
+[2026-10-09 17:48:52] emiten [20/20] BULL ok
+[2026-10-09 17:48:55] berita CNBC-Market: 15 berita
+[2026-10-09 17:48:56] berita KLBF: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:49:00] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:01] berita ITMG: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:49:04] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:05] berita BUVA: 6 berita (7 hari), 6 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:49:08] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:10] berita MBSS: 4 berita (7 hari), 4 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:49:13] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:14] berita BRPT: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:49:17] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:18] berita SEMA: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:49:21] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:22] berita MMIX: 2 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:49:26] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:27] berita PSAB: 3 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:49:30] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:31] berita INET: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:49:35] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:36] berita ASLI: 6 berita (7 hari), 6 segar, sentimen 7 (Negatif), buzz Normal
+[2026-10-09 17:49:39] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:40] berita INDY: 4 berita (7 hari), 4 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:49:44] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:45] berita MEJA: 6 berita (90 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:49:48] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:49] berita HRTA: 3 berita (7 hari), 3 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:49:52] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:53] berita KETR: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:49:56] berita CNBC-Market: 15 berita
+[2026-10-09 17:49:58] berita RAJA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:50:01] berita CNBC-Market: 15 berita
+[2026-10-09 17:50:02] berita SMIL: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:50:03] ERROR /api/berita: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2026-10-09 17:50:19] berita CNBC-Market: 15 berita
+[2026-10-09 17:50:20] berita ICBP: 10 berita (30 hari), 0 segar, sentimen 38 (Negatif), buzz Ramai
+[2026-10-09 17:50:22] berita TOWR: 11 berita (30 hari), 0 segar, sentimen 95 (Positif), buzz Ramai
+[2026-10-09 17:50:24] berita GGRM: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:50:25] berita UNVR: 1 berita (7 hari), 1 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:50:27] berita KLBF: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:50:28] berita MDKA: 2 berita (7 hari), 2 segar, sentimen 83 (Positif), buzz Sepi
+[2026-10-09 17:52:10] ksei [cache] memakai ksei yang tersimpan (5 menit lalu)
+[2026-10-09 17:52:10] tv [cache] memakai tv yang tersimpan (5 menit lalu)
+[2026-10-09 17:52:11] berita CNBC-Market: 15 berita
+[2026-10-09 17:52:12] berita BBCA: 19 berita (7 hari), 19 segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 17:52:13] berita BBRI: 15 berita (7 hari), 15 segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 17:52:14] berita GOTO: 32 berita (7 hari), 32 segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 17:52:15] berita TLKM: 9 berita (7 hari), 9 segar, sentimen 79 (Positif), buzz Normal
+[2026-10-09 17:52:16] berita BUMI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:52:17] berita FORU: 8 berita (7 hari), 8 segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 17:52:19] berita AMMN: 12 berita (7 hari), 12 segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 17:52:20] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 17:52:21] berita BMRI: 5 berita (7 hari), 5 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:52:22] berita CUAN: 9 berita (7 hari), 9 segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 17:52:23] berita PTRO: 6 berita (30 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:52:24] berita ENRG: 11 berita (7 hari), 11 segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 17:52:26] berita TEBE: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:52:27] berita DEWA: 4 berita (7 hari), 4 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:52:28] berita PACK: 11 berita (30 hari), 0 segar, sentimen 10 (Negatif), buzz Ramai
+[2026-10-09 17:52:29] berita DSSA: 10 berita (7 hari), 10 segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 17:52:31] berita TINS: 5 berita (30 hari), 0 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:52:32] berita ASII: 9 berita (7 hari), 9 segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 17:52:33] berita ANTM: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:52:34] berita PTBA: 8 berita (7 hari), 8 segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 17:52:35] berita EMAS: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:52:36] berita IATA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:52:38] berita TPIA: 5 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:52:39] berita BRMS: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:52:40] berita INCO: 6 berita (7 hari), 6 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 17:54:44] ksei [cache] memakai ksei yang tersimpan (7 menit lalu)
+[2026-10-09 17:54:44] tv [cache] memakai tv yang tersimpan (7 menit lalu)
+[2026-10-09 17:54:45] berita CNBC-Market: 15 berita
+[2026-10-09 17:54:46] berita BBCA: 19 berita (7 hari), 19 segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 17:54:47] berita BBRI: 15 berita (7 hari), 15 segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 17:54:48] berita GOTO: 32 berita (7 hari), 32 segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 17:54:49] berita TLKM: 9 berita (7 hari), 9 segar, sentimen 79 (Positif), buzz Normal
+[2026-10-09 17:54:51] berita BUMI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:54:52] berita FORU: 8 berita (7 hari), 8 segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 17:54:53] berita AMMN: 12 berita (7 hari), 12 segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 17:54:54] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 17:54:56] berita BMRI: 5 berita (7 hari), 5 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:54:57] berita CUAN: 9 berita (7 hari), 9 segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 17:54:58] berita PTRO: 6 berita (30 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:54:59] berita ENRG: 11 berita (7 hari), 11 segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 17:55:00] berita TEBE: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:55:02] berita DEWA: 4 berita (7 hari), 4 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:55:03] berita PACK: 11 berita (30 hari), 0 segar, sentimen 10 (Negatif), buzz Ramai
+[2026-10-09 17:55:04] berita DSSA: 10 berita (7 hari), 10 segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 17:55:05] berita TINS: 5 berita (30 hari), 0 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:55:07] berita ASII: 9 berita (7 hari), 9 segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 17:55:08] berita ANTM: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:55:09] berita PTBA: 8 berita (7 hari), 8 segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 17:55:11] berita EMAS: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:55:12] berita IATA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:55:13] berita TPIA: 5 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:55:14] berita BRMS: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:55:16] berita INCO: 6 berita (7 hari), 6 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 17:55:24] emiten [1/40] BBCA ok
+[2026-10-09 17:55:25] emiten [2/40] BBRI ok
+[2026-10-09 17:55:26] emiten [3/40] GOTO ok
+[2026-10-09 17:55:27] emiten [4/40] TLKM ok
+[2026-10-09 17:55:27] emiten [5/40] BUMI ok
+[2026-10-09 17:55:29] emiten [6/40] FORU ok
+[2026-10-09 17:55:30] emiten [7/40] AMMN ok
+[2026-10-09 17:55:31] emiten [8/40] SINI ok
+[2026-10-09 17:55:32] emiten [9/40] BMRI ok
+[2026-10-09 17:55:33] emiten [10/40] CUAN ok
+[2026-10-09 17:55:33] emiten [11/40] PTRO ok
+[2026-10-09 17:55:34] emiten [12/40] ENRG ok
+[2026-10-09 17:55:35] emiten [13/40] TEBE ok
+[2026-10-09 17:55:36] emiten [14/40] DEWA ok
+[2026-10-09 17:55:37] emiten [15/40] PACK ok
+[2026-10-09 17:55:38] emiten [16/40] DSSA ok
+[2026-10-09 17:55:39] emiten [17/40] TINS ok
+[2026-10-09 17:55:40] emiten [18/40] ASII ok
+[2026-10-09 17:55:41] emiten [19/40] ANTM ok
+[2026-10-09 17:55:42] emiten [20/40] PTBA ok
+[2026-10-09 17:55:43] emiten [21/40] EMAS ok
+[2026-10-09 17:55:43] emiten [22/40] IATA ok
+[2026-10-09 17:55:44] emiten [23/40] TPIA ok
+[2026-10-09 17:55:45] emiten [24/40] BRMS ok
+[2026-10-09 17:55:46] emiten [25/40] INCO ok
+[2026-10-09 17:55:47] emiten [26/40] TOWR ok
+[2026-10-09 17:55:47] emiten [27/40] BBNI ok
+[2026-10-09 17:55:48] emiten [28/40] DOOH ok
+[2026-10-09 17:55:49] emiten [29/40] CSMI ok
+[2026-10-09 17:55:50] emiten [30/40] ARCI ok
+[2026-10-09 17:55:51] emiten [31/40] ISAT ok
+[2026-10-09 17:55:51] emiten [32/40] JARR ok
+[2026-10-09 17:55:52] emiten [33/40] ADRO ok
+[2026-10-09 17:55:53] emiten [34/40] KOTA ok
+[2026-10-09 17:55:54] emiten [35/40] NAYZ ok
+[2026-10-09 17:55:54] emiten [36/40] AADI ok
+[2026-10-09 17:55:55] emiten [37/40] AHAP ok
+[2026-10-09 17:55:56] emiten [38/40] COCO ok
+[2026-10-09 17:55:57] emiten [39/40] KLBF ok
+[2026-10-09 17:55:58] emiten [40/40] ITMG ok
+[2026-10-09 17:55:58] ERROR /api/lengkapi: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2026-10-09 17:56:11] ksei [cache] memakai ksei yang tersimpan (9 menit lalu)
+[2026-10-09 17:56:11] tv [cache] memakai tv yang tersimpan (9 menit lalu)
+[2026-10-09 17:56:12] berita CNBC-Market: 15 berita
+[2026-10-09 17:56:12] berita BBCA: 19 berita (7 hari), 19 segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 17:56:13] berita BBRI: 15 berita (7 hari), 15 segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 17:56:14] berita GOTO: 32 berita (7 hari), 32 segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 17:56:15] berita TLKM: 9 berita (7 hari), 9 segar, sentimen 79 (Positif), buzz Normal
+[2026-10-09 17:56:15] berita BUMI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:56:16] berita FORU: 8 berita (7 hari), 8 segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 17:56:17] berita AMMN: 12 berita (7 hari), 12 segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 17:56:18] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 17:56:19] berita BMRI: 5 berita (7 hari), 5 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:56:20] berita CUAN: 9 berita (7 hari), 9 segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 17:56:20] berita PTRO: 6 berita (30 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:56:21] berita ENRG: 11 berita (7 hari), 11 segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 17:56:22] berita TEBE: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:56:23] berita DEWA: 4 berita (7 hari), 4 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:56:24] berita PACK: 11 berita (30 hari), 0 segar, sentimen 10 (Negatif), buzz Ramai
+[2026-10-09 17:56:25] berita DSSA: 10 berita (7 hari), 10 segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 17:56:26] berita TINS: 5 berita (30 hari), 0 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:56:26] berita ASII: 9 berita (7 hari), 9 segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 17:56:27] berita ANTM: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:56:28] berita PTBA: 8 berita (7 hari), 8 segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 17:56:29] berita EMAS: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:56:30] berita IATA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:56:30] berita TPIA: 5 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:56:31] berita BRMS: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:56:32] berita INCO: 6 berita (7 hari), 6 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 17:56:39] emiten [1/40] BBCA ok
+[2026-10-09 17:56:40] emiten [2/40] BBRI ok
+[2026-10-09 17:56:41] emiten [3/40] GOTO ok
+[2026-10-09 17:56:42] emiten [4/40] TLKM ok
+[2026-10-09 17:56:43] emiten [5/40] BUMI ok
+[2026-10-09 17:56:43] emiten [6/40] FORU ok
+[2026-10-09 17:56:44] emiten [7/40] AMMN ok
+[2026-10-09 17:56:45] emiten [8/40] SINI ok
+[2026-10-09 17:56:46] emiten [9/40] BMRI ok
+[2026-10-09 17:56:47] emiten [10/40] CUAN ok
+[2026-10-09 17:56:47] emiten [11/40] PTRO ok
+[2026-10-09 17:56:48] emiten [12/40] ENRG ok
+[2026-10-09 17:56:49] emiten [13/40] TEBE ok
+[2026-10-09 17:56:50] emiten [14/40] DEWA ok
+[2026-10-09 17:56:51] emiten [15/40] PACK ok
+[2026-10-09 17:56:51] emiten [16/40] DSSA ok
+[2026-10-09 17:56:52] emiten [17/40] TINS ok
+[2026-10-09 17:56:53] emiten [18/40] ASII ok
+[2026-10-09 17:56:54] emiten [19/40] ANTM ok
+[2026-10-09 17:56:55] emiten [20/40] PTBA ok
+[2026-10-09 17:56:56] emiten [21/40] EMAS ok
+[2026-10-09 17:56:56] emiten [22/40] IATA ok
+[2026-10-09 17:56:57] emiten [23/40] TPIA ok
+[2026-10-09 17:56:58] emiten [24/40] BRMS ok
+[2026-10-09 17:56:59] emiten [25/40] INCO ok
+[2026-10-09 17:57:00] emiten [26/40] TOWR ok
+[2026-10-09 17:57:01] emiten [27/40] BBNI ok
+[2026-10-09 17:57:01] emiten [28/40] DOOH ok
+[2026-10-09 17:57:02] emiten [29/40] CSMI ok
+[2026-10-09 17:57:03] emiten [30/40] ARCI ok
+[2026-10-09 17:57:04] emiten [31/40] ISAT ok
+[2026-10-09 17:57:05] emiten [32/40] JARR ok
+[2026-10-09 17:57:05] emiten [33/40] ADRO ok
+[2026-10-09 17:57:06] emiten [34/40] KOTA ok
+[2026-10-09 17:57:07] emiten [35/40] NAYZ ok
+[2026-10-09 17:57:08] emiten [36/40] AADI ok
+[2026-10-09 17:57:08] emiten [37/40] AHAP ok
+[2026-10-09 17:57:09] emiten [38/40] COCO ok
+[2026-10-09 17:57:10] emiten [39/40] KLBF ok
+[2026-10-09 17:57:11] emiten [40/40] ITMG ok
+[2026-10-09 17:57:15] emiten [1/20] BUVA ok
+[2026-10-09 17:57:16] emiten [2/20] MBSS ok
+[2026-10-09 17:57:17] emiten [3/20] BRPT ok
+[2026-10-09 17:57:18] emiten [4/20] SEMA ok
+[2026-10-09 17:57:19] emiten [5/20] MMIX ok
+[2026-10-09 17:57:19] emiten [6/20] PSAB ok
+[2026-10-09 17:57:20] emiten [7/20] INET ok
+[2026-10-09 17:57:21] emiten [8/20] ASLI ok
+[2026-10-09 17:57:22] emiten [9/20] INDY ok
+[2026-10-09 17:57:23] emiten [10/20] MEJA ok
+[2026-10-09 17:57:23] emiten [11/20] HRTA ok
+[2026-10-09 17:57:24] emiten [12/20] KETR ok
+[2026-10-09 17:57:25] emiten [13/20] RAJA ok
+[2026-10-09 17:57:26] emiten [14/20] SMIL ok
+[2026-10-09 17:57:27] emiten [15/20] SMLE ok
+[2026-10-09 17:57:28] emiten [16/20] PGAS ok
+[2026-10-09 17:57:28] emiten [17/20] MDKA ok
+[2026-10-09 17:57:29] emiten [18/20] POLA ok
+[2026-10-09 17:57:30] emiten [19/20] BYAN ok
+[2026-10-09 17:57:31] emiten [20/20] BULL ok
+[2026-10-09 17:57:33] berita CNBC-Market: 15 berita
+[2026-10-09 17:57:34] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 17:57:37] berita CNBC-Market: 15 berita
+[2026-10-09 17:57:38] berita TOWR: 11 berita (30 hari), 0 segar, sentimen 95 (Positif), buzz Ramai
+[2026-10-09 17:57:41] berita CNBC-Market: 15 berita
+[2026-10-09 17:57:42] berita BBNI: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:57:45] berita CNBC-Market: 15 berita
+[2026-10-09 17:57:47] berita DOOH: 9 berita (7 hari), 9 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 17:57:50] berita CNBC-Market: 15 berita
+[2026-10-09 17:57:51] berita CSMI: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:57:54] berita CNBC-Market: 15 berita
+[2026-10-09 17:57:55] berita ARCI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:57:58] berita CNBC-Market: 15 berita
+[2026-10-09 17:57:59] berita ISAT: 6 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:58:02] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:04] berita JARR: 21 berita (7 hari), 21 segar, sentimen 7 (Negatif), buzz Ramai
+[2026-10-09 17:58:07] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:09] berita ADRO: 8 berita (7 hari), 8 segar, sentimen 64 (Positif), buzz Normal
+[2026-10-09 17:58:12] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:13] berita KOTA: 1 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:58:16] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:17] berita NAYZ: 7 berita (7 hari), 7 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:58:20] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:21] berita AADI: 12 berita (7 hari), 12 segar, sentimen 88 (Positif), buzz Ramai
+[2026-10-09 17:58:24] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:26] berita AHAP: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:58:29] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:30] berita COCO: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:58:33] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:35] berita KLBF: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 17:58:38] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:39] berita ITMG: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:58:42] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:43] berita BUVA: 6 berita (7 hari), 6 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:58:46] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:48] berita MBSS: 4 berita (7 hari), 4 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:58:51] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:52] berita BRPT: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 17:58:55] berita CNBC-Market: 15 berita
+[2026-10-09 17:58:56] berita SEMA: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:58:59] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:01] berita MMIX: 2 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:59:04] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:05] berita PSAB: 3 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:59:08] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:09] berita INET: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:59:13] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:14] berita ASLI: 6 berita (7 hari), 6 segar, sentimen 7 (Negatif), buzz Normal
+[2026-10-09 17:59:17] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:18] berita INDY: 4 berita (7 hari), 4 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:59:21] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:22] berita MEJA: 6 berita (90 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 17:59:25] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:27] berita HRTA: 3 berita (7 hari), 3 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 17:59:30] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:31] berita KETR: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:59:34] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:35] berita RAJA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:59:38] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:39] berita SMIL: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 17:59:42] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:44] berita SMLE: 7 berita (7 hari), 7 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 17:59:47] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:48] berita PGAS: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 17:59:51] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:52] berita MDKA: 2 berita (7 hari), 2 segar, sentimen 83 (Positif), buzz Sepi
+[2026-10-09 17:59:55] berita CNBC-Market: 15 berita
+[2026-10-09 17:59:57] berita POLA: 9 berita (7 hari), 9 segar, sentimen 38 (Negatif), buzz Normal
+[2026-10-09 18:00:00] berita CNBC-Market: 15 berita
+[2026-10-09 18:00:01] berita BYAN: 60 berita (7 hari), 60 segar, sentimen 92 (Positif), buzz Ramai
+[2026-10-09 18:00:04] berita CNBC-Market: 15 berita
+[2026-10-09 18:00:06] berita BULL: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:00:09] berita CNBC-Market: 15 berita
+[2026-10-09 18:00:10] berita PCAR: 1 berita (90 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:13:03] ksei [cache] memakai ksei yang tersimpan (26 menit lalu)
+[2026-10-09 18:13:03] tv [cache] memakai tv yang tersimpan (26 menit lalu)
+[2026-10-09 18:13:04] berita CNBC-Market: 15 berita
+[2026-10-09 18:13:05] berita BBCA: 19 berita (7 hari), 19 segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 18:13:06] berita BBRI: 15 berita (7 hari), 15 segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 18:13:08] berita GOTO: 32 berita (7 hari), 32 segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 18:13:09] berita TLKM: 9 berita (7 hari), 9 segar, sentimen 79 (Positif), buzz Normal
+[2026-10-09 18:13:10] berita BUMI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:13:11] berita FORU: 8 berita (7 hari), 8 segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 18:13:13] berita AMMN: 12 berita (7 hari), 12 segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 18:13:14] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 18:13:15] berita BMRI: 4 berita (7 hari), 4 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:13:16] berita CUAN: 9 berita (7 hari), 9 segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 18:13:18] berita PTRO: 6 berita (30 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:13:19] berita ENRG: 11 berita (7 hari), 11 segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 18:13:20] berita TEBE: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:13:21] berita DEWA: 4 berita (7 hari), 4 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:13:23] berita PACK: 11 berita (30 hari), 0 segar, sentimen 10 (Negatif), buzz Ramai
+[2026-10-09 18:13:24] berita DSSA: 10 berita (7 hari), 10 segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 18:13:25] berita TINS: 5 berita (30 hari), 0 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:13:26] berita ASII: 9 berita (7 hari), 9 segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 18:13:27] berita ANTM: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:13:29] berita PTBA: 8 berita (7 hari), 8 segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 18:13:30] berita EMAS: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:13:31] berita IATA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:13:32] berita TPIA: 5 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:13:33] berita BRMS: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:13:35] berita INCO: 6 berita (7 hari), 6 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 18:13:37] berita CNBC-Market: 15 berita
+[2026-10-09 18:13:38] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 18:13:41] berita CNBC-Market: 15 berita
+[2026-10-09 18:13:42] emiten [1/40] BBCA ok
+[2026-10-09 18:13:42] berita TOWR: 11 berita (30 hari), 0 segar, sentimen 95 (Positif), buzz Ramai
+[2026-10-09 18:13:43] emiten [2/40] BBRI ok
+[2026-10-09 18:13:44] emiten [3/40] GOTO ok
+[2026-10-09 18:13:45] emiten [4/40] TLKM ok
+[2026-10-09 18:13:45] berita CNBC-Market: 15 berita
+[2026-10-09 18:13:46] emiten [5/40] BUMI ok
+[2026-10-09 18:13:47] emiten [6/40] FORU ok
+[2026-10-09 18:13:47] berita BBNI: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:13:47] emiten [7/40] AMMN ok
+[2026-10-09 18:13:48] emiten [8/40] SINI ok
+[2026-10-09 18:13:49] emiten [9/40] BMRI ok
+[2026-10-09 18:13:50] berita CNBC-Market: 15 berita
+[2026-10-09 18:13:50] emiten [10/40] CUAN ok
+[2026-10-09 18:13:51] emiten [11/40] PTRO ok
+[2026-10-09 18:13:51] berita DOOH: 9 berita (7 hari), 9 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 18:13:52] emiten [12/40] ENRG ok
+[2026-10-09 18:13:53] emiten [13/40] TEBE ok
+[2026-10-09 18:13:53] emiten [14/40] DEWA ok
+[2026-10-09 18:13:54] emiten [15/40] PACK ok
+[2026-10-09 18:13:54] berita CNBC-Market: 15 berita
+[2026-10-09 18:13:55] emiten [16/40] DSSA ok
+[2026-10-09 18:13:55] berita CSMI: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:13:56] emiten [17/40] TINS ok
+[2026-10-09 18:13:57] emiten [18/40] ASII ok
+[2026-10-09 18:13:57] emiten [19/40] ANTM ok
+[2026-10-09 18:13:58] emiten [20/40] PTBA ok
+[2026-10-09 18:13:59] berita CNBC-Market: 15 berita
+[2026-10-09 18:13:59] emiten [21/40] EMAS ok
+[2026-10-09 18:14:00] berita ARCI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:14:00] emiten [22/40] IATA ok
+[2026-10-09 18:14:01] emiten [23/40] TPIA ok
+[2026-10-09 18:14:02] emiten [24/40] BRMS ok
+[2026-10-09 18:14:03] emiten [25/40] INCO ok
+[2026-10-09 18:14:03] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:04] emiten [26/40] TOWR ok
+[2026-10-09 18:14:04] berita ISAT: 6 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:14:05] emiten [27/40] BBNI ok
+[2026-10-09 18:14:05] emiten [28/40] DOOH ok
+[2026-10-09 18:14:06] emiten [29/40] CSMI ok
+[2026-10-09 18:14:07] emiten [30/40] ARCI ok
+[2026-10-09 18:14:07] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:08] emiten [31/40] ISAT ok
+[2026-10-09 18:14:09] berita JARR: 22 berita (7 hari), 22 segar, sentimen 8 (Negatif), buzz Ramai
+[2026-10-09 18:14:09] emiten [32/40] JARR ok
+[2026-10-09 18:14:10] emiten [33/40] ADRO ok
+[2026-10-09 18:14:11] emiten [34/40] KOTA ok
+[2026-10-09 18:14:12] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:12] emiten [35/40] NAYZ ok
+[2026-10-09 18:14:13] emiten [36/40] AADI ok
+[2026-10-09 18:14:13] berita ADRO: 8 berita (7 hari), 8 segar, sentimen 64 (Positif), buzz Normal
+[2026-10-09 18:14:13] emiten [37/40] AHAP ok
+[2026-10-09 18:14:14] emiten [38/40] COCO ok
+[2026-10-09 18:14:15] emiten [39/40] KLBF ok
+[2026-10-09 18:14:16] emiten [40/40] ITMG ok
+[2026-10-09 18:14:16] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:17] berita KOTA: 1 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:14:20] emiten [1/20] BUVA ok
+[2026-10-09 18:14:20] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:21] emiten [2/20] MBSS ok
+[2026-10-09 18:14:21] berita NAYZ: 7 berita (7 hari), 7 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:14:21] emiten [3/20] BRPT ok
+[2026-10-09 18:14:22] emiten [4/20] SEMA ok
+[2026-10-09 18:14:23] emiten [5/20] MMIX ok
+[2026-10-09 18:14:24] emiten [6/20] PSAB ok
+[2026-10-09 18:14:24] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:24] emiten [7/20] INET ok
+[2026-10-09 18:14:25] emiten [8/20] ASLI ok
+[2026-10-09 18:14:25] berita AADI: 12 berita (7 hari), 12 segar, sentimen 88 (Positif), buzz Ramai
+[2026-10-09 18:14:26] emiten [9/20] INDY ok
+[2026-10-09 18:14:27] emiten [10/20] MEJA ok
+[2026-10-09 18:14:27] emiten [11/20] HRTA ok
+[2026-10-09 18:14:28] emiten [12/20] KETR ok
+[2026-10-09 18:14:28] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:29] emiten [13/20] RAJA ok
+[2026-10-09 18:14:30] berita AHAP: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:14:30] emiten [14/20] SMIL ok
+[2026-10-09 18:14:31] emiten [15/20] SMLE ok
+[2026-10-09 18:14:32] emiten [16/20] PGAS ok
+[2026-10-09 18:14:32] emiten [17/20] MDKA ok
+[2026-10-09 18:14:33] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:33] emiten [18/20] POLA ok
+[2026-10-09 18:14:34] berita COCO: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:14:34] emiten [19/20] BYAN ok
+[2026-10-09 18:14:35] emiten [20/20] BULL ok
+[2026-10-09 18:14:39] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:40] berita KLBF: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:14:43] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:44] berita ITMG: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:14:47] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:49] berita BUVA: 6 berita (7 hari), 6 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:14:52] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:53] berita MBSS: 4 berita (7 hari), 4 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:14:56] berita CNBC-Market: 15 berita
+[2026-10-09 18:14:57] berita BRPT: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:15:00] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:01] berita SEMA: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:15:05] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:06] berita MMIX: 2 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:15:09] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:10] berita PSAB: 3 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:15:13] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:14] berita INET: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:15:17] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:19] berita ASLI: 6 berita (7 hari), 6 segar, sentimen 7 (Negatif), buzz Normal
+[2026-10-09 18:15:22] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:23] berita INDY: 4 berita (7 hari), 4 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:15:26] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:27] berita MEJA: 6 berita (90 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:15:30] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:31] berita HRTA: 3 berita (7 hari), 3 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:15:34] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:35] berita KETR: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:15:38] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:40] berita RAJA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:15:43] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:44] berita SMIL: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:15:45] ERROR /api/berita: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2026-10-09 18:15:46] ksei [cache] memakai ksei yang tersimpan (28 menit lalu)
+[2026-10-09 18:15:46] tv [cache] memakai tv yang tersimpan (28 menit lalu)
+[2026-10-09 18:15:47] berita CNBC-Market: 15 berita
+[2026-10-09 18:15:48] berita BBCA: 19 berita (7 hari), 19 segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 18:15:49] berita BBRI: 15 berita (7 hari), 15 segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 18:15:51] berita GOTO: 32 berita (7 hari), 32 segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 18:15:52] berita TLKM: 9 berita (7 hari), 9 segar, sentimen 79 (Positif), buzz Normal
+[2026-10-09 18:15:53] berita BUMI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:15:55] berita FORU: 9 berita (7 hari), 9 segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 18:15:56] berita AMMN: 12 berita (7 hari), 12 segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 18:15:57] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 18:15:58] berita BMRI: 4 berita (7 hari), 4 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:16:00] berita CUAN: 9 berita (7 hari), 9 segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 18:16:01] berita PTRO: 6 berita (30 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:16:02] berita ENRG: 11 berita (7 hari), 11 segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 18:16:04] berita TEBE: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:16:05] berita DEWA: 4 berita (7 hari), 4 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:16:07] berita PACK: 11 berita (30 hari), 0 segar, sentimen 10 (Negatif), buzz Ramai
+[2026-10-09 18:16:08] berita DSSA: 10 berita (7 hari), 10 segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 18:16:09] berita TINS: 5 berita (30 hari), 0 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:16:11] berita ASII: 9 berita (7 hari), 9 segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 18:16:12] berita ANTM: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:16:13] berita PTBA: 8 berita (7 hari), 8 segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 18:16:15] berita EMAS: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:16:16] berita IATA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:16:17] berita TPIA: 5 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:16:21] berita BRMS: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:16:22] berita INCO: 6 berita (7 hari), 6 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 18:16:33] emiten [1/40] BBCA ok
+[2026-10-09 18:16:34] emiten [2/40] BBRI ok
+[2026-10-09 18:16:35] emiten [3/40] FORU ok
+[2026-10-09 18:16:35] emiten [4/40] BMRI ok
+[2026-10-09 18:16:36] emiten [5/40] CUAN ok
+[2026-10-09 18:16:37] emiten [6/40] PACK ok
+[2026-10-09 18:16:38] emiten [7/40] EMAS ok
+[2026-10-09 18:16:39] emiten [8/40] BBNI ok
+[2026-10-09 18:16:40] emiten [9/40] AHAP ok
+[2026-10-09 18:16:40] emiten [10/40] COCO ok
+[2026-10-09 18:16:41] emiten [11/40] MEJA ok
+[2026-10-09 18:16:42] emiten [12/40] PCAR ok
+[2026-10-09 18:16:43] emiten [13/40] SQMI ok
+[2026-10-09 18:16:44] emiten [14/40] LUCY ok
+[2026-10-09 18:16:45] emiten [15/40] WIFI ok
+[2026-10-09 18:16:45] emiten [16/40] STRK ok
+[2026-10-09 18:16:46] emiten [17/40] SGER ok
+[2026-10-09 18:16:48] emiten [18/40] ADMR ok
+[2026-10-09 18:16:48] emiten [19/40] BNBR ok
+[2026-10-09 18:16:49] emiten [20/40] BEKS ok
+[2026-10-09 18:16:50] emiten [21/40] ASPI ok
+[2026-10-09 18:16:51] emiten [22/40] BIPI ok
+[2026-10-09 18:16:55] emiten [23/40] BDMN ok
+[2026-10-09 18:16:55] emiten [24/40] CYBR ok
+[2026-10-09 18:16:56] emiten [25/40] BSDE ok
+[2026-10-09 18:16:57] emiten [26/40] NEST ok
+[2026-10-09 18:16:58] emiten [27/40] TRUE ok
+[2026-10-09 18:16:59] emiten [28/40] ARKO ok
+[2026-10-09 18:17:00] emiten [29/40] GULA ok
+[2026-10-09 18:17:01] emiten [30/40] TRIN ok
+[2026-10-09 18:17:01] emiten [31/40] BTEK ok
+[2026-10-09 18:17:02] emiten [32/40] SSMS ok
+[2026-10-09 18:17:03] emiten [33/40] BBTN ok
+[2026-10-09 18:17:04] emiten [34/40] KKES ok
+[2026-10-09 18:17:05] emiten [35/40] CDIA ok
+[2026-10-09 18:17:06] emiten [36/40] PURA ok
+[2026-10-09 18:17:07] emiten [37/40] COIN ok
+[2026-10-09 18:17:07] emiten [38/40] MCAS ok
+[2026-10-09 18:17:08] emiten [39/40] FILM ok
+[2026-10-09 18:17:23] berita CNBC-Market: 15 berita
+[2026-10-09 18:17:23] emiten [40/40] MGLV ok
+[2026-10-09 18:17:51] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 18:17:55] berita CNBC-Market: 15 berita
+[2026-10-09 18:17:57] berita TOWR: 11 berita (30 hari), 0 segar, sentimen 95 (Positif), buzz Ramai
+[2026-10-09 18:17:57] emiten [1/20] AKKU ok
+[2026-10-09 18:17:58] emiten [2/20] NASA ok
+[2026-10-09 18:17:58] emiten [3/20] VERN ok
+[2026-10-09 18:17:59] emiten [4/20] ARTO ok
+[2026-10-09 18:18:00] berita CNBC-Market: 15 berita
+[2026-10-09 18:18:00] emiten [5/20] KREN ok
+[2026-10-09 18:18:01] emiten [6/20] FUTR ok
+[2026-10-09 18:18:01] berita BBNI: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:18:02] emiten [7/20] IKAI ok
+[2026-10-09 18:18:03] emiten [8/20] PANI ok
+[2026-10-09 18:18:04] emiten [9/20] DAAZ ok
+[2026-10-09 18:18:05] berita CNBC-Market: 15 berita
+[2026-10-09 18:18:06] emiten [10/20] CBRE ok
+[2026-10-09 18:18:06] berita DOOH: 9 berita (7 hari), 9 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 18:18:07] emiten [11/20] TKIM ok
+[2026-10-09 18:18:07] emiten [12/20] SUPA ok
+[2026-10-09 18:18:08] emiten [13/20] HAJJ ok
+[2026-10-09 18:18:13] berita CNBC-Market: 15 berita
+[2026-10-09 18:18:13] emiten [14/20] BEER ok
+[2026-10-09 18:18:14] emiten [15/20] AYAM ok
+[2026-10-09 18:18:15] berita CSMI: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:18:15] emiten [16/20] PPRI ok
+[2026-10-09 18:18:16] emiten [17/20] MEDS ok
+[2026-10-09 18:18:17] emiten [18/20] REAL ok
+[2026-10-09 18:18:18] berita CNBC-Market: 15 berita
+[2026-10-09 18:18:18] emiten [19/20] SLIS ok
+[2026-10-09 18:18:19] emiten [20/20] GPSO ok
+[2026-10-09 18:18:59] berita ARCI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:19:11] berita CNBC-Market: 15 berita
+[2026-10-09 18:19:15] berita ISAT: 6 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:19:17] berita CNBC-Market: 15 berita
+[2026-10-09 18:19:20] berita JARR: 32 berita (7 hari), 32 segar, sentimen 19 (Negatif), buzz Ramai
+[2026-10-09 18:19:23] berita CNBC-Market: 15 berita
+[2026-10-09 18:19:25] berita ADRO: 8 berita (7 hari), 8 segar, sentimen 64 (Positif), buzz Normal
+[2026-10-09 18:19:46] berita CNBC-Market: 15 berita
+[2026-10-09 18:19:47] berita KOTA: 1 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:19:50] berita CNBC-Market: 15 berita
+[2026-10-09 18:20:02] berita NAYZ: 7 berita (7 hari), 7 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:20:18] berita CNBC-Market: 15 berita
+[2026-10-09 18:20:23] berita AADI: 12 berita (7 hari), 12 segar, sentimen 88 (Positif), buzz Ramai
+[2026-10-09 18:20:38] berita CNBC-Market: 15 berita
+[2026-10-09 18:20:44] berita AHAP: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:20:51] berita CNBC-Market: 15 berita
+[2026-10-09 18:20:56] berita COCO: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:21:00] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:03] berita KLBF: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:21:07] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:09] berita ITMG: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:21:12] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:15] berita BUVA: 6 berita (7 hari), 6 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:21:18] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:19] berita MBSS: 4 berita (7 hari), 4 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:21:23] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:25] berita BRPT: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:21:28] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:29] berita SEMA: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:21:32] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:33] berita MMIX: 2 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:21:36] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:37] berita PSAB: 3 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:21:40] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:41] berita INET: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:21:44] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:45] berita ASLI: 6 berita (7 hari), 6 segar, sentimen 7 (Negatif), buzz Normal
+[2026-10-09 18:21:47] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:48] berita INDY: 4 berita (7 hari), 4 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:21:51] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:52] berita MEJA: 6 berita (90 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:21:54] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:56] berita HRTA: 3 berita (7 hari), 3 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:21:58] berita CNBC-Market: 15 berita
+[2026-10-09 18:21:59] berita KETR: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:22:02] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:03] berita RAJA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:22:06] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:07] berita SMIL: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:22:09] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:10] berita SMLE: 7 berita (7 hari), 7 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:22:13] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:14] berita PGAS: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:22:16] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:18] berita MDKA: 2 berita (7 hari), 2 segar, sentimen 83 (Positif), buzz Sepi
+[2026-10-09 18:22:20] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:22] berita POLA: 9 berita (7 hari), 9 segar, sentimen 38 (Negatif), buzz Normal
+[2026-10-09 18:22:24] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:25] berita BYAN: 60 berita (7 hari), 60 segar, sentimen 92 (Positif), buzz Ramai
+[2026-10-09 18:22:28] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:29] berita BULL: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:22:32] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:33] berita PCAR: 1 berita (90 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:22:35] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:36] berita SQMI: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:22:39] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:40] berita LUCY: 3 berita (7 hari), 3 segar, sentimen 25 (Negatif), buzz Normal
+[2026-10-09 18:22:43] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:44] berita MEDC: 5 berita (7 hari), 5 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:22:47] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:48] berita ERAA: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:22:51] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:52] berita WIFI: 4 berita (7 hari), 4 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:22:54] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:55] berita JECX: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:22:58] berita CNBC-Market: 15 berita
+[2026-10-09 18:22:59] berita STRK: 8 berita (1 tahun), 0 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:23:02] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:03] berita UNTR: 7 berita (7 hari), 7 segar, sentimen 38 (Negatif), buzz Normal
+[2026-10-09 18:23:06] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:07] berita PKPK: 8 berita (7 hari), 8 segar, sentimen 10 (Negatif), buzz Normal
+[2026-10-09 18:23:10] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:11] berita MPXL: 5 berita (7 hari), 5 segar, sentimen 10 (Negatif), buzz Normal
+[2026-10-09 18:23:14] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:15] berita ULTJ: 2 berita (7 hari), 2 segar, sentimen 83 (Positif), buzz Sepi
+[2026-10-09 18:23:18] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:19] berita SGER: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:23:22] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:23] berita BRIS: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:23:26] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:27] berita MBMA: 4 berita (7 hari), 4 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:23:29] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:31] berita UVCR: 4 berita (7 hari), 4 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:23:33] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:34] berita KIJA: 5 berita (7 hari), 5 segar, sentimen 92 (Positif), buzz Normal
+[2026-10-09 18:23:37] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:38] berita ADMR: 1 berita (7 hari), 1 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:23:41] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:42] berita ICBP: 10 berita (30 hari), 0 segar, sentimen 38 (Negatif), buzz Ramai
+[2026-10-09 18:23:47] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:49] berita BNBR: 3 berita (30 hari), 0 segar, sentimen 25 (Negatif), buzz Normal
+[2026-10-09 18:23:51] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:52] berita GGRM: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:23:55] berita CNBC-Market: 15 berita
+[2026-10-09 18:23:56] berita MDIA: 41 berita (90 hari), 0 segar, sentimen 25 (Negatif), buzz Ramai
+[2026-10-09 18:23:59] berita CNBC-Market: 15 berita
+[2026-10-09 18:24:00] berita SMMT: 7 berita (30 hari), 0 segar, sentimen 8 (Negatif), buzz Normal
+[2026-10-09 18:24:40] ==================================================
+[2026-10-09 18:24:40] Aplikasi Screener dimulai
+[2026-10-09 18:24:42] Melayani di http://127.0.0.1:8765/
+[2026-10-09 18:24:42] Screener Praktis berjalan di http://127.0.0.1:8765/
+[2026-10-09 18:25:37] ksei Periode terbaru : 20260930
+[2026-10-09 18:25:37] ksei Periode sebelumnya: 20260831
+[2026-10-09 18:25:37] ksei Menyusun seri 24 bulan untuk estimasi harga rata-rata asing...
+[2026-10-09 18:25:38] ksei Terbaca 1012 emiten EQUITY; seri 24 bulan
+[2026-10-09 18:25:39] berita CNBC-Market: 15 berita
+[2026-10-09 18:25:40] berita BBCA: 19 berita (7 hari), 19 segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 18:25:41] berita BBRI: 15 berita (7 hari), 15 segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 18:25:43] berita GOTO: 32 berita (7 hari), 32 segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 18:25:44] berita TLKM: 9 berita (7 hari), 9 segar, sentimen 79 (Positif), buzz Normal
+[2026-10-09 18:25:45] berita BUMI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:25:46] ksei [cache] memakai ksei yang tersimpan (0 menit lalu)
+[2026-10-09 18:25:46] tv [cache] memakai tv yang tersimpan (0 menit lalu)
+[2026-10-09 18:25:46] berita CNBC-Market: 15 berita
+[2026-10-09 18:25:46] berita FORU: 8 berita (7 hari), 8 segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 18:25:47] berita BBCA: 19 berita (7 hari), 19 segar, sentimen 58 (Netral), buzz Ramai
+[2026-10-09 18:25:48] berita AMMN: 12 berita (7 hari), 12 segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 18:25:48] berita BBRI: 15 berita (7 hari), 15 segar, sentimen 81 (Positif), buzz Ramai
+[2026-10-09 18:25:49] berita GOTO: 32 berita (7 hari), 32 segar, sentimen 64 (Positif), buzz Ramai
+[2026-10-09 18:25:49] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 18:25:49] berita TLKM: 9 berita (7 hari), 9 segar, sentimen 79 (Positif), buzz Normal
+[2026-10-09 18:25:50] berita BMRI: 5 berita (7 hari), 5 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:25:50] berita BUMI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:25:51] berita FORU: 8 berita (7 hari), 8 segar, sentimen 30 (Negatif), buzz Normal
+[2026-10-09 18:25:51] berita CUAN: 9 berita (7 hari), 9 segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 18:25:52] berita AMMN: 12 berita (7 hari), 12 segar, sentimen 83 (Positif), buzz Ramai
+[2026-10-09 18:25:52] berita PTRO: 6 berita (30 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:25:53] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 18:25:54] berita BMRI: 5 berita (7 hari), 5 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:25:54] berita ENRG: 11 berita (7 hari), 11 segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 18:25:55] berita CUAN: 9 berita (7 hari), 9 segar, sentimen 94 (Positif), buzz Normal
+[2026-10-09 18:25:55] berita TEBE: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:25:55] berita PTRO: 6 berita (30 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:25:56] berita ENRG: 11 berita (7 hari), 11 segar, sentimen 62 (Positif), buzz Ramai
+[2026-10-09 18:25:56] berita DEWA: 4 berita (7 hari), 4 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:25:57] berita TEBE: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:25:58] berita PACK: 11 berita (30 hari), 0 segar, sentimen 10 (Negatif), buzz Ramai
+[2026-10-09 18:25:58] berita DEWA: 4 berita (7 hari), 4 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:25:59] berita PACK: 11 berita (30 hari), 0 segar, sentimen 10 (Negatif), buzz Ramai
+[2026-10-09 18:25:59] berita DSSA: 10 berita (7 hari), 10 segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 18:26:00] berita DSSA: 10 berita (7 hari), 10 segar, sentimen 50 (Netral), buzz Ramai
+[2026-10-09 18:26:00] berita TINS: 5 berita (30 hari), 0 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:26:01] berita TINS: 5 berita (30 hari), 0 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:26:01] berita ASII: 9 berita (7 hari), 9 segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 18:26:01] berita ASII: 9 berita (7 hari), 9 segar, sentimen 93 (Positif), buzz Normal
+[2026-10-09 18:26:03] berita ANTM: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:26:03] berita ANTM: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:26:04] berita PTBA: 8 berita (7 hari), 8 segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 18:26:04] berita PTBA: 8 berita (7 hari), 8 segar, sentimen 90 (Positif), buzz Normal
+[2026-10-09 18:26:05] berita EMAS: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:26:05] berita EMAS: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:26:06] berita IATA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:26:06] berita IATA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:26:08] berita TPIA: 6 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:26:08] berita TPIA: 6 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:26:09] berita BRMS: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:26:09] berita BRMS: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:26:10] berita INCO: 6 berita (7 hari), 6 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 18:26:10] berita INCO: 6 berita (7 hari), 6 segar, sentimen 70 (Positif), buzz Normal
+[2026-10-09 18:26:13] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:14] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 18:26:17] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:18] emiten [1/40] BBCA ok
+[2026-10-09 18:26:18] emiten [1/40] BBCA ok
+[2026-10-09 18:26:18] emiten [2/40] BBRI ok
+[2026-10-09 18:26:18] emiten [2/40] BBRI ok
+[2026-10-09 18:26:19] berita TOWR: 11 berita (30 hari), 0 segar, sentimen 95 (Positif), buzz Ramai
+[2026-10-09 18:26:19] emiten [3/40] FORU ok
+[2026-10-09 18:26:19] emiten [3/40] GOTO ok
+[2026-10-09 18:26:20] emiten [4/40] TLKM ok
+[2026-10-09 18:26:20] emiten [4/40] BMRI ok
+[2026-10-09 18:26:21] emiten [5/40] BUMI ok
+[2026-10-09 18:26:21] emiten [5/40] CUAN ok
+[2026-10-09 18:26:22] emiten [6/40] FORU ok
+[2026-10-09 18:26:22] emiten [6/40] PACK ok
+[2026-10-09 18:26:22] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:22] emiten [7/40] AMMN ok
+[2026-10-09 18:26:22] emiten [7/40] EMAS ok
+[2026-10-09 18:26:23] berita BBNI: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:26:23] emiten [8/40] SINI ok
+[2026-10-09 18:26:23] emiten [8/40] BBNI ok
+[2026-10-09 18:26:24] emiten [9/40] BMRI ok
+[2026-10-09 18:26:24] emiten [9/40] AHAP ok
+[2026-10-09 18:26:25] emiten [10/40] COCO ok
+[2026-10-09 18:26:25] emiten [10/40] CUAN ok
+[2026-10-09 18:26:25] emiten [11/40] MEJA ok
+[2026-10-09 18:26:25] emiten [11/40] PTRO ok
+[2026-10-09 18:26:26] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:26] emiten [12/40] ENRG ok
+[2026-10-09 18:26:26] emiten [12/40] PCAR ok
+[2026-10-09 18:26:27] emiten [13/40] SQMI ok
+[2026-10-09 18:26:27] emiten [13/40] TEBE ok
+[2026-10-09 18:26:28] emiten [14/40] LUCY ok
+[2026-10-09 18:26:28] emiten [14/40] DEWA ok
+[2026-10-09 18:26:28] berita DOOH: 9 berita (7 hari), 9 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:26:29] emiten [15/40] WIFI ok
+[2026-10-09 18:26:29] emiten [15/40] PACK ok
+[2026-10-09 18:26:29] emiten [16/40] STRK ok
+[2026-10-09 18:26:29] emiten [16/40] DSSA ok
+[2026-10-09 18:26:30] emiten [17/40] SGER ok
+[2026-10-09 18:26:30] emiten [17/40] TINS ok
+[2026-10-09 18:26:31] emiten [18/40] ADMR ok
+[2026-10-09 18:26:31] emiten [18/40] ASII ok
+[2026-10-09 18:26:31] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:32] emiten [19/40] BNBR ok
+[2026-10-09 18:26:32] emiten [19/40] ANTM ok
+[2026-10-09 18:26:33] berita CSMI: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:26:33] emiten [20/40] BEKS ok
+[2026-10-09 18:26:33] emiten [20/40] PTBA ok
+[2026-10-09 18:26:34] emiten [21/40] ASPI ok
+[2026-10-09 18:26:34] emiten [21/40] EMAS ok
+[2026-10-09 18:26:34] emiten [22/40] BIPI ok
+[2026-10-09 18:26:35] emiten [22/40] IATA ok
+[2026-10-09 18:26:35] emiten [23/40] BDMN ok
+[2026-10-09 18:26:35] emiten [23/40] TPIA ok
+[2026-10-09 18:26:36] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:36] emiten [24/40] CYBR ok
+[2026-10-09 18:26:36] emiten [24/40] BRMS ok
+[2026-10-09 18:26:37] emiten [25/40] BSDE ok
+[2026-10-09 18:26:37] berita ARCI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:26:37] emiten [25/40] INCO ok
+[2026-10-09 18:26:38] emiten [26/40] NEST ok
+[2026-10-09 18:26:38] emiten [26/40] TOWR ok
+[2026-10-09 18:26:38] emiten [27/40] TRUE ok
+[2026-10-09 18:26:39] emiten [27/40] BBNI ok
+[2026-10-09 18:26:39] emiten [28/40] ARKO ok
+[2026-10-09 18:26:40] emiten [28/40] DOOH ok
+[2026-10-09 18:26:40] emiten [29/40] GULA ok
+[2026-10-09 18:26:40] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:40] emiten [29/40] CSMI ok
+[2026-10-09 18:26:41] emiten [30/40] TRIN ok
+[2026-10-09 18:26:41] emiten [30/40] ARCI ok
+[2026-10-09 18:26:42] emiten [31/40] BTEK ok
+[2026-10-09 18:26:42] berita ISAT: 6 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:26:42] emiten [31/40] ISAT ok
+[2026-10-09 18:26:42] emiten [32/40] SSMS ok
+[2026-10-09 18:26:43] emiten [32/40] JARR ok
+[2026-10-09 18:26:43] emiten [33/40] BBTN ok
+[2026-10-09 18:26:44] emiten [33/40] ADRO ok
+[2026-10-09 18:26:44] emiten [34/40] KKES ok
+[2026-10-09 18:26:44] emiten [34/40] KOTA ok
+[2026-10-09 18:26:45] emiten [35/40] CDIA ok
+[2026-10-09 18:26:45] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:45] emiten [35/40] NAYZ ok
+[2026-10-09 18:26:46] emiten [36/40] PURA ok
+[2026-10-09 18:26:46] berita JARR: 21 berita (7 hari), 21 segar, sentimen 7 (Negatif), buzz Ramai
+[2026-10-09 18:26:46] emiten [36/40] AADI ok
+[2026-10-09 18:26:46] emiten [37/40] COIN ok
+[2026-10-09 18:26:47] emiten [37/40] AHAP ok
+[2026-10-09 18:26:47] emiten [38/40] MCAS ok
+[2026-10-09 18:26:48] emiten [38/40] COCO ok
+[2026-10-09 18:26:48] emiten [39/40] FILM ok
+[2026-10-09 18:26:48] emiten [39/40] KLBF ok
+[2026-10-09 18:26:49] emiten [40/40] MGLV ok
+[2026-10-09 18:26:49] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:49] emiten [40/40] ITMG ok
+[2026-10-09 18:26:50] berita ADRO: 8 berita (7 hari), 8 segar, sentimen 64 (Positif), buzz Normal
+[2026-10-09 18:26:53] emiten [1/20] AKKU ok
+[2026-10-09 18:26:54] emiten [1/20] BUVA ok
+[2026-10-09 18:26:54] emiten [2/20] NASA ok
+[2026-10-09 18:26:54] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:54] emiten [2/20] MBSS ok
+[2026-10-09 18:26:54] emiten [3/20] VERN ok
+[2026-10-09 18:26:55] berita KOTA: 1 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:26:55] emiten [3/20] BRPT ok
+[2026-10-09 18:26:55] emiten [4/20] ARTO ok
+[2026-10-09 18:26:56] emiten [4/20] SEMA ok
+[2026-10-09 18:26:56] emiten [5/20] KREN ok
+[2026-10-09 18:26:57] emiten [6/20] FUTR ok
+[2026-10-09 18:26:57] emiten [5/20] MMIX ok
+[2026-10-09 18:26:58] emiten [7/20] IKAI ok
+[2026-10-09 18:26:58] emiten [6/20] PSAB ok
+[2026-10-09 18:26:58] berita CNBC-Market: 15 berita
+[2026-10-09 18:26:58] emiten [8/20] PANI ok
+[2026-10-09 18:26:58] emiten [7/20] INET ok
+[2026-10-09 18:26:59] emiten [8/20] ASLI ok
+[2026-10-09 18:26:59] emiten [9/20] DAAZ ok
+[2026-10-09 18:26:59] berita NAYZ: 7 berita (7 hari), 7 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:27:00] emiten [10/20] CBRE ok
+[2026-10-09 18:27:00] emiten [9/20] INDY ok
+[2026-10-09 18:27:01] emiten [11/20] TKIM ok
+[2026-10-09 18:27:01] emiten [10/20] MEJA ok
+[2026-10-09 18:27:01] emiten [12/20] SUPA ok
+[2026-10-09 18:27:01] emiten [11/20] HRTA ok
+[2026-10-09 18:27:02] emiten [13/20] HAJJ ok
+[2026-10-09 18:27:02] emiten [12/20] KETR ok
+[2026-10-09 18:27:02] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:03] emiten [14/20] BEER ok
+[2026-10-09 18:27:03] emiten [13/20] RAJA ok
+[2026-10-09 18:27:03] berita AADI: 12 berita (7 hari), 12 segar, sentimen 88 (Positif), buzz Ramai
+[2026-10-09 18:27:04] emiten [15/20] AYAM ok
+[2026-10-09 18:27:04] emiten [14/20] SMIL ok
+[2026-10-09 18:27:05] emiten [16/20] PPRI ok
+[2026-10-09 18:27:05] emiten [15/20] SMLE ok
+[2026-10-09 18:27:06] emiten [17/20] MEDS ok
+[2026-10-09 18:27:06] emiten [16/20] PGAS ok
+[2026-10-09 18:27:06] emiten [18/20] REAL ok
+[2026-10-09 18:27:06] emiten [17/20] MDKA ok
+[2026-10-09 18:27:07] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:07] emiten [18/20] POLA ok
+[2026-10-09 18:27:07] emiten [19/20] SLIS ok
+[2026-10-09 18:27:08] berita AHAP: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:27:08] emiten [19/20] BYAN ok
+[2026-10-09 18:27:08] emiten [20/20] GPSO ok
+[2026-10-09 18:27:09] emiten [20/20] BULL ok
+[2026-10-09 18:27:10] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:11] berita SINI: 0 berita menyebut kode di judul
+[2026-10-09 18:27:13] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:14] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:14] berita TOWR: 11 berita (30 hari), 0 segar, sentimen 95 (Positif), buzz Ramai
+[2026-10-09 18:27:15] berita COCO: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:27:17] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:18] berita BBNI: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:27:18] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:19] berita KLBF: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:27:20] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:21] berita DOOH: 9 berita (7 hari), 9 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:27:23] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:24] berita ITMG: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:27:24] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:25] berita CSMI: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:27:28] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:28] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:29] berita ARCI: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:27:29] berita BUVA: 6 berita (7 hari), 6 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:27:35] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:36] berita MBSS: 4 berita (7 hari), 4 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:27:40] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:41] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:42] berita BRPT: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:27:42] berita ISAT: 6 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:27:45] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:46] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:46] berita JARR: 21 berita (7 hari), 21 segar, sentimen 7 (Negatif), buzz Ramai
+[2026-10-09 18:27:47] berita SEMA: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:27:49] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:50] berita ADRO: 8 berita (7 hari), 8 segar, sentimen 64 (Positif), buzz Normal
+[2026-10-09 18:27:50] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:51] berita MMIX: 2 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:27:53] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:54] berita KOTA: 1 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:27:55] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:56] berita CNBC-Market: 15 berita
+[2026-10-09 18:27:57] berita PSAB: 3 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:27:57] berita NAYZ: 7 berita (7 hari), 7 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:28:00] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:00] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:01] berita AADI: 12 berita (7 hari), 12 segar, sentimen 88 (Positif), buzz Ramai
+[2026-10-09 18:28:01] berita INET: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:28:05] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:07] berita ASLI: 6 berita (7 hari), 6 segar, sentimen 7 (Negatif), buzz Normal
+[2026-10-09 18:28:07] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:08] berita COCO: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:28:10] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:11] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:11] berita INDY: 4 berita (7 hari), 4 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:28:12] berita KLBF: 2 berita (7 hari), 2 segar, sentimen 75 (Positif), buzz Sepi
+[2026-10-09 18:28:15] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:15] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:16] berita ITMG: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:28:16] berita MEJA: 6 berita (90 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:28:20] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:20] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:20] berita BUVA: 6 berita (7 hari), 6 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:28:21] berita HRTA: 3 berita (7 hari), 3 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:28:23] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:24] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:24] berita MBSS: 4 berita (7 hari), 4 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:28:25] berita KETR: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:28:27] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:28] berita BRPT: 6 berita (7 hari), 6 segar, sentimen 62 (Positif), buzz Normal
+[2026-10-09 18:28:31] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:32] berita SEMA: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:28:36] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:37] berita MMIX: 2 berita (30 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:28:40] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:41] berita PSAB: 3 berita (30 hari), 0 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:28:44] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:45] berita INET: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:28:48] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:49] berita ASLI: 6 berita (7 hari), 6 segar, sentimen 7 (Negatif), buzz Normal
+[2026-10-09 18:28:52] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:52] berita INDY: 4 berita (7 hari), 4 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:28:55] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:56] berita MEJA: 6 berita (90 hari), 0 segar, sentimen 88 (Positif), buzz Normal
+[2026-10-09 18:28:59] berita CNBC-Market: 15 berita
+[2026-10-09 18:28:59] berita HRTA: 3 berita (7 hari), 3 segar, sentimen 83 (Positif), buzz Normal
+[2026-10-09 18:29:03] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:03] berita KETR: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:29:06] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:07] berita RAJA: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:29:10] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:11] berita SMIL: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:29:14] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:15] berita SMLE: 7 berita (7 hari), 7 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:29:18] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:19] berita PGAS: 3 berita (7 hari), 3 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:29:22] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:23] berita MDKA: 2 berita (7 hari), 2 segar, sentimen 83 (Positif), buzz Sepi
+[2026-10-09 18:29:25] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:27] berita POLA: 9 berita (7 hari), 9 segar, sentimen 38 (Negatif), buzz Normal
+[2026-10-09 18:29:29] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:31] berita BYAN: 60 berita (7 hari), 60 segar, sentimen 92 (Positif), buzz Ramai
+[2026-10-09 18:29:34] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:35] berita BULL: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:29:38] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:38] berita PCAR: 1 berita (90 hari), 0 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:29:41] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:42] berita SQMI: 1 berita (7 hari), 1 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:29:45] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:46] berita LUCY: 3 berita (7 hari), 3 segar, sentimen 25 (Negatif), buzz Normal
+[2026-10-09 18:29:49] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:50] berita MEDC: 5 berita (7 hari), 5 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:29:53] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:54] berita ERAA: 3 berita (7 hari), 3 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:29:57] berita CNBC-Market: 15 berita
+[2026-10-09 18:29:58] berita WIFI: 4 berita (7 hari), 4 segar, sentimen 50 (Netral), buzz Normal
+[2026-10-09 18:30:01] berita CNBC-Market: 15 berita
+[2026-10-09 18:30:02] berita JECX: 2 berita (7 hari), 2 segar, sentimen 50 (Netral), buzz Sepi
+[2026-10-09 18:30:05] berita CNBC-Market: 15 berita
+[2026-10-09 18:30:06] berita STRK: 8 berita (1 tahun), 0 segar, sentimen 75 (Positif), buzz Normal
+[2026-10-09 18:30:07] ERROR /api/berita: [WinError 10053] An established connection was aborted by the software in your host machine
+[2026-10-10 07:43:00] makro HG=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro SI=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro ALI=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro URA gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro ZN=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro CL=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro NG=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro PL=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro GC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro COAL gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro SLX gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro CC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro LIT gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro IDR=X gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro NIKL gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro SB=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro ^JKSE gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro KC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro DBC gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro CPO=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:00] makro DX-Y.NYB gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro URA gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro GC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro ALI=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro PL=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro SI=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro COAL gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro ZN=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro HG=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro CL=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro SLX gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro LIT gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro NG=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro KC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro NIKL gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro CPO=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro IDR=X gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro DX-Y.NYB gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro DBC gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro ^JKSE gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro SB=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:43:01] makro CC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 07:44:57] makro HG=F gagal: <urlopen error _ssl.c:980: The handshake operation timed out>
+[2026-10-10 07:44:57] makro ALI=F gagal: <urlopen error _ssl.c:980: The handshake operation timed out>
+[2026-10-10 07:44:57] makro ZN=F gagal: <urlopen error _ssl.c:980: The handshake operation timed out>
+[2026-10-10 07:44:57] makro NG=F gagal: <urlopen error _ssl.c:980: The handshake operation timed out>
+[2026-10-10 07:44:57] makro PL=F gagal: <urlopen error _ssl.c:980: The handshake operation timed out>
+[2026-10-10 07:45:00] makro CL=F gagal: The read operation timed out
+[2026-10-10 07:45:00] makro GC=F gagal: The read operation timed out
+[2026-10-10 07:45:17] makro SLX gagal: The read operation timed out
+[2026-10-10 07:45:18] makro NIKL gagal: The read operation timed out
+[2026-10-10 07:45:19] makro URA gagal: The read operation timed out
+[2026-10-10 07:45:19] makro LIT gagal: The read operation timed out
+[2026-10-10 07:45:20] makro COAL gagal: The read operation timed out
+[2026-10-10 07:45:21] makro CPO=F gagal: The read operation timed out
+[2026-10-10 20:01:05] makro ALI=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro CL=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro ZN=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro COAL gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro CPO=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro NIKL gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro NG=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro LIT gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro HG=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro PL=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro GC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro URA gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro SI=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro SLX gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro CC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro KC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro SB=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro ^JKSE gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro DX-Y.NYB gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro IDR=X gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro DBC gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro NIKL gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro NG=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro PL=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro ALI=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro KC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro CL=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro URA gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro GC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro COAL gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro SLX gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro SI=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro ZN=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro HG=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro CC=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro CPO=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro ^JKSE gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro SB=F gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro LIT gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro DX-Y.NYB gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro DBC gagal: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026-10-10 20:01:05] makro IDR=X gagal: <urlopen error [Errno 11001] getaddrinfo failed>

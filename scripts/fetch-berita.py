@@ -22,10 +22,13 @@ bila judul netral). Polarisasi per berita (positif/negatif/netral) lalu
 dirangkum dengan sentimen = 100 * (pos + 0,5) / (pos + neg + 1) — rentang
 penuh 0..100, netral 50, tanpa bias ke salah satu kutub.
 
-Buzz = jumlah berita SEGAR (<= HARI_SEGAR hari) yang menyebut kode di judul:
+Buzz = jumlah berita pada JENDELA terpakai (lihat pilih_jendela): diawali
+7 hari; bila kosong jendela melebar ke 30 hari -> 90 hari -> 1 tahun ->
+riwayat (tanpa batas umur). Berita lama TIDAK membuang story — hanya
+jendela penghitungannya yang melebar, supaya saham yang lama tak dapat
+berita baru tetap punya nilai. Ambang tetap:
 Ramai (>=10) / Normal (3-9) / Sepi (1-2) / Tanpa berita (0) -> n=0.
-Pool RSS berisi +/-100 item campur usia, jadi tanpa filter usia SEMUA saham
-kelihatan "Ramai" dan sentimen semua saham mendekati 50 (tidak membedakan).
+nSegar (<= HARI_SEGAR hari) ikut dikirim untuk deteksi gorengan.
 """
 
 import email.utils
@@ -40,9 +43,16 @@ from xml.etree import ElementTree as ET
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 CACHE_FILE = "berita.json"   # arsip saja; aplikasi selalu fetch segar (tanpa baca cache)
-HARI_SEGAR = 7      # berita lebih tua dari ini dianggap basi (tidak ikut skor)
-BUZZ_RAMAI = 10     # >=10 berita segar = Ramai
+HARI_SEGAR = 7      # berita <=7 hari = "segar" (jendela pertama + indikator gorengan)
+BUZZ_RAMAI = 10     # >=10 berita dalam jendela terpakai = Ramai
 BUZZ_NORMAL = 3     # 3-9 = Normal, 1-2 = Sepi, 0 = tanpa story (nilai 0)
+
+# Jendela hitung buzz — dipakai jendela PERTAMA yang terisi. Berita lama tidak
+# dibuang, hanya jendela yang melebar (7 hari -> 30 -> 90 -> 1 tahun -> riwayat),
+# jadi buzz tetap berarti "ramai sekarang" bila ada berita baru, dan saham yang
+# beritanya tua tetap dapat nilai (bukan 0).
+JENDELA = [(HARI_SEGAR, "7 hari"), (30, "30 hari"), (90, "90 hari"),
+           (365, "1 tahun"), (None, "riwayat")]
 
 RSS_UMUM = [
     ("CNBC-Market", "https://www.cnbcindonesia.com/market/rss"),
@@ -137,10 +147,29 @@ def skor_berita(teks):
 
 
 def buzz_dari(n):
-    """Ramai >=10 berita segar · Normal 3-9 · Sepi 1-2 · 0 = tanpa story."""
+    """Ramai >=10 berita · Normal 3-9 · Sepi 1-2 · 0 = tanpa story."""
     if n >= BUZZ_RAMAI:
         return "Ramai"
     return "Normal" if n >= BUZZ_NORMAL else "Sepi"
+
+
+def pilih_jendela(cocok):
+    """(berita_terpakai, nama_jendela) dari daftar yang sudahurut umur.
+
+    Jendela terisi PERTAMA yang dipakai: 7 hari -> 30 hari -> 90 hari ->
+    1 tahun -> riwayat (tanpa batas). Berita lama tidak dibuang dari pool —
+    hanya menentukan lebar jendela, supaya saham tanpa berita segar tetap
+    punya nilai Story ("lama gak papa"). Berita tanpa tanggal dianggap
+    riwayat (ikut di jendela riwayat saja).
+    """
+    bertgl = [i for i in cocok if i.get("umur") is not None]
+    for batas, nama in JENDELA:
+        if batas is None:
+            return list(cocok), nama
+        pilih = [i for i in bertgl if i["umur"] <= batas]
+        if pilih:
+            return pilih, nama
+    return list(cocok), JENDELA[-1][1]
 
 
 def sentimen_rangkum(pakai):
@@ -182,26 +211,26 @@ def ambil_berita(kodes, log_fn=None, delay=1.0, tulis_cache=True):
     for kode in kodes:
         try:
             items = _parse_rss(_unduh(_gn_url(kode)))
-            # Hanya berita SEGAR (<= HARI_SEGAR hari) yang menyebut kode di judul:
-            # itu yang membentuk story. Sisanya dianggap basi/noise.
-            segar, pool = [], []
+            # Semua berita yang menyebut kode di judul ikut dihitung — umur lama
+            # TIDAK membuang story. Yang menentukan hanya jendela terpakai
+            # (pilih_jendela: 7 hari -> 30 -> 90 -> 1 tahun -> riwayat).
+            cocok = []
             for it in items:
-                u = _umur_hari(it["tgl"])
-                it["umur"] = u
-                if u is None or u > HARI_SEGAR:
-                    continue
-                segar.append(it)
+                it["umur"] = _umur_hari(it["tgl"])
                 if kode in it["judul"].upper():
-                    pool.append(it)
-            pool.sort(key=lambda i: i["umur"])
-            pakai = pool[:15]
-            n = len(pool)
+                    cocok.append(it)
+            cocok.sort(key=lambda i: i["umur"] if i["umur"] is not None else 1e9)
+            n_seg = sum(1 for i in cocok
+                        if i["umur"] is not None and i["umur"] <= HARI_SEGAR)
+            pilih, nama_jendela = pilih_jendela(cocok)
+            pakai = pilih[:15]          # sentimen: 15 terbaru dalam jendela
+            n = len(pilih)
             if not n:
-                # Tidak ada berita segar tentang kode ini -> tanpa story (0).
-                emiten[kode] = {"n": 0, "sentimen": 50, "label": "Netral",
+                # Kode tak pernah disebut di judul mana pun -> tanpa story (0).
+                emiten[kode] = {"n": 0, "nSegar": n_seg, "jendela": "", "usia": None,
+                                "sentimen": 50, "label": "Netral",
                                 "buzz": "Sepi", "top": []}
-                log("%s: 0 berita segar (%d berita segar tanpa sebutan kode)"
-                    % (kode, len(segar)))
+                log("%s: 0 berita menyebut kode di judul" % kode)
             else:
                 for it in pakai:
                     # Judul dulu (lebih satu arah); judul+ringkas bila judul netral.
@@ -210,15 +239,20 @@ def ambil_berita(kodes, log_fn=None, delay=1.0, tulis_cache=True):
                 sent = sentimen_rangkum(pakai)
                 label = "Positif" if sent >= 60 else ("Negatif" if sent < 40 else "Netral")
                 buzz = buzz_dari(n)
+                usia = cocok[0]["umur"]
                 emiten[kode] = {
-                    "n": n, "sentimen": sent, "label": label, "buzz": buzz,
+                    "n": n, "nSegar": n_seg, "jendela": nama_jendela,
+                    "usia": (round(usia, 1) if usia is not None else None),
+                    "sentimen": sent, "label": label, "buzz": buzz,
                     "top": [{k2: it[k2] for k2 in ("judul", "link", "tgl", "sumber", "skor")}
                             for it in pakai[:5]]}
-                log("%s: %d berita segar, sentimen %d (%s), buzz %s"
-                    % (kode, n, sent, label, buzz))
+                log("%s: %d berita (%s), %d segar, sentimen %d (%s), buzz %s"
+                    % (kode, n, nama_jendela, n_seg, sent, label, buzz))
         except Exception as e:  # noqa: BLE001
             gagal.append("%s: %s" % (kode, str(e)[:80]))
-            emiten[kode] = {"n": 0, "sentimen": 50, "label": "Netral", "buzz": "Sepi", "top": []}
+            emiten[kode] = {"n": 0, "nSegar": 0, "jendela": "", "usia": None,
+                            "sentimen": 50, "label": "Netral",
+                            "buzz": "Sepi", "top": []}
         time.sleep(delay)
     hasil = {"diambil": datetime.now().astimezone().isoformat(timespec="seconds"),
              "emiten": emiten, "umum": umum[:30], "gagal": gagal}
