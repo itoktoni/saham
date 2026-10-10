@@ -42,8 +42,14 @@ def test_kosong_aman():
     assert m_idx.labarugi_series(None) == {"q": [], "y": []}
 
 
+def test_respons_memuat_labarugi():
+    src = open(os.path.join(_ROOT, "app", "app-screener.py"), encoding="utf-8").read()
+    assert "labarugi" in src and "labarugi.json" in src
+
+
 if __name__ == "__main__":
     test_kuartal_4_terbaru_urut()
     test_tahunan_dan_rugi_negatif()
     test_kosong_aman()
-    print("labarugi OK: 3 passed")
+    test_respons_memuat_labarugi()
+    print("labarugi OK: 4 passed")

@@ -367,6 +367,13 @@ def muat_fund(kodes):
     return base if isinstance(base, dict) else {}
 
 
+def muat_labarugi():
+    try:
+        return _baca_json("labarugi.json").get("emiten") or {}
+    except (OSError, AttributeError):
+        return {}
+
+
 def baca_config():
     if os.path.exists(CONFIG_FILE):
         try:
@@ -434,9 +441,11 @@ def ambil_emiten(kodes):
         return None
     prof = fd.load_idx_profiles(f, use_cache=True)
     recs = []
+    labarugi = {}
     for i, kode in enumerate(kodes, 1):
         try:
             fund = fd.fetch_fundamental(f, kode)
+            labarugi[kode] = fd.labarugi_series(fund)
             time.sleep(0.3)
             ch = fd.fetch_chart(f, kode, "1y")
             if not fund and not ch:
@@ -456,6 +465,12 @@ def ambil_emiten(kodes):
             log("[%d/%d] %s ok" % (i, len(kodes), kode))
         except Exception as e:  # noqa: BLE001
             log("%s: error %s" % (kode, str(e)[:120]))
+    try:
+        with open("labarugi.json", "w", encoding="utf-8") as fh:
+            json.dump({"diambil": datetime.now().astimezone().isoformat(timespec="seconds"),
+                       "emiten": labarugi}, fh, ensure_ascii=False)
+    except OSError:
+        pass
     return recs
 
 
@@ -605,6 +620,7 @@ def muat_semua():
         "berita": berita or {"emiten": {}, "umum": []},
         "tema": tema,
         "fund": fund,
+        "labarugi": muat_labarugi(),
         "direktori": _baca_json("broker-direktori.json"),
         "log": baris,
     }
