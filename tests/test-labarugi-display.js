@@ -45,6 +45,7 @@ if (typeof SP.lrMiniSVG === "function") {
 cek("tabel punya kolom lr", html.indexOf('{ k: "lr"') >= 0);
 cek("baris tabel panggil lrMiniSVG", html.indexOf("SP.lrMiniSVG") >= 0);
 cek("sel tabel punya title ringkasan", html.indexOf('class="lrmini" title=') >= 0);
+cek("alias global fmtBig untuk render (luar SP)", /fmtBig = SP\.fmtBig/.test(html));
 cek("toggle drawer ikut render tabel", /_lrMode = "q"; isiDrawer\([^)]*\); render\(\)/.test(html));
 if (gagal) { console.log("HASIL: " + gagal + " GAGAL"); process.exit(1); }
 else { console.log("HASIL: semua lolos"); }
