@@ -453,7 +453,7 @@ def ambil_emiten(kodes):
     for i, kode in enumerate(kodes, 1):
         try:
             fund = fd.fetch_fundamental(f, kode)
-            labarugi[kode] = fd.labarugi_series(fund)
+            labarugi[kode] = fd.labarugi_penuh(f, kode, fund)
             time.sleep(0.3)
             ch = fd.fetch_chart(f, kode, "1y")
             if not fund and not ch:

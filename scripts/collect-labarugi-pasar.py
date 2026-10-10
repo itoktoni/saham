@@ -92,6 +92,8 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--only", default="")
     ap.add_argument("--refresh", action="store_true")
+    ap.add_argument("--repair", action="store_true",
+                    help="isi ulang entri yang q atau y kosong (fallback timeseries)")
     args = ap.parse_args()
 
     fd = load_mod("fetch_idx_lr", os.path.join(ROOT, "scripts", "fetch-data-idx.py"))
@@ -116,11 +118,14 @@ def main():
     baru = gagal = 0
     t0 = time.time()
     for i, kode in enumerate(kodes, 1):
-        if kode in emiten and not args.refresh:
-            continue
+        ada = emiten.get(kode)
+        if ada and not args.refresh:
+            kurang = not (ada.get("q") and ada.get("y"))
+            if not (args.repair and kurang):
+                continue
         try:
             fund = fd.fetch_fundamental(f, kode)
-            seri = fd.labarugi_series(fund)
+            seri = fd.labarugi_penuh(f, kode, fund)
             if seri.get("q") or seri.get("y"):
                 emiten[kode] = seri
                 baru += 1

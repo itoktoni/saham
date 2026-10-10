@@ -909,6 +909,63 @@ def labarugi_series(fund):
     return {"q": _lr_deret(iq, 4, "Q?"), "y": _lr_deret(ih, 5, "20??")}
 
 
+def labarugi_dari_timeseries(d):
+    """Deret laba-rugi dari endpoint fundamental-timeseries (modul quoteSummary
+    lama sudah kosong untuk banyak emiten baru — BREN/DCII/AYAM/BKSL dsb)."""
+    hasil = {}
+    for part in (((d or {}).get("timeseries") or {}).get("result") or []):
+        tipe = ((part.get("meta") or {}).get("type") or [None])[0]
+        rows = part.get(tipe) if isinstance(tipe, str) else None
+        if not isinstance(rows, list):
+            continue
+        for r in rows:
+            if not isinstance(r, dict) or not r.get("asOfDate"):
+                continue
+            raw = ((r.get("reportedValue") or {}).get("raw"))
+            hasil.setdefault(tipe, {})[r["asOfDate"]] = num(raw, None) if raw is not None else None
+
+    def gabung(a, b):
+        out = []
+        for t in sorted(set(a) | set(b)):
+            rev, ni = a.get(t), b.get(t)
+            if rev is None and ni is None:
+                continue
+            out.append({"t": t, "rev": rev, "ni": ni})
+        return out
+
+    return {"q": gabung(hasil.get("quarterlyTotalRevenue") or {},
+                        hasil.get("quarterlyNetIncome") or {}),
+            "y": gabung(hasil.get("annualTotalRevenue") or {},
+                        hasil.get("annualNetIncome") or {})}
+
+
+def labarugi_timeseries(f, kode):
+    """FETCH deret fundamental-timeseries. period1+period2 WAJIB — tanpa period2
+    Yahoo balikin result kosong."""
+    p1 = 1577836800
+    p2 = int(time.time()) + 31536000
+    jenis = ("quarterlyTotalRevenue,quarterlyNetIncome,"
+             "annualTotalRevenue,annualNetIncome")
+    u = ("/ws/fundamentals-timeseries/v1/finance/timeseries/%s.JK"
+         "?symbol=%s.JK&type=%s&period1=%d&period2=%d" % (kode, kode, jenis, p1, p2))
+    return labarugi_dari_timeseries(f.yahoo(u))
+
+
+def labarugi_penuh(f, kode, fund=None):
+    """quoteSummary dulu; bila ada sisi kosong, lengkapi dari fundamental-timeseries."""
+    if fund is None:
+        fund = fetch_fundamental(f, kode)
+    s = labarugi_series(fund)
+    if s.get("q") and s.get("y"):
+        return s
+    try:
+        t = labarugi_timeseries(f, kode)
+    except Exception:  # noqa: BLE001
+        return s
+    return {"q": s.get("q") or t.get("q") or [],
+            "y": s.get("y") or t.get("y") or []}
+
+
 # ----------------------------------------------------------------------------
 # Regime pasar (Langkah 1: Regime Makro)
 #
