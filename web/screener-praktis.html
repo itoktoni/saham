@@ -1050,6 +1050,46 @@ var SP = (function () {
     return lb === "Bahaya" ? "Bahaya — banyak jebakan." : (lb === "Kurang" ? "Kurang — ada red-flag." : (lb === "Cukup" ? "Cukup — waspada ringan." : "Bagus — bersih dari jebakan."));
   }
 
+  function labarugiSVG(seri, mode) {
+    var arr = ((seri || {})[mode === "y" ? "y" : "q"] || []).filter(function (p) {
+      return p && (p.rev != null || p.ni != null);
+    });
+    if (!arr.length) return "__KOSONG__";
+    var W = 680, H = 240, L = 8, R = 672, T = 30, B = 200;
+    var vals = [];
+    arr.forEach(function (p) { if (p.rev != null) vals.push(p.rev); if (p.ni != null) vals.push(p.ni); });
+    vals.push(0);
+    var mx = Math.max.apply(null, vals), mn = Math.min.apply(null, vals), sp = (mx - mn) || 1;
+    function Y(v) { return B - (v - mn) / sp * (B - T); }
+    var y0 = Y(0), n = arr.length, slot = (R - L) / n, bw = Math.max(10, Math.min(30, slot * 0.28));
+    function fm(v) { return fmtBig(v); }
+    var s = '<svg class="chart" viewBox="0 0 680 240" role="img"><title>Revenue & net income</title>';
+    s += '<line x1="' + L + '" y1="' + y0.toFixed(1) + '" x2="' + R + '" y2="' + y0.toFixed(1) + '" stroke="#8a8f98" stroke-width="1.2"/>';
+    var d = "";
+    arr.forEach(function (p, i) {
+      var cx = L + slot * i + slot / 2;
+      var mg = (p.rev != null && p.rev > 0 && p.ni != null) ? (p.ni / p.rev * 100) : null;
+      function bar(v, dx, col, lab) {
+        if (v == null) return "";
+        var yv = Y(v), top = Math.min(yv, y0), h = Math.max(2, Math.abs(yv - y0));
+        return '<rect x="' + (cx + dx - bw / 2).toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw.toFixed(1) +
+          '" height="' + h.toFixed(1) + '" rx="2" fill="' + col + '"><title>' + p.t + " · " + lab + ": " + fm(v) +
+          (mg != null ? " · margin " + nf(mg, 1) + "%" : "") + "</title></rect>";
+      }
+      s += bar(p.rev, -bw * 0.55, "#1f5fd0", "rev");
+      s += bar(p.ni, bw * 0.55, (p.ni != null && p.ni < 0) ? "#c62828" : "#17795e", "ni");
+      var lbl = (p.ni != null ? fm(p.ni) : "—") + (mg != null ? " (" + nf(mg, 1) + "%)" : "");
+      s += '<text x="' + cx.toFixed(1) + '" y="' + (B + 16) + '" font-size="10" fill="#5b6470" text-anchor="middle">' + p.t.slice(2) + "</text>";
+      s += '<text x="' + cx.toFixed(1) + '" y="' + (T - 8) + '" font-size="9" fill="#3d444d" text-anchor="middle">' + lbl + "</text>";
+      if (mg != null) {
+        var my = B - Math.max(0, Math.min(100, mg + 20)) / 120 * (B - T);
+        d += (d ? "L" : "M") + cx.toFixed(1) + " " + my.toFixed(1);
+      }
+    });
+    if (d) s += '<path d="' + d + '" fill="none" stroke="#b26a00" stroke-width="1.6"/>';
+    return s + "</svg>";
+  }
+
   // ---------- gabung fundamental (display-only, skor tak tersentuh) ----------
   function gabung(r, f) {
     r = r || {}; f = f || {};
@@ -1509,7 +1549,7 @@ var SP = (function () {
     toNum: toNum, parseCSV: parseCSV, ingestKsei: ingestKsei, nf: nf, pct: pct, fmtBig: fmtBig,
     posRange: posRange, detectFase: detectFase, streakBeli: streakBeli, stageB: stageB, teknikal: teknikal, rekomendasi: rekomendasi, sektorFix: sektorFix, dominanJual: dominanJual,
     posRange: posRange, detectFase: detectFase, valuasi: valuasi, fundSkor: fundSkor,
-    fsSkala10: fsSkala10, fsLabel: fsLabel, fsPilar: fsPilar, fsVerdict: fsVerdict,
+    fsSkala10: fsSkala10, fsLabel: fsLabel, fsPilar: fsPilar, fsVerdict: fsVerdict, labarugiSVG: labarugiSVG,
     premiNaratif: premiNaratif, PREMI_STORY_MAX: PREMI_STORY_MAX,
     makroSkor: makroSkor, MAKRO_MAKS: MAKRO_MAKS,
     MAKRO_BOBOT: MAKRO_BOBOT, makroPoin: makroPoin,
@@ -1526,7 +1566,7 @@ var SP = (function () {
    Antarmuka
    ===================================================================== */
 (function () {
-  var S = { data: [], ksei: {}, scope: {}, berita: {emiten:{},umum:[]}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], filterKlas: [], tampilSepi: false, q: "", metode: "Semua" };
+  var S = { data: [], ksei: {}, scope: {}, berita: {emiten:{},umum:[]}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, labarugi: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], filterKlas: [], tampilSepi: false, q: "", metode: "Semua" };
   var FASE_ORDER = ["Semua", "Akumulasi", "Spring", "Markup", "Distribusi", "Netral"];
   var AKSI_ORDER = ["Semua", "Beli", "Pantau", "Hindari"];
   var KLAS_ORDER = ["Semua", "Bangkit", "Kaya Kas", "Tumbuh Cepat", "Siklus", "Raksasa Stabil"];
@@ -2969,6 +3009,7 @@ var SP = (function () {
       S.tema = j.tema || {};
       S.dirBroker = j.direktori || {};
       S.fund = j.fund || {};
+      S.labarugi = j.labarugi || {};
       gabungBerita(j.berita);
       S.makro = j.makro || S.makro;
       S.mode = "watchlist"; muatPicked();
@@ -2988,6 +3029,7 @@ var SP = (function () {
       if (!j || !j.ok) throw new Error((j && j.error) || "gagal memindai");
       S._csvRows = j.saham || [];
       SP.ingestKsei(j.ksei || {}, S.ksei);
+      if (j.labarugi) S.labarugi = j.labarugi;
       gabungBerita(j.berita);
       S.makro = j.makro || S.makro;
       S.mode = "pasar"; muatPicked();
