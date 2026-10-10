@@ -765,7 +765,7 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
     html.includes("mk-grid") && html.includes("mk-grup") && html.includes("mk-chip") &&
     html.includes("mk-judul") && html.includes("mk-nar") && html.includes("GRUP_MAKRO"),
     "strip komoditas belum berbentuk chip berkelompok");
-  cek("makro: penanda versi L", html.includes("v2026-10-10L · Reko Makro30/Story25/FS18/MOS14/Aksi8/SB3/TK2 · strip chip komoditas · grafik laba-rugi · mini-chart tabel"), "BUILD_V belum L");
+  cek("makro: penanda versi M", html.includes("v2026-10-10M · Reko Makro30/Story25/FS18/MOS14/Aksi8/SB3/TK2 · strip chip komoditas · grafik laba-rugi · mini-chart tabel"), "BUILD_V belum M");
   // Story: umur lama tidak membuang nilai (jendela bertingkat 7h -> riwayat)
   cek("story: bantuan jendela berita ada",
     html.includes("7 hari → 30 hari → 90 hari → 1 tahun → riwayat"),

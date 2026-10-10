@@ -1116,16 +1116,18 @@ var SP = (function () {
         (n ? arr[0].t.slice(2, 7) + " → " + last.t.slice(2, 7) : "") + "</title>";
       arr.forEach(function (p, i) {
         var cx = L + slot * i + slot / 2;
-        function bar(v, dx, col, lab) {
+        var mg = (p.rev != null && p.rev > 0 && p.ni != null) ? (p.ni / p.rev * 100) : null;
+        var tip = p.t + " · Revenue: " + (p.rev != null ? fmtBig(p.rev) : "—") +
+          " · Net Income: " + (p.ni != null ? fmtBig(p.ni) : "—") +
+          (mg != null ? " · margin " + nf(mg, 1) + "%" : "");
+        function bar(v, dx, col) {
           if (v == null) return "";
           var yv = B - (v - mn) / sp * (B - T), top = Math.min(yv, y0), h = Math.max(1.5, Math.abs(yv - y0));
-          var mg = (p.rev != null && p.rev > 0 && p.ni != null) ? (p.ni / p.rev * 100) : null;
           return '<rect x="' + (cx + dx - bw / 2).toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw.toFixed(1) +
-            '" height="' + h.toFixed(1) + '" rx="1" fill="' + col + '"><title>' + p.t + " · " + lab + ": " + fmtBig(v) +
-            (mg != null ? " · margin " + nf(mg, 1) + "%" : "") + "</title></rect>";
+            '" height="' + h.toFixed(1) + '" rx="1" fill="' + col + '"/>';
         }
-        svg += bar(p.rev, -bw * 0.55, "#1f5fd0", "rev");
-        svg += bar(p.ni, bw * 0.55, (p.ni != null && p.ni < 0) ? "#c62828" : "#17795e", "ni");
+        svg += "<g><title>" + tip + "</title>" +
+          bar(p.rev, -bw * 0.55, "#1f5fd0") + bar(p.ni, bw * 0.55, (p.ni != null && p.ni < 0) ? "#c62828" : "#17795e") + "</g>";
       });
       svg += "</svg>";
     }
@@ -1936,7 +1938,15 @@ var SP = (function () {
         '<td class="n">' + mbTxt + "</td>" +
         '<td class="n">' + scD + "</td>" +
         '<td class="n">' + storyBadge(x) + "</td>" +
-        '<td class="lrmini">' + (function () {
+        '<td class="lrmini" title="' + (function () {
+          var serix = (S.labarugi || {})[x.kode];
+          var arrx = serix ? (serix[S._lrMode === "y" ? "y" : "q"] || []) : [];
+          if (!arrx.length) return "";
+          var lp = arrx[arrx.length - 1];
+          var mgx = (lp.rev != null && lp.rev > 0 && lp.ni != null) ? " · margin " + nf(lp.ni / lp.rev * 100, 1) + "%" : "";
+          return lp.t + " · Revenue: " + (lp.rev != null ? fmtBig(lp.rev) : "—") +
+            " · Net Income: " + (lp.ni != null ? fmtBig(lp.ni) : "—") + mgx + " · hover batang = rincian per kuartal";
+        })() + '">' + (function () {
           var lg = SP.lrMiniSVG((S.labarugi || {})[x.kode], S._lrMode === "y" ? "y" : "q", x.kode);
           return lg === "__KOSONG__" ? '<span class="mut">—</span>' : lg;
         })() + "</td>" +
@@ -3056,7 +3066,7 @@ var SP = (function () {
 
   // Penanda versi Jr. — kalau angka di penghitung baris tidak sama dengan ini,
   // berarti tab browser masih memuat JavaScript lama: tekan Ctrl+F5.
-  var BUILD_V = "v2026-10-10L · Reko Makro30/Story25/FS18/MOS14/Aksi8/SB3/TK2 · strip chip komoditas · grafik laba-rugi · mini-chart tabel";
+  var BUILD_V = "v2026-10-10M · Reko Makro30/Story25/FS18/MOS14/Aksi8/SB3/TK2 · strip chip komoditas · grafik laba-rugi · mini-chart tabel";
 
   // ---------- event ----------
   var APP = (location.protocol === "http:" || location.protocol === "https:");

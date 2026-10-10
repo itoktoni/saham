@@ -34,6 +34,9 @@ if (typeof SP.lrMiniSVG === "function") {
   cek("mini mulai <svg", s.indexOf("<svg") === 0, s.slice(0, 60));
   cek("mini ringkas (<3000 char)", s.length > 100 && s.length < 3000, String(s.length));
   cek("mini ada <title> tooltip", s.indexOf("<title>") > 0);
+  cek("mini: tooltip gabungan Revenue + Net Income", s.indexOf("Revenue:") > 0 && s.indexOf("Net Income:") > 0, s.slice(0, 200));
+  cek("mini: bar dibungkus <g> per kuartal", s.indexOf("<g>") > 0);
+  cek("mini: margin disebut di tooltip", s.indexOf("margin") > 0);
   cek("mini kosong -> __KOSONG__", SP.lrMiniSVG({ q: [], y: [] }, "q", "XX") === "__KOSONG__");
   cek("memo: seri sama -> string identik", SP.lrMiniSVG(seri, "q", "BBCA") === s);
   cek("memo: mode beda -> hasil beda", SP.lrMiniSVG(seri, "y", "BBCA") === "__KOSONG__");
@@ -41,6 +44,7 @@ if (typeof SP.lrMiniSVG === "function") {
 }
 cek("tabel punya kolom lr", html.indexOf('{ k: "lr"') >= 0);
 cek("baris tabel panggil lrMiniSVG", html.indexOf("SP.lrMiniSVG") >= 0);
+cek("sel tabel punya title ringkasan", html.indexOf('class="lrmini" title=') >= 0);
 cek("toggle drawer ikut render tabel", /_lrMode = "q"; isiDrawer\([^)]*\); render\(\)/.test(html));
 if (gagal) { console.log("HASIL: " + gagal + " GAGAL"); process.exit(1); }
 else { console.log("HASIL: semua lolos"); }
