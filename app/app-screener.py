@@ -374,6 +374,14 @@ def muat_labarugi():
         return {}
 
 
+def labarugi_untuk(kodes):
+    """Deret labarugi dari cache untuk kode-kode scan (tanpa fetch)."""
+    semua = muat_labarugi()
+    if not isinstance(semua, dict):
+        return {}
+    return {k: semua[k] for k in (kodes or []) if k in semua}
+
+
 def baca_config():
     if os.path.exists(CONFIG_FILE):
         try:
@@ -686,6 +694,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json({
                     "ok": True, "jumlah": len(saham), "ksei": ksei or {}, "saham": saham,
                     "berita": berita or {"emiten": {}, "umum": []},
+                    "labarugi": labarugi_untuk([r.get("kode") for r in (saham or [])]),
                     "makro": ambil_makro(),
                     "dibuat": datetime.now().astimezone().isoformat(timespec="seconds"),
                 })

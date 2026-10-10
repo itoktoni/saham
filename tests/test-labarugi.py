@@ -52,10 +52,24 @@ def test_merge_mempertahankan_entri_lama():
     assert "gabung.update(labarugi)" in src
 
 
+def test_labarugi_untuk_subset():
+    spec = importlib.util.spec_from_file_location(
+        "app_lr", os.path.join(_ROOT, "app", "app-screener.py"))
+    app = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(app)
+    app.muat_labarugi = lambda: {"AAA": {"q": [], "y": []},
+                                 "BBB": {"q": [{"t": "2026-06-30", "rev": 1.0, "ni": 0.1}],
+                                         "y": []}}
+    out = app.labarugi_untuk(["BBB", "CCC"])
+    assert set(out.keys()) == {"BBB"}, out
+    assert out["BBB"]["q"][0]["rev"] == 1.0, out
+
+
 if __name__ == "__main__":
     test_kuartal_4_terbaru_urut()
     test_tahunan_dan_rugi_negatif()
     test_kosong_aman()
     test_respons_memuat_labarugi()
     test_merge_mempertahankan_entri_lama()
-    print("labarugi OK: 5 passed")
+    test_labarugi_untuk_subset()
+    print("labarugi OK: 6 passed")

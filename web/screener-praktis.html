@@ -3040,7 +3040,7 @@ var SP = (function () {
       if (!j || !j.ok) throw new Error((j && j.error) || "gagal memindai");
       S._csvRows = j.saham || [];
       SP.ingestKsei(j.ksei || {}, S.ksei);
-      if (j.labarugi) S.labarugi = j.labarugi;
+      if (j.labarugi) { for (var k in j.labarugi) S.labarugi[k] = j.labarugi[k]; }
       gabungBerita(j.berita);
       S.makro = j.makro || S.makro;
       S.mode = "pasar"; muatPicked();
