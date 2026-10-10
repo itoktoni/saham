@@ -2288,6 +2288,14 @@ var SP = (function () {
       rowx("Upside ke target 3Y", x.upsideTarget == null ? "—" : '<span class="' + (x.upsideTarget > 0 ? "pos" : "neg") + '">' + (x.upsideTarget > 0 ? "+" : "") + nf(x.upsideTarget, 1) + "%</span>", "ruang ke target pertumbuhan 3 tahun.") +
       rowx("Ruang ke puncak 52mg", x.ruang52 == null ? "—" : nf(x.ruang52, 1) + "%", "jarak ke harga tertinggi setahun terakhir. Makin kecil, makin dekat pucuk — makin besar risiko beli di harga atas.") +
       fundBox(x) + saingBox(x) + "</div>";
+    var lrSeri = ((S.labarugi || {})[x.kode] || { q: [], y: [] });
+    var lrMode = S._lrMode === "y" ? "y" : "q";
+    var lrSvg = SP.labarugiSVG(lrSeri, lrMode);
+    var s2c = '<div class="step"><h3>2c · Revenue & Net Income</h3>' +
+      '<div class="chips"><button class="chip' + (lrMode === "q" ? " on" : "") + '" id="lrQ">Kuartal</button>' +
+      '<button class="chip' + (lrMode === "y" ? " on" : "") + '" id="lrY">Tahunan</button></div>' +
+      (lrSvg === "__KOSONG__" ? '<div class="mut">Data laba-rugi belum diambil — unduh ulang data.</div>' : lrSvg) +
+      '<div class="mut" style="font-size:11px">Biru = revenue · hijau/merah = net income · garis kuning = margin ni/rev. Arahkan kursor ke batang untuk nilai persis.</div></div>';
 
     var twOk = function (ok) { return ok ? '<span class="aksi a-beli">OK</span>' : '<span class="aksi a-hindar">X</span>'; };
     var evcf = (r.ev_cfo == null || r.ev_cfo === "") ? null : SP.toNum(r.ev_cfo);
@@ -2422,7 +2430,7 @@ var SP = (function () {
       row("Kualitas data", (r.sumber || "—")) +
       '<div class="warn">Bukan sinyal beli/jual. Fase dihitung dari harga/volume (Yahoo) + kepemilikan bulanan (KSEI). Verifikasi sebelum bertransaksi.</div></div>';
 
-    $("dwBody").innerHTML = s0 + s1 + s2 + s2b + s2d + sCerita + s3 + s4 + s5;
+    $("dwBody").innerHTML = s0 + s1 + s2 + s2b + s2c + s2d + sCerita + s3 + s4 + s5;
     var modal = $("dwModal");
     function hitLot() {
       var m = SP.toNum(modal.value);
@@ -2442,6 +2450,9 @@ var SP = (function () {
       render();
       renderHorizon();
     };
+    var bQ = document.getElementById("lrQ"), bY = document.getElementById("lrY");
+    if (bQ) bQ.onclick = function () { S._lrMode = "q"; isiDrawer(S._drawerRec); };
+    if (bY) bY.onclick = function () { S._lrMode = "y"; isiDrawer(S._drawerRec); };
     var kBuka = $("dwKtlBuka");
     if (kBuka) kBuka.onclick = function () {
       muatKontrak()[x.kode] = { buka: hariIni(), kdl: SP.expiryKontrak(hariIni()), strike: harga, tp: tp, sl: sl, skor: x.skor };
@@ -2993,7 +3004,7 @@ var SP = (function () {
 
   // Penanda versi Jr. — kalau angka di penghitung baris tidak sama dengan ini,
   // berarti tab browser masih memuat JavaScript lama: tekan Ctrl+F5.
-  var BUILD_V = "v2026-10-09J · Reko Makro30/Story25/FS18/MOS14/Aksi8/SB3/TK2 · strip chip komoditas";
+  var BUILD_V = "v2026-10-09K · Reko Makro30/Story25/FS18/MOS14/Aksi8/SB3/TK2 · strip chip komoditas · grafik laba-rugi";
 
   // ---------- event ----------
   var APP = (location.protocol === "http:" || location.protocol === "https:");

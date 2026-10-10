@@ -23,5 +23,7 @@ if (typeof SP.labarugiSVG === "function") {
   cek("seri kosong -> __KOSONG__", SP.labarugiSVG({ q: [], y: [] }, "q") === "__KOSONG__");
 }
 cek("S.labarugi dimuat dari API", html.indexOf("S.labarugi") >= 0 && html.indexOf("j.labarugi") >= 0);
+cek("drawer panggil labarugiSVG", html.indexOf("labarugiSVG") >= 0 && html.indexOf("Revenue & Net Income") >= 0);
+cek("ada toggle Kuartal/Tahunan", html.indexOf("Kuartal") >= 0 && html.indexOf("Tahunan") >= 0);
 if (gagal) { console.log("HASIL: " + gagal + " GAGAL"); process.exit(1); }
 else { console.log("HASIL: semua lolos"); }
