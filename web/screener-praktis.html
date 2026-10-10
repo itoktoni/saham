@@ -89,8 +89,11 @@ table{border-collapse:collapse;width:100%;font-size:12.5px;white-space:nowrap}
 #tbl th[data-k="fs"]{width:58px}
 #tbl th[data-k="fase"]{width:98px}
 #tbl th[data-k="skor"]{width:96px}
+#tbl th[data-k="lr"]{width:118px}
 #tbl th[data-k="aksi"]{width:80px}
 #tbl td.n{white-space:nowrap}
+#tbl td.lrmini{padding:4px 8px}
+#tbl td.lrmini svg{display:block;width:100%;height:24px}
 #tbl .nama{white-space:normal;max-width:none}
 #tbl .bar{width:36px}
 th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line2)}
@@ -1090,6 +1093,46 @@ var SP = (function () {
     return s + "</svg>";
   }
 
+  // Mini-chart rev+NI untuk sel tabel — tanpa sumbu, per-baris tooltip.
+  // Di-memoize per kode+mode; invalidasi otomatis saat objek seri diganti.
+  var _lrMiniMemo = {};
+  function lrMiniSVG(seri, mode, kode) {
+    seri = seri || {};
+    var md = mode === "y" ? "y" : "q";
+    var key = (kode || "?") + "|" + md;
+    var c = _lrMiniMemo[key];
+    if (c && c.seri === seri) return c.svg;
+    var arr = (seri[md] || []).filter(function (p) { return p && (p.rev != null || p.ni != null); });
+    var svg = "__KOSONG__";
+    if (arr.length) {
+      var W = 110, H = 24, T = 2, B = H - 3, L = 1, R = W - 1;
+      var vals = [0];
+      arr.forEach(function (p) { if (p.rev != null) vals.push(p.rev); if (p.ni != null) vals.push(p.ni); });
+      var mx = Math.max.apply(null, vals), mn = Math.min.apply(null, vals), sp = (mx - mn) || 1;
+      var y0 = B - (0 - mn) / sp * (B - T), n = arr.length, slot = (R - L) / n;
+      var bw = Math.max(3, Math.min(11, slot * 0.3));
+      var last = arr[arr.length - 1];
+      svg = '<svg class="lrmini" viewBox="0 0 ' + W + " " + H + '" role="img"><title>Rev/NI ' +
+        (n ? arr[0].t.slice(2, 7) + " → " + last.t.slice(2, 7) : "") + "</title>";
+      arr.forEach(function (p, i) {
+        var cx = L + slot * i + slot / 2;
+        function bar(v, dx, col, lab) {
+          if (v == null) return "";
+          var yv = B - (v - mn) / sp * (B - T), top = Math.min(yv, y0), h = Math.max(1.5, Math.abs(yv - y0));
+          var mg = (p.rev != null && p.rev > 0 && p.ni != null) ? (p.ni / p.rev * 100) : null;
+          return '<rect x="' + (cx + dx - bw / 2).toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw.toFixed(1) +
+            '" height="' + h.toFixed(1) + '" rx="1" fill="' + col + '"><title>' + p.t + " · " + lab + ": " + fmtBig(v) +
+            (mg != null ? " · margin " + nf(mg, 1) + "%" : "") + "</title></rect>";
+        }
+        svg += bar(p.rev, -bw * 0.55, "#1f5fd0", "rev");
+        svg += bar(p.ni, bw * 0.55, (p.ni != null && p.ni < 0) ? "#c62828" : "#17795e", "ni");
+      });
+      svg += "</svg>";
+    }
+    _lrMiniMemo[key] = { seri: seri, svg: svg };
+    return svg;
+  }
+
   // ---------- gabung fundamental (display-only, skor tak tersentuh) ----------
   function gabung(r, f) {
     r = r || {}; f = f || {};
@@ -1549,7 +1592,8 @@ var SP = (function () {
     toNum: toNum, parseCSV: parseCSV, ingestKsei: ingestKsei, nf: nf, pct: pct, fmtBig: fmtBig,
     posRange: posRange, detectFase: detectFase, streakBeli: streakBeli, stageB: stageB, teknikal: teknikal, rekomendasi: rekomendasi, sektorFix: sektorFix, dominanJual: dominanJual,
     posRange: posRange, detectFase: detectFase, valuasi: valuasi, fundSkor: fundSkor,
-    fsSkala10: fsSkala10, fsLabel: fsLabel, fsPilar: fsPilar, fsVerdict: fsVerdict, labarugiSVG: labarugiSVG,
+    fsSkala10: fsSkala10, fsLabel: fsLabel, fsPilar: fsPilar, fsVerdict: fsVerdict,
+    labarugiSVG: labarugiSVG, lrMiniSVG: lrMiniSVG,
     premiNaratif: premiNaratif, PREMI_STORY_MAX: PREMI_STORY_MAX,
     makroSkor: makroSkor, MAKRO_MAKS: MAKRO_MAKS,
     MAKRO_BOBOT: MAKRO_BOBOT, makroPoin: makroPoin,
@@ -1679,6 +1723,10 @@ var SP = (function () {
     { k: "maxbuy", t: "MaxBuy", n: true, get: function (d) { return d.val.maxBuy; } },
     { k: "skor", t: "Skor", n: true, get: function (d) { return d._scD != null ? d._scD : d.skor; } },
     { k: "story", t: "Story", n: true, get: function (d) { return (d._story != null && isFinite(d._story)) ? d._story : 0; } },
+    { k: "lr", t: "Rev/NI", n: false, get: function (d) {
+      var a = (((S.labarugi || {})[d.kode] || {})[S._lrMode === "y" ? "y" : "q"]) || [];
+      return a.length ? SP.toNum(a[a.length - 1].rev) : -1;
+    } },
     { k: "aksi", t: "Aksi", n: false, get: function (d) { var a = (d._aksiD != null ? d._aksiD : d.aksi); return AKSI_RANK[a] || 0; } },
   ];
 
@@ -1888,6 +1936,10 @@ var SP = (function () {
         '<td class="n">' + mbTxt + "</td>" +
         '<td class="n">' + scD + "</td>" +
         '<td class="n">' + storyBadge(x) + "</td>" +
+        '<td class="lrmini">' + (function () {
+          var lg = SP.lrMiniSVG((S.labarugi || {})[x.kode], S._lrMode === "y" ? "y" : "q", x.kode);
+          return lg === "__KOSONG__" ? '<span class="mut">—</span>' : lg;
+        })() + "</td>" +
         "<td>" + aksiBadge(x._aksiD != null ? x._aksiD : x.aksi) + "</td>" +
         "</tr>";
     }).join("");
@@ -2451,8 +2503,8 @@ var SP = (function () {
       renderHorizon();
     };
     var bQ = document.getElementById("lrQ"), bY = document.getElementById("lrY");
-    if (bQ) bQ.onclick = function () { S._lrMode = "q"; isiDrawer(S._drawerRec); };
-    if (bY) bY.onclick = function () { S._lrMode = "y"; isiDrawer(S._drawerRec); };
+    if (bQ) bQ.onclick = function () { S._lrMode = "q"; isiDrawer(S._drawerRec); render(); };
+    if (bY) bY.onclick = function () { S._lrMode = "y"; isiDrawer(S._drawerRec); render(); };
     var kBuka = $("dwKtlBuka");
     if (kBuka) kBuka.onclick = function () {
       muatKontrak()[x.kode] = { buka: hariIni(), kdl: SP.expiryKontrak(hariIni()), strike: harga, tp: tp, sl: sl, skor: x.skor };
@@ -3004,7 +3056,7 @@ var SP = (function () {
 
   // Penanda versi Jr. — kalau angka di penghitung baris tidak sama dengan ini,
   // berarti tab browser masih memuat JavaScript lama: tekan Ctrl+F5.
-  var BUILD_V = "v2026-10-09K · Reko Makro30/Story25/FS18/MOS14/Aksi8/SB3/TK2 · strip chip komoditas · grafik laba-rugi";
+  var BUILD_V = "v2026-10-10L · Reko Makro30/Story25/FS18/MOS14/Aksi8/SB3/TK2 · strip chip komoditas · grafik laba-rugi · mini-chart tabel";
 
   // ---------- event ----------
   var APP = (location.protocol === "http:" || location.protocol === "https:");
