@@ -1021,6 +1021,35 @@ var SP = (function () {
     return out;
   }
 
+  // ---------- FS display-only: normalisasi 1-10 + label (skor tak tersentuh) ----------
+  // Mentah tetap dipakai untuk total /100. Skala 1-10 hanya agar apel-ke-apel:
+  // s10 = mentah / maks * 10. Contoh: Valuasi 1,0/30 -> 0,3/10 Bahaya.
+  function fsSkala10(mentah, maks) {
+    var a = toNum(mentah), b = toNum(maks);
+    if (!(b > 0)) return 0;
+    return Math.round(clamp(a / b * 10, 0, 10) * 10) / 10;
+  }
+  function fsLabel(s10) {
+    var s = toNum(s10);
+    if (s >= 9) return "Sangat Bagus";
+    if (s >= 7) return "Bagus";
+    if (s >= 5) return "Cukup";
+    if (s >= 3) return "Kurang";
+    return "Bahaya";
+  }
+  function fsPilar(mentah, maks) {
+    var s10 = fsSkala10(mentah, maks);
+    return { mentah: Math.round(toNum(mentah) * 10) / 10, maks: maks, skala10: s10, label: fsLabel(s10) };
+  }
+  function fsVerdict(nama, s10, sektor) {
+    var lb = fsLabel(s10);
+    if (nama === "makro") return s10 >= 7 ? "Bagus — sektor ikut memimpin rotasi." : "Cukup/Netral — sektor tidak memimpin rotasi" + (sektor ? " (" + sektor + ")" : "") + ".";
+    if (nama === "valuasi") return lb === "Bahaya" ? "Bahaya — mahal, jangan beli." : (lb === "Kurang" ? "Kurang — masih mahal." : (lb === "Cukup" ? "Cukup — diskon tipis, hati-hati." : "Bagus — diskon tebal dari nilai wajar."));
+    if (nama === "kualitas") return lb === "Bahaya" ? "Bahaya — kualitas jelek." : (lb === "Kurang" ? "Kurang — kualitas lemah." : (lb === "Cukup" ? "Cukup — kualitas biasa." : "Bagus — kualitas solid."));
+    if (nama === "momentum") return lb === "Bahaya" || lb === "Kurang" ? lb + " — tren turun, jangan kejar harga." : (lb === "Cukup" ? "Cukup — tren datar." : "Bagus — tren naik.");
+    return lb === "Bahaya" ? "Bahaya — banyak jebakan." : (lb === "Kurang" ? "Kurang — ada red-flag." : (lb === "Cukup" ? "Cukup — waspada ringan." : "Bagus — bersih dari jebakan."));
+  }
+
   // ---------- gabung fundamental (display-only, skor tak tersentuh) ----------
   function gabung(r, f) {
     r = r || {}; f = f || {};
@@ -1480,6 +1509,7 @@ var SP = (function () {
     toNum: toNum, parseCSV: parseCSV, ingestKsei: ingestKsei, nf: nf, pct: pct, fmtBig: fmtBig,
     posRange: posRange, detectFase: detectFase, streakBeli: streakBeli, stageB: stageB, teknikal: teknikal, rekomendasi: rekomendasi, sektorFix: sektorFix, dominanJual: dominanJual,
     posRange: posRange, detectFase: detectFase, valuasi: valuasi, fundSkor: fundSkor,
+    fsSkala10: fsSkala10, fsLabel: fsLabel, fsPilar: fsPilar, fsVerdict: fsVerdict,
     premiNaratif: premiNaratif, PREMI_STORY_MAX: PREMI_STORY_MAX,
     makroSkor: makroSkor, MAKRO_MAKS: MAKRO_MAKS,
     MAKRO_BOBOT: MAKRO_BOBOT, makroPoin: makroPoin,
@@ -2135,14 +2165,29 @@ var SP = (function () {
     var r = x.r, k = x.k, v = x.val;
     var fs = x.fs || SP.fundSkor(x.r, (((S || {}).fund || {}).emiten || {})[x.kode], { unggulan: [] });
     var tierCls = fs.tier === "A" ? "a-beli" : (fs.tier === "B" ? "a-pantau" : "a-hindar");
+    var sekN = (r.sektor || "").trim();
+    function fsBadge(s10, label) {
+      var c = s10 >= 7 ? "a-beli" : (s10 >= 5 ? "a-pantau" : "a-hindar");
+      return '<span class="aksi ' + c + '">' + nf(s10, 1) + " /10 · " + label + "</span>";
+    }
+    function fsBar(s10) {
+      var w = Math.round(Math.max(0, Math.min(10, s10)) * 10);
+      var bg = s10 >= 7 ? "#17795e" : (s10 >= 5 ? "#b26a00" : "#c62828");
+      return '<div style="background:#eef1f5;border-radius:99px;height:6px;margin-top:4px"><div style="width:' + w + '%;height:6px;border-radius:99px;background:' + bg + '"></div></div>';
+    }
+    function fsRow(nama, mentah, maks, kunci, desc) {
+      var p = SP.fsPilar(mentah, maks);
+      var sub = desc + " Skala " + nf(p.skala10, 1) + "/10: ≥7 Bagus · 5-6,9 Cukup · 3-4,9 Kurang · <3 Bahaya. " + SP.fsVerdict(kunci, p.skala10, sekN) + fsBar(p.skala10);
+      return rowx(nama + " (" + maks + ")", nf(p.mentah, 1) + " /" + maks + " · " + fsBadge(p.skala10, p.label), sub);
+    }
     var s0 = '<div class="step"><h3>0 · Screening Fundamental (Rivan + Thowilz + Hendriko)</h3>' +
-      rowx("Skor FS", nf(fs.total, 1) + " / 100", "Valuasi 30 + Kualitas 30 + Momentum 10 + Makro/Sektor 10 + AntiTrap 20.") +
+      rowx("Skor FS", nf(fs.total, 1) + " / 100", "Valuasi 30 + Kualitas 30 + Momentum 10 + Makro/Sektor 10 + AntiTrap 20. Tiap pilar juga dinilai 1-10 agar mudah dibaca: ≥7 Bagus · 5-6,9 Cukup · 3-4,9 Kurang · <3 Bahaya.") +
       rowx("Tier", '<span class="aksi ' + tierCls + '">' + fs.tier + " — " + fs.status + "</span>", "A≥75 kandidat watchlist · B 60–74 pantau/verifikasi · C<60 buang.") +
-      rowx("Valuasi (30)", nf(fs.p.valuasi, 1), "MOS vs target + PEG + EV/CFO.") +
-      rowx("Kualitas (30)", nf(fs.p.kualitas, 1), "ROE + DER + tren EPS + dividen + selaras kas + margin.") +
-      rowx("Momentum (10)", nf(fs.p.momentum, 1), "tren EPS/ROE + CAGR + turnaround.") +
-      rowx("Makro/Sektor (10)", nf(fs.p.makro, 1), "ikut sektor memimpin rotasi saat ini.") +
-      rowx("AntiTrap (20)", nf(fs.p.trap, 1), "Rivan 5Q + red-flag Thowilz.") +
+      fsRow("Valuasi", fs.p.valuasi, 30, "valuasi", "MOS vs target + PEG + EV/CFO. Mentah ≥21 Bagus · 15-20,9 Cukup · 9-14,9 Kurang · <9 Bahaya.") +
+      fsRow("Kualitas", fs.p.kualitas, 30, "kualitas", "ROE + DER + tren EPS + dividen + selaras kas + margin. Mentah ≥21 Bagus · 15-20,9 Cukup · 9-14,9 Kurang · <9 Bahaya.") +
+      fsRow("Momentum", fs.p.momentum, 10, "momentum", "tren EPS/ROE + CAGR + turnaround. Mentah ≥7 Bagus · 5-6,9 Cukup · 3-4,9 Kurang · <3 Bahaya.") +
+      fsRow("Makro/Sektor", fs.p.makro, 10, "makro", "ikut sektor memimpin rotasi saat ini (10=unggul, 5=netral/tidak unggul). Bank: PER 5–10 wajar; pasar umum PER 8–15.") +
+      fsRow("AntiTrap", fs.p.trap, 20, "trap", "Rivan 5Q + red-flag Thowilz. Mentah ≥14 Bagus · 10-13,9 Cukup · 6-9,9 Kurang · <6 Bahaya.") +
       (fs.catatan.length ? '<div class="warn">' + fs.catatan.join(" · ") + "</div>" : "") +
       (fs.missing.length ? '<div class="mut">Data kurang: ' + fs.missing.join(", ") + " — pilar terkait dinilai netral.</div>" : "") +
       "</div>";
