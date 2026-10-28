@@ -173,11 +173,11 @@ MAKRO_SYM = [
     ("CPO=F", "Sawit (CPO)", "Sawit & perkebunan",
      ["sawit", "kelapa sawit", "kebun", "perkebunan", "palm", "cpo"]),
     ("KC=F", "Kopi", "Perkebunan",
-     ["kopi", "coffee", "perkebunan"]),
+     ["kopi", "coffee"]),
     ("CC=F", "Kakao", "Perkebunan",
-     ["kakao", "cacao", "perkebunan"]),
+     ["kakao", "cacao", "cocoa"]),
     ("SB=F", "Gula", "Perkebunan & gula",
-     ["gula", "sugar", "perkebunan"]),
+     ["gula", "sugar"]),
     ("^JKSE", "IHSG", "Pasar (konteks)", []),
     ("IDR=X", "Rupiah (USD/IDR)", "Mata uang (konteks)", []),
     ("DX-Y.NYB", "Dolar AS", "Mata uang (konteks)", []),
@@ -268,6 +268,49 @@ def ambil_makro(force=False):
     return data
 
 
+def ambil_intra(kodes):
+    """Bar 15 menit 1 bulan terakhir per kode (untuk scan divergen harian).
+
+    Gratis via Yahoo chart API (tanpa login, seperti panel Makro).
+    Return {kode: [[close,high,low,vol], ...]}. Butuh >=35 bar agar RSI14 valid.
+    """
+    def satu(kode):
+        url = ("https://query1.finance.yahoo.com/v8/finance/chart/%s.JK"
+               "?range=1mo&interval=15m" % quote(kode))
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=12) as fh:
+            js = json.load(fh)
+        res = ((js.get("chart") or {}).get("result") or [None])[0]
+        if not res:
+            return None
+        quote0 = ((res.get("indicators") or {}).get("quote") or [{}])[0]
+        ts = res.get("timestamp") or []
+        bars = []
+        for i in range(len(ts)):
+            c = (quote0.get("close") or [None] * len(ts))[i]
+            if c is None:
+                continue
+            h = (quote0.get("high") or [0] * len(ts))[i] or c
+            l = (quote0.get("low") or [0] * len(ts))[i] or c
+            v = (quote0.get("volume") or [0] * len(ts))[i] or 0
+            bars.append([round(float(c), 2), round(float(h), 2),
+                         round(float(l), 2), int(v)])
+        return bars if len(bars) >= 35 else None
+
+    out = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
+        proses = {ex.submit(satu, k): k for k in bersih_kode(kodes)[:25]}
+        for fu in concurrent.futures.as_completed(proses):
+            try:
+                bars = fu.result()
+            except Exception as e:  # noqa: BLE001
+                tulis_log("intra %s gagal: %s" % (proses[fu], str(e)[:80]))
+                continue
+            if bars:
+                out[proses[fu]] = bars
+    return out
+
+
 CACHE_SCOPE = 1 * 3600   # 1 jam
 
 
@@ -313,6 +356,170 @@ def baca_harian_terbaru(data_dir, tanggal=None):
         return None
 
 
+def _OVERR_TEMA():
+    # (subsektor, kode) -> tema. Untuk nama ambigu yang tak kena kata kunci.
+    return {
+    ("Makanan & Minuman", "TGUK"): "Minuman",
+    ("Makanan & Minuman", "BOBA"): "Minuman",
+    ("Makanan & Minuman", "PSDN"): "Makanan Olahan",
+    ("Makanan & Minuman", "TGKA"): "Aneka Pangan & Agro",
+    ("Makanan & Minuman", "IPPE"): "Aneka Pangan & Agro",
+    ("Makanan & Minuman", "ENZO"): "Aneka Pangan & Agro",
+    ("Makanan & Minuman", "MAXI"): "Aneka Pangan & Agro",
+    ("Makanan & Minuman", "GRPM"): "Aneka Pangan & Agro",
+    ("Makanan & Minuman", "WAPO"): "Aneka Pangan & Agro",
+    ("Makanan & Minuman", "RLCO"): "Aneka Pangan & Agro",
+    ("Makanan & Minuman", "NEST"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "BISI"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "BTEK"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "CBUT"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "MGRO"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "FAPA"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "ANDI"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "FISH"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "OILS"): "Makanan Olahan",
+    ("Jasa & Peralatan Kesehatan", "CARE"): "Rumah Sakit",
+    ("Jasa & Peralatan Kesehatan", "EMMI"): "Rumah Sakit",
+    ("Jasa & Peralatan Kesehatan", "HALO"): "Rumah Sakit",
+    ("Jasa & Peralatan Kesehatan", "SURI"): "Alat & Distributor Kesehatan",
+    ("Minyak, Gas & Batu Bara", "INPS"): "Pelayaran & Logistik Energi",
+    ("Minyak, Gas & Batu Bara", "ALII"): "Pelayaran & Logistik Energi",
+    ("Minyak, Gas & Batu Bara", "PTIS"): "Pelayaran & Logistik Energi",
+    ("Minyak, Gas & Batu Bara", "CANI"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "CBRE"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "SMRU"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "SGER"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "TEBE"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "TRAM"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "DOID"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "PTRO"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "HILL"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "DEWA"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "MYOH"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "RMKE"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "RMKO"): "Batu Bara",
+    ("Transportasi", "HELI"): "Penerbangan",
+    ("Makanan & Minuman", "BEER"): "Minuman",
+    ("Makanan & Minuman", "IKAN"): "Perikanan",
+    ("Makanan & Minuman", "DPUM"): "Perikanan",
+    ("Makanan & Minuman", "DLTA"): "Minuman",
+    ("Makanan & Minuman", "ADES"): "Minuman",
+    ("Makanan & Minuman", "CEKA"): "Makanan Olahan",
+    ("Makanan & Minuman", "HOKI"): "Makanan Olahan",
+    ("Makanan & Minuman", "BEEF"): "Peternakan & Pakan",
+    ("Makanan & Minuman", "ANJT"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "JAWA"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "PGUN"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "MKTR"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "DSNG"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "TBLA"): "Sawit & Perkebunan",
+    ("Makanan & Minuman", "TAYS"): "Makanan Olahan",
+    ("Makanan & Minuman", "JELI"): "Makanan Olahan",
+    ("Makanan & Minuman", "NASI"): "Makanan Olahan",
+    ("Makanan & Minuman", "GUNA"): "Makanan Olahan",
+    ("Makanan & Minuman", "TRGU"): "Makanan Olahan",
+    ("Minyak, Gas & Batu Bara", "BUMI"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "DSSA"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "INDY"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "TOBA"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "ABMM"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "MAHA"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "UNIQ"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "GTBO"): "Batu Bara",
+    ("Minyak, Gas & Batu Bara", "GTSI"): "Pelayaran & Logistik Energi",
+    }
+
+
+def _pecah_tema(sub, kode, nama):
+    """Pecah subsektor IDX yang campur aduk jadi tema spesifik.
+
+    Aturan: override eksplisit dulu, lalu kata kunci nama perusahaan.
+    Return nama tema; None = pakai nama subsektor asli.
+    """
+    ov = _OVERR_TEMA().get((sub, kode))
+    if ov:
+        return ov
+    n = str(nama or "").upper()
+
+    def ada(*kata):
+        return any(k in n for k in kata)
+
+    if sub == "Makanan & Minuman":
+        if ada("MILK", "DAIRY", "MINUMAN", "TIRTA", "BREWERY", "BINTANG",
+               "HATTEN", "KOPI", "CAP TIKUS", "LOVINA"):
+            return "Minuman"
+        if ada("FISH", "SEAFOOD", "MINA", "SAMUDRA", "IKAN", "SURIMI",
+               "PROTEINA", "SEKAR BUMI", "SEKAR LAUT", "MITRA"):
+            return "Perikanan"
+        if ada("FEEDMILL", "POULTRY", "UNGGAS", "AYAM", "CHAROEN",
+               "JAPFA", "MALINDO", "SEWU", "WIDODO", "JANU", "MENJANGAN",
+               "FARMINDO"):
+            return "Peternakan & Pakan"
+        if ada("SAWIT", "PLANTATION", "PALM", "AGRO", "AGRI", "TANI",
+               "IVOMAS", "SUMATRA", "SINAR MAS"):
+            return "Sawit & Perkebunan"
+        if ada("FOOD", "ROTI", "BOGA", "INDOFOOD", "MAYORA", "GARUDAFOOD",
+               "SIANTAR", "CAMPINA", "ICE CREAM", "YUPI", "INTERFOOD",
+               "INDOSARI", "STARCH", "SWEETENER", "FLOUR", "CESTAR",
+               "SUGAR", "GULA", "COOKING", "GORENG", "SNACK", "JELLY"):
+            return "Makanan Olahan"
+        return "Aneka Pangan & Agro"
+    if sub == "Jasa & Peralatan Kesehatan":
+        if ada("HOSPITAL", "SAKIT", "HERMINA", "MITRA KELUARGA", "SILOAM",
+               "BUNDA", "ROYAL PRIMA", "KEDOYA", "CHARLIE", "AWAL BROS",
+               "MURNI SADAR", "SEJAHTERARAYA", "MEDITAMA", "FAMON",
+               "SARANA MEDIKA", "MEDIKA MANDIRI", "NITRASANATA", "METRO"):
+            return "Rumah Sakit"
+        if ada("LAB", "DIAGNOS", "PRODIA", "BIOTEKINDO", "DIASTIKA"):
+            return "Lab & Diagnostik"
+        return "Alat & Distributor Kesehatan"
+    if sub == "Transportasi":
+        if ada("AIRASIA", "GARUDA", " AVIASI", "AIRLINE"):
+            return "Penerbangan"
+        return "Transportasi Darat & Rental"
+    if sub == "Minyak, Gas & Batu Bara":
+        if ada("PELAYARAN", "MARINE", "MARITIM", "LAUTAN", "LINES",
+               "SAMUDRA", "LOGISTIK", "LOGISTICS", "TRANSCOAL", "SEGARA",
+               "WINTERMAR", "SOECHI", "SILLO", "HUMPUSS", "BUANA",
+               "PELITA", "PANCARAN", "POWER MARINE", "BINA ", "TAMARIN",
+               "STRAIT", "BARGE", "TONGKANG"):
+            return "Pelayaran & Logistik Energi"
+        if ada("BARA", "COAL", "ADARO", "BAYAN", "BUKIT ASAM",
+               "TAMBANGRAYA", "GOLDEN ENERGY", "BLACK DIAMOND",
+               "MITRABARA", "BARAMULTI", "RESOURCE ALAM", "SUMBER ENERGI",
+               "PETRINDO", "ATLAS", "BORNEO", "GOLDEN EAGLE",
+               "ALFA ENERGI", "GARDA TUJUH", "KARYA PACIFIC", "ANDALAN",
+               "ALAMTRI", "DWI GUNA"):
+            return "Batu Bara"
+        return "Minyak, Gas & Jasa Energi"
+    return None
+
+
+def _tema_sektor():
+    """Tema otomatis dari sektor IDX lokal (idx-profil.json, 962 emiten).
+
+    Menutup celah tema scrape (cuma 4: Oil&Coal, Gold, Nickel, Data Center)
+    sehingga Kesehatan, Konsumer, Keuangan, dll ikut muncul di filter Tema.
+    Tanpa wajar (cuma keanggotaan); tanpa efek skor Makro.
+    """
+    try:
+        with open(os.path.join(DATA_DIR, "idx-profil.json"), "r", encoding="utf-8") as fh:
+            prof = json.load(fh) or {}
+    except (OSError, ValueError):
+        return []
+    grup = {}
+    for kode, v in prof.items():
+        if not isinstance(v, dict):
+            continue
+        sek = str(v.get("subsektor") or v.get("sektor") or "").strip()
+        if not sek:
+            continue
+        pecah = _pecah_tema(sek, str(kode).upper(), (v.get("nama") or ""))
+        grup.setdefault(pecah or sek, []).append(str(kode).upper())
+    return [{"nama": s, "deskripsi": "Sektor IDX: %s." % s, "sumber": ["idx-profil"],
+             "emiten": sorted(ks)} for s, ks in sorted(grup.items())]
+
+
 def muat_tema():
     base = _baca_json("tema.json")
     segar = False
@@ -329,6 +536,13 @@ def muat_tema():
         except Exception as e:  # noqa: BLE001
             tulis_log("tema gagal: %s" % e)
             base = base or {}
+    if not isinstance(base.get("tema"), list):
+        base["tema"] = []
+    ada = set(t.get("nama") for t in base["tema"] if isinstance(t, dict))
+    for t in _tema_sektor():
+        if t["nama"] not in ada:
+            base["tema"].append(t)
+            ada.add(t["nama"])
     man = _baca_json("tema-manual.json")
     if man and base.get("tema"):
         for t in base["tema"]:
@@ -674,6 +888,15 @@ class Handler(BaseHTTPRequestHandler):
                     "daftar_saham": daftar_baca(), "bulan_ksei": bulan_ksei()}})
             if jalur == "/api/makro":
                 return self._json(ambil_makro(), 200)
+            if jalur == "/api/intra":
+                q = parse_qs(u.query)
+                kirim = bersih_kode((q.get("kodes", [""])[0] or "").split(","))[:25]
+                if not kirim:
+                    return self._json({"ok": False, "error": "kode kosong."}, 400)
+                return self._json({
+                    "ok": True, "interval": "15m", "bars": ambil_intra(kirim),
+                    "dibuat": datetime.now().astimezone().isoformat(timespec="seconds"),
+                })
             if jalur == "/api/download":
                 q = parse_qs(u.query)
                 hasil, _ = muat_semua()
@@ -695,6 +918,7 @@ class Handler(BaseHTTPRequestHandler):
                     "ok": True, "jumlah": len(saham), "ksei": ksei or {}, "saham": saham,
                     "berita": berita or {"emiten": {}, "umum": []},
                     "labarugi": labarugi_untuk([r.get("kode") for r in (saham or [])]),
+                    "tema": muat_tema(),
                     "makro": ambil_makro(),
                     "dibuat": datetime.now().astimezone().isoformat(timespec="seconds"),
                 })

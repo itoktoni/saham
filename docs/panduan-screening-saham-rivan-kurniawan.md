@@ -6,7 +6,7 @@ Panduan ini disusun berdasarkan prinsip dan metodologi *Value Investing* ala Riv
 
 ## 1. Filosofi Utama Value Investing Modern
 
-Dalam era transparansi data saat ini, pendekatan *value investing* tidak lagi terbatas pada analisis angka kaku di laporan keuangan historis. 
+Dalam era transparansi data saat ini, pendekatan *value investing* tidak lagi terbatas pada analisis angka kaku di laporan keuangan historis.
 
 * **Bobot Analisis**:
   * **60% – 70% Analisis Kualitatif**: Prospek makro, analisis sektoral, rekam jejak manajemen, struktur grup, dan keunggulan bersain (*Economic Moat*).
@@ -129,3 +129,165 @@ $$	ext{Harga Beli Maksimal} = 	ext{Nilai Intrinsik} 	imes (1 - 	ext{Target MOS})
 
 ---
 *Dokumen ini disusun sebagai panduan strategis screening saham dan valuasi nilai intrinsik berdasarkan prinsip Value Investing Rivan Kurniawan.*
+
+# Panduan Valuasi Saham & Perhitungan Nilai Intrinsik
+
+Panduan ini disusun berdasarkan kerangka kerja *Valuation Class: Intrinsic Value For Multibagger Profit*, yang menggabungkan pendekatan klasifikasi perusahaan ala **Peter Lynch** dengan metode valuasi khusus berdasarkan sektor industri dan kondisi bisnis.
+
+---
+
+## **DAY 1: Kategori Perusahaan & Kondisi Khusus**
+
+### **1. Stalwarts Companies (Part 1 - Perusahaan Raksasa & Stabil)**
+Perusahaan *Stalwarts* adalah emiten berkapitalisasi besar (*large-cap*) dengan pertumbuhan laba yang konsisten dan dapat diprediksi (umumnya 8%–15% per tahun).
+
+#### **Metode & Langkah Memvaluasi:**
+1. **Discounted Cash Flow (DCF):**
+   Menghitung nilai sekarang (*present value*) dari seluruh arus kas bebas (*Free Cash Flow*) yang diproyeksikan di masa depan.
+   $$\text{FCF} = \text{Arus Kas Operasi} - \text{Capital Expenditures (CapEx)}$$
+
+2. **Discount Rate (WACC):**
+   Mendiskonto arus kas masa depan menggunakan *Weighted Average Cost of Capital* (WACC) yang mencerminkan tingkat risiko dan biaya modal perusahaan.
+
+3. **Terminal Value:**
+   Menghitung nilai sisa perusahaan setelah periode proyeksi eksplisit (biasanya 5–10 tahun).
+
+4. **P/E Historical Band:**
+   Membandingkan *Price-to-Earnings Ratio* (P/E) saat ini dengan rata-rata historisnya (5 tahun terakhir). Jika P/E berada di bawah -1 atau -2 Standar Deviasi (SD), saham tergolong *undervalued*.
+
+---
+
+### **2. Cyclical & Turnaround Companies**
+* **Cyclical (Siklikal):** Kinerjanya berfluktuasi mengikuti siklus ekonomi atau harga komoditas (misal: batu bara, CPO, nikel).
+* **Turnaround (Pemulihan):** Perusahaan yang sebelumnya mengalami krisis/masalah keuangan berat, lalu berpotensi pulih (*rebound*).
+
+#### **Metode & Langkah Memvaluasi:**
+* **Perusahaan Siklikal:**
+  * *Catatan:* Hindari menggunakan P/E saat harga komoditas puncak (*peak*), karena P/E akan terlihat sangat murah padahal harga saham sudah mahal.
+  1. **PBV Band Historis:** Beli ketika *Price-to-Book Value* (PBV) berada di level terbawah historis (*trough*) saat siklus sedang di bawah.
+  2. **Normalized Earnings:** Hitung rata-rata laba bersih selama 1 siklus penuh (7–10 tahun) untuk menentukan P/E yang realistis.
+
+* **Perusahaan Turnaround:**
+  1. **Interest Coverage Ratio:**
+     $$\text{Interest Coverage} = \frac{\text{EBIT}}{\text{Beban Bunga}}$$
+     Memastikan perusahaan memiliki ruang yang cukup untuk membayar utang dan menghindari kebangkrutan.
+  2. **Operating Margin Recovery:** Proyeksikan pemulihan margin operasi jika efisiensi bisnis berhasil dijalankan.
+
+---
+
+### **3. Fast Growers Companies**
+Perusahaan yang tumbuh sangat cepat dengan kenaikan laba bersih di atas 20%–30% per tahun.
+
+#### **Metode & Langkah Memvaluasi:**
+1. **PEG Ratio (Price/Earnings-to-Growth):**
+   $$\text{PEG} = \frac{\text{P/E Ratio}}{\text{Tingkat Pertumbuhan Laba (\%)}}$$
+   * **PEG < 1,0:** Indikasi *undervalued* (pertumbuhan laba lebih tinggi dari valuasinya).
+   * **PEG > 1,5:** Mulai tergolong *overvalued*.
+
+2. **Rule of 40:**
+   Menilai keseimbangan antara pertumbuhan penjualan (*Revenue Growth*) dan margin laba bersih (*Profit Margin*).
+   $$\text{Revenue Growth (\%)} + \text{Profit Margin (\%)} \ge 40\%$$
+
+---
+
+### **4. Decline / Net Loss Companies (Rugi Bersih)**
+Perusahaan yang kinerjanya memburuk atau sedang mencatatkan rugi bersih, sehingga rasio P/E bernilai negatif dan tidak dapat digunakan.
+
+#### **Metode & Langkah Memvaluasi:**
+1. **Price-to-Sales (P/S) Ratio:**
+   Membandingkan kapitalisasi pasar dengan total pendapatan tahunan. Efektif jika bisnis memiliki basis pendapatan besar tetapi margin sementara tertekan.
+
+2. **Net Current Asset Value (NCAV) / Metode Benjamin Graham:**
+   $$\text{NCAV Per Saham} = \frac{\text{Aset Lancar} - \text{Total Liabilitas} - \text{Saham Preferen}}{\text{Jumlah Saham Beredar}}$$
+   * Indikasi *deep value/undervalued* jika: $\text{Harga Saham} < \frac{2}{3} \times \text{NCAV Per Saham}$.
+
+---
+
+### **5. Asset Play Companies (Mining & Property)**
+Nilai intrinsik perusahaan tersimpan pada aset fisiknya (seperti *landbank* properti atau cadangan tambang), bukan hanya dari laba bersih tahunan.
+
+#### **Metode & Langkah Memvaluasi:**
+1. **Revalued Net Asset Value (RNAV):**
+   * **Properti:** Hitung *Market Value* (harga pasar terkini) seluruh *landbank* dan bangunan, dikurangi total kewajiban.
+     $$\text{RNAV Per Saham} = \frac{\text{Nilai Pasar Aset Terpenuhi} - \text{Total Liabilitas}}{\text{Jumlah Saham Beredar}}$$
+   * **Pertambangan:** Hitung perkiraan volume cadangan (*proven & probable reserves*) dikali estimasi harga komoditas terkini, dikurangi biaya operasional (OpEx) dan utang.
+
+2. **Discount to RNAV:**
+   Saham properti dan tambang umumnya ditransaksikan dengan diskon 30%–60% dari nilai RNAV-nya. Makin besar diskonnya dibanding historis, makin murah saham tersebut.
+
+---
+
+## **DAY 2: Sektor Khusus & Perusahaan Baru**
+
+### **1. Stalwarts Companies (Part 2 - Pendalaman)**
+Melanjutkan pendalaman perusahaan stabil dengan fokus pada **Economic Moat** (keunggulan bersaing berkelanjutan) dan efisiensi modal.
+
+#### **Metode Tambahan:**
+* **ROIC vs WACC:**
+  $$\text{ROIC} = \frac{\text{NOPAT}}{\text{Invested Capital}}$$
+  Perusahaan yang mampu mempertahankan $\text{ROIC} > \text{WACC}$ secara konsisten layak dihargai dengan *valuation premium* (P/E lebih tinggi dibanding kompetitor).
+
+---
+
+### **2. Slow Growers**
+Perusahaan matang (*mature*) dengan pertumbuhan bisnis yang lambat (1%–5% per tahun), namun menghasilkan arus kas melimpah dan rutin membagikan dividen besar.
+
+#### **Metode & Langkah Memvaluasi:**
+1. **Dividend Discount Model (DDM):**
+   $$P_0 = \frac{D_1}{r - g}$$
+   * $P_0$: Nilai wajar saham saat ini
+   * $D_1$: Estimasi dividen tahun depan
+   * $r$: Tingkat pengembalian yang diisyaratkan (*required rate of return*)
+   * $g$: Tingkat pertumbuhan dividen berkelanjutan (*sustainable growth rate*)
+
+2. **Dividend Yield Spread:**
+   Membandingkan imbal hasil dividen (*Dividend Yield*) saham dengan suku bunga acuan atau *yield* obligasi pemerintah. Jika *yield* dividen jauh lebih tinggi, saham tersebut menarik secara valuasi.
+
+---
+
+### **3. Banking Companies (Perbankan)**
+Bank memiliki struktur keuangan khusus di mana tabungan/deposito nasabah dicatat sebagai kewajiban (liabilitas) dan penyaluran kredit dicatat sebagai aset.
+
+#### **Metode & Langkah Memvaluasi:**
+1. **PBV vs ROE Matrix (Justified PBV):**
+   $$\text{Target PBV} = \frac{\text{ROE} - g}{\text{Cost of Equity} - g}$$
+   Bank dengan **Return on Equity (ROE)** tinggi wajar diperdagangkan pada **Price-to-Book Value (PBV)** yang lebih tinggi.
+
+2. **Penyesuaian Kualitas Aset:**
+   * Evaluasi **Non-Performing Loan (NPL)** gross & net, serta **Loan at Risk (LAR)**.
+   * Pastikan kecukupan pencadangan (**NPL Coverage Ratio** $> 150\%–200\%$). Jika cadangan kurang, ekuitas harus dikoreksi terlebih dahulu sebelum menghitung PBV.
+
+---
+
+### **4. Technology Companies**
+Sering kali masih berada pada fase pertumbuhan awal (*growth phase*), belum mencetak laba bersih, dan berfokus memperluas pangsa pasar.
+
+#### **Metode & Langkah Memvaluasi:**
+1. **EV/Sales atau Price-to-Sales (P/S):** Digunakan untuk menilai pertumbuhan pendapatan (*top-line*).
+2. **Unit Economics & LTV/CAC:**
+   * **LTV (Lifetime Value):** Nilai estimasi pendapatan dari satu pengguna selama menggunakan produk.
+   * **CAC (Customer Acquisition Cost):** Biaya untuk mendapatkan satu pengguna baru.
+   * Rasio ideal: $\frac{\text{LTV}}{\text{CAC}} > 3\text{x}$.
+3. **Path to Profitability:** Menghitung *Burn Rate* (kecepatan penggunaan kas) untuk memprediksi kapan perusahaan mencapai *Free Cash Flow* positif tanpa butuh dilusi modal baru.
+
+---
+
+### **5. New Listing / IPO Companies**
+Emiten baru yang melantai di bursa belum memiliki rekam jejak harga historis di pasar sekunder.
+
+#### **Metode & Langkah Memvaluasi:**
+1. **Relative Valuation (Peer Comparison):** Membandingkan P/E, PBV, atau EV/EBITDA emiten IPO dengan saham sejenis yang sudah terdaftar di bursa.
+2. **Analisis Prospektus:** Memeriksa alokasi penggunaan dana IPO (*Use of Proceeds*):
+   * **Ekspansi produktif:** Positif untuk pertumbuhan nilai.
+   * **Membayar utang:** Perlu diwaspadai jika porsinya terlalu dominan.
+3. **Fully Diluted Valuation:** Menghitung kapitalisasi pasar dengan memperhitungkan potensi dilusi dari waran, ESOP, atau obligasi konversi.
+
+---
+
+## **Ringkasan Strategi Multibagger**
+
+| Kriteria | Target Minimum |
+| :--- | :--- |
+| **Margin of Safety (MoS)** | Minimal 30% – 50% di bawah nilai intrinsik |
+| **Katalis Pembalik Harga** | Ekspansi kapasitas, *turnaround* bisnis, atau *spin-off* aset |
+| **Kualitas Fundamental** | Memiliki *Economic Moat* dan *Management Track Record* yang solid |

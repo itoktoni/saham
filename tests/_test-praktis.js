@@ -154,7 +154,7 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
 
 // 8) preset metode screening (label Indonesia)
 {
-  cek("METODE tersedia (5 preset)", Array.isArray(SP.METODE) && SP.METODE.length === 5, String(SP.METODE));
+  cek("METODE tersedia (5 teknikal + 3 Rivan)", Array.isArray(SP.METODE) && SP.METODE.length === 8 && SP.METODE.includes("Rivan Best Pick") && SP.METODE.includes("Rivan Turnaround") && SP.METODE.includes("Rivan Dividen"), String(SP.METODE));
   const bSide = { kode: "SIDE", nama: "Side", r: { harga: "1000", s_sideways: "1", s_vol_ratio: "0.7", s_spring: "0", s_closeabove: "1", s_springlow: "950", s_resistance: "1050" }, k: {}, fase: "Akumulasi", pos: 0.3 };
   const bSpring = { kode: "SPR", nama: "Spr", r: { harga: "1000", s_sideways: "0", s_vol_ratio: "1.0", s_spring: "1", s_closeabove: "1", s_springlow: "950", s_resistance: "1050" }, k: {}, fase: "Spring", pos: 0.2 };
   const bBreak = { kode: "BRK", nama: "Brk", r: { harga: "1000", s_sideways: "0", s_vol_ratio: "1.4", s_spring: "0", s_closeabove: "1", s_springlow: "900", s_resistance: "1050" }, k: {}, fase: "Markup", pos: 0.8 };
@@ -169,6 +169,28 @@ cek("MOS positif saat murah", SP.valuasi(murah).mos > 0);
   cek("jelang bukan barang kering", SP.matchMetode(bJelang, "Barang Kering") === false);
   cek("kontraksi tetap", SP.matchMetode(bCont, "Kontraksi VCP") === true);
   cek("Semua lolos semua", SP.matchMetode(bSide, "Semua") === true);
+  // 8b) metode Rivan — best scenario filter
+  const rBest = { kode: "BEST", r: { harga: "2600", eps: "503.8", ekuitas: "22000", saham: "10", laba: "4950", cagr: "9.4", der: "0.5", eps_trend: "up", dividen: "1", s_springlow: "2000", s_resistance: "3500" }, fase: "Akumulasi", pos: 0.3, aksi: "Beli", _aksiD: "Beli" };
+  rBest.val = SP.valuasi(rBest.r, { nilai: { bvps: 2200, roe: 22.5 }, tren: { eps: "naik", roe: "naik" }, kas: { ocf: [5000], fcf: [3000], dividen: [-1000] } });
+  rBest.fs = SP.fundSkor(rBest.r, { nilai: { bvps: 2200, roe: 22.5 }, tren: { eps: "naik", roe: "naik" }, kas: { ocf: [5000], fcf: [3000], dividen: [-1000] } }, { unggulan: [] });
+  cek("rivan best pick lolos saham sehat", SP.matchMetode(rBest, "Rivan Best Pick") === true, JSON.stringify({ tier: rBest.fs.tier, mos: Math.round(rBest.val.mos) }));
+  const rJelek = { kode: "JELEK", r: { harga: "5000", eps: "-5", ekuitas: "5000", saham: "100", laba: "-500", cagr: "0", der: "2.5", s_springlow: "900", s_resistance: "1100" }, fase: "Distribusi", pos: 0.9, aksi: "Hindari" };
+  rJelek.val = SP.valuasi(rJelek.r, {});
+  rJelek.fs = SP.fundSkor(rJelek.r, {}, {});
+  cek("rivan best pick tolak saham jelek/distribusi", SP.matchMetode(rJelek, "Rivan Best Pick") === false);
+  const rBangkit = { kode: "BKIT", r: { harga: "800", eps: "50", ekuitas: "50000", saham: "1000", laba: "5000", cagr: "12", der: "0.6", eps_trend: "up", dividen: "0", klasifikasi: "Bangkit", cash_badge: "Lolos", cfo3: "1", s_springlow: "700", s_resistance: "1200" }, fase: "Akumulasi", pos: 0.3, aksi: "Beli" };
+  rBangkit.val = SP.valuasi(rBangkit.r, { nilai: { bvps: 900, roe: 12 }, tren: { eps: "naik", roe: "naik" }, kas: { ocf: [4000], fcf: [2000] } });
+  rBangkit.turn = SP.turnaroundSkor(rBangkit.r, { nilai: { bvps: 900, roe: 12 }, tren: { eps: "naik", roe: "naik" }, kas: { ocf: [4000], fcf: [2000] } });
+  rBangkit.fs = SP.fundSkor(rBangkit.r, {}, {});
+  cek("rivan turnaround lolos emiten bangkit", SP.matchMetode(rBangkit, "Rivan Turnaround") === true, JSON.stringify(rBangkit.turn));
+  cek("rivan turnaround tolak jelek", SP.matchMetode(rJelek, "Rivan Turnaround") === false);
+  cek("turnaroundSkor helper ada + tier T1-T4", typeof SP.turnaroundSkor === "function" && ["T1", "T2", "T3", "T4"].includes(SP.turnaroundSkor(rBangkit.r, {}).tier));
+  const tKosong = SP.turnaroundSkor({}, {});
+  cek("turnaround kosong aman (finite, T4)", isFinite(tKosong.total) && tKosong.tier === "T4");
+  const rDiv = { kode: "DIV", r: { harga: "1000", eps: "100", ekuitas: "50000", saham: "1000", laba: "10000", cagr: "8", der: "0.4", dividen: "1", s_springlow: "900", s_resistance: "1200" }, fase: "Akumulasi", pos: 0.3, aksi: "Beli" };
+  rDiv.val = SP.valuasi(rDiv.r, { nilai: { bvps: 1200, roe: 15 } });
+  cek("rivan dividen lolos mesin dividen", SP.matchMetode(rDiv, "Rivan Dividen") === true);
+  cek("rivan dividen tolak tanpa dividen", SP.matchMetode(rBangkit, "Rivan Dividen") === false);
 }
 
 // 9) agregat sektoral + narasi

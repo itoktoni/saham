@@ -211,6 +211,10 @@ tbody tr.dipantau td{background:var(--accent2)}
         <option value="Kontraksi VCP" title="Volatility contraction: range + volume menyempit bertahap">Kontraksi VCP</option>
         <option value="Lolos Resistance" title="Sudah breakout: di atas resistance + volume besar">Lolos Resistance</option>
         <option value="Kocokan Terakhir" title="Spring/shakeout: tembus support lalu close kembali di atasnya">Kocokan Terakhir</option>
+        <option value="Bullish Divergen" title="Divergen RSI bullish: lower-low harga + higher-low RSI — bar harian (watchlist) atau hasil scan 15m">Bullish Divergen ▲</option>
+        <option value="Rivan Best Pick" title="Rivan Kurniawan best scenario: FS tier A + MOS≥target + terverifikasi + anti-trap aman + bukan Distribusi">Rivan Best Pick ★</option>
+        <option value="Rivan Turnaround" title="Rivan turnaround: skor bangkit T1/T2 + kas valid + MOS>0 + bukan jebakan">Rivan Turnaround</option>
+        <option value="Rivan Dividen" title="Rivan dividen: dividen rutin + ROE≥10 + DER<1 + MOS≥0">Rivan Dividen</option>
       </select>
       <select class="mini-sel" id="tema" title="Filter tema narasi">
         <option value="Semua">Semua Tema</option>
@@ -221,6 +225,7 @@ tbody tr.dipantau td{background:var(--accent2)}
       <span class="flab">Fase</span><div class="chips" id="chips" title="Klik beberapa fase untuk multi-filter"></div>
       <span class="flab">Aksi</span><div class="chips" id="chipsAksi" title="Klik beberapa aksi untuk multi-filter"></div>
       <span class="flab">Klas</span><div class="chips" id="chipsKlas" title="Klik beberapa klasifikasi Thowilz untuk multi-filter"></div>
+      <button class="btn" id="btnDiv15" title="Scan bullish divergence RSI di bar 15 menit (25 emiten terlikuid dari hasil saat ini, segar tiap klik) — untuk berburu setiap hari">▲ Div 15m</button>
       <button class="btn" id="btnResetFilter" title="Kembalikan filter & sort ke awal">Reset</button>
       <span class="cnt" id="cnt">0 saham</span>
     </div>
@@ -455,7 +460,20 @@ var SP = (function () {
   }
 
   // ---------- preset metode screening (filter tampilan saja) ----------
-  var METODE = ["Jelang Breakout", "Barang Kering", "Kontraksi VCP", "Lolos Resistance", "Kocokan Terakhir"];
+  // 5 teknikal + 3 Rivan (best-pick filter: gabungan FS + MOS + anti-trap + turnaround).
+  var METODE = ["Jelang Breakout", "Barang Kering", "Kontraksi VCP", "Lolos Resistance", "Kocokan Terakhir",
+    "Bullish Divergen",
+    "Rivan Best Pick", "Rivan Turnaround", "Rivan Dividen"];
+
+  // Helper Rivan: hitung turn on-the-fly bila x.turn belum ditempel (mis. unit test).
+  function _turnOf(x) {
+    if (x && x.turn) return x.turn;
+    try { return turnaroundSkor((x && x.r) || {}, {}); } catch (e) { return null; }
+  }
+  function _fsOf(x) {
+    if (x && x.fs) return x.fs;
+    try { return fundSkor((x && x.r) || {}, {}, { unggulan: [] }); } catch (e) { return null; }
+  }
 
   function matchMetode(x, nama) {
     if (!nama || nama === "Semua") return true;
@@ -467,9 +485,51 @@ var SP = (function () {
     var vr = toNum(r.s_vol_ratio) || 1.0;
     if (nama === "Barang Kering") return sideways && vr < 1.0 && !spring;
     if (nama === "Kocokan Terakhir") return spring;
+    if (nama === "Bullish Divergen") return !!((x && x.tk && x.tk.divBull) || (x && x._tk15 && x._tk15.divBull));
     if (nama === "Lolos Resistance") return above && pos >= 0.75 && vr >= 1.3;
     if (nama === "Jelang Breakout") return above && !spring && pos >= 0.55 && pos <= 0.75 && vr >= 1.0 && vr <= 1.5;
     if (nama === "Kontraksi VCP") return !sideways && above && !spring && vr < 1.1 && pos >= 0.25 && pos <= 0.70;
+    // --- Rivan Best Pick: skenario terbaik value investing ---
+    // Flow RK: FS tier A + MOS>=target + terverifikasi + anti-trap aman + aksi bukan Hindari.
+    if (nama === "Rivan Best Pick") {
+      var fs = _fsOf(x), val = (x && x.val) || {};
+      if (!fs || fs.tier !== "A") return false;
+      if (!(val.intrinsic > 0)) return false;
+      if (!(val.mos >= (val.targetMos || 30))) return false;
+      if (val.labaSemuKill || val.unverified) return false;
+      if ((r.trap_badge || "") === "Jebakan") return false;
+      var aksiN = (x && x._aksiD != null) ? x._aksiD : ((x && x.aksi) || "");
+      if (aksiN === "Hindari") return false;
+      if ((x && x.fase) === "Distribusi") return false;
+      return true;
+    }
+    // --- Rivan Turnaround: bangkit tervalidasi kas ---
+    // turn T1/T2 + intrinsic>0 + MOS>0 + bukan Jebakan + bukan laba-semu.
+    if (nama === "Rivan Turnaround") {
+      var tn = _turnOf(x), vv = (x && x.val) || {};
+      if (!tn) return false;
+      if (!(tn.tier === "T1" || tn.tier === "T2")) return false;
+      if (!(vv.intrinsic > 0)) return false;
+      if (!(vv.mos > 0)) return false;
+      if (vv.labaSemuKill) return false;
+      if ((r.trap_badge || "") === "Jebakan") return false;
+      if ((x && x.fase) === "Distribusi") return false;
+      return true;
+    }
+    // --- Rivan Dividen: mesin kas + ROE≥10 + DER<1 + dividen rutin ---
+    if (nama === "Rivan Dividen") {
+      var vd = (x && x.val) || {};
+      var hasDiv = toNum(r.dividen) === 1;
+      if (!hasDiv) return false;
+      if (!((vd.roe || 0) >= 10)) return false;
+      var derN = toNum(r.der);
+      if (!(!(derN > 0) || derN < 1)) return false;
+      if (derN > 0 && !(derN < 1)) return false;
+      if (!(vd.intrinsic > 0 && vd.mos >= 0)) return false;
+      if (vd.labaSemuKill) return false;
+      if ((r.trap_badge || "") === "Jebakan") return false;
+      return true;
+    }
     return true;
   }
 
@@ -927,7 +987,31 @@ var SP = (function () {
     return (bonus > 0) ? Math.round(bonus / MAKRO_MAKS * MAKRO_BOBOT * 100) : 0;
   }
 
-  function makroSkor(teks, items) {
+  // Bobot eksposur komoditas per emiten (proxy model bisnis, bukan angka audit).
+  // Kunci komoditas = nama tampil MAKRO_SYM huruf kecil. Nilai 0-1.
+  // Tidak terdaftar tapi cocok sektor = 50% (terkait). Kopi/kakao/gula:
+  // WTO — hanya yang terdaftar (hindari sawit ikut bonus kopi).
+  var EKSPOSUR = {
+    "PGAS": {"gas alam": 0.9, "minyak": 0.3, "batu bara": 0.2},
+    "RGAS": {"gas alam": 0.95}, "CGAS": {"gas alam": 0.9}, "RAJA": {"gas alam": 0.8, "minyak": 0.4},
+    "ENRG": {"gas alam": 0.7, "minyak": 0.65, "batu bara": 0.2},
+    "MEDC": {"gas alam": 0.6, "minyak": 0.7},
+    "AKRA": {"gas alam": 0.4, "minyak": 0.4},
+    "ELSA": {"gas alam": 0.3, "minyak": 0.35, "batu bara": 0.1},
+    "APEX": {"gas alam": 0.25, "minyak": 0.3}, "RIGS": {"gas alam": 0.3, "minyak": 0.3},
+    "AMMN": {"tembaga": 0.9}, "MDKA": {"tembaga": 0.55},
+    "TBMS": {"tembaga": 0.3},
+    "AADI": {"batu bara": 0.95, "gas alam": 0.15, "minyak": 0.2}, "ITMG": {"batu bara": 0.9, "gas alam": 0.15, "minyak": 0.2}, "PTBA": {"batu bara": 0.9, "gas alam": 0.15, "minyak": 0.2},
+    "BUMI": {"batu bara": 0.9, "gas alam": 0.15, "minyak": 0.2}, "BSSR": {"batu bara": 0.9, "gas alam": 0.15, "minyak": 0.2}, "MBAP": {"batu bara": 0.9, "gas alam": 0.15, "minyak": 0.2},
+    "ADRO": {"batu bara": 0.7, "gas alam": 0.15, "minyak": 0.2}, "BYAN": {"batu bara": 0.85, "gas alam": 0.15, "minyak": 0.2}, "HRUM": {"batu bara": 0.7, "gas alam": 0.15, "minyak": 0.2},
+    "GEMS": {"batu bara": 0.8, "gas alam": 0.15, "minyak": 0.2}, "DSSA": {"batu bara": 0.6, "gas alam": 0.15, "minyak": 0.2}, "CUAN": {"batu bara": 0.6, "gas alam": 0.15, "minyak": 0.2},
+    "DOID": {"batu bara": 0.35, "gas alam": 0.15, "minyak": 0.2}, "PTRO": {"batu bara": 0.35, "gas alam": 0.15, "minyak": 0.2},
+    "RMKE": {"batu bara": 0.3, "gas alam": 0.15, "minyak": 0.2}, "RMKO": {"batu bara": 0.25, "gas alam": 0.15, "minyak": 0.2},
+    "FORE": {"kopi": 0.3}, "MAPB": {"kopi": 0.3},
+    "STTP": {"kopi": 0.2}, "ULTJ": {"kopi": 0.15}, "ICBP": {"kopi": 0.1}
+  };
+
+  function makroSkor(teks, items, kode) {
     var t = String(teks || "").toLowerCase();
     var bonus = 0, why = "";
     (items || []).forEach(function (it) {
@@ -937,8 +1021,16 @@ var SP = (function () {
         if (t.indexOf(it.kata[i]) >= 0) { cocok = true; break; }
       }
       if (!cocok) return;
+      var kn = String(it.nama || "").toLowerCase();
+      var fx = (EKSPOSUR[kode] || {})[kn];
+      if (fx == null) {
+        if (kn === "kopi" || kn === "kakao" || kn === "gula") return; // hanya terdaftar
+        fx = 0.5; // cocok sektor tapi tak terdaftar = terkait 50%
+      }
       var b = it.chg >= 2 ? MAKRO_MAKS : (it.chg >= 1 ? 4 : 2);
-      if (b > bonus) { bonus = b; why = it.nama + " " + (it.chg > 0 ? "+" : "") + nf(it.chg, 1) + "%"; }
+      var w = Math.round(b * fx);
+      if (w < 1) return;
+      if (w > bonus) { bonus = w; why = it.nama + " " + (it.chg > 0 ? "+" : "") + nf(it.chg, 1) + "% ×" + Math.round(fx * 100) + "%"; }
     });
     return { bonus: bonus, why: why };
   }
@@ -1021,6 +1113,94 @@ var SP = (function () {
       out.status = out.tier === "B" ? "VERIFIKASI — cek laporan dulu" : "BUANG";
     }
     else out.status = out.tier === "A" ? "KANDIDAT — masuk watchlist" : (out.tier === "B" ? "PANTAU" : "BUANG");
+    return out;
+  }
+
+  // ---------- Turnaround score ala Rivan Kurniawan (flow khusus bangkit) ----------
+  // 5 pilar khusus turnaround, total 100:
+  //   Pemulihan 30 (EPS turnaround + laba>0 + Bangkit + CAGR)
+  //   + Kas 25 (OCF/FCF + cash_badge + Sloan)
+  //   + Neraca 15 (DER terkendali, tanpa penalti dividen)
+  //   + AntiTrap 15 (Rivan 5Q versi turnaround)
+  //   + Valuasi 15 (MOS vs target 50% — standar saham berisiko/cyclical).
+  // Tier: T1>=75 STRONG · T2 60-74 EARLY · T3 40-59 FRAGILE · T4<40 AVOID.
+  // Beda vs fundSkor: tidak menghukum belum-bagi-dividen (wajar untuk bangkit),
+  // quorum laba+kas+DER harus bunyi bareng (quorum sensing), fail-safe netral
+  // saat data bolong, circuit-breaker rugi/laba-semu kunci ke T4.
+  function turnaroundSkor(r, fund) {
+    r = r || {}; fund = fund || {};
+    var val = valuasi(r, fund);
+    var fN = fund.nilai || {}, fT = fund.tren || {}, fK = fund.kas || {};
+    var out = { total: 0, p: { pemulihan: 0, kas: 0, neraca: 0, trap: 0, valuasi: 0 }, tier: "T4", status: "", catatan: [], missing: [] };
+    function cat(m) { out.catatan.push(m); }
+    function miss(m) { out.missing.push(m); }
+    // --- P1 pemulihan 30 ---
+    var p1 = 0;
+    var labaN = toNum(r.laba), epsN = toNum(r.eps);
+    var epsUp = (r.eps_trend === "up") || (fT.eps === "naik");
+    var epsDn = (r.eps_trend === "down") || (fT.eps === "turun");
+    if (labaN > 0 && epsN > 0) p1 += 10;
+    else { cat("belum laba (EPS/laba ≤0)"); }
+    if (epsUp) p1 += 10;
+    else if (!epsDn) { p1 += 5; miss("tren EPS"); }
+    if (r.klasifikasi === "Bangkit") p1 += 8;
+    else if (r.klasifikasi === "Tumbuh Cepat") p1 += 4;
+    var cagr = clamp(toNum(r.cagr), 0, 50);
+    p1 += cagr >= 10 ? 2 : (cagr >= 5 ? 1 : 0);
+    out.p.pemulihan = Math.round(clamp(p1, 0, 30) * 10) / 10;
+    // --- P2 kas 25 (quorum: laba harus didukung kas) ---
+    var p2 = 10;
+    if ((r.cash_badge === "Lolos") || (toNum(r.cfo3) === 1)) p2 += 8;
+    else if ((r.cash_badge || "") === "Kill") p2 -= 10;
+    else if ((r.cash_badge || "") === "Watchlist") p2 += 4;
+    else { p2 += 2; miss("selaras kas"); }
+    var ocfA = (fK.ocf || [])[0], fcfA = (fK.fcf || [])[0];
+    var ocfN = (typeof ocfA === "number" && isFinite(ocfA)) ? ocfA : null;
+    var fcfN = (typeof fcfA === "number" && isFinite(fcfA)) ? fcfA : null;
+    if (ocfN != null && fcfN != null) {
+      if (ocfN > 0 && fcfN > 0) p2 += 5;
+      else if (ocfN > 0) { p2 += 2; cat("FCF masih negatif (capex besar)"); }
+      else { p2 -= 4; cat("OCF negatif — laba belum jadi kas"); }
+    } else if (ocfN != null) {
+      p2 += ocfN > 0 ? 3 : -4;
+      if (!(ocfN > 0)) cat("OCF negatif — laba belum jadi kas");
+    } else miss("OCF/FCF");
+    if (r.sloan != null && r.sloan !== "" && toNum(r.sloan) > 0.10) { p2 -= 5; cat("akrual Sloan tinggi — laba kertas"); }
+    out.p.kas = Math.round(clamp(p2, 0, 25) * 10) / 10;
+    // --- P3 neraca 15 (DER saja, tanpa tuntut dividen) ---
+    var derY = toNum(r.der), fder = toNum(fN.der);
+    var derN = derY > 0 ? derY : (fder > 20 ? fder / 100 : fder);
+    var p3;
+    if (!(derN > 0)) { p3 = 7; miss("DER"); }
+    else if (derN < 0.5) p3 = 15;
+    else if (derN < 1) p3 = 12;
+    else if (derN < 2) p3 = 6;
+    else { p3 = 0; cat("DER tinggi ≥2 — neraca belum sehat"); }
+    out.p.neraca = Math.round(clamp(p3, 0, 15) * 10) / 10;
+    // --- P4 anti-trap 15 ---
+    var p4 = 15;
+    if (r.trap_badge === "Jebakan") { p4 -= 8; cat("jebakan value-trap (RK)"); }
+    else if (r.trap_badge === "Waspada") { p4 -= 3; cat("waspada jebakan"); }
+    if (val.labaSemuKill) { p4 -= 8; cat("rugi / laba semu"); }
+    else if (val.labaSemu) { p4 -= 5; cat("bakar kas"); }
+    if (val.unverified) { p4 -= 5; cat("TTM belum terverifikasi"); }
+    var pbvN = val.pbv || 0;
+    if (pbvN > 0 && pbvN < 0.5 && (epsDn || (val.per > 0 && val.per < 3))) { p4 -= 4; cat("murah struktural (PBV<0,5 + laba turun)"); }
+    if (val.per > 50) { p4 -= 4; cat("valuasi absurd (PER>50)"); }
+    out.p.trap = Math.round(clamp(p4, 0, 15) * 10) / 10;
+    // --- P5 valuasi 15 (target MOS 50% — standar turnaround/cyclical) ---
+    var p5 = 0;
+    if (val.intrinsic > 0) p5 += clamp(val.mos / 50 * 100, 0, 100) * 0.15;
+    else cat("FV tak terhitung — valuasi 0");
+    out.p.valuasi = Math.round(clamp(p5, 0, 15) * 10) / 10;
+    out.total = Math.round((out.p.pemulihan + out.p.kas + out.p.neraca + out.p.trap + out.p.valuasi) * 10) / 10;
+    out.tier = out.total >= 75 ? "T1" : (out.total >= 60 ? "T2" : (out.total >= 40 ? "T3" : "T4"));
+    if (val.labaSemuKill) { out.tier = "T4"; out.status = "AVOID — rugi/laba semu, bukan turnaround"; }
+    else if (val.unverified) {
+      if (out.tier === "T1") out.tier = "T2";
+      out.status = out.tier === "T2" ? "EARLY — verifikasi laporan dulu" : (out.tier === "T3" ? "FRAGILE — tunggu 1-2 kuartal" : "AVOID");
+    }
+    else out.status = out.tier === "T1" ? "STRONG TURNAROUND — kandidat" : (out.tier === "T2" ? "EARLY TURNAROUND — pantau" : (out.tier === "T3" ? "FRAGILE — tunggu 1-2 kuartal" : "AVOID — bukan turnaround"));
     return out;
   }
 
@@ -1593,7 +1773,7 @@ var SP = (function () {
   return {
     toNum: toNum, parseCSV: parseCSV, ingestKsei: ingestKsei, nf: nf, pct: pct, fmtBig: fmtBig,
     posRange: posRange, detectFase: detectFase, streakBeli: streakBeli, stageB: stageB, teknikal: teknikal, rekomendasi: rekomendasi, sektorFix: sektorFix, dominanJual: dominanJual,
-    posRange: posRange, detectFase: detectFase, valuasi: valuasi, fundSkor: fundSkor,
+    posRange: posRange, detectFase: detectFase, valuasi: valuasi, fundSkor: fundSkor, turnaroundSkor: turnaroundSkor,
     fsSkala10: fsSkala10, fsLabel: fsLabel, fsPilar: fsPilar, fsVerdict: fsVerdict,
     labarugiSVG: labarugiSVG, lrMiniSVG: lrMiniSVG,
     premiNaratif: premiNaratif, PREMI_STORY_MAX: PREMI_STORY_MAX,
@@ -1612,7 +1792,7 @@ var SP = (function () {
    Antarmuka
    ===================================================================== */
 (function () {
-  var S = { data: [], ksei: {}, scope: {}, berita: {emiten:{},umum:[]}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, labarugi: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], filterKlas: [], tampilSepi: false, q: "", metode: "Semua" };
+  var S = { data: [], ksei: {}, scope: {}, berita: {emiten:{},umum:[]}, tema: {}, temaNama: "Semua", dirBroker: {}, fund: {}, labarugi: {}, mode: "watchlist", picked: {}, pasar: null, sortSpecs: [{ key: "skor", dir: -1 }], filterFase: [], filterAksi: [], filterKlas: [], hanyaDiv: false, div15: {}, tampilSepi: false, q: "", metode: "Semua" };
   var FASE_ORDER = ["Semua", "Akumulasi", "Spring", "Markup", "Distribusi", "Netral"];
   var AKSI_ORDER = ["Semua", "Beli", "Pantau", "Hindari"];
   var KLAS_ORDER = ["Semua", "Bangkit", "Kaya Kas", "Tumbuh Cepat", "Siklus", "Raksasa Stabil"];
@@ -1854,6 +2034,7 @@ var SP = (function () {
     if (S.filterFase.length) d = d.filter(function (x) { return S.filterFase.indexOf(x.fase) >= 0; });
     if (S.filterAksi.length) d = d.filter(function (x) { var a = x._aksiD != null ? x._aksiD : x.aksi; return S.filterAksi.indexOf(a) >= 0; });
     if (S.filterKlas.length) d = d.filter(function (x) { var kl = (x.r && x.r.klasifikasi) || "-"; return S.filterKlas.indexOf(kl) >= 0; });
+    if (S.hanyaDiv) d = d.filter(function (x) { return S.div15 && S.div15[x.kode]; });
     if (S.metode && S.metode !== "Semua") d = d.filter(function (x) { return SP.matchMetode(x, S.metode); });
     if (S.temaNama && S.temaNama !== "Semua") d = d.filter(function (x) { return (S._temaMap || {})[x.kode] === S.temaNama; });
     if (S.q) {
@@ -2076,9 +2257,15 @@ var SP = (function () {
       var on = (k === "Semua") ? (S.filterKlas.length === 0) : (S.filterKlas.indexOf(k) >= 0);
       return '<button class="chip' + (on ? " on" : "") + '" data-k="' + k + '">' + k + "</button>";
     }).join("");
+    var bd = $("btnDiv15");
+    if (bd) {
+      var nDiv = S.div15 ? Object.keys(S.div15).length : 0;
+      bd.className = "btn" + (S.hanyaDiv ? " pri" : "");
+      bd.textContent = S.hanyaDiv ? ("▼ Div 15m (" + nDiv + ")") : "▲ Div 15m";
+    }
     var rb = $("btnResetFilter");
     if (rb) {
-      var aktif = S.filterFase.length + S.filterAksi.length + S.filterKlas.length;
+      var aktif = S.filterFase.length + S.filterAksi.length + S.filterKlas.length + (S.hanyaDiv ? 1 : 0);
       var srt = (S.sortSpecs.length > 1) ? " · sort " + S.sortSpecs.length : (S.sortSpecs.length && (S.sortSpecs[0].key !== "skor" || S.sortSpecs[0].dir !== -1) ? " · sort" : "");
       rb.textContent = aktif || srt ? "Reset (" + aktif + srt.replace(" · ", ", ") + ")" : "Reset";
     }
@@ -2266,7 +2453,9 @@ var SP = (function () {
     S._drawerRec = x;
     var r = x.r, k = x.k, v = x.val;
     var fs = x.fs || SP.fundSkor(x.r, (((S || {}).fund || {}).emiten || {})[x.kode], { unggulan: [] });
+    var tn = x.turn || SP.turnaroundSkor(x.r, (((S || {}).fund || {}).emiten || {})[x.kode]);
     var tierCls = fs.tier === "A" ? "a-beli" : (fs.tier === "B" ? "a-pantau" : "a-hindar");
+    var turnCls = (tn.tier === "T1") ? "a-beli" : (tn.tier === "T2" ? "a-pantau" : "a-hindar");
     var sekN = (r.sektor || "").trim();
     function fsBadge(s10, label) {
       var c = s10 >= 7 ? "a-beli" : (s10 >= 5 ? "a-pantau" : "a-hindar");
@@ -2292,6 +2481,10 @@ var SP = (function () {
       fsRow("AntiTrap", fs.p.trap, 20, "trap", "Rivan 5Q + red-flag Thowilz. Mentah ≥14 Bagus · 10-13,9 Cukup · 6-9,9 Kurang · <6 Bahaya.") +
       (fs.catatan.length ? '<div class="warn">' + fs.catatan.join(" · ") + "</div>" : "") +
       (fs.missing.length ? '<div class="mut">Data kurang: ' + fs.missing.join(", ") + " — pilar terkait dinilai netral.</div>" : "") +
+      rowx("Turnaround (RK)", nf(tn.total, 1) + " / 100 · " + '<span class="aksi ' + turnCls + '">' + tn.tier + " — " + tn.status + "</span>",
+        "Skor khusus bangkit ala Rivan: Pemulihan 30 (EPS turnaround + laba>0 + Bangkit + CAGR) + Kas 25 (OCF/FCF + cash_badge + Sloan) + Neraca 15 (DER, tanpa tuntut dividen) + AntiTrap 15 + Valuasi 15 (MOS vs target 50%). T1≥75 STRONG · T2 60-74 EARLY · T3 40-59 FRAGILE · T4<40 AVOID. Rincian: Pemulihan " + nf(tn.p.pemulihan, 1) + "/30 · Kas " + nf(tn.p.kas, 1) + "/25 · Neraca " + nf(tn.p.neraca, 1) + "/15 · Trap " + nf(tn.p.trap, 1) + "/15 · Valuasi " + nf(tn.p.valuasi, 1) + "/15." +
+        (tn.catatan.length ? " Catatan: " + tn.catatan.join(" · ") + "." : "") +
+        (tn.missing.length ? " Data kurang: " + tn.missing.join(", ") + "." : "")) +
       "</div>";
     $("dwTitle").textContent = x.kode + " — " + x.nama;
     var indLab = SP.industriLabel(x.kode, S.fund.emiten || {}, x.sektor);
@@ -2440,6 +2633,8 @@ var SP = (function () {
         rowx("Trigger entry", nf(tk.entry, 0), tk.setup === "BREAKOUT" ? "buy-stop di resistance — batal bila close kembali di bawahnya." : (tk.setup === "PULLBACK" ? "limit di EMA20 — batal bila close di bawah support." : "harga kini — pasang stop-loss disiplin.")) +
         rowx("Divergen", tk.divBull ? '<span class="pos">BULLISH</span>' : (tk.divBear ? '<span class="neg">BEARISH</span>' : "—"),
           tk.divBull ? "lower-low harga + higher-low RSI — tekanan jual melemah, corridor entry." : (tk.divBear ? "higher-high harga + lower-high RSI — momentum melemah, kurangi/hindari." : "tidak ada divergen RSI 40 bar terakhir.")) +
+        (((S.div15 || {})[x.kode]) ? rowx("Divergen 15m", '<span class="pos">BULLISH</span> · RSI ' + nf(S.div15[x.kode].rsi, 1),
+          "scan intraday hari ini (bar 15m, 1 bulan): entry " + nf(S.div15[x.kode].entry, 0) + " · SL " + nf(S.div15[x.kode].sl, 0) + " · TP1 " + nf(S.div15[x.kode].tp1, 0) + " · RR 1:" + nf(S.div15[x.kode].rr, 2) + " — lower-low harga + higher-low RSI di 40 bar 15m terakhir.") : "") +
         rowx("Support / Resistance", nf(tk.sup, 0) + " / " + nf(tk.res, 0), "fraktal 60 bar terakhir.") +
         rowx("TP2 (measured move)", nf(tk.tp2, 0) + (tk.note ? " *" : ""), "resistance + (resistance − support)" + (tk.note ? " · *" + tk.note : "")) +
         rowx("Risk–Reward (TP1)", "1 : " + nf(tk.rr, 2), tk.rr >= 1.5 ? "layak — risiko kecil dibanding target." : "di bawah 1,5 — kecilkan porsi atau tunggu entry lebih baik.");
@@ -2485,7 +2680,7 @@ var SP = (function () {
         "Ramai = ≥10 berita dalam jendela terpakai — waspada pom-pom ritel bila fundamental lemah. Jendela hitung melebar otomatis: 7 hari → 30 → 90 → 1 tahun → riwayat (jendela pertama yang terisi); berita lama tidak membuang story.") +
       rowx("Sentimen", bt.n ? bt.sentimen + "/100 (" + bt.label + ")" : "— (belum ada berita)", "Leksikon Indonesia: naik/laba/dividen (+) vs turun/rugi/suspend (-).") +
       rowx("Makro", (x._makro && x._makro.bonus > 0) ? "Makro+" + SP.makroPoin(x._makro.bonus) + " (" + x._makro.why + ")" : "— (komoditas terkait tidak naik)",
-        "Pilar TERBESAR rekomendasi (bobot " + Math.round(SP.MAKRO_BOBOT * 100) + "%): komoditas global yang sektor/tema/industri saham ini terkait dan harganya NAIK menambah skor — >0,3% = +10 poin · ≥1% = +20 · ≥2% = +30 (diambil tertinggi, tidak dijumlahkan; yang turun = 0). Strip Komoditas ada di panel Makro atas.") +
+        "Pilar TERBESAR rekomendasi (bobot " + Math.round(SP.MAKRO_BOBOT * 100) + "%): komoditas global yang sektor/tema/industri saham ini terkait dan harganya NAIK menambah skor — >0,3% = +10 poin · ≥1% = +20 · ≥2% = +30, dikali eksposur emiten (murni ~90-100%, jasa/hilir 20-50%, cocok-sektor generik 50%; cth Gas alam +9,8% ×90%). Diambil tertinggi, tidak dijumlahkan; yang turun = 0. Strip Komoditas ada di panel Makro atas.") +
       gorengWarn + newsHtml +
       "<div class=\"note\">Ringkasan: " + ringkasLokal(x) + "</div></div>";
     var s5 = '<div class="step"><h3>5 · Catatan &amp; Sumber</h3>' +
@@ -2563,6 +2758,7 @@ var SP = (function () {
       var b = SP.build([j.saham], m, S.fund.emiten || {}, S.scope.emiten || {})[0];
       if (!b) throw new Error("gagal membangun record");
       b.fs = SP.fundSkor(b.r, (S.fund.emiten || {})[kode], { unggulan: sektorUnggulan() });
+      b.turn = SP.turnaroundSkor(b.r, (S.fund.emiten || {})[kode]);
       for (var sdi = 0; sdi < S.data.length; sdi++) {
         if (S.data[sdi].kode === kode) { S.data[sdi] = b; break; }
       }
@@ -2987,8 +3183,12 @@ var SP = (function () {
       r._premiStory = SP.premiNaratif(_st.nilai, _b.label);
     });
     S.data = SP.build(rows, S.ksei, S.fund.emiten || {}, S.scope.emiten || {});
+    S.div15 = {}; S.hanyaDiv = false; // hasil scan 15m ikut basi saat data baru masuk
     var ctxA = { unggulan: sektorUnggulan() };
-    S.data.forEach(function (x) { x.fs = SP.fundSkor(x.r, (S.fund.emiten || {})[x.kode], ctxA); });
+    S.data.forEach(function (x) {
+      x.fs = SP.fundSkor(x.r, (S.fund.emiten || {})[x.kode], ctxA);
+      x.turn = SP.turnaroundSkor(x.r, (S.fund.emiten || {})[x.kode]);
+    });
     S.data.forEach(function (x) {
       x._sent = x.r._sent;
       x._buzz = x.r._buzz;
@@ -3001,7 +3201,7 @@ var SP = (function () {
       var teksMk = String(x.sektor || "").toLowerCase() + " " +
         String((S._temaMap || {})[x.kode] || "").toLowerCase() + " " +
         String(SP.industriLabel(x.kode, (S.fund && S.fund.emiten) || {}, x.sektor || "")).toLowerCase();
-      x._makro = SP.makroSkor(teksMk, S.makro && S.makro.items);
+      x._makro = SP.makroSkor(teksMk, S.makro && S.makro.items, x.kode);
     });
     updateUmur();
     renderTema();
@@ -3047,7 +3247,7 @@ var SP = (function () {
       "<p><b>Premi naratif FV:</b> FV bukan cuma angka buku — masih ada cerita di balik saham, jadi <b>nilai intrinsik ikut dinaikkan mengikuti Story</b>: maks <b>+" + SP.PREMI_STORY_MAX + "%</b> (Story 100 + nada berita Positif/Netral), skala proporsional di bawahnya, <b>tanpa berita = tanpa premi, berita negatif = tanpa premi</b>. Karena MOS, MaxBuy, upside, dan target 3Y semuanya turunan FV, semuanya ikut naik. Premi terlihat di tooltip kolom FV/MOS dan di drawer bagian 2 (nilai intrinsik + baris Premi naratif).</p>" +
       "<h3>6c · Narasi Makro (komoditas global)</h3>" +
       "<p>Strip <b>Komoditas</b> di panel Makro (atas tabel) ditampilkan sebagai <b>chip</b> per komoditas, dikelompokkan: <b>Logam · Energi · Industri &amp; baterai · Perkebunan &amp; pangan · Konteks</b>. Warna chip = arah (hijau naik, merah turun, abu datar) dengan panah ▲▼ atau •; persentase dicetak tebal. Chip <b>garis putus-putus</b> = konteks (IHSG, Rupiah, Dolar, Indeks komoditas) yang <b>tidak menambah skor</b>; chip bercincin biru <b>★</b> = ikut menambah skor saham terkait (jumlahnya di tooltip). Baris ringkas di atas chip: berapa naik / turun / datar + berapa saham terdampak skor. Isinya emas, perak, tembaga, aluminium, seng, platinum, minyak, gas, batu bara, uranium, baja, <b>nikel</b>, litium &amp; baterai, sawit, kopi, kakao, gula — perubahan hari ini, harga &amp; sektor terkait &amp; perubahan 5 hari di tooltip. Data Yahoo, segar tiap <b>5 menit</b>. Baris <b>Narasi</b> = tiga baris rapi: <b>▲ NAIK</b> dengan yang terkuat di depan, <b>▼ TURUN</b> juga terkuat di depan, lalu catatan bonus (abu-abu) — semua komoditas yang bergerak lebih dari 0,3%, desimal koma, tanpa sektor berulang, supaya cepat beradaptasi.</p>" +
-      "<p><b>Skor — pilar TERBESAR rekomendasi (bobot 30%):</b> komoditas yang <b>sektor/tema/industri sahamnya terkait dan harganya naik</b> menentukan rekomendasi lebih dulu — <b>&gt;0,3% = +10 poin · ≥1% = +20 · ≥2% = +30</b> (skala 0–30). Bila beberapa komoditas cocok, diambil yang <b>tertinggi</b> (tidak dijumlahkan). Yang <b>turun/datar = 0</b> — hanya yang naik yang menambah skor. Konteks (IHSG/Rupiah/Dolar/Indeks komoditas) tidak menambah skor.</p>" +
+      "<p><b>Skor — pilar TERBESAR rekomendasi (bobot 30%):</b> komoditas yang <b>sektor/tema/industri sahamnya terkait dan harganya naik</b> menentukan rekomendasi lebih dulu — <b>&gt;0,3% = +10 poin · ≥1% = +20 · ≥2% = +30</b>, lalu <b>dikali eksposur emiten</b> (murni ~90–100%, jasa/hilir 20–50%, generik 50%; contoh: <i>Gas alam +9,8% ×90%</i>). Kopi/kakao/gula hanya emiten terdaftar — sawit tidak ikut bonus kopi. Bila beberapa komoditas cocok, diambil yang <b>tertinggi</b> (tidak dijumlahkan). Yang <b>turun/datar = 0</b> — hanya yang naik yang menambah skor. Konteks (IHSG/Rupiah/Dolar/Indeks komoditas) tidak menambah skor.</p>" +
       "<table><thead><tr><th>Komoditas</th><th>Sektor terkait (pencocok)</th></tr></thead><tbody>" +
       "<tr><td>Emas · Perak</td><td>Logam mulia — tema/label <i>Gold, emas</i></td></tr>" +
       "<tr><td>Tembaga · Aluminium · Seng</td><td>Logam dasar &amp; smelter — <i>Non-Energy Minerals, Process Industries, smelter, logam</i></td></tr>" +
@@ -3057,16 +3257,19 @@ var SP = (function () {
       "<tr><td>Uranium</td><td>Uranium &amp; nuklir — <i>uranium, nuklir</i> (praktis konteks: tidak ada sektor uranium di IDX)</td></tr>" +
       "<tr><td>Baja</td><td>Baja &amp; logam — <i>baja, steel, besi</i> (IDX sangat tipis, hanya emiten baja jarang cocok)</td></tr>" +
       "<tr><td>Nikel · Litium &amp; baterai</td><td>Tema <i>Nickel</i> + <i>baterai/battery/litium/lithium</i> — proxy ETF <code>NIKL</code> (Sprott Nickel Miners) &amp; <code>LIT</code>; jalur rantai baterai/EV Indonesia (INCO, NCKL dkk)</td></tr>" +
-      "<tr><td>Sawit (CPO) · Kopi · Kakao · Gula</td><td>Sawit &amp; perkebunan — <i>perkebunan, sawit, kebun, palm, cpo</i>; <b>makanan olahan/rokok (ICBP dkk) sengaja tidak ikut</b> — CPO justru biaya buat mereka</td></tr>" +
+      "<tr><td>Sawit (CPO)</td><td>Sawit &amp; perkebunan — <i>perkebunan, sawit, kebun, palm, cpo</i>; <b>makanan olahan (ICBP dkk) sengaja tidak ikut</b> — CPO justru biaya buat mereka</td></tr>" +
+      "<tr><td>Kopi · Kakao · Gula</td><td>Hanya emiten terdaftar (kopi: FORE/MAPB; kakao/gula generik 50%) — <b>sawit tidak ikut bonus kopi</b></td></tr>" +
       "<tr><td>IHSG · Rupiah · Dolar AS · Indeks komoditas</td><td>Konteks saja — tidak menambah skor</td></tr></tbody></table>" +
       "<p>Pencocokan memakai <b>sektor TradingView + tema + label industri</b> (huruf kecil) — <b>setingkat sektor</b>, jadi bisa sedikit lebih luas dari industri persisnya (mis. seluruh <i>Non-Energy Minerals</i> ikut saat tembaga naik, termasuk semen). Harga nikel tidak tersedia gratis di Yahoo, jadi memakai proxy ETF <code>NIKL</code>; batu bara proxy ETF <code>COAL</code>; indeks komoditas global <code>DBC</code> hanya konteks. Bonus Makro masuk <i>sebelum</i> cap gorengan (maks 45) dan cap laba-semu (maks 10), jadi spekulasi tetap terkunci di bawah.</p>" +
+      "<h3>6d · Scan Bullish Divergence 15m (harian)</h3>" +
+      "<p>Tombol <b>▲ Div 15m</b> di toolbar mengambil <b>bar 15 menit 1 bulan terakhir</b> (±600 bar) untuk <b>25 emiten terlikuid</b> dari hasil tabel saat ini, lalu menjalankan rumus technical yang sama (RSI14 + 2 pivot low 40 bar terakhir). Yang <b>lower-low harga + higher-low RSI</b> ditandai BULLISH, tabel otomatis difilter ke mereka, dan detail entry/SL/TP1/RR 15m ada di drawer (baris <i>Divergen 15m</i>). Hasil scan juga nempel ke baris sehingga bisa dipakai ulang lewat dropdown <b>Metode → Bullish Divergen ▲</b> (tanpa scan ulang). Dropdown yang sama juga menangkap divergen <b>bar harian</b> bila datanya dari Download Data (watchlist). Klik tombol lagi untuk melepas filter. Berburu tiap hari = klik tiap pagi; tanpa cache, selalu segar. Catatan: butuh koneksi Yahoo saat klik (gagal ambil dilaporkan di toast); pola intraday valid untuk <i>entry timing</i>, tetap cek fase bandar + valuasi sebelum transaksi.</p>" +
       "<h3>7 · Keterbatasan</h3>" +
       "<p>Kepemilikan KSEI bersifat <b>bulanan</b> (bukan harian), sehingga rata2 asing adalah perkiraan. Data harga/volume harian dari Yahoo/TradingView. <b>Harga watchlist (Yahoo) vs pasar (TradingView) bisa beda 1 tick</b> — cek jam data di penghitung baris. <b>Berita/sentimen</b> dari RSS Google News + CNBC (gratis, <b>tanpa cache — selalu segar</b>), memakai <b>berita yang menyebut kode di judul</b> dengan jendela <b>7 hari → 30 → 90 → 1 tahun → riwayat</b> (berita lama tidak membuang story, hanya melebarkan jendela); sentimen leksikon Indonesia, buzz Ramai + fundamental lemah = tanda pom-pom. Tanpa AI — seluruh skor dihitung lokal rule-based. <b>Umur fase</b> hanya sejak pertama terpantau di aplikasi ini (penyimpanan lokal peramban) — bukan awal fase sebenarnya, apalagi untuk scan pasar penuh tanpa riwayat. Ini alat bantu keputusan, bukan nasihat investasi.</p>";
   }
 
   // Penanda versi Jr. — kalau angka di penghitung baris tidak sama dengan ini,
   // berarti tab browser masih memuat JavaScript lama: tekan Ctrl+F5.
-  var BUILD_V = "v2026-10-10M · Reko Makro30/Story25/FS18/MOS14/Aksi8/SB3/TK2 · strip chip komoditas · grafik laba-rugi · mini-chart tabel";
+  var BUILD_V = "v2026-10-10Q · Reko Makro30/Story25/FS18/MOS14/Aksi8/SB3/TK2 · 37 tema sektor · eksposur makro ×% · scan div 15m + metode Bullish Divergen";
 
   // ---------- event ----------
   var APP = (location.protocol === "http:" || location.protocol === "https:");
@@ -3105,6 +3308,7 @@ var SP = (function () {
       if (j.labarugi) { for (var k in j.labarugi) S.labarugi[k] = j.labarugi[k]; }
       gabungBerita(j.berita);
       S.makro = j.makro || S.makro;
+      if (j.tema && j.tema.tema) S.tema = j.tema;
       S.mode = "pasar"; muatPicked();
       S.dibuat = j.dibuat || "";
       return fetch("/api/harian").then(function (r) { return r.json(); }).then(function (h) {
@@ -3420,8 +3624,41 @@ var SP = (function () {
     }
     renderChips(); simpanFilterSort(); render();
   };
+  $("btnDiv15").onclick = function () {
+    if (S.hanyaDiv) { S.hanyaDiv = false; renderChips(); render(); return; }
+    var cands = (S.data || []).filter(function (x) { return x && x.kode; })
+      .sort(function (a, b) { return SP.toNum(b.r.nilai_harian) - SP.toNum(a.r.nilai_harian); })
+      .slice(0, 25).map(function (x) { return x.kode; });
+    if (!cands.length) { toast("Tidak ada saham untuk di-scan"); return; }
+    var bd = $("btnDiv15"); bd.textContent = "…15m"; bd.disabled = true;
+    var hits = {}, gagal = 0, gi = 0;
+    function satu(k, done) {
+      fetch("/api/intra?kodes=" + encodeURIComponent(k)).then(function (r) { return r.json(); }).then(function (j) {
+        var bars = j && j.ok && j.bars && j.bars[k];
+        if (!bars) { gagal++; done(); return; }
+        var tk = SP.teknikal(bars, {});
+        if (tk && tk.ok && tk.divBull) hits[k] = tk;
+        done();
+      }).catch(function () { gagal++; done(); });
+    }
+    (function next() {
+      if (gi >= cands.length) {
+        S.div15 = hits; S.hanyaDiv = true;
+        (S.data || []).forEach(function (x) { if (hits[x.kode]) x._tk15 = hits[x.kode]; else delete x._tk15; });
+        bd.disabled = false; renderChips(); render();
+        var ks = Object.keys(hits);
+        toast(ks.length ? ("Bullish divergen 15m (" + ks.length + "): " + ks.join(", ")) : "Tidak ada bullish divergen 15m dari " + cands.length + " yang di-scan" + (gagal ? " (" + gagal + " gagal ambil)" : ""));
+        return;
+      }
+      var grup = cands.slice(gi, gi + 8); gi += 8;
+      var sisa = grup.length;
+      grup.forEach(function (k) { satu(k, function () { if (--sisa <= 0) next(); }); });
+    })();
+  };
   $("btnResetFilter").onclick = function () {
-    S.filterFase = []; S.filterAksi = []; S.filterKlas = []; S.tampilSepi = false; $("cekSepi").checked = false; S.sortSpecs = [{ key: "skor", dir: -1 }];
+    S.filterFase = []; S.filterAksi = []; S.filterKlas = []; S.hanyaDiv = false; S.div15 = {};
+    (S.data || []).forEach(function (x) { delete x._tk15; });
+    S.tampilSepi = false; $("cekSepi").checked = false; S.sortSpecs = [{ key: "skor", dir: -1 }];
     S.q = ""; $("q").value = ""; S.metode = "Semua"; $("metode").value = "Semua";
     try { localStorage.setItem("sp_metode", "Semua"); } catch (e) {}
     S.temaNama = "Semua"; renderTema();
